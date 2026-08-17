@@ -68,6 +68,8 @@ Run one implemented fixture:
 bun run conformance:scenario server-initialize
 bun run conformance:scenario logging-set-level
 bun run conformance:scenario ping
+bun run conformance:scenario tools-list
+bun run conformance:scenario tools-call-image
 ```
 
 Pass `--verbose` through to the conformance runner when diagnosing a failure:
@@ -75,6 +77,15 @@ Pass `--verbose` through to the conformance runner when diagnosing a failure:
 ```sh
 bun run conformance:scenario ping --verbose
 ```
+
+Open a scenario in the [MCP Inspector](https://github.com/modelcontextprotocol/inspector):
+
+```sh
+bun run --cwd=apps/conformance start -- inspect ping
+```
+
+The command starts the fixture, then launches the Inspector with its Streamable
+HTTP URL. Close the Inspector to stop the fixture.
 
 The fixture binds to `127.0.0.1` on a random high port, then shuts down when
 the command ends. To make the port stable for local inspection, set `MCP_PORT`:
@@ -99,11 +110,22 @@ bun run type-check
 
 ## Current coverage
 
-| Scenario            | Status  | What it establishes                                           |
-| ------------------- | ------- | ------------------------------------------------------------- |
-| `server-initialize` | Passing | Effect's Streamable HTTP server completes MCP initialization. |
-| `logging-set-level` | Passing | Effect accepts the built-in `logging/setLevel` request.       |
-| `ping`              | Passing | Effect responds to the built-in `ping` request.               |
+| Scenario                       | Status  | What it establishes / exposes                                      |
+| ------------------------------ | ------- | ------------------------------------------------------------------ |
+| `server-initialize`            | Passing | Effect's Streamable HTTP server completes MCP initialization.      |
+| `logging-set-level`            | Passing | Effect accepts the built-in `logging/setLevel` request.            |
+| `ping`                         | Passing | Effect responds to the built-in `ping` request.                    |
+| `tools-list`                   | Passing | A scenario-owned Effect tool has a valid MCP definition.           |
+| `tools-call-simple-text`       | Passing | Direct MCP tool registration returns text content.                 |
+| `tools-call-image`             | Passing | Direct registration encodes image bytes as MCP image content.      |
+| `tools-call-audio`             | Passing | Direct registration encodes audio bytes as MCP audio content.      |
+| `tools-call-embedded-resource` | Passing | Direct registration returns embedded resources.                    |
+| `tools-call-mixed-content`     | Passing | Direct registration returns mixed MCP content blocks.              |
+| `tools-call-error`             | Passing | Tool-level errors are represented with `isError: true`.            |
+| `tools-call-with-logging`      | Failing | Outbound logging notifications are not received by the client.     |
+| `tools-call-with-progress`     | Failing | Tool handlers cannot access the request progress token.            |
+| `tools-call-sampling`          | Blocked | Reverse sampling request does not complete over this transport.    |
+| `tools-call-elicitation`       | Blocked | Reverse elicitation request does not complete over this transport. |
 
 These are individual scenario results, not a claim that the Effect MCP server
 conforms to a whole MCP revision.
@@ -120,23 +142,27 @@ Then:
 
 1. Create `scenarios/<scenario-name>/` with its own `package.json`,
    `tsconfig.json`, and `src/index.ts`.
-2. Start from an existing scenario and call `runScenarioServer("<scenario-name>")`.
-3. Add only the capability layer and handlers required by that scenario.
+2. Start from an existing scenario and compose the shared `server(...)` layer
+   with only the capability layers and handlers required by the scenario.
+3. The scenario starts its own Effect runtime; `mcp-fixture` only supplies the
+   MCP server transport, metadata, and configuration.
 4. Add the scenario name to the `scenarios` list in
    [`apps/conformance/src/commands/run.ts`](./apps/conformance/src/commands/run.ts).
 5. Run `bun run conformance:scenario <scenario-name> --verbose`, then add its
    result to the coverage table above.
 
+The `tools-list` fixture establishes the high-level `Toolkit` shape to follow
+for ordinary application tools. The content fixtures use the lower-level
+`McpServer.addTool` API intentionally: its `CallToolResult` supports MCP's
+text, image, audio, resource, mixed-content, and error result shapes. The
+shared fixture is not involved in capability registration.
+
 ## What remains
 
-The implemented scenarios only cover server behaviors that Effect currently
-provides without registering application capabilities. The next fixtures should
-be implemented in narrow groups, following the contracts published by the
-conformance runner:
+The tool group is now fully represented by individual scenario apps. The next
+fixtures should be implemented in narrow groups, following the contracts
+published by the conformance runner:
 
-- Tool discovery and calls: `tools-list`, simple text, mixed content, errors,
-  logging, progress, and client-mediated features such as sampling and
-  elicitation.
 - Resources: list/read text/read binary, URI templates and completion,
   subscriptions, updates, and unsubscribe behavior.
 - Prompts and completion: listing prompts, argument handling, embedded content,

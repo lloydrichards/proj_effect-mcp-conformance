@@ -11,7 +11,22 @@ const verbose = Flag.boolean("verbose").pipe(
   Flag.optional,
 );
 
-const scenarios = ["server-initialize", "logging-set-level", "ping"];
+export const scenarios = [
+  "server-initialize",
+  "logging-set-level",
+  "ping",
+  "tools-list",
+  "tools-call-simple-text",
+  "tools-call-image",
+  "tools-call-audio",
+  "tools-call-embedded-resource",
+  "tools-call-mixed-content",
+  "tools-call-with-logging",
+  "tools-call-error",
+  "tools-call-with-progress",
+  "tools-call-sampling",
+  "tools-call-elicitation",
+];
 const repository = new URL("../../../..", import.meta.url).pathname;
 
 class UnknownScenario extends Data.TaggedError("UnknownScenario")<{

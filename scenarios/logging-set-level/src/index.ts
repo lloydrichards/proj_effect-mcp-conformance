@@ -1,3 +1,14 @@
-import { runScenarioServer } from "@repo/mcp-fixture";
+import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
+import { Effect, Layer } from "effect";
+import { HttpRouter, HttpServer } from "effect/unstable/http";
+import { McpServerConfig, server } from "@repo/mcp-fixture";
 
-runScenarioServer("logging-set-level");
+const program = server("logging-set-level").pipe(
+  HttpRouter.serve,
+  HttpServer.withLogAddress,
+  Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
+  Layer.launch,
+  Effect.satisfiesServicesType<never>(),
+);
+
+BunRuntime.runMain(program);

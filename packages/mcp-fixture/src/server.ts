@@ -1,9 +1,7 @@
-import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Config, Effect, Layer } from "effect";
 import { McpProtocol, McpServer } from "effect/unstable/ai";
-import { HttpRouter, HttpServer } from "effect/unstable/http";
 
-const McpServerConfig = Config.all({
+export const McpServerConfig = Config.all({
   port: Config.number("MCP_PORT").pipe(Config.withDefault(9009)),
   hostname: Config.string("MCP_HOST").pipe(Config.withDefault("0.0.0.0")),
   allowedOrigins: Config.string("MCP_ALLOWED_ORIGINS").pipe(
@@ -11,28 +9,22 @@ const McpServerConfig = Config.all({
   ),
 });
 
-export const runScenarioServer = (name: string) => {
-  const server = Effect.gen(function* () {
-    const config = yield* McpServerConfig;
-    const allowedOrigins = config.allowedOrigins
-      .split(",")
-      .map((origin) => origin.trim());
-
-    yield* Effect.logInfo(`Starting MCP conformance scenario ${name} at /mcp`);
-
-    return McpServer.layerHttp({
+/**
+ * The transport and server metadata shared by every conformance fixture.
+ *
+ * A scenario owns the runtime and capability layers it provides to this
+ * server. That keeps each executable fixture responsible for exactly the MCP
+ * behavior its conformance scenario exercises.
+ */
+export const server = (name: string) =>
+  Effect.map(McpServerConfig, (config) =>
+    McpServer.layerHttp({
       name: `Effect MCP fixture: ${name}`,
       version: "0.1.0",
       path: "/mcp",
-      protocols: [McpProtocol.v2025_06_18],
-      allowedOrigins,
-    }).pipe(
-      Layer.provideMerge(Layer.empty),
-      HttpRouter.serve,
-      HttpServer.withLogAddress,
-      Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-    );
-  }).pipe(Layer.unwrap, Layer.launch, Effect.satisfiesServicesType<never>());
-
-  BunRuntime.runMain(server);
-};
+      protocols: [McpProtocol.v2025_11_25, McpProtocol.v2025_06_18],
+      allowedOrigins: config.allowedOrigins
+        .split(",")
+        .map((origin) => origin.trim()),
+    }),
+  ).pipe(Layer.unwrap);

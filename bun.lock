@@ -50,21 +50,126 @@
       "name": "@repo/scenario-logging-set-level",
       "version": "0.0.0",
       "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
         "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
       },
     },
     "scenarios/ping": {
       "name": "@repo/scenario-ping",
       "version": "0.0.0",
       "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
         "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
       },
     },
     "scenarios/server-initialize": {
       "name": "@repo/scenario-server-initialize",
       "version": "0.0.0",
       "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
         "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/tools-call-audio": {
+      "name": "@repo/scenario-tools-call-audio",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/tools-call-elicitation": {
+      "name": "@repo/scenario-tools-call-elicitation",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/tools-call-embedded-resource": {
+      "name": "@repo/scenario-tools-call-embedded-resource",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/tools-call-error": {
+      "name": "@repo/scenario-tools-call-error",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/tools-call-image": {
+      "name": "@repo/scenario-tools-call-image",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/tools-call-mixed-content": {
+      "name": "@repo/scenario-tools-call-mixed-content",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/tools-call-sampling": {
+      "name": "@repo/scenario-tools-call-sampling",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/tools-call-simple-text": {
+      "name": "@repo/scenario-tools-call-simple-text",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/tools-call-with-logging": {
+      "name": "@repo/scenario-tools-call-with-logging",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/tools-call-with-progress": {
+      "name": "@repo/scenario-tools-call-with-progress",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/tools-list": {
+      "name": "@repo/scenario-tools-list",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
       },
     },
   },
@@ -218,6 +323,28 @@
     "@repo/scenario-ping": ["@repo/scenario-ping@workspace:scenarios/ping"],
 
     "@repo/scenario-server-initialize": ["@repo/scenario-server-initialize@workspace:scenarios/server-initialize"],
+
+    "@repo/scenario-tools-call-audio": ["@repo/scenario-tools-call-audio@workspace:scenarios/tools-call-audio"],
+
+    "@repo/scenario-tools-call-elicitation": ["@repo/scenario-tools-call-elicitation@workspace:scenarios/tools-call-elicitation"],
+
+    "@repo/scenario-tools-call-embedded-resource": ["@repo/scenario-tools-call-embedded-resource@workspace:scenarios/tools-call-embedded-resource"],
+
+    "@repo/scenario-tools-call-error": ["@repo/scenario-tools-call-error@workspace:scenarios/tools-call-error"],
+
+    "@repo/scenario-tools-call-image": ["@repo/scenario-tools-call-image@workspace:scenarios/tools-call-image"],
+
+    "@repo/scenario-tools-call-mixed-content": ["@repo/scenario-tools-call-mixed-content@workspace:scenarios/tools-call-mixed-content"],
+
+    "@repo/scenario-tools-call-sampling": ["@repo/scenario-tools-call-sampling@workspace:scenarios/tools-call-sampling"],
+
+    "@repo/scenario-tools-call-simple-text": ["@repo/scenario-tools-call-simple-text@workspace:scenarios/tools-call-simple-text"],
+
+    "@repo/scenario-tools-call-with-logging": ["@repo/scenario-tools-call-with-logging@workspace:scenarios/tools-call-with-logging"],
+
+    "@repo/scenario-tools-call-with-progress": ["@repo/scenario-tools-call-with-progress@workspace:scenarios/tools-call-with-progress"],
+
+    "@repo/scenario-tools-list": ["@repo/scenario-tools-list@workspace:scenarios/tools-list"],
 
     "@rolldown/binding-android-arm64": ["@rolldown/binding-android-arm64@1.2.4", "", { "os": "android", "cpu": "arm64" }, "sha512-jHC2cnyKz5xU2fhECtFl8OZ83cYNt13GZQD+0uMJ/X3o+ijmd56okHhTUwxVSHPx1IRVIJEZ1/1pPzeLCU6XKA=="],
 
