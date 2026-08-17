@@ -1,21 +1,23 @@
 {
-  "name": "server-mcp",
+  "name": "@repo/conformance-cli",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "build": "bun build src/index.ts --outdir=dist --target=bun --minify",
     "build:types": "tsc --emitDeclarationOnly",
-    "dev": "bun run src/index.ts",
-    "dev:watch": "bun --watch run src/index.ts",
+    "start": "bun run src/index.ts",
+    "dev": "bun --watch run src/index.ts",
     "test": "vitest run",
     "type-check": "tsc --noEmit",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "inspector": "bun run dev & sleep 2 && npx @mcpjam/inspector@latest; kill %1"
+    "clean": "git clean -xdf .cache .turbo dist node_modules"
+  },
+  "bin": {
+    "effect-mcp-conformance": "dist/index.js"
   },
   "dependencies": {
-    "@effect/platform-bun": "4.0.0-rc.108",
-    "effect": "4.0.0-rc.108"
+    "@effect/platform-bun": "4.0.0-rc.110",
+    "effect": "4.0.0-rc.110"
   },
   "devDependencies": {
     "@repo/config-typescript": "workspace:*",

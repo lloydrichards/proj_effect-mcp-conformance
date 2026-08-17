@@ -1,0 +1,20 @@
+{
+  "name": "@repo/mcp-fixture",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/server.ts"
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@effect/platform-bun": "4.0.0-rc.110",
+    "effect": "4.0.0-rc.110"
+  },
+  "devDependencies": {
+    "@repo/config-typescript": "workspace:*",
+    "@types/bun": "^1.2.17"
+  }
+}
