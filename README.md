@@ -72,6 +72,30 @@ bun run conformance:scenario tools-list
 bun run conformance:scenario tools-call-image
 ```
 
+Run the full adapter matrix. Each cell starts an isolated server with exactly
+one configured adapter, then runs the matching upstream conformance scenario:
+
+```sh
+bun run conformance:all
+```
+
+The result is a bordered terminal report with colour-coded statuses (and a
+plain-text fallback for redirected output), such as:
+
+```text
+scenario | v2025-11-25 | v2025-06-18 | v2025-03-26 | v2024-11-05
+ping     | PASS        | PASS        | PASS        | PASS
+```
+
+`FAIL` means the conformance runner exited unsuccessfully; `TIMEOUT` means the
+cell exceeded the ten-second limit (use `--timeout <milliseconds>` to adjust
+it); and `SKIP` means the scenario has not declared support for that protocol.
+For a fast local check, limit the matrix to one scenario:
+
+```sh
+bun run conformance:all --scenario ping
+```
+
 Pass `--verbose` through to the conformance runner when diagnosing a failure:
 
 ```sh
@@ -84,6 +108,9 @@ Every run performs an explicit `initialize` probe before the conformance
 runner starts. It reports the protocol offered by the probe, the ordered
 adapter list configured in the fixture, and the adapter Effect actually
 negotiated.
+
+The fixture exposes every adapter available in Effect `4.0.0-rc.110`, from
+newest to oldest: `2025-11-25`, `2025-06-18`, `2025-03-26`, and `2024-11-05`.
 
 ```sh
 # The fixture exposes only 2025-11-25.

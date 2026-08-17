@@ -24,6 +24,7 @@
         "@effect/platform-bun": "4.0.0-rc.110",
         "@repo/mcp-fixture": "workspace:*",
         "effect": "4.0.0-rc.110",
+        "effect-boxes": "^0.17.0",
       },
       "devDependencies": {
         "@repo/config-typescript": "workspace:*",
@@ -540,6 +541,8 @@
     "dom-accessibility-api": ["dom-accessibility-api@0.5.16", "", {}, "sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg=="],
 
     "effect": ["effect@4.0.0-rc.110", "", { "dependencies": { "@standard-schema/spec": "^1.1.0", "fast-check": "^4.9.0", "msgpackr": "^2.0.4" } }, "sha512-ega6FTJ8CS2of7tHZiADvgyJyV999Q6tZ9juE56V81O0jw6flRwydaPNtyfvP2a5LL9PZrse8A1jnNUD5sWVHg=="],
+
+    "effect-boxes": ["effect-boxes@0.17.0", "", { "peerDependencies": { "effect": ">=4.0.0-beta.59" } }, "sha512-F5nv7BESA3fkTjN1jkvl2j/XfrhS3q8j0WI7iuvHGtxYwdy8WCkYDrbrjakml4/r/vqmVdhKBOe4k9GztSHHVw=="],
 
     "es-module-lexer": ["es-module-lexer@2.3.2", "", {}, "sha512-poHGpORABojJJucnV9KbOavETW8lBVnphkW77ER5/BQ5Fz7oXSoCNek7IH3vR5nRjdsEz926ibFYX8KtLQmdyw=="],
 

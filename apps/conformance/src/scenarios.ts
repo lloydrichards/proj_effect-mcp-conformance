@@ -1,30 +1,34 @@
-import type { ProtocolVersion } from "@repo/mcp-fixture";
+import {
+  supportedProtocolVersions,
+  type ProtocolVersion,
+} from "@repo/mcp-fixture";
 
 export interface Scenario {
   readonly name: string;
   readonly protocolVersions: ReadonlyArray<ProtocolVersion>;
 }
 
-const legacyAndNovember = ["2025-06-18", "2025-11-25"] as const;
+const allProtocolVersions: ReadonlyArray<ProtocolVersion> =
+  supportedProtocolVersions;
 
 export const scenarios: ReadonlyArray<Scenario> = [
-  { name: "server-initialize", protocolVersions: legacyAndNovember },
-  { name: "logging-set-level", protocolVersions: legacyAndNovember },
-  { name: "ping", protocolVersions: legacyAndNovember },
-  { name: "tools-list", protocolVersions: legacyAndNovember },
-  { name: "tools-call-simple-text", protocolVersions: legacyAndNovember },
-  { name: "tools-call-image", protocolVersions: legacyAndNovember },
-  { name: "tools-call-audio", protocolVersions: legacyAndNovember },
+  { name: "server-initialize", protocolVersions: allProtocolVersions },
+  { name: "logging-set-level", protocolVersions: allProtocolVersions },
+  { name: "ping", protocolVersions: allProtocolVersions },
+  { name: "tools-list", protocolVersions: allProtocolVersions },
+  { name: "tools-call-simple-text", protocolVersions: allProtocolVersions },
+  { name: "tools-call-image", protocolVersions: allProtocolVersions },
+  { name: "tools-call-audio", protocolVersions: allProtocolVersions },
   {
     name: "tools-call-embedded-resource",
-    protocolVersions: legacyAndNovember,
+    protocolVersions: allProtocolVersions,
   },
-  { name: "tools-call-mixed-content", protocolVersions: legacyAndNovember },
-  { name: "tools-call-with-logging", protocolVersions: legacyAndNovember },
-  { name: "tools-call-error", protocolVersions: legacyAndNovember },
-  { name: "tools-call-with-progress", protocolVersions: legacyAndNovember },
-  { name: "tools-call-sampling", protocolVersions: legacyAndNovember },
-  { name: "tools-call-elicitation", protocolVersions: legacyAndNovember },
+  { name: "tools-call-mixed-content", protocolVersions: allProtocolVersions },
+  { name: "tools-call-with-logging", protocolVersions: allProtocolVersions },
+  { name: "tools-call-error", protocolVersions: allProtocolVersions },
+  { name: "tools-call-with-progress", protocolVersions: allProtocolVersions },
+  { name: "tools-call-sampling", protocolVersions: allProtocolVersions },
+  { name: "tools-call-elicitation", protocolVersions: allProtocolVersions },
 ];
 
 export const scenarioNames = scenarios.map((scenario) => scenario.name);
