@@ -1,7 +1,7 @@
 import { Console, Data, Effect } from "effect";
 import { Argument, Command } from "effect/unstable/cli";
 import { ChildProcess } from "effect/unstable/process";
-import { scenarios } from "./run";
+import { findScenario, scenarioNames } from "../scenarios";
 
 const scenario = Argument.string("scenario").pipe(
   Argument.withDescription("Scenario server to open in the MCP Inspector"),
@@ -31,10 +31,10 @@ const waitForServer = (url: string) =>
 export const inspect = Command.make("inspect", { scenario }, ({ scenario }) =>
   Effect.scoped(
     Effect.gen(function* () {
-      if (!scenarios.includes(scenario)) {
+      if (findScenario(scenario) === undefined) {
         yield* Console.error(
           `Unknown scenario ${JSON.stringify(scenario)}. ` +
-            `Choose one of: ${scenarios.join(", ")}.`,
+            `Choose one of: ${scenarioNames.join(", ")}.`,
         );
         return yield* new UnknownScenario({ scenario });
       }

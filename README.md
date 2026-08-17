@@ -78,6 +78,46 @@ Pass `--verbose` through to the conformance runner when diagnosing a failure:
 bun run conformance:scenario ping --verbose
 ```
 
+### Protocol selection
+
+Every run performs an explicit `initialize` probe before the conformance
+runner starts. It reports the protocol offered by the probe, the ordered
+adapter list configured in the fixture, and the adapter Effect actually
+negotiated.
+
+```sh
+# The fixture exposes only 2025-11-25.
+bun run conformance:scenario ping \
+  --protocol 2025-11-25 \
+  --protocol-case only
+
+# The first adapter is selected exactly; the older adapter is present as a
+# fallback without changing that result.
+bun run conformance:scenario ping \
+  --protocol 2025-11-25 \
+  --protocol-case with-fallback \
+  --fallback-protocol 2025-06-18
+
+# The offered 2025-11-25 adapter is absent. Effect selects the first configured
+# adapter, 2025-06-18.
+bun run conformance:scenario ping \
+  --protocol 2025-11-25 \
+  --protocol-case fallback-only \
+  --fallback-protocol 2025-06-18
+```
+
+`only` configures `[protocol]`; `with-fallback` configures
+`[protocol, fallback-protocol]`; and `fallback-only` configures
+`[fallback-protocol]`. An empty or truly missing adapter set is not a valid
+`McpServer.layerHttp` configuration: Effect requires at least one adapter and
+selects the first configured adapter when the offered version is unavailable.
+
+The upstream runner's `--spec-version` flag filters scenario lists and suites.
+It does not force a protocol version for an explicitly named server scenario.
+This CLI instead validates the negotiated protocol against each scenario's
+local applicability metadata in
+[`apps/conformance/src/scenarios.ts`](./apps/conformance/src/scenarios.ts).
+
 Open a scenario in the [MCP Inspector](https://github.com/modelcontextprotocol/inspector):
 
 ```sh
@@ -147,7 +187,8 @@ Then:
 3. The scenario starts its own Effect runtime; `mcp-fixture` only supplies the
    MCP server transport, metadata, and configuration.
 4. Add the scenario name to the `scenarios` list in
-   [`apps/conformance/src/commands/run.ts`](./apps/conformance/src/commands/run.ts).
+   [`apps/conformance/src/scenarios.ts`](./apps/conformance/src/scenarios.ts),
+   including only the protocol revisions to which the scenario applies.
 5. Run `bun run conformance:scenario <scenario-name> --verbose`, then add its
    result to the coverage table above.
 
