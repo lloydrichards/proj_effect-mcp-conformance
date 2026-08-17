@@ -89,7 +89,9 @@ ping     | PASS        | PASS        | PASS        | PASS
 
 `FAIL` means the conformance runner exited unsuccessfully; `TIMEOUT` means the
 cell exceeded the ten-second limit (use `--timeout <milliseconds>` to adjust
-it); and `SKIP` means the scenario has not declared support for that protocol.
+it); and `SKIP` means the scenario requires a capability absent from that
+adapter. The local applicability matrix is derived from the actual Effect
+adapter behavior, rather than only the upstream runner's dated labels.
 For a fast local check, limit the matrix to one scenario:
 
 ```sh
@@ -227,16 +229,23 @@ shared fixture is not involved in capability registration.
 
 ## What remains
 
-The tool group is now fully represented by individual scenario apps. The next
-fixtures should be implemented in narrow groups, following the contracts
-published by the conformance runner:
+### Deferred to `v2025-07-28`
 
-- Resources: list/read text/read binary, URI templates and completion,
-  subscriptions, updates, and unsubscribe behavior.
-- Prompts and completion: listing prompts, argument handling, embedded content,
-  images, and `completion/complete`.
-- Version-specific and transport/security coverage: the runner's applicable
-  JSON Schema, SSE, DNS-rebinding, and newer-protocol scenarios.
+The following scenarios are intentionally not represented by a fixture yet.
+They depend on the `v2025-07-28` protocol/transport work and should be added
+when that adapter is available, rather than being forced through the current
+stateful Streamable HTTP fixture:
+
+| Scenario                       | Why it is deferred                                   |
+| ------------------------------ | ---------------------------------------------------- |
+| `resources-subscribe`          | Resource subscription lifecycle and update delivery. |
+| `resources-unsubscribe`        | Resource subscription lifecycle and update delivery. |
+| `server-sse-polling`           | Legacy SSE/polling transport behavior.               |
+| `server-sse-multiple-streams`  | Multiple SSE stream behavior.                        |
+| `json-schema-2020-12`          | Newer protocol JSON Schema preservation behavior.    |
+| `elicitation-sep1034-defaults` | Newer elicitation schema defaults.                   |
+| `elicitation-sep1330-enums`    | Newer elicitation enum schema representation.        |
+| `dns-rebinding-protection`     | Local HTTP host/origin security behavior.            |
 
 For each group, add one scenario app at a time and preserve a passing run before
 moving on. Once all scenarios required by a particular MCP revision have

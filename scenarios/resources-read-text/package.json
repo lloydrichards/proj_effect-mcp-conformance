@@ -1,0 +1,15 @@
+{
+  "name": "@repo/scenario-resources-read-text",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run src/index.ts",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@effect/platform-bun": "4.0.0-rc.110",
+    "@repo/mcp-fixture": "workspace:*",
+    "effect": "4.0.0-rc.110"
+  }
+}

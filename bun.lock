@@ -48,6 +48,15 @@
         "@types/bun": "^1.2.17",
       },
     },
+    "scenarios/completion-complete": {
+      "name": "@repo/scenario-completion-complete",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
     "scenarios/logging-set-level": {
       "name": "@repo/scenario-logging-set-level",
       "version": "0.0.0",
@@ -59,6 +68,87 @@
     },
     "scenarios/ping": {
       "name": "@repo/scenario-ping",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/prompts-get-embedded-resource": {
+      "name": "@repo/scenario-prompts-get-embedded-resource",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/prompts-get-simple": {
+      "name": "@repo/scenario-prompts-get-simple",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/prompts-get-with-args": {
+      "name": "@repo/scenario-prompts-get-with-args",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/prompts-get-with-image": {
+      "name": "@repo/scenario-prompts-get-with-image",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/prompts-list": {
+      "name": "@repo/scenario-prompts-list",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/resources-list": {
+      "name": "@repo/scenario-resources-list",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/resources-read-binary": {
+      "name": "@repo/scenario-resources-read-binary",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/resources-read-text": {
+      "name": "@repo/scenario-resources-read-text",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.110",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.110",
+      },
+    },
+    "scenarios/resources-templates-read": {
+      "name": "@repo/scenario-resources-templates-read",
       "version": "0.0.0",
       "dependencies": {
         "@effect/platform-bun": "4.0.0-rc.110",
@@ -320,9 +410,29 @@
 
     "@repo/mcp-fixture": ["@repo/mcp-fixture@workspace:packages/mcp-fixture"],
 
+    "@repo/scenario-completion-complete": ["@repo/scenario-completion-complete@workspace:scenarios/completion-complete"],
+
     "@repo/scenario-logging-set-level": ["@repo/scenario-logging-set-level@workspace:scenarios/logging-set-level"],
 
     "@repo/scenario-ping": ["@repo/scenario-ping@workspace:scenarios/ping"],
+
+    "@repo/scenario-prompts-get-embedded-resource": ["@repo/scenario-prompts-get-embedded-resource@workspace:scenarios/prompts-get-embedded-resource"],
+
+    "@repo/scenario-prompts-get-simple": ["@repo/scenario-prompts-get-simple@workspace:scenarios/prompts-get-simple"],
+
+    "@repo/scenario-prompts-get-with-args": ["@repo/scenario-prompts-get-with-args@workspace:scenarios/prompts-get-with-args"],
+
+    "@repo/scenario-prompts-get-with-image": ["@repo/scenario-prompts-get-with-image@workspace:scenarios/prompts-get-with-image"],
+
+    "@repo/scenario-prompts-list": ["@repo/scenario-prompts-list@workspace:scenarios/prompts-list"],
+
+    "@repo/scenario-resources-list": ["@repo/scenario-resources-list@workspace:scenarios/resources-list"],
+
+    "@repo/scenario-resources-read-binary": ["@repo/scenario-resources-read-binary@workspace:scenarios/resources-read-binary"],
+
+    "@repo/scenario-resources-read-text": ["@repo/scenario-resources-read-text@workspace:scenarios/resources-read-text"],
+
+    "@repo/scenario-resources-templates-read": ["@repo/scenario-resources-templates-read@workspace:scenarios/resources-templates-read"],
 
     "@repo/scenario-server-initialize": ["@repo/scenario-server-initialize@workspace:scenarios/server-initialize"],
 
