@@ -1,5 +1,5 @@
 import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
-import { Context, Effect, Layer } from "effect";
+import { Context, Effect, Layer, Option } from "effect";
 import { McpSchema, McpServer } from "effect/unstable/ai";
 import { HttpRouter, HttpServer } from "effect/unstable/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
@@ -21,7 +21,15 @@ const scenario = Layer.effectDiscard(
       handle: (arguments_) =>
         Effect.scoped(
           Effect.gen(function* () {
-            const client = yield* (yield* McpSchema.McpServerClient).getClient;
+            const serverClient = yield* Effect.serviceOption(
+              McpSchema.McpServerClient,
+            );
+            if (Option.isNone(serverClient)) {
+              return yield* new McpSchema.InternalError({
+                message: "Elicitation requires an initialized MCP session",
+              });
+            }
+            const client = yield* serverClient.value.getClient;
             const result = yield* client
               .elicit({
                 message: String(arguments_["message"]),

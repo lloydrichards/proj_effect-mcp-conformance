@@ -8,10 +8,18 @@ export interface Scenario {
   readonly protocolVersions: ReadonlyArray<ProtocolVersion>;
 }
 
-const supportedConformanceProtocolVersions: ReadonlyArray<ProtocolVersion> =
+const allProtocolVersions: ReadonlyArray<ProtocolVersion> =
   supportedProtocolVersions;
 
+const statefulProtocolVersions: ReadonlyArray<ProtocolVersion> = [
+  "2025-11-25",
+  "2025-06-18",
+  "2025-03-26",
+  "2024-11-05",
+];
+
 const audioProtocolVersions: ReadonlyArray<ProtocolVersion> = [
+  "2026-07-28",
   "2025-11-25",
   "2025-06-18",
   "2025-03-26",
@@ -25,7 +33,7 @@ const elicitationProtocolVersions: ReadonlyArray<ProtocolVersion> = [
 export const scenarios: ReadonlyArray<Scenario> = [
   {
     name: "server-initialize",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: statefulProtocolVersions,
   },
   {
     name: "server-session-lifecycle",
@@ -33,24 +41,24 @@ export const scenarios: ReadonlyArray<Scenario> = [
   },
   {
     name: "logging-set-level",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: statefulProtocolVersions,
   },
-  { name: "ping", protocolVersions: supportedConformanceProtocolVersions },
+  { name: "ping", protocolVersions: statefulProtocolVersions },
   {
     name: "completion-complete",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "tools-list",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "tools-call-simple-text",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "tools-call-image",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "tools-call-audio",
@@ -58,27 +66,27 @@ export const scenarios: ReadonlyArray<Scenario> = [
   },
   {
     name: "tools-call-embedded-resource",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "tools-call-mixed-content",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "tools-call-with-logging",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: statefulProtocolVersions,
   },
   {
     name: "tools-call-error",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "tools-call-with-progress",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "tools-call-sampling",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: statefulProtocolVersions,
   },
   {
     name: "tools-call-elicitation",
@@ -98,39 +106,39 @@ export const scenarios: ReadonlyArray<Scenario> = [
   },
   {
     name: "resources-list",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "resources-read-text",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "resources-read-binary",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "resources-templates-read",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "prompts-list",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "prompts-get-simple",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "prompts-get-with-args",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "prompts-get-embedded-resource",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
   {
     name: "prompts-get-with-image",
-    protocolVersions: supportedConformanceProtocolVersions,
+    protocolVersions: allProtocolVersions,
   },
 ];
 
