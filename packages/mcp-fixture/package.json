@@ -10,11 +10,11 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@effect/platform-bun": "4.0.0-rc.110",
-    "effect": "4.0.0-rc.110"
+    "@effect/platform-bun": "4.0.0-rc.112",
+    "effect": "4.0.0-rc.112"
   },
   "devDependencies": {
     "@repo/config-typescript": "workspace:*",
-    "@types/bun": "^1.2.17"
+    "@types/bun": "^1.4.0"
   }
 }
