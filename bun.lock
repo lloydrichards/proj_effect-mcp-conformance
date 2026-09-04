@@ -58,6 +58,33 @@
         "effect": "4.0.0-rc.112",
       },
     },
+    "scenarios/elicitation-sep1034-defaults": {
+      "name": "@repo/scenario-elicitation-sep1034-defaults",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/elicitation-sep1330-enums": {
+      "name": "@repo/scenario-elicitation-sep1330-enums",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/json-schema-2020-12": {
+      "name": "@repo/scenario-json-schema-2020-12",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
     "scenarios/logging-set-level": {
       "name": "@repo/scenario-logging-set-level",
       "version": "0.0.0",
@@ -159,6 +186,15 @@
     },
     "scenarios/server-initialize": {
       "name": "@repo/scenario-server-initialize",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/server-session-lifecycle": {
+      "name": "@repo/scenario-server-session-lifecycle",
       "version": "0.0.0",
       "dependencies": {
         "@effect/platform-bun": "4.0.0-rc.112",
@@ -447,6 +483,12 @@
 
     "@repo/scenario-completion-complete": ["@repo/scenario-completion-complete@workspace:scenarios/completion-complete"],
 
+    "@repo/scenario-elicitation-sep1034-defaults": ["@repo/scenario-elicitation-sep1034-defaults@workspace:scenarios/elicitation-sep1034-defaults"],
+
+    "@repo/scenario-elicitation-sep1330-enums": ["@repo/scenario-elicitation-sep1330-enums@workspace:scenarios/elicitation-sep1330-enums"],
+
+    "@repo/scenario-json-schema-2020-12": ["@repo/scenario-json-schema-2020-12@workspace:scenarios/json-schema-2020-12"],
+
     "@repo/scenario-logging-set-level": ["@repo/scenario-logging-set-level@workspace:scenarios/logging-set-level"],
 
     "@repo/scenario-ping": ["@repo/scenario-ping@workspace:scenarios/ping"],
@@ -470,6 +512,8 @@
     "@repo/scenario-resources-templates-read": ["@repo/scenario-resources-templates-read@workspace:scenarios/resources-templates-read"],
 
     "@repo/scenario-server-initialize": ["@repo/scenario-server-initialize@workspace:scenarios/server-initialize"],
+
+    "@repo/scenario-server-session-lifecycle": ["@repo/scenario-server-session-lifecycle@workspace:scenarios/server-session-lifecycle"],
 
     "@repo/scenario-tools-call-audio": ["@repo/scenario-tools-call-audio@workspace:scenarios/tools-call-audio"],
 
