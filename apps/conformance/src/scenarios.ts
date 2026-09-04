@@ -40,6 +40,14 @@ export const scenarios: ReadonlyArray<Scenario> = [
     protocolVersions: ["2025-11-25", "2025-06-18", "2025-03-26"],
   },
   {
+    name: "server-stateless",
+    protocolVersions: ["2026-07-28"],
+  },
+  {
+    name: "server-sse-multiple-streams",
+    protocolVersions: ["2026-07-28"],
+  },
+  {
     name: "logging-set-level",
     protocolVersions: statefulProtocolVersions,
   },
@@ -94,7 +102,7 @@ export const scenarios: ReadonlyArray<Scenario> = [
   },
   {
     name: "json-schema-2020-12",
-    protocolVersions: ["2025-11-25"],
+    protocolVersions: ["2026-07-28", "2025-11-25"],
   },
   {
     name: "elicitation-sep1034-defaults",
@@ -121,6 +129,10 @@ export const scenarios: ReadonlyArray<Scenario> = [
     protocolVersions: allProtocolVersions,
   },
   {
+    name: "sep-2164-resource-not-found",
+    protocolVersions: ["2026-07-28"],
+  },
+  {
     name: "prompts-list",
     protocolVersions: allProtocolVersions,
   },
@@ -140,6 +152,41 @@ export const scenarios: ReadonlyArray<Scenario> = [
     name: "prompts-get-with-image",
     protocolVersions: allProtocolVersions,
   },
+  {
+    name: "dns-rebinding-protection",
+    protocolVersions: ["2026-07-28"],
+  },
+  {
+    name: "caching",
+    protocolVersions: ["2026-07-28"],
+  },
+  {
+    name: "http-header-validation",
+    protocolVersions: ["2026-07-28"],
+  },
+  {
+    name: "http-custom-header-server-validation",
+    protocolVersions: ["2026-07-28"],
+  },
+  ...[
+    "input-required-result-basic-elicitation",
+    "input-required-result-basic-sampling",
+    "input-required-result-basic-list-roots",
+    "input-required-result-request-state",
+    "input-required-result-multiple-input-requests",
+    "input-required-result-multi-round",
+    "input-required-result-missing-input-response",
+    "input-required-result-non-tool-request",
+    "input-required-result-result-type",
+    "input-required-result-unsupported-methods",
+    "input-required-result-tampered-state",
+    "input-required-result-capability-check",
+    "input-required-result-ignore-extra-params",
+    "input-required-result-validate-input",
+  ].map((name) => ({
+    name,
+    protocolVersions: ["2026-07-28"] as ReadonlyArray<ProtocolVersion>,
+  })),
 ];
 
 export const scenarioNames = scenarios.map((scenario) => scenario.name);

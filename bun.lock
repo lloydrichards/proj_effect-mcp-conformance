@@ -49,8 +49,26 @@
         "@types/bun": "^1.4.0",
       },
     },
+    "scenarios/caching": {
+      "name": "@repo/scenario-caching",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
     "scenarios/completion-complete": {
       "name": "@repo/scenario-completion-complete",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/dns-rebinding-protection": {
+      "name": "@repo/scenario-dns-rebinding-protection",
       "version": "0.0.0",
       "dependencies": {
         "@effect/platform-bun": "4.0.0-rc.112",
@@ -69,6 +87,150 @@
     },
     "scenarios/elicitation-sep1330-enums": {
       "name": "@repo/scenario-elicitation-sep1330-enums",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/http-custom-header-server-validation": {
+      "name": "@repo/scenario-http-custom-header-server-validation",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/http-header-validation": {
+      "name": "@repo/scenario-http-header-validation",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-basic-elicitation": {
+      "name": "@repo/scenario-input-required-result-basic-elicitation",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-basic-list-roots": {
+      "name": "@repo/scenario-input-required-result-basic-list-roots",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-basic-sampling": {
+      "name": "@repo/scenario-input-required-result-basic-sampling",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-capability-check": {
+      "name": "@repo/scenario-input-required-result-capability-check",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-ignore-extra-params": {
+      "name": "@repo/scenario-input-required-result-ignore-extra-params",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-missing-input-response": {
+      "name": "@repo/scenario-input-required-result-missing-input-response",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-multi-round": {
+      "name": "@repo/scenario-input-required-result-multi-round",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-multiple-input-requests": {
+      "name": "@repo/scenario-input-required-result-multiple-input-requests",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-non-tool-request": {
+      "name": "@repo/scenario-input-required-result-non-tool-request",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-request-state": {
+      "name": "@repo/scenario-input-required-result-request-state",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-result-type": {
+      "name": "@repo/scenario-input-required-result-result-type",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-tampered-state": {
+      "name": "@repo/scenario-input-required-result-tampered-state",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-unsupported-methods": {
+      "name": "@repo/scenario-input-required-result-unsupported-methods",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/input-required-result-validate-input": {
+      "name": "@repo/scenario-input-required-result-validate-input",
       "version": "0.0.0",
       "dependencies": {
         "@effect/platform-bun": "4.0.0-rc.112",
@@ -184,6 +346,15 @@
         "effect": "4.0.0-rc.112",
       },
     },
+    "scenarios/sep-2164-resource-not-found": {
+      "name": "@repo/scenario-sep-2164-resource-not-found",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
     "scenarios/server-initialize": {
       "name": "@repo/scenario-server-initialize",
       "version": "0.0.0",
@@ -195,6 +366,24 @@
     },
     "scenarios/server-session-lifecycle": {
       "name": "@repo/scenario-server-session-lifecycle",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/server-sse-multiple-streams": {
+      "name": "@repo/scenario-server-sse-multiple-streams",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.0-rc.112",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.0-rc.112",
+      },
+    },
+    "scenarios/server-stateless": {
+      "name": "@repo/scenario-server-stateless",
       "version": "0.0.0",
       "dependencies": {
         "@effect/platform-bun": "4.0.0-rc.112",
@@ -481,11 +670,47 @@
 
     "@repo/mcp-fixture": ["@repo/mcp-fixture@workspace:packages/mcp-fixture"],
 
+    "@repo/scenario-caching": ["@repo/scenario-caching@workspace:scenarios/caching"],
+
     "@repo/scenario-completion-complete": ["@repo/scenario-completion-complete@workspace:scenarios/completion-complete"],
+
+    "@repo/scenario-dns-rebinding-protection": ["@repo/scenario-dns-rebinding-protection@workspace:scenarios/dns-rebinding-protection"],
 
     "@repo/scenario-elicitation-sep1034-defaults": ["@repo/scenario-elicitation-sep1034-defaults@workspace:scenarios/elicitation-sep1034-defaults"],
 
     "@repo/scenario-elicitation-sep1330-enums": ["@repo/scenario-elicitation-sep1330-enums@workspace:scenarios/elicitation-sep1330-enums"],
+
+    "@repo/scenario-http-custom-header-server-validation": ["@repo/scenario-http-custom-header-server-validation@workspace:scenarios/http-custom-header-server-validation"],
+
+    "@repo/scenario-http-header-validation": ["@repo/scenario-http-header-validation@workspace:scenarios/http-header-validation"],
+
+    "@repo/scenario-input-required-result-basic-elicitation": ["@repo/scenario-input-required-result-basic-elicitation@workspace:scenarios/input-required-result-basic-elicitation"],
+
+    "@repo/scenario-input-required-result-basic-list-roots": ["@repo/scenario-input-required-result-basic-list-roots@workspace:scenarios/input-required-result-basic-list-roots"],
+
+    "@repo/scenario-input-required-result-basic-sampling": ["@repo/scenario-input-required-result-basic-sampling@workspace:scenarios/input-required-result-basic-sampling"],
+
+    "@repo/scenario-input-required-result-capability-check": ["@repo/scenario-input-required-result-capability-check@workspace:scenarios/input-required-result-capability-check"],
+
+    "@repo/scenario-input-required-result-ignore-extra-params": ["@repo/scenario-input-required-result-ignore-extra-params@workspace:scenarios/input-required-result-ignore-extra-params"],
+
+    "@repo/scenario-input-required-result-missing-input-response": ["@repo/scenario-input-required-result-missing-input-response@workspace:scenarios/input-required-result-missing-input-response"],
+
+    "@repo/scenario-input-required-result-multi-round": ["@repo/scenario-input-required-result-multi-round@workspace:scenarios/input-required-result-multi-round"],
+
+    "@repo/scenario-input-required-result-multiple-input-requests": ["@repo/scenario-input-required-result-multiple-input-requests@workspace:scenarios/input-required-result-multiple-input-requests"],
+
+    "@repo/scenario-input-required-result-non-tool-request": ["@repo/scenario-input-required-result-non-tool-request@workspace:scenarios/input-required-result-non-tool-request"],
+
+    "@repo/scenario-input-required-result-request-state": ["@repo/scenario-input-required-result-request-state@workspace:scenarios/input-required-result-request-state"],
+
+    "@repo/scenario-input-required-result-result-type": ["@repo/scenario-input-required-result-result-type@workspace:scenarios/input-required-result-result-type"],
+
+    "@repo/scenario-input-required-result-tampered-state": ["@repo/scenario-input-required-result-tampered-state@workspace:scenarios/input-required-result-tampered-state"],
+
+    "@repo/scenario-input-required-result-unsupported-methods": ["@repo/scenario-input-required-result-unsupported-methods@workspace:scenarios/input-required-result-unsupported-methods"],
+
+    "@repo/scenario-input-required-result-validate-input": ["@repo/scenario-input-required-result-validate-input@workspace:scenarios/input-required-result-validate-input"],
 
     "@repo/scenario-json-schema-2020-12": ["@repo/scenario-json-schema-2020-12@workspace:scenarios/json-schema-2020-12"],
 
@@ -511,9 +736,15 @@
 
     "@repo/scenario-resources-templates-read": ["@repo/scenario-resources-templates-read@workspace:scenarios/resources-templates-read"],
 
+    "@repo/scenario-sep-2164-resource-not-found": ["@repo/scenario-sep-2164-resource-not-found@workspace:scenarios/sep-2164-resource-not-found"],
+
     "@repo/scenario-server-initialize": ["@repo/scenario-server-initialize@workspace:scenarios/server-initialize"],
 
     "@repo/scenario-server-session-lifecycle": ["@repo/scenario-server-session-lifecycle@workspace:scenarios/server-session-lifecycle"],
+
+    "@repo/scenario-server-sse-multiple-streams": ["@repo/scenario-server-sse-multiple-streams@workspace:scenarios/server-sse-multiple-streams"],
+
+    "@repo/scenario-server-stateless": ["@repo/scenario-server-stateless@workspace:scenarios/server-stateless"],
 
     "@repo/scenario-tools-call-audio": ["@repo/scenario-tools-call-audio@workspace:scenarios/tools-call-audio"],
 
