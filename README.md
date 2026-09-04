@@ -49,6 +49,25 @@ Install the lockfile-pinned workspace dependencies:
 bun install
 ```
 
+The stacked local-development branch can switch the installed packages to a
+publish-shaped build of the sibling `open_effect` checkout:
+
+```sh
+bun run effect:local
+```
+
+Set `OPEN_EFFECT_DIR` when that checkout is elsewhere. The command builds and
+packs `effect`, `@effect/platform-node-shared`, and `@effect/platform-bun`, then
+installs the tarballs without retaining local paths in `package.json` or
+`bun.lock`.
+
+To return to the published RC baseline, unapply this stacked branch and restore
+the lockfile packages:
+
+```sh
+bun install --force
+```
+
 The Effect version under test is pinned in
 [`packages/mcp-fixture/package.json`](./packages/mcp-fixture/package.json).
 The conformance runner is also pinned exactly in the root `package.json`

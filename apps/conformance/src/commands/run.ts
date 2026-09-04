@@ -211,18 +211,24 @@ export const run = Command.make(
         );
 
         yield* waitForServer(url);
-        const negotiatedProtocol = yield* protocolProbe(url, protocol);
-        if (negotiatedProtocol !== expectedProtocol) {
-          return yield* new ProtocolNegotiationMismatch({
-            expected: expectedProtocol,
-            actual: negotiatedProtocol,
-          });
+        if (expectedProtocol === "2026-07-28") {
+          yield* Console.log(
+            `Protocol: configured stateless ${expectedProtocol}.`,
+          );
+        } else {
+          const negotiatedProtocol = yield* protocolProbe(url, protocol);
+          if (negotiatedProtocol !== expectedProtocol) {
+            return yield* new ProtocolNegotiationMismatch({
+              expected: expectedProtocol,
+              actual: negotiatedProtocol,
+            });
+          }
+          yield* Console.log(
+            `Protocol: offered ${protocol}; configured [${configuredProtocols.join(
+              ", ",
+            )}]; negotiated ${negotiatedProtocol}.`,
+          );
         }
-        yield* Console.log(
-          `Protocol: offered ${protocol}; configured [${configuredProtocols.join(
-            ", ",
-          )}]; negotiated ${negotiatedProtocol}.`,
-        );
         const exitCode = yield* ChildProcess.make(
           "bunx",
           [
@@ -232,6 +238,9 @@ export const run = Command.make(
             url,
             "--scenario",
             scenario,
+            ...(expectedProtocol === "2026-07-28"
+              ? ["--spec-version", expectedProtocol]
+              : []),
             ...(Option.getOrElse(verbose, () => false) ? ["--verbose"] : []),
           ],
           {

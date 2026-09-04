@@ -16,6 +16,7 @@
     "conformance:scenario": "bun run --cwd=apps/conformance start -- run",
     "conformance:all": "bun run --cwd=apps/conformance start -- all",
     "conformance:inspect": "bun run --cwd=apps/conformance start -- inspect",
+    "effect:local": "node scripts/use-open-effect.mjs",
     "prepare": "effect-tsgo patch"
   },
   "devDependencies": {
