@@ -202,7 +202,7 @@ bun run type-check
 | Scenario                       | Status  | What it establishes / exposes                                      |
 | ------------------------------ | ------- | ------------------------------------------------------------------ |
 | `server-initialize`            | Passing | Effect's Streamable HTTP server completes MCP initialization.      |
-| `server-session-lifecycle`     | Blocked | RC.112 does not return an `Mcp-Session-Id`; checks are skipped.     |
+| `server-session-lifecycle`     | Blocked | RC.112 does not return an `Mcp-Session-Id`; checks are skipped.    |
 | `logging-set-level`            | Passing | Effect accepts the built-in `logging/setLevel` request.            |
 | `ping`                         | Passing | Effect responds to the built-in `ping` request.                    |
 | `tools-list`                   | Passing | A scenario-owned Effect tool has a valid MCP definition.           |
@@ -261,36 +261,30 @@ lifecycle, caching, HTTP header validation, resource-not-found behavior, and
 input-required/MRTR flows. It also adds `server-session-lifecycle` for the
 existing stateful protocol revisions.
 
-Effect `4.0.0-rc.112` does not expose a `2026-07-28` protocol adapter, so the
-July-only scenarios cannot be represented honestly in this workspace yet.
-`server-session-lifecycle` is applicable now and is the next independent
-fixture to add.
+The stacked local-Effect branch supplies the `v2026_07_28` adapter and adds an
+independent fixture for every new required July server scenario. Its focused
+results are:
 
-### Deferred to `v2026-07-28`
+| Scenario group                         | Result                  |
+| -------------------------------------- | ----------------------- |
+| `caching`                              | 8/8 passing             |
+| `server-sse-multiple-streams`          | 1/1 passing             |
+| `dns-rebinding-protection`             | 2/2 passing             |
+| `sep-2164-resource-not-found`          | 4/4 passing             |
+| `input-required-result-*`              | 14/14 scenarios passing |
+| `http-header-validation`               | 14/14 passing           |
+| `http-custom-header-server-validation` | 10/10 passing           |
+| `server-stateless`                     | 29/29 passing           |
 
-The following scenarios are intentionally not represented by a fixture yet.
-They depend on the `v2026-07-28` protocol/transport work and should be added
-when that adapter is available, rather than being forced through the current
-stateful Streamable HTTP fixture:
+The local Open Effect implementation passes every required July scenario in
+this workspace. These fixtures now cover prompt-based multi-round trips,
+tampered request-state rejection, partial Base64 wrapper handling, stateless
+metadata errors, removed methods, capability-to-handler consistency, and
+resource-not-found error data.
 
-| Scenario                               | Why it is deferred                                   |
-| -------------------------------------- | ---------------------------------------------------- |
-| `server-stateless`                     | Stateless initialization and request lifecycle.      |
-| `caching`                              | July cache key and response behavior.                |
-| `http-header-validation`               | July protocol header validation.                     |
-| `http-custom-header-server-validation` | Header-mirrored tool parameters.                     |
-| `sep-2164-resource-not-found`          | July resource-not-found result behavior.             |
-| `input-required-result-*`              | July input-required and MRTR request-state behavior. |
-| `resources-subscribe`                  | Resource subscription lifecycle and update delivery. |
-| `resources-unsubscribe`                | Resource subscription lifecycle and update delivery. |
-| `server-sse-polling`                   | Legacy SSE/polling transport behavior.               |
-| `server-sse-multiple-streams`          | Multiple SSE stream behavior.                        |
-| `json-schema-2020-12`                  | Newer protocol JSON Schema preservation behavior.    |
-| `elicitation-sep1034-defaults`         | Newer elicitation schema defaults.                   |
-| `elicitation-sep1330-enums`            | Newer elicitation enum schema representation.        |
-| `dns-rebinding-protection`             | Local HTTP host/origin security behavior.            |
+### Still unsupported
 
-For each group, add one scenario app at a time and preserve a passing run before
-moving on. Once all scenarios required by a particular MCP revision have
-dedicated fixtures, run the conformance runner's corresponding `--requirements`
-set and publish the complete result with the pinned Effect and runner versions.
+The published RC cannot represent `resources-subscribe`,
+`resources-unsubscribe`, or `server-sse-polling` truthfully over `layerHttp`.
+The optional `io.modelcontextprotocol/tasks` scenarios remain outside this
+workspace until Open Effect implements that extension.
