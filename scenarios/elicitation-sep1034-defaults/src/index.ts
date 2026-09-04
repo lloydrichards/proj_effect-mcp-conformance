@@ -1,76 +1,86 @@
 import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
-import { Context, Effect, Layer, Option } from "effect";
+import { Context, Effect, Layer, Option, Schema } from "effect";
 import { McpSchema, McpServer } from "effect/unstable/ai";
 import { HttpRouter, HttpServer } from "effect/unstable/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
-const scenario = Layer.effectDiscard(
-  Effect.gen(function* () {
-    const mcp = yield* McpServer.McpServer;
-    yield* mcp.addTool({
-      tool: new McpSchema.Tool({
-        name: "test_elicitation_sep1034_defaults",
-        description:
-          "Requests primitive elicitation fields with default values.",
-        inputSchema: { type: "object" },
-      }),
-      annotations: Context.empty(),
-      handle: () =>
-        Effect.scoped(
-          Effect.gen(function* () {
-            const serverClient = yield* Effect.serviceOption(
-              McpSchema.McpServerClient,
-            );
-            if (Option.isNone(serverClient)) {
-              return yield* new McpSchema.InternalError({
-                message: "Elicitation requires an initialized MCP session",
-              });
-            }
-            const client = yield* serverClient.value.getClient;
-            const result = yield* client
-              .elicit({
-                message: "Please provide profile details.",
-                requestedSchema: {
-                  type: "object",
-                  properties: {
-                    name: { type: "string", default: "John Doe" },
-                    age: { type: "integer", default: 30 },
-                    score: { type: "number", default: 95.5 },
-                    status: {
-                      type: "string",
-                      enum: ["active", "inactive", "pending"],
-                      default: "active",
-                    },
-                    verified: { type: "boolean", default: true },
-                  },
-                },
-              })
-              .pipe(
-                Effect.mapError(
-                  (error) =>
-                    new McpSchema.InternalError({ message: error.operation }),
-                ),
-              );
-            return new McpSchema.CallToolResult({
-              content: [
-                {
-                  type: "text",
-                  text: `Elicitation completed: action=${result.action}, content=${JSON.stringify(result.action === "accept" ? result.content : {})}`,
-                },
-              ],
-            });
-          }),
-        ),
-    });
-  }),
-).pipe(Layer.provideMerge(server("elicitation-sep1034-defaults")));
+const ElicitationDefaultsTool = new McpSchema.Tool({
+  name: "test_elicitation_sep1034_defaults",
+  description: "Requests primitive elicitation fields with default values.",
+  inputSchema: { type: "object" },
+});
 
-const program = scenario.pipe(
+const elicitationDefaultsHandler = () =>
+  Effect.scoped(
+    Effect.gen(function* () {
+      const serverClient = yield* Effect.serviceOption(
+        McpSchema.McpServerClient,
+      );
+      if (Option.isNone(serverClient)) {
+        return yield* new McpSchema.InternalError({
+          message: "Elicitation requires an initialized MCP session",
+        });
+      }
+      const client = yield* serverClient.value.getClient;
+      const request = yield* Schema.decodeEffect(
+        McpSchema.ElicitRequestFormParams,
+      )({
+        mode: "form",
+        message: "Please provide profile details.",
+        requestedSchema: {
+          type: "object",
+          properties: {
+            name: { type: "string", default: "John Doe" },
+            age: { type: "integer", default: 30 },
+            score: { type: "number", default: 95.5 },
+            status: {
+              type: "string",
+              enum: ["active", "inactive", "pending"],
+              default: "active",
+            },
+            verified: { type: "boolean", default: true },
+          },
+        },
+      }).pipe(Effect.orDie);
+      const result = yield* client
+        .elicit(request)
+        .pipe(
+          Effect.mapError(
+            (error) =>
+              new McpSchema.InternalError({ message: error.operation }),
+          ),
+        );
+      return new McpSchema.CallToolResult({
+        content: [
+          {
+            type: "text",
+            text: `Elicitation completed: action=${result.action}, content=${JSON.stringify(result.action === "accept" ? result.content : {})}`,
+          },
+        ],
+      });
+    }),
+  );
+
+const ElicitationDefaultsRegistration = Layer.effectDiscard(
+  McpServer.McpServer.use((mcpServer) =>
+    mcpServer.addTool({
+      tool: ElicitationDefaultsTool,
+      annotations: Context.empty(),
+      handle: elicitationDefaultsHandler,
+    }),
+  ),
+);
+
+const ScenarioLive = ElicitationDefaultsRegistration.pipe(
+  Layer.provideMerge(server("elicitation-sep1034-defaults")),
+);
+
+const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,
   HttpServer.withLogAddress,
   Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-  Layer.launch,
-  Effect.satisfiesServicesType<never>(),
 );
 
-BunRuntime.runMain(program);
+const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
+
+BunRuntime.runMain(main);
