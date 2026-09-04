@@ -2,11 +2,11 @@ import { Config, Effect, Layer } from "effect";
 import { McpProtocol, McpServer } from "effect/unstable/ai";
 
 export const supportedProtocolVersions = [
-  "2026-07-28",
   "2024-11-05",
   "2025-03-26",
   "2025-06-18",
   "2025-11-25",
+  "2026-07-28",
 ] as const;
 
 export type ProtocolVersion = (typeof supportedProtocolVersions)[number];
