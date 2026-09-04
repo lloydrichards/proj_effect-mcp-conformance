@@ -183,6 +183,7 @@ bun run type-check
 | Scenario                       | Status  | What it establishes / exposes                                      |
 | ------------------------------ | ------- | ------------------------------------------------------------------ |
 | `server-initialize`            | Passing | Effect's Streamable HTTP server completes MCP initialization.      |
+| `server-session-lifecycle`     | Blocked | RC.112 does not return an `Mcp-Session-Id`; checks are skipped.     |
 | `logging-set-level`            | Passing | Effect accepts the built-in `logging/setLevel` request.            |
 | `ping`                         | Passing | Effect responds to the built-in `ping` request.                    |
 | `tools-list`                   | Passing | A scenario-owned Effect tool has a valid MCP definition.           |
@@ -196,6 +197,9 @@ bun run type-check
 | `tools-call-with-progress`     | Failing | Tool handlers cannot access the request progress token.            |
 | `tools-call-sampling`          | Blocked | Reverse sampling request does not complete over this transport.    |
 | `tools-call-elicitation`       | Blocked | Reverse elicitation request does not complete over this transport. |
+| `json-schema-2020-12`          | Blocked | RC.112 loses the stateful session before schema checks begin.      |
+| `elicitation-sep1034-defaults` | Blocked | RC.112 loses the stateful session before default checks begin.     |
+| `elicitation-sep1330-enums`    | Blocked | RC.112 loses the stateful session before enum checks begin.        |
 
 These are individual scenario results, not a claim that the Effect MCP server
 conforms to a whole MCP revision.
