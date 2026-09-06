@@ -224,6 +224,6 @@ export const all = Command.make(
     }),
 ).pipe(
   Command.withDescription(
-    "Run every scenario against each supported protocol adapter",
+    "Run each scenario against every compatible protocol",
   ),
 );

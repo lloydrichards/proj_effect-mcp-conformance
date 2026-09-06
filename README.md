@@ -5,10 +5,11 @@ It runs the official [MCP conformance runner](https://github.com/modelcontextpro
 against small, purpose-built Effect servers so that a pass or failure can be
 attributed to one protocol behavior at a time.
 
-It is not a sample application and does not attempt to make one server pass
-every scenario. Each conformance scenario gets its own independent server app.
-That keeps a tool, resource, prompt, or transport feature from accidentally
-making an unrelated scenario pass.
+It is not a sample application. Each conformance scenario has an independent
+server app that remains the causal baseline. Suffixed variants such as
+`tools-list-II` deliberately implement the same contract through a different
+Effect API or runtime path. That lets the same upstream check probe more than
+one implementation without changing its official scenario name.
 
 ## Direction
 
@@ -24,6 +25,8 @@ The repository has three deliberate boundaries:
 │   └── mcp-fixture/            # shared Streamable HTTP server setup
 └── scenarios/
     ├── server-initialize/      # one independent MCP server per scenario
+    ├── tools-list-II/          # alternate implementation of tools-list
+    ├── tools-list-III/
     ├── logging-set-level/
     └── ...
 ```
@@ -33,8 +36,13 @@ The repository has three deliberate boundaries:
 endpoint responds, run the official checker, and terminate the fixture.
 
 `packages/mcp-fixture` owns only the common HTTP transport and server metadata.
-Scenario apps own their capabilities and handlers. This is where each new
-conformance behavior belongs.
+Scenario apps own their capabilities and handlers. Every suffixed variant is
+self-contained, so its alternate implementation can be read and run in place.
+This is where each new conformance behavior belongs.
+
+[`apps/conformance/src/scenarios.ts`](./apps/conformance/src/scenarios.ts)
+maps each suffixed row to its official conformance scenario and applicable
+protocols. Every row launches its matching `scenarios/<name>/src/index.ts`.
 
 ## Setup
 
@@ -47,6 +55,25 @@ Install the lockfile-pinned workspace dependencies:
 
 ```sh
 bun install
+```
+
+The stacked local-development branch can switch the installed packages to a
+publish-shaped build of the sibling `open_effect` checkout:
+
+```sh
+bun run effect:local
+```
+
+Set `OPEN_EFFECT_DIR` when that checkout is elsewhere. The command builds and
+packs `effect`, `@effect/platform-node-shared`, and `@effect/platform-bun`, then
+installs the tarballs without retaining local paths in `package.json` or
+`bun.lock`.
+
+To return to the published RC baseline, unapply this stacked branch and restore
+the lockfile packages:
+
+```sh
+bun install --force
 ```
 
 The Effect version under test is pinned in
@@ -80,6 +107,18 @@ one configured adapter, then runs the matching upstream conformance scenario:
 bun run conformance:all
 ```
 
+Run alternate implementations like ordinary scenarios:
+
+```sh
+bun run conformance:scenario tools-list-II
+bun run conformance:scenario tools-list-III
+bun run conformance:all
+```
+
+The unsuffixed scenario is implementation I. `-II`, `-III`, and later rows are
+additional implementations of the same upstream contract. `conformance:all`
+runs every original and alternate row automatically.
+
 The result is a bordered terminal report with colour-coded statuses (and a
 plain-text fallback for redirected output), such as:
 
@@ -112,8 +151,10 @@ runner starts. It reports the protocol offered by the probe, the ordered
 adapter list configured in the fixture, and the adapter Effect actually
 negotiated.
 
-The fixture exposes every adapter available in Effect `4.0.0-rc.112`, from
-newest to oldest: `2025-11-25`, `2025-06-18`, `2025-03-26`, and `2024-11-05`.
+The fixture can expose the five adapters implemented by the linked Open Effect
+checkout, from `2026-07-28` through `2024-11-05`. The published dependency may
+support a smaller set; keep published-package and linked-checkout results
+separate when reporting them.
 
 ```sh
 # The fixture exposes only 2025-11-25.
@@ -152,6 +193,7 @@ Open a scenario in the [MCP Inspector](https://github.com/modelcontextprotocol/i
 
 ```sh
 bun run --cwd=apps/conformance start -- inspect ping
+bun run --cwd=apps/conformance start -- inspect tools-list-II
 ```
 
 The command starts the fixture, then launches the Inspector with its Streamable
@@ -183,7 +225,7 @@ bun run type-check
 | Scenario                       | Status  | What it establishes / exposes                                      |
 | ------------------------------ | ------- | ------------------------------------------------------------------ |
 | `server-initialize`            | Passing | Effect's Streamable HTTP server completes MCP initialization.      |
-| `server-session-lifecycle`     | Blocked | RC.112 does not return an `Mcp-Session-Id`; checks are skipped.     |
+| `server-session-lifecycle`     | Blocked | RC.112 does not return an `Mcp-Session-Id`; checks are skipped.    |
 | `logging-set-level`            | Passing | Effect accepts the built-in `logging/setLevel` request.            |
 | `ping`                         | Passing | Effect responds to the built-in `ping` request.                    |
 | `tools-list`                   | Passing | A scenario-owned Effect tool has a valid MCP definition.           |
@@ -242,36 +284,30 @@ lifecycle, caching, HTTP header validation, resource-not-found behavior, and
 input-required/MRTR flows. It also adds `server-session-lifecycle` for the
 existing stateful protocol revisions.
 
-Effect `4.0.0-rc.112` does not expose a `2026-07-28` protocol adapter, so the
-July-only scenarios cannot be represented honestly in this workspace yet.
-`server-session-lifecycle` is applicable now and is the next independent
-fixture to add.
+The stacked local-Effect branch supplies the `v2026_07_28` adapter and adds an
+independent fixture for every new required July server scenario. Its focused
+results are:
 
-### Deferred to `v2026-07-28`
+| Scenario group                         | Result                  |
+| -------------------------------------- | ----------------------- |
+| `caching`                              | 8/8 passing             |
+| `server-sse-multiple-streams`          | 1/1 passing             |
+| `dns-rebinding-protection`             | 2/2 passing             |
+| `sep-2164-resource-not-found`          | 4/4 passing             |
+| `input-required-result-*`              | 14/14 scenarios passing |
+| `http-header-validation`               | 14/14 passing           |
+| `http-custom-header-server-validation` | 10/10 passing           |
+| `server-stateless`                     | 29/29 passing           |
 
-The following scenarios are intentionally not represented by a fixture yet.
-They depend on the `v2026-07-28` protocol/transport work and should be added
-when that adapter is available, rather than being forced through the current
-stateful Streamable HTTP fixture:
+The local Open Effect implementation passes every required July scenario in
+this workspace. These fixtures now cover prompt-based multi-round trips,
+tampered request-state rejection, partial Base64 wrapper handling, stateless
+metadata errors, removed methods, capability-to-handler consistency, and
+resource-not-found error data.
 
-| Scenario                               | Why it is deferred                                   |
-| -------------------------------------- | ---------------------------------------------------- |
-| `server-stateless`                     | Stateless initialization and request lifecycle.      |
-| `caching`                              | July cache key and response behavior.                |
-| `http-header-validation`               | July protocol header validation.                     |
-| `http-custom-header-server-validation` | Header-mirrored tool parameters.                     |
-| `sep-2164-resource-not-found`          | July resource-not-found result behavior.             |
-| `input-required-result-*`              | July input-required and MRTR request-state behavior. |
-| `resources-subscribe`                  | Resource subscription lifecycle and update delivery. |
-| `resources-unsubscribe`                | Resource subscription lifecycle and update delivery. |
-| `server-sse-polling`                   | Legacy SSE/polling transport behavior.               |
-| `server-sse-multiple-streams`          | Multiple SSE stream behavior.                        |
-| `json-schema-2020-12`                  | Newer protocol JSON Schema preservation behavior.    |
-| `elicitation-sep1034-defaults`         | Newer elicitation schema defaults.                   |
-| `elicitation-sep1330-enums`            | Newer elicitation enum schema representation.        |
-| `dns-rebinding-protection`             | Local HTTP host/origin security behavior.            |
+### Still unsupported
 
-For each group, add one scenario app at a time and preserve a passing run before
-moving on. Once all scenarios required by a particular MCP revision have
-dedicated fixtures, run the conformance runner's corresponding `--requirements`
-set and publish the complete result with the pinned Effect and runner versions.
+The published RC cannot represent `resources-subscribe`,
+`resources-unsubscribe`, or `server-sse-polling` truthfully over `layerHttp`.
+The optional `io.modelcontextprotocol/tasks` scenarios remain outside this
+workspace until Open Effect implements that extension.

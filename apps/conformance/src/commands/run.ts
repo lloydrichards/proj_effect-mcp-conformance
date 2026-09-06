@@ -5,7 +5,12 @@ import {
   supportedProtocolVersions,
   type ProtocolVersion,
 } from "@repo/mcp-fixture";
-import { findScenario, scenarioNames } from "../scenarios";
+import {
+  conformanceNameFor,
+  entrypointFor,
+  findScenario,
+  scenarioNames,
+} from "../scenarios";
 
 const scenario = Argument.string("scenario").pipe(
   Argument.withDescription("Conformance server scenario to run"),
@@ -191,38 +196,40 @@ export const run = Command.make(
           String(20_000 + Math.floor(Math.random() * 20_000));
         const url = `http://127.0.0.1:${port}/mcp`;
         yield* Effect.acquireRelease(
-          ChildProcess.make(
-            "bun",
-            ["run", `scenarios/${scenario}/src/index.ts`],
-            {
-              cwd: repository,
-              env: {
-                MCP_HOST: "127.0.0.1",
-                MCP_PORT: port,
-                MCP_PROTOCOLS: configuredProtocols.join(","),
-              },
-              extendEnv: true,
-              stderr: "inherit",
-              stdout: "inherit",
+          ChildProcess.make("bun", ["run", entrypointFor(scenarioDefinition)], {
+            cwd: repository,
+            env: {
+              MCP_HOST: "127.0.0.1",
+              MCP_PORT: port,
+              MCP_PROTOCOLS: configuredProtocols.join(","),
             },
-          ),
+            extendEnv: true,
+            stderr: "inherit",
+            stdout: "inherit",
+          }),
           (handle) =>
             handle.kill({ forceKillAfter: "5 seconds" }).pipe(Effect.ignore),
         );
 
         yield* waitForServer(url);
-        const negotiatedProtocol = yield* protocolProbe(url, protocol);
-        if (negotiatedProtocol !== expectedProtocol) {
-          return yield* new ProtocolNegotiationMismatch({
-            expected: expectedProtocol,
-            actual: negotiatedProtocol,
-          });
+        if (expectedProtocol === "2026-07-28") {
+          yield* Console.log(
+            `Protocol: configured stateless ${expectedProtocol}.`,
+          );
+        } else {
+          const negotiatedProtocol = yield* protocolProbe(url, protocol);
+          if (negotiatedProtocol !== expectedProtocol) {
+            return yield* new ProtocolNegotiationMismatch({
+              expected: expectedProtocol,
+              actual: negotiatedProtocol,
+            });
+          }
+          yield* Console.log(
+            `Protocol: offered ${protocol}; configured [${configuredProtocols.join(
+              ", ",
+            )}]; negotiated ${negotiatedProtocol}.`,
+          );
         }
-        yield* Console.log(
-          `Protocol: offered ${protocol}; configured [${configuredProtocols.join(
-            ", ",
-          )}]; negotiated ${negotiatedProtocol}.`,
-        );
         const exitCode = yield* ChildProcess.make(
           "bunx",
           [
@@ -231,7 +238,10 @@ export const run = Command.make(
             "--url",
             url,
             "--scenario",
-            scenario,
+            conformanceNameFor(scenarioDefinition),
+            ...(expectedProtocol === "2026-07-28"
+              ? ["--spec-version", expectedProtocol]
+              : []),
             ...(Option.getOrElse(verbose, () => false) ? ["--verbose"] : []),
           ],
           {
@@ -244,4 +254,4 @@ export const run = Command.make(
         process.exitCode = exitCode;
       }),
     ),
-).pipe(Command.withDescription("Start and test one independent MCP scenario"));
+).pipe(Command.withDescription("Start and test one MCP server scenario"));

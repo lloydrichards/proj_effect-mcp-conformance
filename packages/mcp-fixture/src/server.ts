@@ -6,6 +6,7 @@ export const supportedProtocolVersions = [
   "2025-03-26",
   "2025-06-18",
   "2025-11-25",
+  "2026-07-28",
 ] as const;
 
 export type ProtocolVersion = (typeof supportedProtocolVersions)[number];
@@ -14,6 +15,8 @@ const defaultProtocolVersions = supportedProtocolVersions;
 
 const protocolFor = (version: string): McpProtocol.ProtocolAdapter => {
   switch (version) {
+    case "2026-07-28":
+      return McpProtocol.v2026_07_28;
     case "2025-11-25":
       return McpProtocol.v2025_11_25;
     case "2025-06-18":
@@ -44,12 +47,12 @@ const configuredProtocols = (value: string) => {
 };
 
 export const McpServerConfig = Config.all({
-  port: Config.number("MCP_PORT").pipe(Config.withDefault(9009)),
-  hostname: Config.string("MCP_HOST").pipe(Config.withDefault("0.0.0.0")),
-  allowedOrigins: Config.string("MCP_ALLOWED_ORIGINS").pipe(
+  port: Config.Number("MCP_PORT").pipe(Config.withDefault(9009)),
+  hostname: Config.String("MCP_HOST").pipe(Config.withDefault("0.0.0.0")),
+  allowedOrigins: Config.String("MCP_ALLOWED_ORIGINS").pipe(
     Config.withDefault("http://localhost:3000"),
   ),
-  protocols: Config.string("MCP_PROTOCOLS").pipe(
+  protocols: Config.String("MCP_PROTOCOLS").pipe(
     Config.withDefault(defaultProtocolVersions.join(",")),
   ),
 });
