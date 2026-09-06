@@ -4,7 +4,7 @@ import { McpSchema, McpServer } from "effect/unstable/ai";
 import { HttpRouter, HttpServer } from "effect/unstable/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
-const scenario = McpServer.prompt({
+const EmbeddedResourcePrompt = McpServer.prompt({
   name: "test_prompt_with_embedded_resource",
   description: "A prompt with an embedded resource.",
   parameters: { resourceUri: Schema.String },
@@ -22,12 +22,18 @@ const scenario = McpServer.prompt({
         }),
       }),
     ]),
-}).pipe(Layer.provideMerge(server("prompts-get-embedded-resource")));
-const program = scenario.pipe(
+});
+
+const ScenarioLive = EmbeddedResourcePrompt.pipe(
+  Layer.provideMerge(server("prompts-get-embedded-resource")),
+);
+
+const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,
   HttpServer.withLogAddress,
   Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-  Layer.launch,
-  Effect.satisfiesServicesType<never>(),
 );
-BunRuntime.runMain(program);
+
+const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
+
+BunRuntime.runMain(main);

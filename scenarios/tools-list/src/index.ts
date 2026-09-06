@@ -4,7 +4,7 @@ import { McpServer, Tool, Toolkit } from "effect/unstable/ai";
 import { HttpRouter, HttpServer } from "effect/unstable/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
-const TestTool = Tool.make("test_tool", {
+const ToolDiscoveryTool = Tool.make("test_tool", {
   description: "A minimal tool used to verify MCP tool discovery.",
   // An empty Effect struct emits `{}` as JSON Schema. MCP requires a tool's
   // input schema to explicitly declare itself as an object.
@@ -14,23 +14,26 @@ const TestTool = Tool.make("test_tool", {
   success: Schema.String,
 });
 
-const tools = Toolkit.make(TestTool);
+const ToolDiscoveryToolkit = Toolkit.make(ToolDiscoveryTool);
 
-const scenario = Layer.effectDiscard(McpServer.registerToolkit(tools)).pipe(
-  Layer.provideMerge(server("tools-list")),
-  Layer.provide(
-    tools.toLayer({
-      test_tool: () => Effect.succeed("tool discovery is working"),
-    }),
-  ),
+const ToolDiscoveryHandlers = ToolDiscoveryToolkit.toLayer({
+  test_tool: () => Effect.succeed("tool discovery is working"),
+});
+
+const ToolDiscoveryFeatures = McpServer.toolkit(ToolDiscoveryToolkit).pipe(
+  Layer.provide(ToolDiscoveryHandlers),
 );
 
-const program = scenario.pipe(
+const ScenarioLive = ToolDiscoveryFeatures.pipe(
+  Layer.provideMerge(server("tools-list")),
+);
+
+const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,
   HttpServer.withLogAddress,
   Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-  Layer.launch,
-  Effect.satisfiesServicesType<never>(),
 );
 
-BunRuntime.runMain(program);
+const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
+
+BunRuntime.runMain(main);

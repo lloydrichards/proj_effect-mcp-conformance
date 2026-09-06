@@ -4,7 +4,7 @@ import { McpSchema, McpServer } from "effect/unstable/ai";
 import { HttpRouter, HttpServer } from "effect/unstable/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
-const scenario = McpServer.prompt({
+const PromptWithImage = McpServer.prompt({
   name: "test_prompt_with_image",
   description: "A prompt with image content.",
   content: () =>
@@ -18,12 +18,18 @@ const scenario = McpServer.prompt({
         }),
       }),
     ]),
-}).pipe(Layer.provideMerge(server("prompts-get-with-image")));
-const program = scenario.pipe(
+});
+
+const ScenarioLive = PromptWithImage.pipe(
+  Layer.provideMerge(server("prompts-get-with-image")),
+);
+
+const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,
   HttpServer.withLogAddress,
   Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-  Layer.launch,
-  Effect.satisfiesServicesType<never>(),
 );
-BunRuntime.runMain(program);
+
+const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
+
+BunRuntime.runMain(main);

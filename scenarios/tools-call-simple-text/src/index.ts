@@ -4,36 +4,44 @@ import { McpSchema, McpServer } from "effect/unstable/ai";
 import { HttpRouter, HttpServer } from "effect/unstable/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
-const scenario = Layer.effectDiscard(
-  Effect.gen(function* () {
-    const mcp = yield* McpServer.McpServer;
-    yield* mcp.addTool({
-      tool: new McpSchema.Tool({
-        name: "test_simple_text",
-        description: "Returns test text.",
-        inputSchema: { type: "object" },
-      }),
-      annotations: Context.empty(),
-      handle: () =>
-        Effect.succeed(
-          new McpSchema.CallToolResult({
-            content: [
-              {
-                type: "text",
-                text: "This is a simple text response for testing.",
-              },
-            ],
-          }),
-        ),
-    });
-  }),
-).pipe(Layer.provideMerge(server("tools-call-simple-text")));
+const SimpleTextTool = new McpSchema.Tool({
+  name: "test_simple_text",
+  description: "Returns test text.",
+  inputSchema: { type: "object" },
+});
 
-const program = scenario.pipe(
+const simpleTextHandler = () =>
+  Effect.succeed(
+    new McpSchema.CallToolResult({
+      content: [
+        {
+          type: "text",
+          text: "This is a simple text response for testing.",
+        },
+      ],
+    }),
+  );
+
+const SimpleTextRegistration = Layer.effectDiscard(
+  McpServer.McpServer.use((mcp) =>
+    mcp.addTool({
+      tool: SimpleTextTool,
+      annotations: Context.empty(),
+      handle: simpleTextHandler,
+    }),
+  ),
+);
+
+const ScenarioLive = SimpleTextRegistration.pipe(
+  Layer.provideMerge(server("tools-call-simple-text")),
+);
+
+const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,
   HttpServer.withLogAddress,
   Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-  Layer.launch,
-  Effect.satisfiesServicesType<never>(),
 );
-BunRuntime.runMain(program);
+
+const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
+
+BunRuntime.runMain(main);

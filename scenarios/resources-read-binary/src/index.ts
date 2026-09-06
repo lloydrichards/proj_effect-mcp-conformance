@@ -4,7 +4,7 @@ import { McpSchema, McpServer } from "effect/unstable/ai";
 import { HttpRouter, HttpServer } from "effect/unstable/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
-const scenario = McpServer.resource({
+const BinaryResource = McpServer.resource({
   uri: "test://static-binary",
   name: "static-binary",
   description: "A static binary resource.",
@@ -20,14 +20,18 @@ const scenario = McpServer.resource({
       ],
     }),
   ),
-}).pipe(Layer.provideMerge(server("resources-read-binary")));
+});
 
-const program = scenario.pipe(
+const ScenarioLive = BinaryResource.pipe(
+  Layer.provideMerge(server("resources-read-binary")),
+);
+
+const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,
   HttpServer.withLogAddress,
   Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-  Layer.launch,
-  Effect.satisfiesServicesType<never>(),
 );
 
-BunRuntime.runMain(program);
+const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
+
+BunRuntime.runMain(main);
