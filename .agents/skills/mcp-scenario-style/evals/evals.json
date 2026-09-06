@@ -1,0 +1,140 @@
+{
+  "skill_name": "mcp-conformance-scenario-style",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review scenarios/tools-call-simple-text/src/index.ts and propose the smallest interface-first restructuring. Do not edit files.",
+      "expected_output": "A read-only review that identifies the contract buried in low-level registration, decides whether raw registration is necessary, and proposes the canonical contract-to-runtime order with file evidence.",
+      "files": ["../../../scenarios/tools-call-simple-text/src/index.ts"],
+      "expectations": [
+        "The review identifies the exact MCP contract before discussing implementation structure.",
+        "The review retains low-level registration when changing it would alter the CallToolResult wire encoding.",
+        "The proposed order is contract, implementation, registration, ScenarioLive, MainLive, and main."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Refactor scenarios/tools-list/src/index.ts to match the repository's MCP conformance scenario style, preserving behavior and exact wire names.",
+      "expected_output": "A minimal edit using Tool and Toolkit as the interface, a separately named handler implementation, McpServer.toolkit for registration, semantic layer names, and focused validation.",
+      "files": ["../../../scenarios/tools-list/src/index.ts"],
+      "expectations": [
+        "The tool name, schemas, description, and handler result remain unchanged.",
+        "The refactor uses Tool.make, Toolkit.make, Toolkit.toLayer, and McpServer.toolkit.",
+        "The file uses semantic role names and the canonical ScenarioLive, MainLive, and main assembly.",
+        "The focused package type-check passes."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Standardize scenarios/input-required-result-basic-sampling/src/index.ts. Keep any low-level MCP behavior that is required for MRTR.",
+      "expected_output": "An interface-first refactor that retains low-level registration where InputRequired and request context demand it, separates the tool definition from its handler, and avoids hiding the scenario difference behind a generic factory.",
+      "files": [
+        "../../../scenarios/input-required-result-basic-sampling/src/index.ts"
+      ],
+      "expectations": [
+        "The MRTR request key, sampling payload, request-context check, and final response remain unchanged.",
+        "The refactor keeps low-level McpServer registration and states why it is required.",
+        "The tool contract appears before the handler and registration layer.",
+        "The focused package type-check passes."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Refactor scenarios/tools-call-image/src/index.ts using the repository-local MCP scenario style without changing its wire result.",
+      "expected_output": "A refactor that separates the raw tool contract and image handler, retains low-level registration for binary MCP content, and preserves the exact bytes and MIME type.",
+      "files": ["../../../scenarios/tools-call-image/src/index.ts"],
+      "expectations": [
+        "The tool name, PNG bytes, MIME type, and CallToolResult shape remain unchanged.",
+        "The refactor keeps low-level registration and separates contract from implementation.",
+        "The file uses the canonical ScenarioLive, MainLive, and main assembly.",
+        "The focused package type-check passes."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Refactor scenarios/prompts-get-with-args/src/index.ts using the repository-local MCP scenario style.",
+      "expected_output": "A small declarative prompt refactor with a capability-specific name and canonical application assembly, preserving the prompt contract and output.",
+      "files": ["../../../scenarios/prompts-get-with-args/src/index.ts"],
+      "expectations": [
+        "The prompt name, required argument schemas, and interpolated result remain unchanged.",
+        "The declarative McpServer.prompt constructor remains in use.",
+        "The file uses the canonical ScenarioLive, MainLive, and main assembly.",
+        "The focused package type-check passes."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Refactor scenarios/resources-read-text/src/index.ts using the repository-local MCP scenario style.",
+      "expected_output": "A small declarative resource refactor with a capability-specific name and canonical application assembly, preserving the exact resource response.",
+      "files": ["../../../scenarios/resources-read-text/src/index.ts"],
+      "expectations": [
+        "The resource URI, metadata, MIME type, and text remain unchanged.",
+        "The declarative McpServer.resource constructor remains in use.",
+        "The file uses the canonical ScenarioLive, MainLive, and main assembly.",
+        "The focused package type-check passes."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Refactor scenarios/tools-call-audio/src/index.ts using the repository-local MCP scenario style without changing its wire result.",
+      "expected_output": "An interface-first raw registration that preserves the exact audio content while separating its contract, handler, registration, and runtime assembly.",
+      "files": ["../../../scenarios/tools-call-audio/src/index.ts"],
+      "expectations": [
+        "The tool name, audio bytes, MIME type, and CallToolResult shape remain unchanged.",
+        "The refactor keeps low-level registration and separates contract from implementation.",
+        "The canonical ScenarioLive, MainLive, and main assembly is used.",
+        "The focused package type-check and conformance scenario pass."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Refactor scenarios/tools-call-embedded-resource/src/index.ts using the repository-local MCP scenario style without changing its wire result.",
+      "expected_output": "An interface-first raw registration that preserves the embedded resource content and makes the contract easy to compare with other content tools.",
+      "files": ["../../../scenarios/tools-call-embedded-resource/src/index.ts"],
+      "expectations": [
+        "The tool name, resource URI, MIME type, text, and CallToolResult shape remain unchanged.",
+        "The refactor keeps low-level registration and separates contract from implementation.",
+        "The canonical ScenarioLive, MainLive, and main assembly is used.",
+        "The focused package type-check and conformance scenario pass."
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Refactor scenarios/prompts-get-with-image/src/index.ts using the repository-local MCP scenario style.",
+      "expected_output": "A declarative prompt refactor with a capability-specific name and canonical runtime assembly that preserves the image prompt contract.",
+      "files": ["../../../scenarios/prompts-get-with-image/src/index.ts"],
+      "expectations": [
+        "The prompt name, role, image bytes, and MIME type remain unchanged.",
+        "The declarative McpServer.prompt constructor remains in use.",
+        "The canonical ScenarioLive, MainLive, and main assembly is used.",
+        "The focused package type-check and conformance scenario pass."
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Refactor scenarios/resources-read-binary/src/index.ts using the repository-local MCP scenario style.",
+      "expected_output": "A declarative resource refactor with a capability-specific name and canonical runtime assembly that preserves the exact binary response.",
+      "files": ["../../../scenarios/resources-read-binary/src/index.ts"],
+      "expectations": [
+        "The resource URI, metadata, bytes, MIME type, and response shape remain unchanged.",
+        "The declarative McpServer.resource constructor remains in use.",
+        "The canonical ScenarioLive, MainLive, and main assembly is used.",
+        "The focused package type-check and conformance scenario pass."
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Refactor scenarios/input-required-result-request-state/src/index.ts using the repository-local MCP scenario style while preserving its MRTR behavior.",
+      "expected_output": "An interface-first raw registration that preserves the request-state round trip, success result, and invalid-state failure.",
+      "files": [
+        "../../../scenarios/input-required-result-request-state/src/index.ts"
+      ],
+      "expectations": [
+        "The tool name, elicitation request, request state, response key, success text, and InvalidParams behavior remain unchanged.",
+        "The refactor keeps low-level registration and separates contract from implementation.",
+        "The canonical ScenarioLive, MainLive, and main assembly is used.",
+        "The focused package type-check and conformance scenario pass."
+      ]
+    }
+  ]
+}
