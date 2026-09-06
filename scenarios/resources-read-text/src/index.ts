@@ -4,7 +4,7 @@ import { McpSchema, McpServer } from "effect/unstable/ai";
 import { HttpRouter, HttpServer } from "effect/unstable/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
-const scenario = McpServer.resource({
+const TextResource = McpServer.resource({
   uri: "test://static-text",
   name: "static-text",
   description: "A static text resource.",
@@ -20,14 +20,18 @@ const scenario = McpServer.resource({
       ],
     }),
   ),
-}).pipe(Layer.provideMerge(server("resources-read-text")));
+});
 
-const program = scenario.pipe(
+const ScenarioLive = TextResource.pipe(
+  Layer.provideMerge(server("resources-read-text")),
+);
+
+const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,
   HttpServer.withLogAddress,
   Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-  Layer.launch,
-  Effect.satisfiesServicesType<never>(),
 );
 
-BunRuntime.runMain(program);
+const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
+
+BunRuntime.runMain(main);

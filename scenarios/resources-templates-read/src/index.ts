@@ -4,7 +4,7 @@ import { McpSchema, McpServer } from "effect/unstable/ai";
 import { HttpRouter, HttpServer } from "effect/unstable/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
-const resource =
+const DocumentTemplate =
   McpServer.resource`test://template/${McpSchema.param("id", Schema.String)}/data`(
     {
       name: "template-resource",
@@ -29,16 +29,16 @@ const resource =
     },
   );
 
-const scenario = resource.pipe(
+const ScenarioLive = DocumentTemplate.pipe(
   Layer.provideMerge(server("resources-templates-read")),
 );
 
-const program = scenario.pipe(
+const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,
   HttpServer.withLogAddress,
   Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-  Layer.launch,
-  Effect.satisfiesServicesType<never>(),
 );
 
-BunRuntime.runMain(program);
+const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
+
+BunRuntime.runMain(main);
