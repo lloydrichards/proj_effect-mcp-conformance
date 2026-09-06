@@ -6,6 +6,7 @@ import {
 export interface Scenario {
   readonly name: string;
   readonly protocolVersions: ReadonlyArray<ProtocolVersion>;
+  readonly conformanceName?: string;
 }
 
 const allProtocolVersions: ReadonlyArray<ProtocolVersion> =
@@ -30,7 +31,7 @@ const elicitationProtocolVersions: ReadonlyArray<ProtocolVersion> = [
   "2025-06-18",
 ];
 
-export const scenarios: ReadonlyArray<Scenario> = [
+const baseScenarios: ReadonlyArray<Scenario> = [
   {
     name: "server-initialize",
     protocolVersions: statefulProtocolVersions,
@@ -189,7 +190,128 @@ export const scenarios: ReadonlyArray<Scenario> = [
   })),
 ];
 
+interface AlternateImplementation {
+  readonly name: string;
+  readonly scenarios: ReadonlyArray<string>;
+}
+
+const inputRequired = (suffixes: ReadonlyArray<string>) =>
+  suffixes.map((suffix) => `input-required-result-${suffix}`);
+
+const alternateImplementations: ReadonlyArray<AlternateImplementation> = [
+  { name: "typed-toolkit-http", scenarios: ["tools-list"] },
+  {
+    name: "imperative-public-api-http",
+    scenarios: [
+      "completion-complete",
+      "tools-list",
+      "resources-list",
+      "resources-read-text",
+      "prompts-list",
+      "prompts-get-simple",
+      "prompts-get-with-args",
+    ],
+  },
+  {
+    name: "raw-registry-http",
+    scenarios: [
+      "tools-list",
+      "tools-call-simple-text",
+      "resources-list",
+      "resources-read-text",
+      "prompts-list",
+      "prompts-get-simple",
+    ],
+  },
+  {
+    name: "multi-capability-public-http",
+    scenarios: [
+      "completion-complete",
+      "tools-list",
+      "tools-call-simple-text",
+      "resources-list",
+      "resources-read-text",
+      "prompts-list",
+      "prompts-get-simple",
+      "prompts-get-with-args",
+    ],
+  },
+  { name: "dynamic-registry-http", scenarios: ["server-stateless"] },
+  {
+    name: "stateful-interactive-http",
+    scenarios: ["tools-call-with-logging", "tools-call-with-progress"],
+  },
+  {
+    name: "mrtr-happy-path-http",
+    scenarios: inputRequired([
+      "basic-elicitation",
+      "basic-sampling",
+      "basic-list-roots",
+    ]),
+  },
+  {
+    name: "mrtr-state-machine-http",
+    scenarios: inputRequired([
+      "request-state",
+      "multiple-input-requests",
+      "multi-round",
+      "tampered-state",
+    ]),
+  },
+  {
+    name: "mrtr-adversarial-http",
+    scenarios: inputRequired([
+      "missing-input-response",
+      "result-type",
+      "capability-check",
+      "ignore-extra-params",
+      "validate-input",
+    ]),
+  },
+  { name: "schema-edge-cases-http", scenarios: ["json-schema-2020-12"] },
+  {
+    name: "hardened-http",
+    scenarios: [
+      "http-header-validation",
+      "http-custom-header-server-validation",
+    ],
+  },
+];
+
+const variantSuffixes = ["II", "III", "IV", "V"] as const;
+
+const alternateScenariosFor = (scenario: Scenario) =>
+  alternateImplementations.flatMap((implementation, index) => {
+    if (!implementation.scenarios.includes(scenario.name)) return [];
+    const precedingImplementations = alternateImplementations
+      .slice(0, index)
+      .filter((candidate) => candidate.scenarios.includes(scenario.name));
+    const suffix = variantSuffixes[precedingImplementations.length];
+    if (suffix === undefined) {
+      throw new Error(
+        `Too many alternate implementations for ${scenario.name}`,
+      );
+    }
+    return [
+      {
+        name: `${scenario.name}-${suffix}`,
+        conformanceName: scenario.name,
+        protocolVersions: scenario.protocolVersions,
+      },
+    ];
+  });
+
+export const scenarios: ReadonlyArray<Scenario> = baseScenarios.flatMap(
+  (scenario) => [scenario, ...alternateScenariosFor(scenario)],
+);
+
 export const scenarioNames = scenarios.map((scenario) => scenario.name);
 
 export const findScenario = (name: string) =>
   scenarios.find((scenario) => scenario.name === name);
+
+export const conformanceNameFor = (scenario: Scenario) =>
+  scenario.conformanceName ?? scenario.name;
+
+export const entrypointFor = (scenario: Scenario) =>
+  `scenarios/${scenario.name}/src/index.ts`;
