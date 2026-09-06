@@ -5,10 +5,11 @@ It runs the official [MCP conformance runner](https://github.com/modelcontextpro
 against small, purpose-built Effect servers so that a pass or failure can be
 attributed to one protocol behavior at a time.
 
-It is not a sample application and does not attempt to make one server pass
-every scenario. Each conformance scenario gets its own independent server app.
-That keeps a tool, resource, prompt, or transport feature from accidentally
-making an unrelated scenario pass.
+It is not a sample application. Each conformance scenario has an independent
+server app that remains the causal baseline. Suffixed variants such as
+`tools-list-II` deliberately implement the same contract through a different
+Effect API or runtime path. That lets the same upstream check probe more than
+one implementation without changing its official scenario name.
 
 ## Direction
 
@@ -24,6 +25,8 @@ The repository has three deliberate boundaries:
 │   └── mcp-fixture/            # shared Streamable HTTP server setup
 └── scenarios/
     ├── server-initialize/      # one independent MCP server per scenario
+    ├── tools-list-II/          # alternate implementation of tools-list
+    ├── tools-list-III/
     ├── logging-set-level/
     └── ...
 ```
@@ -33,8 +36,13 @@ The repository has three deliberate boundaries:
 endpoint responds, run the official checker, and terminate the fixture.
 
 `packages/mcp-fixture` owns only the common HTTP transport and server metadata.
-Scenario apps own their capabilities and handlers. This is where each new
-conformance behavior belongs.
+Scenario apps own their capabilities and handlers. Every suffixed variant is
+self-contained, so its alternate implementation can be read and run in place.
+This is where each new conformance behavior belongs.
+
+[`apps/conformance/src/scenarios.ts`](./apps/conformance/src/scenarios.ts)
+maps each suffixed row to its official conformance scenario and applicable
+protocols. Every row launches its matching `scenarios/<name>/src/index.ts`.
 
 ## Setup
 
@@ -99,6 +107,18 @@ one configured adapter, then runs the matching upstream conformance scenario:
 bun run conformance:all
 ```
 
+Run alternate implementations like ordinary scenarios:
+
+```sh
+bun run conformance:scenario tools-list-II
+bun run conformance:scenario tools-list-III
+bun run conformance:all
+```
+
+The unsuffixed scenario is implementation I. `-II`, `-III`, and later rows are
+additional implementations of the same upstream contract. `conformance:all`
+runs every original and alternate row automatically.
+
 The result is a bordered terminal report with colour-coded statuses (and a
 plain-text fallback for redirected output), such as:
 
@@ -131,8 +151,10 @@ runner starts. It reports the protocol offered by the probe, the ordered
 adapter list configured in the fixture, and the adapter Effect actually
 negotiated.
 
-The fixture exposes every adapter available in Effect `4.0.0-rc.112`, from
-newest to oldest: `2025-11-25`, `2025-06-18`, `2025-03-26`, and `2024-11-05`.
+The fixture can expose the five adapters implemented by the linked Open Effect
+checkout, from `2026-07-28` through `2024-11-05`. The published dependency may
+support a smaller set; keep published-package and linked-checkout results
+separate when reporting them.
 
 ```sh
 # The fixture exposes only 2025-11-25.
@@ -171,6 +193,7 @@ Open a scenario in the [MCP Inspector](https://github.com/modelcontextprotocol/i
 
 ```sh
 bun run --cwd=apps/conformance start -- inspect ping
+bun run --cwd=apps/conformance start -- inspect tools-list-II
 ```
 
 The command starts the fixture, then launches the Inspector with its Streamable
