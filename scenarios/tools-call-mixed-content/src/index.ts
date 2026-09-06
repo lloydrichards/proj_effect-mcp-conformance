@@ -4,45 +4,54 @@ import { McpSchema, McpServer } from "effect/unstable/ai";
 import { HttpRouter, HttpServer } from "effect/unstable/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
-const scenario = Layer.effectDiscard(
-  Effect.gen(function* () {
-    const mcp = yield* McpServer.McpServer;
-    yield* mcp.addTool({
-      tool: new McpSchema.Tool({
-        name: "test_multiple_content_types",
-        description: "Returns text, image, and a resource.",
-        inputSchema: { type: "object" },
-      }),
+const MixedContentTool = new McpSchema.Tool({
+  name: "test_multiple_content_types",
+  description: "Returns text, image, and a resource.",
+  inputSchema: { type: "object" },
+});
+
+const mixedContentHandler = () =>
+  Effect.succeed(
+    new McpSchema.CallToolResult({
+      content: [
+        { type: "text", text: "Mixed content" },
+        {
+          type: "image",
+          data: new Uint8Array([137, 80, 78, 71]),
+          mimeType: "image/png",
+        },
+        {
+          type: "resource",
+          resource: {
+            uri: "test://mixed",
+            mimeType: "text/plain",
+            text: "Mixed embedded resource",
+          },
+        },
+      ],
+    }),
+  );
+
+const MixedContentRegistration = Layer.effectDiscard(
+  McpServer.McpServer.use((mcp) =>
+    mcp.addTool({
+      tool: MixedContentTool,
       annotations: Context.empty(),
-      handle: () =>
-        Effect.succeed(
-          new McpSchema.CallToolResult({
-            content: [
-              { type: "text", text: "Mixed content" },
-              {
-                type: "image",
-                data: new Uint8Array([137, 80, 78, 71]),
-                mimeType: "image/png",
-              },
-              {
-                type: "resource",
-                resource: {
-                  uri: "test://mixed",
-                  mimeType: "text/plain",
-                  text: "Mixed embedded resource",
-                },
-              },
-            ],
-          }),
-        ),
-    });
-  }),
-).pipe(Layer.provideMerge(server("tools-call-mixed-content")));
-const program = scenario.pipe(
+      handle: mixedContentHandler,
+    }),
+  ),
+);
+
+const ScenarioLive = MixedContentRegistration.pipe(
+  Layer.provideMerge(server("tools-call-mixed-content")),
+);
+
+const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,
   HttpServer.withLogAddress,
   Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-  Layer.launch,
-  Effect.satisfiesServicesType<never>(),
 );
-BunRuntime.runMain(program);
+
+const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
+
+BunRuntime.runMain(main);

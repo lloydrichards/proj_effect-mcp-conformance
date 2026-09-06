@@ -51,7 +51,8 @@ bun install
 
 The Effect version under test is pinned in
 [`packages/mcp-fixture/package.json`](./packages/mcp-fixture/package.json).
-Record that version together with the conformance runner version whenever you
+The conformance runner is also pinned exactly in the root `package.json`
+because its `0.2.0` line is still alpha. Record both versions whenever you
 report a result.
 
 ## Use
@@ -111,7 +112,7 @@ runner starts. It reports the protocol offered by the probe, the ordered
 adapter list configured in the fixture, and the adapter Effect actually
 negotiated.
 
-The fixture exposes every adapter available in Effect `4.0.0-rc.110`, from
+The fixture exposes every adapter available in Effect `4.0.0-rc.112`, from
 newest to oldest: `2025-11-25`, `2025-06-18`, `2025-03-26`, and `2024-11-05`.
 
 ```sh
@@ -182,6 +183,7 @@ bun run type-check
 | Scenario                       | Status  | What it establishes / exposes                                      |
 | ------------------------------ | ------- | ------------------------------------------------------------------ |
 | `server-initialize`            | Passing | Effect's Streamable HTTP server completes MCP initialization.      |
+| `server-session-lifecycle`     | Blocked | RC.112 does not return an `Mcp-Session-Id`; checks are skipped.     |
 | `logging-set-level`            | Passing | Effect accepts the built-in `logging/setLevel` request.            |
 | `ping`                         | Passing | Effect responds to the built-in `ping` request.                    |
 | `tools-list`                   | Passing | A scenario-owned Effect tool has a valid MCP definition.           |
@@ -195,6 +197,9 @@ bun run type-check
 | `tools-call-with-progress`     | Failing | Tool handlers cannot access the request progress token.            |
 | `tools-call-sampling`          | Blocked | Reverse sampling request does not complete over this transport.    |
 | `tools-call-elicitation`       | Blocked | Reverse elicitation request does not complete over this transport. |
+| `json-schema-2020-12`          | Blocked | RC.112 loses the stateful session before schema checks begin.      |
+| `elicitation-sep1034-defaults` | Blocked | RC.112 loses the stateful session before default checks begin.     |
+| `elicitation-sep1330-enums`    | Blocked | RC.112 loses the stateful session before enum checks begin.        |
 
 These are individual scenario results, not a claim that the Effect MCP server
 conforms to a whole MCP revision.
@@ -229,23 +234,42 @@ shared fixture is not involved in capability registration.
 
 ## What remains
 
-### Deferred to `v2025-07-28`
+### New coverage in conformance `0.2.0-alpha.11`
+
+The alpha runner adds a `2026-07-28` requirement set and scenarios that are
+absent from stable `0.1.16`. The new coverage includes stateless server
+lifecycle, caching, HTTP header validation, resource-not-found behavior, and
+input-required/MRTR flows. It also adds `server-session-lifecycle` for the
+existing stateful protocol revisions.
+
+Effect `4.0.0-rc.112` does not expose a `2026-07-28` protocol adapter, so the
+July-only scenarios cannot be represented honestly in this workspace yet.
+`server-session-lifecycle` is applicable now and is the next independent
+fixture to add.
+
+### Deferred to `v2026-07-28`
 
 The following scenarios are intentionally not represented by a fixture yet.
-They depend on the `v2025-07-28` protocol/transport work and should be added
+They depend on the `v2026-07-28` protocol/transport work and should be added
 when that adapter is available, rather than being forced through the current
 stateful Streamable HTTP fixture:
 
-| Scenario                       | Why it is deferred                                   |
-| ------------------------------ | ---------------------------------------------------- |
-| `resources-subscribe`          | Resource subscription lifecycle and update delivery. |
-| `resources-unsubscribe`        | Resource subscription lifecycle and update delivery. |
-| `server-sse-polling`           | Legacy SSE/polling transport behavior.               |
-| `server-sse-multiple-streams`  | Multiple SSE stream behavior.                        |
-| `json-schema-2020-12`          | Newer protocol JSON Schema preservation behavior.    |
-| `elicitation-sep1034-defaults` | Newer elicitation schema defaults.                   |
-| `elicitation-sep1330-enums`    | Newer elicitation enum schema representation.        |
-| `dns-rebinding-protection`     | Local HTTP host/origin security behavior.            |
+| Scenario                               | Why it is deferred                                   |
+| -------------------------------------- | ---------------------------------------------------- |
+| `server-stateless`                     | Stateless initialization and request lifecycle.      |
+| `caching`                              | July cache key and response behavior.                |
+| `http-header-validation`               | July protocol header validation.                     |
+| `http-custom-header-server-validation` | Header-mirrored tool parameters.                     |
+| `sep-2164-resource-not-found`          | July resource-not-found result behavior.             |
+| `input-required-result-*`              | July input-required and MRTR request-state behavior. |
+| `resources-subscribe`                  | Resource subscription lifecycle and update delivery. |
+| `resources-unsubscribe`                | Resource subscription lifecycle and update delivery. |
+| `server-sse-polling`                   | Legacy SSE/polling transport behavior.               |
+| `server-sse-multiple-streams`          | Multiple SSE stream behavior.                        |
+| `json-schema-2020-12`                  | Newer protocol JSON Schema preservation behavior.    |
+| `elicitation-sep1034-defaults`         | Newer elicitation schema defaults.                   |
+| `elicitation-sep1330-enums`            | Newer elicitation enum schema representation.        |
+| `dns-rebinding-protection`             | Local HTTP host/origin security behavior.            |
 
 For each group, add one scenario app at a time and preserve a passing run before
 moving on. Once all scenarios required by a particular MCP revision have

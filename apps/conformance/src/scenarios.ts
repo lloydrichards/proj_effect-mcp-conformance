@@ -28,6 +28,10 @@ export const scenarios: ReadonlyArray<Scenario> = [
     protocolVersions: supportedConformanceProtocolVersions,
   },
   {
+    name: "server-session-lifecycle",
+    protocolVersions: ["2025-11-25", "2025-06-18", "2025-03-26"],
+  },
+  {
     name: "logging-set-level",
     protocolVersions: supportedConformanceProtocolVersions,
   },
@@ -79,6 +83,18 @@ export const scenarios: ReadonlyArray<Scenario> = [
   {
     name: "tools-call-elicitation",
     protocolVersions: elicitationProtocolVersions,
+  },
+  {
+    name: "json-schema-2020-12",
+    protocolVersions: ["2025-11-25"],
+  },
+  {
+    name: "elicitation-sep1034-defaults",
+    protocolVersions: ["2025-11-25"],
+  },
+  {
+    name: "elicitation-sep1330-enums",
+    protocolVersions: ["2025-11-25"],
   },
   {
     name: "resources-list",
