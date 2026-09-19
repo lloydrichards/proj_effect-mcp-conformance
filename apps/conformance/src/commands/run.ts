@@ -12,21 +12,21 @@ import {
   scenarioNames,
 } from "../scenarios";
 
-const scenario = Argument.string("scenario").pipe(
+const scenario = Argument.String("scenario").pipe(
   Argument.withDescription("Conformance server scenario to run"),
 );
 
-const verbose = Flag.boolean("verbose").pipe(
+const verbose = Flag.Boolean("verbose").pipe(
   Flag.withDescription("Show the conformance runner's detailed output"),
   Flag.optional,
 );
 
-const protocol = Flag.choice("protocol", supportedProtocolVersions).pipe(
+const protocol = Flag.Literals("protocol", supportedProtocolVersions).pipe(
   Flag.withDefault("2025-11-25"),
   Flag.withDescription("Protocol version offered by the handshake probe"),
 );
 
-const protocolCase = Flag.choice("protocol-case", [
+const protocolCase = Flag.Literals("protocol-case", [
   "only",
   "with-fallback",
   "fallback-only",
@@ -35,7 +35,7 @@ const protocolCase = Flag.choice("protocol-case", [
   Flag.withDescription("How the server's ordered adapter list is configured"),
 );
 
-const fallbackProtocol = Flag.choice(
+const fallbackProtocol = Flag.Literals(
   "fallback-protocol",
   supportedProtocolVersions,
 ).pipe(

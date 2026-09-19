@@ -9,12 +9,12 @@ import {
 } from "@repo/mcp-fixture";
 import { findScenario, scenarios, type Scenario } from "../scenarios";
 
-const selectedScenario = Flag.string("scenario").pipe(
+const selectedScenario = Flag.String("scenario").pipe(
   Flag.optional,
   Flag.withDescription("Limit the matrix to one scenario"),
 );
 
-const timeout = Flag.integer("timeout").pipe(
+const timeout = Flag.Int("timeout").pipe(
   Flag.withDefault(10_000),
   Flag.withDescription("Maximum duration in milliseconds for each matrix cell"),
 );

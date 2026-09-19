@@ -4,11 +4,11 @@ import { ChildProcess } from "effect/unstable/process";
 import { entrypointFor, findScenario, scenarioNames } from "../scenarios";
 import { supportedProtocolVersions } from "@repo/mcp-fixture";
 
-const scenario = Argument.string("scenario").pipe(
+const scenario = Argument.String("scenario").pipe(
   Argument.withDescription("Scenario server to open in the MCP Inspector"),
 );
 
-const protocol = Flag.choice("protocol", supportedProtocolVersions).pipe(
+const protocol = Flag.Literals("protocol", supportedProtocolVersions).pipe(
   Flag.optional,
   Flag.withDescription("Protocol adapter configured for the server"),
 );
