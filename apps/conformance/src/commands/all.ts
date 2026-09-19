@@ -25,7 +25,7 @@ class UnknownScenario extends Data.TaggedError("UnknownScenario")<{
   readonly scenario: string;
 }> {}
 
-type Result = "PASS" | "FAIL" | "SKIP" | "TIMEOUT";
+type Result = "PASS" | "FAIL" | " -- " | "TIMEOUT";
 
 interface Row {
   readonly scenario: string;
@@ -40,7 +40,7 @@ const runCell = (
   Effect.scoped(
     Effect.gen(function* () {
       if (!scenario.protocolVersions.includes(protocol)) {
-        return "SKIP" as const;
+        return " -- " as const;
       }
 
       const handle = yield* Effect.acquireRelease(
@@ -90,7 +90,7 @@ const statusAnnotation = (result: Result) => {
       return Ansi.red;
     case "TIMEOUT":
       return Ansi.yellow;
-    case "SKIP":
+    case " -- ":
       return Ansi.brightBlack;
   }
 };
