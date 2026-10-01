@@ -319,3 +319,17 @@ for ordinary application tools. The content fixtures use the lower-level
 `McpServer.addTool` API intentionally: its `CallToolResult` supports MCP's
 text, image, audio, resource, mixed-content, and error result shapes. The
 shared fixture is not involved in capability registration.
+
+## CI validation
+
+The `Validate` workflow runs on pull requests, pushes to `main`, and manual runs.
+It installs published dependencies with `bun install --frozen-lockfile`, then
+checks workspace types, lint, formatting, unit tests, and the CLI build.
+A separate job runs `bun run conformance:all --timeout 30000` and uploads its
+matrix log and raw checker results, including on failure. No local Effect build
+or checkout is used in CI.
+
+Published Effect rc.118 does not export `McpTasks`, so the Tasks draft cannot pass
+all checks yet. It must wait for an Effect release containing the Tasks APIs,
+and for the upstream conformance fixes to be published and verified. Failures
+remain visible and fail CI.
