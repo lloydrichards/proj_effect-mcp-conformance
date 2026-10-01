@@ -8,6 +8,7 @@ import {
   type ProtocolVersion,
 } from "@repo/mcp-fixture";
 import { findScenario, scenarios, type Scenario } from "../scenarios";
+import { skippedExitCode } from "../results";
 
 const selectedScenario = Flag.String("scenario").pipe(
   Flag.optional,
@@ -25,7 +26,7 @@ class UnknownScenario extends Data.TaggedError("UnknownScenario")<{
   readonly scenario: string;
 }> {}
 
-type Result = "PASS" | "FAIL" | " -- " | "TIMEOUT";
+type Result = "PASS" | "FAIL" | "SKIP" | " -- " | "TIMEOUT";
 
 interface Row {
   readonly scenario: string;
@@ -75,7 +76,12 @@ const runCell = (
           onFailure: () => "FAIL" as const,
           onSuccess: Option.match({
             onNone: () => "TIMEOUT" as const,
-            onSome: (exitCode) => (exitCode === 0 ? "PASS" : "FAIL"),
+            onSome: (exitCode) =>
+              exitCode === skippedExitCode
+                ? "SKIP"
+                : exitCode === 0
+                  ? "PASS"
+                  : "FAIL",
           }),
         }),
       );
@@ -89,6 +95,8 @@ const statusAnnotation = (result: Result) => {
     case "FAIL":
       return Ansi.red;
     case "TIMEOUT":
+      return Ansi.yellow;
+    case "SKIP":
       return Ansi.yellow;
     case " -- ":
       return Ansi.brightBlack;
@@ -158,13 +166,16 @@ const formatTable = (rows: ReadonlyArray<Row>) => {
     ],
     Box.left,
   );
-  const passingCells = rows
-    .flatMap((rowValue) => Object.values(rowValue.results))
-    .filter((result) => result === "PASS").length;
-  const totalCells = rows.length * supportedProtocolVersions.length;
+  const results = rows.flatMap((rowValue) => Object.values(rowValue.results));
+  const passingCells = results.filter((result) => result === "PASS").length;
+  const failedCells = results.filter(
+    (result) => result === "FAIL" || result === "TIMEOUT",
+  ).length;
+  const skippedCells = results.filter((result) => result === "SKIP").length;
+  const totalCells = results.filter((result) => result !== " -- ").length;
   const summary = Box.text(
-    `${passingCells}/${totalCells} adapter checks passing`,
-  ).pipe(Box.annotate(passingCells === totalCells ? Ansi.green : Ansi.yellow));
+    `${passingCells}/${totalCells} applicable adapter checks passing; ${failedCells} failed; ${skippedCells} skipped`,
+  ).pipe(Box.annotate(failedCells === 0 ? Ansi.green : Ansi.yellow));
   const report = Box.vcat(
     [Box.text("MCP conformance").pipe(Box.annotate(Ansi.bold)), table, summary],
     Box.left,

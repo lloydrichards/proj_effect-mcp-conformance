@@ -1,0 +1,58 @@
+{
+  "effectVersion": "4.0.0-rc.118",
+  "effectRevision": "c5925879305c8fee11132372604353dd4c8673c6",
+  "conformanceVersion": "0.2.0-alpha.11",
+  "findings": [
+    {
+      "failure": "wire-schema-valid",
+      "owner": "conformance runner",
+      "confidence": "confirmed",
+      "experiment": "19 captured responses rejected by core CallToolResult all accepted by official extension CreateTaskResult",
+      "evidence": "schema/comparison.json"
+    },
+    {
+      "failure": "tasks-result-type-complete-on-non-task-responses",
+      "owner": "upstream dispatch scenario payload",
+      "confidence": "confirmed",
+      "experiment": "Original malformed unknown input rejected by official schema; only changing its value to a valid elicitation response makes all 8 behavioral assertions pass",
+      "evidence": "dispatch-input-responses.json"
+    },
+    {
+      "failure": "sep-2663-tasks-get-status-failed",
+      "owner": "local lifecycle fixture stimulus",
+      "confidence": "confirmed for the tested typed toolkit path",
+      "experiment": "Typed handler defect becomes tool error; direct backend defects and explicit JSON-RPC errors fail tasks correctly; public task timeout satisfies all 8 original lifecycle behavioral assertions",
+      "evidence": "toolkit-protocol-timeout.json"
+    }
+  ],
+  "effectTaskBackendDefectEstablished": false,
+  "baselineModified": false,
+  "commands": [
+    "bun run conformance:evidence",
+    "node reports/task-failure-evidence/schema/compare.mjs"
+  ],
+  "artifactHashes": {
+    "backend-error-controls.json": "3a1a18d1822aa4b32fe243fd397abcd0351a64a5867d94fc432f8a6bf9dd7ad0",
+    "dispatch-input-responses-server.log": "2d9731409741f42c24734ec5f9124bf95a49e709aac73ff1477466e099cdc6c0",
+    "dispatch-input-responses.json": "255e6a9530b8aca81a12702a204ac24837bb243abd388f547f21b9f919987b20",
+    "dispatch-valid-input-control/server-tasks-dispatch-and-envelope-2026-10-01T05-51-36-646Z/checks.json": "fc3fd4b24b92bda5662f76c63b3bb87430a4ec13cd8b02190ad7e1218561481f",
+    "dispatch-valid-input-control/server-tasks-dispatch-and-envelope-2026-10-01T05-53-07-132Z/checks.json": "9734a311f0087925d08cfee7c559966b927d502416eb34f25da2e4c106b2ae8e",
+    "dispatch-valid-input-control-runner.log": "50db84ffc55fd481c290bf7fedf63d60ed96ff75e82671b42c8beb7d40b79d8a",
+    "lifecycle-timeout-control/server-tasks-lifecycle-2026-10-01T05-51-38-096Z/checks.json": "7bde98762ccea4d05e621d9fb415b160ad29fed11040a30d18f0c05090852596",
+    "lifecycle-timeout-control/server-tasks-lifecycle-2026-10-01T05-53-08-579Z/checks.json": "96593b0d3f43c3f5203e325fb7d67411dd8db65ec4d1777dff7806f91c739cf5",
+    "lifecycle-timeout-control-runner.log": "69daa4949c5f59414cc557018b8f5e5deb44f147d4915f355912c126594c4927",
+    "schema/bundled-core-schema.json": "9774477d8d0fbd5a45f13b8a200749cdb536426112d5f671fc2736b7a314b20b",
+    "schema/bundled-validator-excerpt.txt": "cc154f92cc64649d5f55367ff730c75c4f75e10ac4133a556edf8025d3ac8940",
+    "schema/compare.mjs": "f7a4126bf736fe10b10e49287856a13dd91f8576acfa8088b33a6a972215a140",
+    "schema/comparison.json": "554a8200daedc5d51376ba1680a589fa1e0e909efa3b873665a74e6f46bf2935",
+    "schema/ext-tasks-revision.json": "1d0b11dd30596bcfa45c13fb62c0850e50cd8df36949fb0fc1d239f0faf25083",
+    "schema/ext-tasks-schema.json": "bf30afb7ac251e3e22c037b7a685f60ef6603031b5484c0d08b1fa0bbe86d460",
+    "schema/ext-tasks-spec.md": "ef2860ae4418d02f3b2bfd54fcd88b03a3c2c3aa6724d282cd4ca3a3699a2e27",
+    "schema/input-response-comparison.json": "5553c736e0301b17be44972541429163e91906f6241c8455677aeae0be457d7a",
+    "source-excerpts.json": "2fe93b39b91ac0bf53e6c20548ddad6d0b16743f2287b9c65e75816b47e7a34a",
+    "toolkit-defect-server.log": "be2baa2b017d4d1a5afc7c42d9e93ee1e5c6f9aaaae777ac2d21b800b5a42f05",
+    "toolkit-defect.json": "a91ff6ab0d1894f06606bab0bb1e1640e9a2f009338239cf7a91da0e2d47a3c5",
+    "toolkit-protocol-timeout-server.log": "cada73c30f983f47f13a92a76b96bf782f2ad8af1b455f08d9bd3ee526a55fa2",
+    "toolkit-protocol-timeout.json": "e2eaee334625e7a6e1aefbb7401dd1c0ee0ac78b5fcb584a7106c2d3d3dea351"
+  }
+}

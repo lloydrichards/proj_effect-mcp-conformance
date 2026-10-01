@@ -1,0 +1,24 @@
+[07:53:06.599] INFO (#2): Listening on http://127.0.0.1:30150
+[07:53:06.601] INFO (#2): Listening on http://127.0.0.1:30150
+[07:53:06.638] INFO (#27) http.span=1ms: Sent HTTP response {
+  "http.method": "GET",
+  "http.url": "/mcp",
+  "http.status": 405,
+}
+[07:53:06.649] INFO (#28) http.span=8ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[07:53:06.652] INFO (#35) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[07:53:06.653] ERROR (#32) http.span=12ms: Error: Expected protocol failure
+    at causePrettyError (/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/node_modules/.bun/effect@+Users+lloyd+Documents+GitHub+proj_effect-mcp-conformance+.cach+e46b6131345d6319/node_modules/effect/dist/internal/effect.js:239:28)
+[07:53:06.675] INFO (#38) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
