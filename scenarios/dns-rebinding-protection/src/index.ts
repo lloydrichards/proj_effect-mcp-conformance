@@ -1,7 +1,7 @@
 import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Effect, Layer } from "effect";
-import { McpProtocol, McpServer } from "effect/unstable/ai";
-import { HttpRouter, HttpServer } from "effect/unstable/http";
+import { McpProtocol, McpServer } from "effect/ai";
+import { HttpRouter, HttpServer } from "effect/http";
 import { McpServerConfig } from "@repo/mcp-fixture";
 
 const DnsRebindingProtectedServer = Effect.map(McpServerConfig, (config) =>

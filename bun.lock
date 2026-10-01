@@ -22,9 +22,9 @@
         "effect-mcp-conformance": "dist/index.js",
       },
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
         "effect-boxes": "^0.17.1",
       },
       "devDependencies": {
@@ -41,8 +41,8 @@
       "name": "@repo/mcp-fixture",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
-        "effect": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
+        "effect": "4.0.0-rc.118",
       },
       "devDependencies": {
         "@repo/config-typescript": "workspace:*",
@@ -53,801 +53,801 @@
       "name": "@repo/scenario-caching",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/completion-complete": {
       "name": "@repo/scenario-completion-complete",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/completion-complete-II": {
       "name": "@repo/scenario-completion-complete-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/completion-complete-III": {
       "name": "@repo/scenario-completion-complete-III",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/dns-rebinding-protection": {
       "name": "@repo/scenario-dns-rebinding-protection",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/elicitation-sep1034-defaults": {
       "name": "@repo/scenario-elicitation-sep1034-defaults",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/elicitation-sep1330-enums": {
       "name": "@repo/scenario-elicitation-sep1330-enums",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/http-custom-header-server-validation": {
       "name": "@repo/scenario-http-custom-header-server-validation",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/http-custom-header-server-validation-II": {
       "name": "@repo/scenario-http-custom-header-server-validation-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/http-header-validation": {
       "name": "@repo/scenario-http-header-validation",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/http-header-validation-II": {
       "name": "@repo/scenario-http-header-validation-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-basic-elicitation": {
       "name": "@repo/scenario-input-required-result-basic-elicitation",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-basic-elicitation-II": {
       "name": "@repo/scenario-input-required-result-basic-elicitation-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-basic-list-roots": {
       "name": "@repo/scenario-input-required-result-basic-list-roots",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-basic-list-roots-II": {
       "name": "@repo/scenario-input-required-result-basic-list-roots-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-basic-sampling": {
       "name": "@repo/scenario-input-required-result-basic-sampling",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-basic-sampling-II": {
       "name": "@repo/scenario-input-required-result-basic-sampling-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-capability-check": {
       "name": "@repo/scenario-input-required-result-capability-check",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-capability-check-II": {
       "name": "@repo/scenario-input-required-result-capability-check-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-ignore-extra-params": {
       "name": "@repo/scenario-input-required-result-ignore-extra-params",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-ignore-extra-params-II": {
       "name": "@repo/scenario-input-required-result-ignore-extra-params-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-missing-input-response": {
       "name": "@repo/scenario-input-required-result-missing-input-response",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-missing-input-response-II": {
       "name": "@repo/scenario-input-required-result-missing-input-response-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-multi-round": {
       "name": "@repo/scenario-input-required-result-multi-round",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-multi-round-II": {
       "name": "@repo/scenario-input-required-result-multi-round-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-multiple-input-requests": {
       "name": "@repo/scenario-input-required-result-multiple-input-requests",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-multiple-input-requests-II": {
       "name": "@repo/scenario-input-required-result-multiple-input-requests-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-non-tool-request": {
       "name": "@repo/scenario-input-required-result-non-tool-request",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-request-state": {
       "name": "@repo/scenario-input-required-result-request-state",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-request-state-II": {
       "name": "@repo/scenario-input-required-result-request-state-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-result-type": {
       "name": "@repo/scenario-input-required-result-result-type",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-result-type-II": {
       "name": "@repo/scenario-input-required-result-result-type-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-tampered-state": {
       "name": "@repo/scenario-input-required-result-tampered-state",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-tampered-state-II": {
       "name": "@repo/scenario-input-required-result-tampered-state-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-unsupported-methods": {
       "name": "@repo/scenario-input-required-result-unsupported-methods",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-validate-input": {
       "name": "@repo/scenario-input-required-result-validate-input",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/input-required-result-validate-input-II": {
       "name": "@repo/scenario-input-required-result-validate-input-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/json-schema-2020-12": {
       "name": "@repo/scenario-json-schema-2020-12",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/json-schema-2020-12-II": {
       "name": "@repo/scenario-json-schema-2020-12-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/logging-set-level": {
       "name": "@repo/scenario-logging-set-level",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/ping": {
       "name": "@repo/scenario-ping",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/prompts-get-embedded-resource": {
       "name": "@repo/scenario-prompts-get-embedded-resource",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/prompts-get-simple": {
       "name": "@repo/scenario-prompts-get-simple",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/prompts-get-simple-II": {
       "name": "@repo/scenario-prompts-get-simple-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/prompts-get-simple-III": {
       "name": "@repo/scenario-prompts-get-simple-III",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/prompts-get-simple-IV": {
       "name": "@repo/scenario-prompts-get-simple-IV",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/prompts-get-with-args": {
       "name": "@repo/scenario-prompts-get-with-args",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/prompts-get-with-args-II": {
       "name": "@repo/scenario-prompts-get-with-args-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/prompts-get-with-args-III": {
       "name": "@repo/scenario-prompts-get-with-args-III",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/prompts-get-with-image": {
       "name": "@repo/scenario-prompts-get-with-image",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/prompts-list": {
       "name": "@repo/scenario-prompts-list",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/prompts-list-II": {
       "name": "@repo/scenario-prompts-list-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/prompts-list-III": {
       "name": "@repo/scenario-prompts-list-III",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/prompts-list-IV": {
       "name": "@repo/scenario-prompts-list-IV",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/resources-list": {
       "name": "@repo/scenario-resources-list",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/resources-list-II": {
       "name": "@repo/scenario-resources-list-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/resources-list-III": {
       "name": "@repo/scenario-resources-list-III",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/resources-list-IV": {
       "name": "@repo/scenario-resources-list-IV",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/resources-read-binary": {
       "name": "@repo/scenario-resources-read-binary",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/resources-read-text": {
       "name": "@repo/scenario-resources-read-text",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/resources-read-text-II": {
       "name": "@repo/scenario-resources-read-text-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/resources-read-text-III": {
       "name": "@repo/scenario-resources-read-text-III",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/resources-read-text-IV": {
       "name": "@repo/scenario-resources-read-text-IV",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/resources-templates-read": {
       "name": "@repo/scenario-resources-templates-read",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/sep-2164-resource-not-found": {
       "name": "@repo/scenario-sep-2164-resource-not-found",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/server-initialize": {
       "name": "@repo/scenario-server-initialize",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/server-session-lifecycle": {
       "name": "@repo/scenario-server-session-lifecycle",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/server-sse-multiple-streams": {
       "name": "@repo/scenario-server-sse-multiple-streams",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/server-stateless": {
       "name": "@repo/scenario-server-stateless",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/server-stateless-II": {
       "name": "@repo/scenario-server-stateless-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-audio": {
       "name": "@repo/scenario-tools-call-audio",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-elicitation": {
       "name": "@repo/scenario-tools-call-elicitation",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-embedded-resource": {
       "name": "@repo/scenario-tools-call-embedded-resource",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-error": {
       "name": "@repo/scenario-tools-call-error",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-image": {
       "name": "@repo/scenario-tools-call-image",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-mixed-content": {
       "name": "@repo/scenario-tools-call-mixed-content",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-sampling": {
       "name": "@repo/scenario-tools-call-sampling",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-simple-text": {
       "name": "@repo/scenario-tools-call-simple-text",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-simple-text-II": {
       "name": "@repo/scenario-tools-call-simple-text-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-simple-text-III": {
       "name": "@repo/scenario-tools-call-simple-text-III",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-with-logging": {
       "name": "@repo/scenario-tools-call-with-logging",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-with-logging-II": {
       "name": "@repo/scenario-tools-call-with-logging-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-with-progress": {
       "name": "@repo/scenario-tools-call-with-progress",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-call-with-progress-II": {
       "name": "@repo/scenario-tools-call-with-progress-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-list": {
       "name": "@repo/scenario-tools-list",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-list-II": {
       "name": "@repo/scenario-tools-list-II",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-list-III": {
       "name": "@repo/scenario-tools-list-III",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-list-IV": {
       "name": "@repo/scenario-tools-list-IV",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
     "scenarios/tools-list-V": {
       "name": "@repo/scenario-tools-list-V",
       "version": "0.0.0",
       "dependencies": {
-        "@effect/platform-bun": "4.0.0-rc.116",
+        "@effect/platform-bun": "4.0.0-rc.118",
         "@repo/mcp-fixture": "workspace:*",
-        "effect": "4.0.0-rc.116",
+        "effect": "4.0.0-rc.118",
       },
     },
   },
@@ -860,9 +860,9 @@
 
     "@blazediff/core": ["@blazediff/core@1.9.1", "", {}, "sha512-ehg3jIkYKulZh+8om/O25vkvSsXXwC+skXmyA87FFx6A/45eqOkZsBltMw/TVteb0mloiGT8oGRTcjRAz66zaA=="],
 
-    "@effect/platform-bun": ["@effect/platform-bun@4.0.0-rc.116", "", { "dependencies": { "@effect/platform-node-shared": "^4.0.0-rc.116" }, "peerDependencies": { "effect": "^4.0.0-rc.116" } }, "sha512-gV94s1JJS92xQELdHTOEKHU/QvkGhXxZQ4LI8aBRo9QCy0wyvYNklFYOKXFZQNwp31su2LOYnMf0g1nJZOwYHw=="],
+    "@effect/platform-bun": ["@effect/platform-bun@4.0.0-rc.118", "", { "dependencies": { "@effect/platform-node-shared": "^4.0.0-rc.118" }, "peerDependencies": { "effect": "^4.0.0-rc.118" } }, "sha512-NT/VHIUEYk7QR86sC5le9OzEoRdy9DgxZ89zDkw9Ovd2oMaSw6+IBm3fj+2voGTEPXZaYPdF0to3oQbMouBeEA=="],
 
-    "@effect/platform-node-shared": ["@effect/platform-node-shared@4.0.0-rc.116", "", { "dependencies": { "@types/ws": "^8.18.1", "ws": "^8.21.3" }, "peerDependencies": { "effect": "^4.0.0-rc.116" } }, "sha512-4FB6UriGqArWFUaFqVchhfCRmmtOVzmD/k/bH6LErlKY8a9amt5dk6c3Arsi7AvUpChsdO+3jsG+P85HsxMkNA=="],
+    "@effect/platform-node-shared": ["@effect/platform-node-shared@4.0.0", "", { "dependencies": { "@types/ws": "^8.18.1", "ws": "^8.22.0" }, "peerDependencies": { "effect": "^4.0.0" } }, "sha512-VBXHJU9UXVZPdQGGDRjGXpo+TpOzRwZuMrdKAtIxi1qwcRftmacZ1zTgIrzBa0Z2RA2KVkoOecQUsTlt/nJZhw=="],
 
     "@effect/tsgo": ["@effect/tsgo@0.45.0", "", { "optionalDependencies": { "@effect/tsgo-darwin-arm64": "0.45.0", "@effect/tsgo-darwin-x64": "0.45.0", "@effect/tsgo-linux-arm": "0.45.0", "@effect/tsgo-linux-arm64": "0.45.0", "@effect/tsgo-linux-x64": "0.45.0", "@effect/tsgo-win32-arm64": "0.45.0", "@effect/tsgo-win32-x64": "0.45.0" }, "bin": { "effect-tsgo": "dist/effect-tsgo.cjs" } }, "sha512-gPG0ixVHgtYBUe5DbKX9vzHlhqd9+ZEfs4m/XWy0808av0A2XqMzaG3F5rnPBN7EUJRPlo9TluIi8WHx/pBV+A=="],
 
@@ -1158,6 +1158,15 @@
 
     "@repo/scenario-server-stateless-II": ["@repo/scenario-server-stateless-II@workspace:scenarios/server-stateless-II"],
 
+
+
+
+
+
+
+
+
+
     "@repo/scenario-tools-call-audio": ["@repo/scenario-tools-call-audio@workspace:scenarios/tools-call-audio"],
 
     "@repo/scenario-tools-call-elicitation": ["@repo/scenario-tools-call-elicitation@workspace:scenarios/tools-call-elicitation"],
@@ -1426,7 +1435,7 @@
 
     "ee-first": ["ee-first@1.1.1", "", {}, "sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow=="],
 
-    "effect": ["effect@4.0.0-rc.116", "", {}, "sha512-nawqJHSjHV8XIBRZNZ+D7cLZpN3kkSjzy6aiT9ofKENsl7xAMFKEoDa0itN5JFl3GUQ1PIN1T1HNlva5+xyO/A=="],
+    "effect": ["effect@4.0.0-rc.118", "", {}, "sha512-hxhpCd+swzrtu9lnyPpEFre2ODQzJ9qxgyL1oHIEY8NKnW4PxTbM1XzplMZXiAsLD62HO+KJc41Nqxr9T791ZQ=="],
 
     "effect-boxes": ["effect-boxes@0.17.1", "", { "peerDependencies": { "effect": ">=4.0.0-rc.108" } }, "sha512-AgrdWtF3uKXUsyunH7yQHP10CNtzuco+qlmcQIdaWFRBmsa496VcVkThTaWltRPHf4bksVRZuD5MYAI45EuDZg=="],
 
@@ -1689,6 +1698,8 @@
     "zod": ["zod@4.5.4", "", {}, "sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA=="],
 
     "zod-to-json-schema": ["zod-to-json-schema@3.25.2", "", { "peerDependencies": { "zod": "^3.25.28 || ^4" } }, "sha512-O/PgfnpT1xKSDeQYSCfRI5Gy3hPf91mKVDuYLUHZJMiDFptvP41MSnWofm8dnCm0256ZNfZIM7DSzuSMAFnjHA=="],
+
+    "@effect/platform-node-shared/ws": ["ws@8.22.0", "", { "peerDependencies": { "bufferutil": "^4.0.1", "utf-8-validate": ">=5.0.2" }, "optionalPeers": ["bufferutil", "utf-8-validate"] }, "sha512-Ydggc987+RO0AnWtZ/7Wq9FtNvcrL1b/RO0ud9mWjUPgDrsAAwQSF51sm2hm1XofbU/4jkpGEsLFsZZxU+1DOg=="],
 
     "@octokit/plugin-paginate-rest/@octokit/types": ["@octokit/types@16.0.0", "", { "dependencies": { "@octokit/openapi-types": "^27.0.0" } }, "sha512-sKq+9r1Mm4efXW1FCk7hFSeJo4QKreL/tTbR0rz/qx/r1Oa2VV83LTA/H/MuCOX7uCIJmQVRKBcbmWoySjAnSg=="],
 
