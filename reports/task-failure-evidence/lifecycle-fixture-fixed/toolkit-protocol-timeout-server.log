@@ -1,0 +1,202 @@
+[08:06:34.187] INFO (#2): Listening on http://127.0.0.1:26710
+[08:06:34.189] INFO (#2): Listening on http://127.0.0.1:26710
+[08:06:34.222] INFO (#27) http.span=1ms: Sent HTTP response {
+  "http.method": "GET",
+  "http.url": "/mcp",
+  "http.status": 405,
+}
+[08:06:34.228] INFO (#28) http.span=6ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:34.231] INFO (#35) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:34.254] INFO (#38) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:34.277] INFO (#41) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:34.511] INFO (#44) http.span=2ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:34.518] INFO (#47) http.span=0ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:34.520] INFO (#54) http.span=0ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:34.522] INFO (#57) http.span=0ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:34.728] INFO (#60) http.span=2ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:34.936] INFO (#63) http.span=3ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:35.143] INFO (#66) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:35.347] INFO (#69) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:35.550] INFO (#72) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:35.757] INFO (#75) http.span=2ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:35.965] INFO (#78) http.span=2ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:36.176] INFO (#81) http.span=3ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:36.387] INFO (#84) http.span=4ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:36.594] INFO (#87) http.span=2ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:36.598] INFO (#90) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:36.600] INFO (#97) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:36.804] INFO (#100) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:37.008] INFO (#103) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:37.213] INFO (#106) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:37.422] INFO (#109) http.span=4ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:37.628] INFO (#112) http.span=2ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:37.631] INFO (#115) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:37.633] INFO (#122) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:37.839] INFO (#125) http.span=2ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:37.843] INFO (#128) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:37.845] INFO (#135) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:37.846] INFO (#139) http.span=0ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:37.848] INFO (#142) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:37.849] INFO (#149) http.span=0ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:38.062] INFO (#152) http.span=3ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:38.269] INFO (#155) http.span=3ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:38.473] INFO (#158) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:38.681] INFO (#161) http.span=2ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:38.888] INFO (#164) http.span=2ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
+[08:06:38.891] INFO (#167) http.span=1ms: Sent HTTP response {
+  "http.method": "POST",
+  "http.url": "/mcp",
+  "http.status": 200,
+}
