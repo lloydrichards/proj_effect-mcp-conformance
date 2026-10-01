@@ -16,9 +16,9 @@
     "effect-mcp-conformance": "dist/index.js"
   },
   "dependencies": {
-    "@effect/platform-bun": "4.0.0-rc.116",
+    "@effect/platform-bun": "4.0.0-rc.118",
     "@repo/mcp-fixture": "workspace:*",
-    "effect": "4.0.0-rc.116",
+    "effect": "4.0.0-rc.118",
     "effect-boxes": "^0.17.1"
   },
   "devDependencies": {
