@@ -1,0 +1,6480 @@
+{
+  "date": "2026-10-01",
+  "conformanceVersion": "0.2.0-alpha.11",
+  "npmDistTags": {
+    "latest": "0.1.16",
+    "alpha": "0.2.0-alpha.11"
+  },
+  "effectVersion": "4.0.0-rc.118",
+  "effectCheckout": "/Users/lloyd/Documents/GitHub/open_effect",
+  "effectRevision": "c5925879305c8fee11132372604353dd4c8673c6",
+  "packages": [
+    {
+      "file": "effect-4.0.0-rc.118.tgz",
+      "sha256": "8853de59c19fef84841dec1453f4ff0e34d6e4f9ab32039854f756a65e563a62"
+    },
+    {
+      "file": "effect-platform-bun-4.0.0-rc.118.tgz",
+      "sha256": "88f123e2c1a778a0cfb518e3ec876710d9196f360ec4e5e25c318408caad64aa"
+    },
+    {
+      "file": "effect-platform-node-shared-4.0.0-rc.118.tgz",
+      "sha256": "bee6d1430442f0a162754a49c3521321870db5f3a2bb2d1d0f61c1efec1146ee"
+    }
+  ],
+  "command": "bun run conformance:all --timeout 30000",
+  "applicableCells": 284,
+  "summary": {
+    "PASS": 276,
+    "FAIL": 7,
+    "SKIP": 1
+  },
+  "upstreamServerScenarios": 62,
+  "implementedServerScenarios": 58,
+  "fixtureImplementations": 98,
+  "unavailableScenarios": {
+    "tasks-mrtr-composition": "McpTasks.toolkit creates the task before running the handler. The public API cannot return InputRequired before creating a task and then escalate the final MRTR round to CreateTaskResult.",
+    "resources-subscribe": "McpServer.layerHttp does not expose resource subscription registration for the stateful adapters.",
+    "resources-unsubscribe": "McpServer.layerHttp does not expose resource subscription registration for the stateful adapters.",
+    "server-sse-polling": "McpServer.layerHttp does not expose POST stream disconnection, event replay, or Last-Event-ID resumption for test_reconnection."
+  },
+  "interpretation": {
+    "wire-schema-valid": "The generic runner schema requires content on tools/call responses even when a Tasks scenario expects CreateTaskResult. These failures remain visible.",
+    "sep-2663-tasks-get-status-failed": "Effect toolkit converts the protocol_error_job handler defect into a completed task with result.isError instead of failed plus error.",
+    "tasks-result-type-complete-on-non-task-responses": "Runner sends an invalid unknown input response value, {ignored:true}, and Effect rejects it before ignoring the unknown key. Responsibility needs follow-up.",
+    "tasks-status-notifications": "Upstream skips the entire scenario pending subscriptions/listen harness support."
+  },
+  "cells": [
+    {
+      "scenario": "tasks-lifecycle",
+      "protocol": "2026-07-28",
+      "outcome": "FAIL",
+      "checks": [
+        {
+          "id": "tasks-sync-tool-call",
+          "name": "TasksSyncToolCall",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-result-type-task-on-create",
+          "name": "TasksServerTaskCreation",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-tasks-get-status-working",
+          "name": "TasksGetDuringWorking",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-tasks-get-status-completed",
+          "name": "TasksGetTerminalInlinedResult",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-tool-error-uses-completed-status",
+          "name": "TasksToolErrorCompletedIsError",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-tasks-get-status-failed",
+          "name": "TasksProtocolErrorFailedShape",
+          "status": "FAILURE",
+          "errorMessage": "protocol error MUST surface as failed (not \"completed\"); failed task MUST carry inlined `error`; failed task MUST NOT carry `result`"
+        },
+        {
+          "id": "sep-2663-cancel-ack-empty-result",
+          "name": "TasksCancelEmptyAck",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-cancel-terminal-idempotent-ack",
+          "name": "TasksCancelTerminalIdempotentAck",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "FAILURE",
+          "errorMessage": "[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"62a6f1af-3903-4be9-be1e-0d778640cba1\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:43.389Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:43.389Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":15,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"521cdfc7-3998-47dd-96eb-fe3bdc440f2d\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:45.465Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:45.465Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":22,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"5b4db2a6-920b-4d3c-a29e-c6f9da10006e\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:46.505Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:46.505Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":24,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"414f58b1-f0d8-4104-93e9-b84c579914bc\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:46.511Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:46.511Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":27,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"95694af7-a5e8-4133-9477-68e33c58a3e6\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:46.517Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:46.517Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}",
+          "details": {
+            "messagesValidated": 68,
+            "violations": [
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 2,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-lifecycle",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "62a6f1af-3903-4be9-be1e-0d778640cba1",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:43.389Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:43.389Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              },
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 15,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-lifecycle",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "521cdfc7-3998-47dd-96eb-fe3bdc440f2d",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:45.465Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:45.465Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              },
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 22,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-lifecycle",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "5b4db2a6-920b-4d3c-a29e-c6f9da10006e",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:46.505Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:46.505Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              },
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 24,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-lifecycle",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "414f58b1-f0d8-4104-93e9-b84c579914bc",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:46.511Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:46.511Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              },
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 27,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-lifecycle",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "95694af7-a5e8-4133-9477-68e33c58a3e6",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:46.517Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:46.517Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "tasks-capability-negotiation",
+      "protocol": "2026-07-28",
+      "outcome": "FAIL",
+      "checks": [
+        {
+          "id": "tasks-extension-advertised",
+          "name": "TasksExtensionAdvertised",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-tasks-methods-non-declaring",
+          "name": "TasksMethodsGatedWithoutExtension",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-server-rejects-undeclared-client",
+          "name": "TasksToolsCallWithoutExtensionSync",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-per-request-meta-opt-in",
+          "name": "TasksPerRequestMetaOptIn",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "FAILURE",
+          "errorMessage": "[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":6,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-capability-negotiation\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"37e1f172-d639-45f1-8ca6-e4d6e501e185\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:48.059Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:48.059Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}",
+          "details": {
+            "messagesValidated": 14,
+            "violations": [
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 6,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-capability-negotiation",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "37e1f172-d639-45f1-8ca6-e4d6e501e185",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:48.059Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:48.059Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "tasks-wire-fields",
+      "protocol": "2026-07-28",
+      "outcome": "FAIL",
+      "checks": [
+        {
+          "id": "tasks-wire-field-renames",
+          "name": "TasksWireFieldRenames",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-no-early-ttl-expiry",
+          "name": "TasksNoEarlyTtlExpiry",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-no-related-task-meta-on-inlined-result",
+          "name": "TasksNoRelatedTaskMetaOnInlinedResult",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "FAILURE",
+          "errorMessage": "[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-wire-fields\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"365c9b62-8571-4cf8-98c6-107e825dc7a5\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:48.513Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:48.513Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":9,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-wire-fields\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"d06d2d0e-6757-4ce2-8fc3-484a9b902f50\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:50.078Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:50.078Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}",
+          "details": {
+            "messagesValidated": 30,
+            "violations": [
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 1,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-wire-fields",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "365c9b62-8571-4cf8-98c6-107e825dc7a5",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:48.513Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:48.513Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              },
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 9,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-wire-fields",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "d06d2d0e-6757-4ce2-8fc3-484a9b902f50",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:50.078Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:50.078Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "tasks-request-state-removal",
+      "protocol": "2026-07-28",
+      "outcome": "FAIL",
+      "checks": [
+        {
+          "id": "tasks-create-result-no-request-state",
+          "name": "TasksCreateResultNoRequestState",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-get-detailed-no-request-state",
+          "name": "TasksGetDetailedNoRequestState",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "FAILURE",
+          "errorMessage": "[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-request-state-removal\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"32d74448-ba05-4143-99d3-915e0cb3723d\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:51.585Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:51.585Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}",
+          "details": {
+            "messagesValidated": 6,
+            "violations": [
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 1,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-request-state-removal",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "32d74448-ba05-4143-99d3-915e0cb3723d",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:51.585Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:51.585Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "tasks-mrtr-input",
+      "protocol": "2026-07-28",
+      "outcome": "FAIL",
+      "checks": [
+        {
+          "id": "sep-2663-tasks-get-status-input-required",
+          "name": "TasksMRTRInputRequestsOnTasksGet",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-mrtr-tasks-update-resumes",
+          "name": "TasksMRTRTasksUpdateResumes",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-mrtr-partial-fulfillment",
+          "name": "TasksMRTRPartialFulfillment",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "FAILURE",
+          "errorMessage": "[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-mrtr-input\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"9d4e8c12-10e2-4a86-a42a-16e2e2a65bf8\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:52.057Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:52.057Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":4,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-mrtr-input\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"aaa39dbc-e166-4928-be5c-2b0cc942eb8f\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:52.070Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:52.070Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":8,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-mrtr-input\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"da1395f0-5e76-4b55-97ea-c1eaa47c8b75\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:52.076Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:52.076Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}",
+          "details": {
+            "messagesValidated": 26,
+            "violations": [
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 1,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-mrtr-input",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "9d4e8c12-10e2-4a86-a42a-16e2e2a65bf8",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:52.057Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:52.057Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              },
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 4,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-mrtr-input",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "aaa39dbc-e166-4928-be5c-2b0cc942eb8f",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:52.070Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:52.070Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              },
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 8,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-mrtr-input",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "da1395f0-5e76-4b55-97ea-c1eaa47c8b75",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:52.076Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:52.076Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "tasks-request-headers",
+      "protocol": "2026-07-28",
+      "outcome": "FAIL",
+      "checks": [
+        {
+          "id": "tasks-headers-tolerate-mcp-method-on-tools-call",
+          "name": "TasksHeadersTolerateMcpMethodOnToolsCall",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-routing-headers-accepted-on-tasks-get",
+          "name": "Sep2663RoutingHeadersAcceptedOnTasksGet",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-headers-reject-mismatched-method",
+          "name": "TasksHeadersRejectMismatchedMethod",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-server-rejects-mismatched-mcp-name-on-tasks-get",
+          "name": "Sep2663ServerRejectsMismatchedMcpNameOnTasksGet",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "FAILURE",
+          "errorMessage": "[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-request-headers\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"5dbc949e-6180-47df-a041-a8f44c2a8668\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:52.540Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:52.540Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}",
+          "details": {
+            "messagesValidated": 12,
+            "violations": [
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 2,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-request-headers",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "5dbc949e-6180-47df-a041-a8f44c2a8668",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:52.540Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:52.540Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "tasks-dispatch-and-envelope",
+      "protocol": "2026-07-28",
+      "outcome": "FAIL",
+      "checks": [
+        {
+          "id": "sep-2663-tasks-result-removed-method-not-found",
+          "name": "TasksRemovedTasksResult",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-removed-tasks-list",
+          "name": "TasksRemovedTasksList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-server-directed-creation-no-hint",
+          "name": "TasksServerDirectedCreationNoHint",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-legacy-task-param-ignored",
+          "name": "TasksLegacyTaskParamIgnored",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-immediate-result-shortcut",
+          "name": "TasksImmediateResultShortcut",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-result-type-complete-on-non-task-responses",
+          "name": "TasksResultTypeCompleteOnNonTaskResponses",
+          "status": "FAILURE",
+          "errorMessage": "Invalid method parameters"
+        },
+        {
+          "id": "sep-2663-durable-create-strong-consistency",
+          "name": "TasksStrongConsistencyImmediateGet",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-tasks-get-invalid-task-id-32602",
+          "name": "TasksGetUnknownTaskIdRejected",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "FAILURE",
+          "errorMessage": "[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"2f6b78e1-5b73-4fa3-b0f3-17507de5a39a\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:53.013Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:53.013Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":11,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"40250bc2-7499-4644-a1e7-0db60e83817f\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:54.065Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:54.065Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":13,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"85b0d9e8-3e5e-4111-916d-2ae4ac8d1a7c\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:54.069Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:54.069Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":16,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"90753ce9-1a53-4190-b180-904f7ebd2645\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:54.073Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:54.073Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":18,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"75485b65-7dd6-49b4-a03c-526d40f4b8bf\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:54.075Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:54.075Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') \u2014 message: {\"jsonrpc\":\"2.0\",\"id\":21,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"70902f54-88d9-4eb2-82fd-55b7c3bdcf14\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:39:54.080Z\",\"lastUpdatedAt\":\"2026-10-01T05:39:54.080Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}",
+          "details": {
+            "messagesValidated": 48,
+            "violations": [
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 3,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "2f6b78e1-5b73-4fa3-b0f3-17507de5a39a",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:53.013Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:53.013Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              },
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 11,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "40250bc2-7499-4644-a1e7-0db60e83817f",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:54.065Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:54.065Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              },
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 13,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "85b0d9e8-3e5e-4111-916d-2ae4ac8d1a7c",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:54.069Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:54.069Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              },
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 16,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "90753ce9-1a53-4190-b180-904f7ebd2645",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:54.073Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:54.073Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              },
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 18,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "75485b65-7dd6-49b4-a03c-526d40f4b8bf",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:54.075Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:54.075Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              },
+              {
+                "origin": "implementation",
+                "specVersion": "2026-07-28",
+                "context": "response to 'tools/call'",
+                "errors": [
+                  "CallToolResult: must have required property 'content' (result of 'tools/call')"
+                ],
+                "message": {
+                  "jsonrpc": "2.0",
+                  "id": 21,
+                  "result": {
+                    "_meta": {
+                      "io.modelcontextprotocol/serverInfo": {
+                        "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                        "version": "0.1.0"
+                      }
+                    },
+                    "resultType": "task",
+                    "taskId": "70902f54-88d9-4eb2-82fd-55b7c3bdcf14",
+                    "status": "working",
+                    "createdAt": "2026-10-01T05:39:54.080Z",
+                    "lastUpdatedAt": "2026-10-01T05:39:54.080Z",
+                    "ttlMs": 300000,
+                    "pollIntervalMs": 50
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "tasks-status-notifications",
+      "protocol": "2026-07-28",
+      "outcome": "SKIP",
+      "checks": [
+        {
+          "id": "tasks-status-notifications",
+          "name": "TasksStatusNotificationsScenario",
+          "status": "SKIPPED",
+          "errorMessage": "Skipped: SEP-2663 delivers notifications/tasks via the SEP-2575 subscriptions/listen stream, not via the tools/call POST SSE response that the prior harness observed. The harness needs a rewrite against the new channel; tracked as a follow-up."
+        }
+      ]
+    },
+    {
+      "scenario": "tasks-required-task-error",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2663-server-returns-missing-capability-when-required",
+          "name": "Sep2663ServerReturnsMissingCapabilityWhenRequired",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-server-returns-missing-capability-data-shape",
+          "name": "Sep2663ServerReturnsMissingCapabilityDataShape",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "server-initialize",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "server-initialize",
+          "name": "ServerInitialize",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "server-session-id-visible-ascii",
+          "name": "ServerSessionIdVisibleAscii",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "server-initialize",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "server-initialize",
+          "name": "ServerInitialize",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "server-session-id-visible-ascii",
+          "name": "ServerSessionIdVisibleAscii",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "server-initialize",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "server-initialize",
+          "name": "ServerInitialize",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "server-session-id-visible-ascii",
+          "name": "ServerSessionIdVisibleAscii",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "server-initialize",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "server-initialize",
+          "name": "ServerInitialize",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "server-session-id-visible-ascii",
+          "name": "ServerSessionIdVisibleAscii",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "server-session-lifecycle",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "server-session-initialized-accepted",
+          "name": "SessionInitializedAccepted",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "server-session-delete-accepted",
+          "name": "SessionDeleteAccepted",
+          "status": "SKIPPED"
+        },
+        {
+          "id": "server-session-terminated-returns-404",
+          "name": "SessionTerminatedReturns404",
+          "status": "SKIPPED"
+        }
+      ]
+    },
+    {
+      "scenario": "server-session-lifecycle",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "server-session-initialized-accepted",
+          "name": "SessionInitializedAccepted",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "server-session-delete-accepted",
+          "name": "SessionDeleteAccepted",
+          "status": "SKIPPED"
+        },
+        {
+          "id": "server-session-terminated-returns-404",
+          "name": "SessionTerminatedReturns404",
+          "status": "SKIPPED"
+        }
+      ]
+    },
+    {
+      "scenario": "server-session-lifecycle",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "server-session-initialized-accepted",
+          "name": "SessionInitializedAccepted",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "server-session-delete-accepted",
+          "name": "SessionDeleteAccepted",
+          "status": "SKIPPED"
+        },
+        {
+          "id": "server-session-terminated-returns-404",
+          "name": "SessionTerminatedReturns404",
+          "status": "SKIPPED"
+        }
+      ]
+    },
+    {
+      "scenario": "server-stateless",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2575-request-meta-invalid-missing-meta",
+          "name": "RequestMetaInvalid",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-meta-invalid-400",
+          "name": "HttpServerMetaInvalid400",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-request-meta-invalid-missing-protocol-version",
+          "name": "RequestMetaInvalid",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-meta-invalid-400",
+          "name": "HttpServerMetaInvalid400",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-request-meta-invalid-missing-client-capabilities",
+          "name": "RequestMetaInvalid",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-meta-invalid-400",
+          "name": "HttpServerMetaInvalid400",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-request-meta-client-info-optional",
+          "name": "RequestMetaClientInfoOptional",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-implements-discover",
+          "name": "ServerImplementsDiscover",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-identifies-in-result-meta",
+          "name": "ServerIdentifiesInResultMeta",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-declares-prompts-in-discover",
+          "name": "ServerDeclaresPromptsInDiscover",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-discover-capabilities-match-handlers",
+          "name": "DiscoverCapabilitiesMatchHandlers",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-unsupported-version-error",
+          "name": "ServerUnsupportedVersionError",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-unsupported-version-400",
+          "name": "HttpServerUnsupportedVersion400",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-header-mismatch-400",
+          "name": "HttpServerHeaderMismatch400",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-rejects-undeclared-capability",
+          "name": "ServerRejectsUndeclaredCapability",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-missing-capability-http-400",
+          "name": "MissingCapabilityHttp400",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-method-not-found-404-initialize",
+          "name": "HttpServerMethodNotFound404initialize",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-method-not-found-404-ping",
+          "name": "HttpServerMethodNotFound404ping",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-method-not-found-404-logging-setlevel",
+          "name": "HttpServerMethodNotFound404loggingsetLevel",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-method-not-found-404-resources-subscribe",
+          "name": "HttpServerMethodNotFound404resourcessubscribe",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-method-not-found-404-resources-unsubscribe",
+          "name": "HttpServerMethodNotFound404resourcesunsubscribe",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-method-not-found-404",
+          "name": "HttpServerMethodNotFound404",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-no-independent-requests-on-stream",
+          "name": "HttpServerNoIndependentRequestsOnStream",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-no-log-without-loglevel",
+          "name": "ServerNoLogWithoutLogLevel",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-sends-subscription-ack",
+          "name": "ServerSendsSubscriptionAck",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-tags-subscription-id",
+          "name": "ServerTagsSubscriptionId",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-honors-notification-filter",
+          "name": "ServerHonorsNotificationFilter",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-sends-prompts-list-changed-on-subscription",
+          "name": "ServerSendsPromptsListChangedOnSubscription",
+          "status": "SKIPPED"
+        },
+        {
+          "id": "sep-2575-server-sends-tools-list-changed-on-subscription",
+          "name": "ServerSendsToolsListChangedOnSubscription",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-error-jsonrpc-id",
+          "name": "HttpServerErrorJsonrpcId",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "server-stateless-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2575-request-meta-invalid-missing-meta",
+          "name": "RequestMetaInvalid",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-meta-invalid-400",
+          "name": "HttpServerMetaInvalid400",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-request-meta-invalid-missing-protocol-version",
+          "name": "RequestMetaInvalid",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-meta-invalid-400",
+          "name": "HttpServerMetaInvalid400",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-request-meta-invalid-missing-client-capabilities",
+          "name": "RequestMetaInvalid",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-meta-invalid-400",
+          "name": "HttpServerMetaInvalid400",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-request-meta-client-info-optional",
+          "name": "RequestMetaClientInfoOptional",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-implements-discover",
+          "name": "ServerImplementsDiscover",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-identifies-in-result-meta",
+          "name": "ServerIdentifiesInResultMeta",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-declares-prompts-in-discover",
+          "name": "ServerDeclaresPromptsInDiscover",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-discover-capabilities-match-handlers",
+          "name": "DiscoverCapabilitiesMatchHandlers",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-unsupported-version-error",
+          "name": "ServerUnsupportedVersionError",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-unsupported-version-400",
+          "name": "HttpServerUnsupportedVersion400",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-header-mismatch-400",
+          "name": "HttpServerHeaderMismatch400",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-rejects-undeclared-capability",
+          "name": "ServerRejectsUndeclaredCapability",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-missing-capability-http-400",
+          "name": "MissingCapabilityHttp400",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-method-not-found-404-initialize",
+          "name": "HttpServerMethodNotFound404initialize",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-method-not-found-404-ping",
+          "name": "HttpServerMethodNotFound404ping",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-method-not-found-404-logging-setlevel",
+          "name": "HttpServerMethodNotFound404loggingsetLevel",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-method-not-found-404-resources-subscribe",
+          "name": "HttpServerMethodNotFound404resourcessubscribe",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-method-not-found-404-resources-unsubscribe",
+          "name": "HttpServerMethodNotFound404resourcesunsubscribe",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-method-not-found-404",
+          "name": "HttpServerMethodNotFound404",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-no-independent-requests-on-stream",
+          "name": "HttpServerNoIndependentRequestsOnStream",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-no-log-without-loglevel",
+          "name": "ServerNoLogWithoutLogLevel",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-sends-subscription-ack",
+          "name": "ServerSendsSubscriptionAck",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-tags-subscription-id",
+          "name": "ServerTagsSubscriptionId",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-honors-notification-filter",
+          "name": "ServerHonorsNotificationFilter",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-server-sends-prompts-list-changed-on-subscription",
+          "name": "ServerSendsPromptsListChangedOnSubscription",
+          "status": "SKIPPED"
+        },
+        {
+          "id": "sep-2575-server-sends-tools-list-changed-on-subscription",
+          "name": "ServerSendsToolsListChangedOnSubscription",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2575-http-server-error-jsonrpc-id",
+          "name": "HttpServerErrorJsonrpcId",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "server-sse-multiple-streams",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "server-accepts-multiple-post-streams",
+          "name": "ServerAcceptsMultiplePostStreams",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "logging-set-level",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "logging-set-level",
+          "name": "LoggingSetLevel",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "logging-set-level",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "logging-set-level",
+          "name": "LoggingSetLevel",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "logging-set-level",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "logging-set-level",
+          "name": "LoggingSetLevel",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "logging-set-level",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "logging-set-level",
+          "name": "LoggingSetLevel",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "ping",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "ping",
+          "name": "Ping",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "ping",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "ping",
+          "name": "Ping",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "ping",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "ping",
+          "name": "Ping",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "ping",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "ping",
+          "name": "Ping",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete-II",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete-II",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete-II",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete-II",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete-III",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete-III",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete-III",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete-III",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "completion-complete-III",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "completion-complete",
+          "name": "CompletionComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-II",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-II",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-II",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-II",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-III",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-III",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-III",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-III",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-III",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-IV",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-IV",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-IV",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-IV",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-IV",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-V",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-V",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-V",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-V",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-list-V",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-list",
+          "name": "ToolsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tools-name-format",
+          "name": "ToolsNameFormat",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text-II",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text-II",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text-II",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text-II",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text-III",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text-III",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text-III",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text-III",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-simple-text-III",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-simple-text",
+          "name": "ToolsCallSimpleText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-image",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-image",
+          "name": "ToolsCallImage",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-image",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-image",
+          "name": "ToolsCallImage",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-image",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-image",
+          "name": "ToolsCallImage",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-image",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-image",
+          "name": "ToolsCallImage",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-image",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-image",
+          "name": "ToolsCallImage",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-audio",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-audio",
+          "name": "ToolsCallAudio",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-audio",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-audio",
+          "name": "ToolsCallAudio",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-audio",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-audio",
+          "name": "ToolsCallAudio",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-audio",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-audio",
+          "name": "ToolsCallAudio",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-embedded-resource",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-embedded-resource",
+          "name": "ToolsCallEmbeddedResource",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-embedded-resource",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-embedded-resource",
+          "name": "ToolsCallEmbeddedResource",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-embedded-resource",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-embedded-resource",
+          "name": "ToolsCallEmbeddedResource",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-embedded-resource",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-embedded-resource",
+          "name": "ToolsCallEmbeddedResource",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-embedded-resource",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-embedded-resource",
+          "name": "ToolsCallEmbeddedResource",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-mixed-content",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-mixed-content",
+          "name": "ToolsCallMixedContent",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-mixed-content",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-mixed-content",
+          "name": "ToolsCallMixedContent",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-mixed-content",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-mixed-content",
+          "name": "ToolsCallMixedContent",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-mixed-content",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-mixed-content",
+          "name": "ToolsCallMixedContent",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-mixed-content",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-mixed-content",
+          "name": "ToolsCallMixedContent",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-logging",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-logging",
+          "name": "ToolsCallWithLogging",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-logging",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-logging",
+          "name": "ToolsCallWithLogging",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-logging",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-logging",
+          "name": "ToolsCallWithLogging",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-logging",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-logging",
+          "name": "ToolsCallWithLogging",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-logging-II",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-logging",
+          "name": "ToolsCallWithLogging",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-logging-II",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-logging",
+          "name": "ToolsCallWithLogging",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-logging-II",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-logging",
+          "name": "ToolsCallWithLogging",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-logging-II",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-logging",
+          "name": "ToolsCallWithLogging",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-error",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-error",
+          "name": "ToolsCallError",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-error",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-error",
+          "name": "ToolsCallError",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-error",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-error",
+          "name": "ToolsCallError",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-error",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-error",
+          "name": "ToolsCallError",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-error",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-error",
+          "name": "ToolsCallError",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-progress",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-progress",
+          "name": "ToolsCallWithProgress",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-progress",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-progress",
+          "name": "ToolsCallWithProgress",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-progress",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-progress",
+          "name": "ToolsCallWithProgress",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-progress",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-progress",
+          "name": "ToolsCallWithProgress",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-progress",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-progress",
+          "name": "ToolsCallWithProgress",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-progress-II",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-progress",
+          "name": "ToolsCallWithProgress",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-progress-II",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-progress",
+          "name": "ToolsCallWithProgress",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-progress-II",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-progress",
+          "name": "ToolsCallWithProgress",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-progress-II",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-progress",
+          "name": "ToolsCallWithProgress",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-with-progress-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-with-progress",
+          "name": "ToolsCallWithProgress",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-sampling",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-sampling",
+          "name": "ToolsCallSampling",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-sampling",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-sampling",
+          "name": "ToolsCallSampling",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-sampling",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-sampling",
+          "name": "ToolsCallSampling",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-sampling",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-sampling",
+          "name": "ToolsCallSampling",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-elicitation",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-elicitation",
+          "name": "ToolsCallElicitation",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "tools-call-elicitation",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "tools-call-elicitation",
+          "name": "ToolsCallElicitation",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "json-schema-2020-12",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "json-schema-2020-12-tool-found",
+          "name": "JsonSchema2020_12ToolFound",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "json-schema-2020-12-$schema",
+          "name": "JsonSchema2020_12$Schema",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "json-schema-2020-12-$defs",
+          "name": "JsonSchema2020_12$Defs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "json-schema-2020-12-additionalProperties",
+          "name": "JsonSchema2020_12AdditionalProperties",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2106-composition-keywords-preserved",
+          "name": "JsonSchema2020_12CompositionKeywords",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2106-conditional-keywords-preserved",
+          "name": "JsonSchema2020_12ConditionalKeywords",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2106-anchor-keyword-preserved",
+          "name": "JsonSchema2020_12AnchorKeyword",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "json-schema-2020-12",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "json-schema-2020-12-tool-found",
+          "name": "JsonSchema2020_12ToolFound",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "json-schema-2020-12-$schema",
+          "name": "JsonSchema2020_12$Schema",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "json-schema-2020-12-$defs",
+          "name": "JsonSchema2020_12$Defs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "json-schema-2020-12-additionalProperties",
+          "name": "JsonSchema2020_12AdditionalProperties",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2106-composition-keywords-preserved",
+          "name": "JsonSchema2020_12CompositionKeywords",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2106-conditional-keywords-preserved",
+          "name": "JsonSchema2020_12ConditionalKeywords",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2106-anchor-keyword-preserved",
+          "name": "JsonSchema2020_12AnchorKeyword",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "json-schema-2020-12-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "json-schema-2020-12-tool-found",
+          "name": "JsonSchema2020_12ToolFound",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "json-schema-2020-12-$schema",
+          "name": "JsonSchema2020_12$Schema",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "json-schema-2020-12-$defs",
+          "name": "JsonSchema2020_12$Defs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "json-schema-2020-12-additionalProperties",
+          "name": "JsonSchema2020_12AdditionalProperties",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2106-composition-keywords-preserved",
+          "name": "JsonSchema2020_12CompositionKeywords",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2106-conditional-keywords-preserved",
+          "name": "JsonSchema2020_12ConditionalKeywords",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2106-anchor-keyword-preserved",
+          "name": "JsonSchema2020_12AnchorKeyword",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "json-schema-2020-12-II",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "json-schema-2020-12-tool-found",
+          "name": "JsonSchema2020_12ToolFound",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "json-schema-2020-12-$schema",
+          "name": "JsonSchema2020_12$Schema",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "json-schema-2020-12-$defs",
+          "name": "JsonSchema2020_12$Defs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "json-schema-2020-12-additionalProperties",
+          "name": "JsonSchema2020_12AdditionalProperties",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2106-composition-keywords-preserved",
+          "name": "JsonSchema2020_12CompositionKeywords",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2106-conditional-keywords-preserved",
+          "name": "JsonSchema2020_12ConditionalKeywords",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2106-anchor-keyword-preserved",
+          "name": "JsonSchema2020_12AnchorKeyword",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "elicitation-sep1034-defaults",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "elicitation-sep1034-string-default",
+          "name": "ElicitationSEP1034StringDefault",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "elicitation-sep1034-integer-default",
+          "name": "ElicitationSEP1034IntegerDefault",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "elicitation-sep1034-number-default",
+          "name": "ElicitationSEP1034NumberDefault",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "elicitation-sep1034-enum-default",
+          "name": "ElicitationSEP1034EnumDefault",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "elicitation-sep1034-boolean-default",
+          "name": "ElicitationSEP1034BooleanDefault",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "elicitation-sep1330-enums",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "elicitation-sep1330-untitled-single",
+          "name": "ElicitationSEP1330UntitledSingle",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "elicitation-sep1330-titled-single",
+          "name": "ElicitationSEP1330TitledSingle",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "elicitation-sep1330-legacy-enumnames",
+          "name": "ElicitationSEP1330LegacyEnumNames",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "elicitation-sep1330-untitled-multi",
+          "name": "ElicitationSEP1330UntitledMulti",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "elicitation-sep1330-titled-multi",
+          "name": "ElicitationSEP1330TitledMulti",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-II",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-II",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-II",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-II",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-III",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-III",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-III",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-III",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-III",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-IV",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-IV",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-IV",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-IV",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-list-IV",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-list",
+          "name": "ResourcesList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-II",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-II",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-II",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-II",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-III",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-III",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-III",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-III",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-III",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-IV",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-IV",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-IV",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-IV",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-text-IV",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-text",
+          "name": "ResourcesReadText",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-binary",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-binary",
+          "name": "ResourcesReadBinary",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-binary",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-binary",
+          "name": "ResourcesReadBinary",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-binary",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-binary",
+          "name": "ResourcesReadBinary",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-binary",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-binary",
+          "name": "ResourcesReadBinary",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-read-binary",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-read-binary",
+          "name": "ResourcesReadBinary",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-templates-read",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-templates-read",
+          "name": "ResourcesTemplateRead",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-templates-read",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-templates-read",
+          "name": "ResourcesTemplateRead",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-templates-read",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-templates-read",
+          "name": "ResourcesTemplateRead",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-templates-read",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-templates-read",
+          "name": "ResourcesTemplateRead",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "resources-templates-read",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "resources-templates-read",
+          "name": "ResourcesTemplateRead",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "sep-2164-resource-not-found",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2164-no-empty-contents",
+          "name": "ResourcesNotFoundNoEmptyContents",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2164-error-code",
+          "name": "ResourcesNotFoundErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2164-data-uri",
+          "name": "ResourcesNotFoundDataUri",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-II",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-II",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-II",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-II",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-III",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-III",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-III",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-III",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-III",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-IV",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-IV",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-IV",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-IV",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-list-IV",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-list",
+          "name": "PromptsList",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-II",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-II",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-II",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-II",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-III",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-III",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-III",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-III",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-III",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-IV",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-IV",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-IV",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-IV",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-simple-IV",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-simple",
+          "name": "PromptsGetSimple",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args-II",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args-II",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args-II",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args-II",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args-III",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args-III",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args-III",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args-III",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-args-III",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-args",
+          "name": "PromptsGetWithArgs",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-embedded-resource",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-embedded-resource",
+          "name": "PromptsGetEmbeddedResource",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-embedded-resource",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-embedded-resource",
+          "name": "PromptsGetEmbeddedResource",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-embedded-resource",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-embedded-resource",
+          "name": "PromptsGetEmbeddedResource",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-embedded-resource",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-embedded-resource",
+          "name": "PromptsGetEmbeddedResource",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-embedded-resource",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-embedded-resource",
+          "name": "PromptsGetEmbeddedResource",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-image",
+      "protocol": "2024-11-05",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-image",
+          "name": "PromptsGetWithImage",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-image",
+      "protocol": "2025-03-26",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-image",
+          "name": "PromptsGetWithImage",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-image",
+      "protocol": "2025-06-18",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-image",
+          "name": "PromptsGetWithImage",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-image",
+      "protocol": "2025-11-25",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-image",
+          "name": "PromptsGetWithImage",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "prompts-get-with-image",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "prompts-get-with-image",
+          "name": "PromptsGetWithImage",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "dns-rebinding-protection",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "localhost-host-rebinding-rejected",
+          "name": "DNSRebindingRejected",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "localhost-host-valid-accepted",
+          "name": "LocalhostHostAccepted",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "caching",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2549-tools-list-caching-hints",
+          "name": "ToolsListCachingHints",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2549-prompts-list-caching-hints",
+          "name": "PromptsListCachingHints",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2549-resources-list-caching-hints",
+          "name": "ResourcesListCachingHints",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2549-resources-templates-list-caching-hints",
+          "name": "ResourcesTemplatesListCachingHints",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2549-resources-read-caching-hints",
+          "name": "ResourcesReadCachingHints",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2549-ttl-non-negative",
+          "name": "TtlNonNegative",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2549-cache-scope-valid",
+          "name": "CacheScopeValid",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "http-header-validation",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2243-server-reject-invalid-headers",
+          "name": "ServerRejectsMismatchedMethodHeader",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-error-code",
+          "name": "ServerRejectsMismatchedMethodHeaderErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-invalid-headers",
+          "name": "ServerRejectsMissingMethodHeader",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-error-code",
+          "name": "ServerRejectsMissingMethodHeaderErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-invalid-headers",
+          "name": "ServerRejectsMismatchedNameHeader",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-error-code",
+          "name": "ServerRejectsMismatchedNameHeaderErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-accepts-whitespace-header-value",
+          "name": "ServerAcceptsWhitespaceHeaderValue",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-invalid-headers",
+          "name": "ServerRejectsMissingNameHeader",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-error-code",
+          "name": "ServerRejectsMissingNameHeaderErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-header-name-case-insensitive",
+          "name": "ServerAcceptsLowercaseHeaderName",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-header-name-case-insensitive",
+          "name": "ServerAcceptsUppercaseHeaderName",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-invalid-headers",
+          "name": "ServerRejectsCaseMismatchValue",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-error-code",
+          "name": "ServerRejectsCaseMismatchValueErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "http-header-validation-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2243-server-reject-invalid-headers",
+          "name": "ServerRejectsMismatchedMethodHeader",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-error-code",
+          "name": "ServerRejectsMismatchedMethodHeaderErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-invalid-headers",
+          "name": "ServerRejectsMissingMethodHeader",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-error-code",
+          "name": "ServerRejectsMissingMethodHeaderErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-invalid-headers",
+          "name": "ServerRejectsMismatchedNameHeader",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-error-code",
+          "name": "ServerRejectsMismatchedNameHeaderErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-accepts-whitespace-header-value",
+          "name": "ServerAcceptsWhitespaceHeaderValue",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-invalid-headers",
+          "name": "ServerRejectsMissingNameHeader",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-error-code",
+          "name": "ServerRejectsMissingNameHeaderErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-header-name-case-insensitive",
+          "name": "ServerAcceptsLowercaseHeaderName",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-header-name-case-insensitive",
+          "name": "ServerAcceptsUppercaseHeaderName",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-invalid-headers",
+          "name": "ServerRejectsCaseMismatchValue",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-error-code",
+          "name": "ServerRejectsCaseMismatchValueErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "http-custom-header-server-validation",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2243-server-decode-base64",
+          "name": "ServerAcceptsValidBase64",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-invalid-param-chars",
+          "name": "ServerRejectsInvalidBase64Padding",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-param-mismatch",
+          "name": "ServerRejectsInvalidBase64PaddingErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-invalid-param-chars",
+          "name": "ServerRejectsInvalidBase64Chars",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-param-mismatch",
+          "name": "ServerRejectsInvalidBase64CharsErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-validate-param-match",
+          "name": "ServerLiteralMissingBase64Prefix",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-validate-param-match",
+          "name": "ServerLiteralMissingBase64Suffix",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-validate-param-match",
+          "name": "ServerRejectsMissingCustomHeader",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-param-mismatch",
+          "name": "ServerRejectsMissingCustomHeaderErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "http-custom-header-server-validation-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2243-server-decode-base64",
+          "name": "ServerAcceptsValidBase64",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-invalid-param-chars",
+          "name": "ServerRejectsInvalidBase64Padding",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-param-mismatch",
+          "name": "ServerRejectsInvalidBase64PaddingErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-invalid-param-chars",
+          "name": "ServerRejectsInvalidBase64Chars",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-param-mismatch",
+          "name": "ServerRejectsInvalidBase64CharsErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-validate-param-match",
+          "name": "ServerLiteralMissingBase64Prefix",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-validate-param-match",
+          "name": "ServerLiteralMissingBase64Suffix",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-validate-param-match",
+          "name": "ServerRejectsMissingCustomHeader",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2243-server-reject-param-mismatch",
+          "name": "ServerRejectsMissingCustomHeaderErrorCode",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-basic-elicitation",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-elicitation-incomplete",
+          "name": "InputRequiredResultElicitationIncomplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-elicitation-complete",
+          "name": "InputRequiredResultElicitationComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-basic-elicitation-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-elicitation-incomplete",
+          "name": "InputRequiredResultElicitationIncomplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-elicitation-complete",
+          "name": "InputRequiredResultElicitationComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-basic-sampling",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-sampling-incomplete",
+          "name": "InputRequiredResultSamplingIncomplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-sampling-complete",
+          "name": "InputRequiredResultSamplingComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-basic-sampling-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-sampling-incomplete",
+          "name": "InputRequiredResultSamplingIncomplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-sampling-complete",
+          "name": "InputRequiredResultSamplingComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-basic-list-roots",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-list-roots-incomplete",
+          "name": "InputRequiredResultListRootsIncomplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-list-roots-complete",
+          "name": "InputRequiredResultListRootsComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-basic-list-roots-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-list-roots-incomplete",
+          "name": "InputRequiredResultListRootsIncomplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-list-roots-complete",
+          "name": "InputRequiredResultListRootsComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-request-state",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-request-state-incomplete",
+          "name": "InputRequiredResultRequestStateIncomplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-request-state-complete",
+          "name": "InputRequiredResultRequestStateComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-request-state-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-request-state-incomplete",
+          "name": "InputRequiredResultRequestStateIncomplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-request-state-complete",
+          "name": "InputRequiredResultRequestStateComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-multiple-input-requests",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-multiple-inputs-incomplete",
+          "name": "InputRequiredResultMultipleInputsIncomplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-multiple-inputs-complete",
+          "name": "InputRequiredResultMultipleInputsComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-multiple-input-requests-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-multiple-inputs-incomplete",
+          "name": "InputRequiredResultMultipleInputsIncomplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-multiple-inputs-complete",
+          "name": "InputRequiredResultMultipleInputsComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-multi-round",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-multi-round-r1",
+          "name": "InputRequiredResultMultiRoundR1",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-multi-round-r2",
+          "name": "InputRequiredResultMultiRoundR2",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-multi-round-r3",
+          "name": "InputRequiredResultMultiRoundR3",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-multi-round-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-multi-round-r1",
+          "name": "InputRequiredResultMultiRoundR1",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-multi-round-r2",
+          "name": "InputRequiredResultMultiRoundR2",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-multi-round-r3",
+          "name": "InputRequiredResultMultiRoundR3",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-missing-input-response",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-missing-response-rerequests",
+          "name": "InputRequiredResultMissingResponseRerequests",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-missing-input-response-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-missing-response-rerequests",
+          "name": "InputRequiredResultMissingResponseRerequests",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-non-tool-request",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-non-tool-incomplete",
+          "name": "InputRequiredResultNonToolIncomplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-non-tool-complete",
+          "name": "InputRequiredResultNonToolComplete",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-result-type",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-result-type-included",
+          "name": "ResultTypeIncluded",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-result-type-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-result-type-included",
+          "name": "ResultTypeIncluded",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-unsupported-methods",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-not-on-unsupported-requests",
+          "name": "NotOnUnsupportedRequests",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-tampered-state",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-reject-tampered-state",
+          "name": "RejectTamperedState",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-tampered-state-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-reject-tampered-state",
+          "name": "RejectTamperedState",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-capability-check",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-respect-client-capabilities",
+          "name": "RespectClientCapabilities",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-capability-check-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-respect-client-capabilities",
+          "name": "RespectClientCapabilities",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-ignore-extra-params",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-ignore-unexpected-params",
+          "name": "IgnoreUnexpectedParams",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-ignore-extra-params-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-ignore-unexpected-params",
+          "name": "IgnoreUnexpectedParams",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-validate-input",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-validate-input-responses",
+          "name": "ValidateInputResponses",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-error-on-protocol-error",
+          "name": "ErrorOnProtocolError",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    {
+      "scenario": "input-required-result-validate-input-II",
+      "protocol": "2026-07-28",
+      "outcome": "PASS",
+      "checks": [
+        {
+          "id": "sep-2322-validate-input-responses",
+          "name": "ValidateInputResponses",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2322-error-on-protocol-error",
+          "name": "ErrorOnProtocolError",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "status": "SUCCESS"
+        }
+      ]
+    }
+  ]
+}

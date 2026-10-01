@@ -1,0 +1,294 @@
+[
+  {
+    "id": "sep-2663-tasks-result-removed-method-not-found",
+    "name": "TasksRemovedTasksResult",
+    "description": "tasks/result is removed in v2 and MUST reject with -32601",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T05:53:07.163Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ]
+  },
+  {
+    "id": "tasks-removed-tasks-list",
+    "name": "TasksRemovedTasksList",
+    "description": "tasks/list is removed in v2 and MUST reject with -32601",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T05:53:07.165Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ]
+  },
+  {
+    "id": "tasks-server-directed-creation-no-hint",
+    "name": "TasksServerDirectedCreationNoHint",
+    "description": "tools/call with no client `task` hint param MUST still produce CreateTaskResult for task-supporting tools",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T05:53:08.203Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ]
+  },
+  {
+    "id": "sep-2663-legacy-task-param-ignored",
+    "name": "TasksLegacyTaskParamIgnored",
+    "description": "tools/call with legacy `task` param against a sync tool MUST NOT error and MUST NOT be promoted to a task",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T05:53:08.208Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ]
+  },
+  {
+    "id": "tasks-immediate-result-shortcut",
+    "name": "TasksImmediateResultShortcut",
+    "description": "For a fast operation, a task-supporting tool MAY skip task creation and return a sync ToolResult; either path is valid",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T05:53:08.210Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ],
+    "details": {
+      "resultType": "task"
+    }
+  },
+  {
+    "id": "tasks-result-type-complete-on-non-task-responses",
+    "name": "TasksResultTypeCompleteOnNonTaskResponses",
+    "description": "Sync tools/call, tasks/get, tasks/update ack, and tasks/cancel ack MUST all carry resultType:\"complete\"",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T05:53:08.227Z",
+    "specReferences": [
+      {
+        "id": "SEP-2322",
+        "url": "https://modelcontextprotocol.io/specification/draft/basic/utilities/mrtr"
+      },
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ]
+  },
+  {
+    "id": "sep-2663-durable-create-strong-consistency",
+    "name": "TasksStrongConsistencyImmediateGet",
+    "description": "tasks/get issued immediately after CreateTaskResult arrives MUST resolve (server MUST NOT return CreateTaskResult before the task is durably created)",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T05:53:08.231Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ]
+  },
+  {
+    "id": "sep-2663-tasks-get-invalid-task-id-32602",
+    "name": "TasksGetUnknownTaskIdRejected",
+    "description": "tasks/get for a taskId the server does not recognize MUST return -32602",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T05:53:08.233Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ]
+  },
+  {
+    "id": "wire-schema-valid",
+    "name": "WireSchemaValid",
+    "description": "Every JSON-RPC message the implementation sent is valid per the spec JSON schema for the negotiated spec version",
+    "status": "FAILURE",
+    "timestamp": "2026-10-01T05:53:08.233Z",
+    "specReferences": [
+      {
+        "id": "MCP-Schema",
+        "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/schema/draft/schema.json"
+      }
+    ],
+    "details": {
+      "messagesValidated": 50,
+      "violations": [
+        {
+          "origin": "implementation",
+          "specVersion": "2026-07-28",
+          "context": "response to 'tools/call'",
+          "errors": [
+            "CallToolResult: must have required property 'content' (result of 'tools/call')"
+          ],
+          "message": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "task",
+              "taskId": "5336afbe-6d04-4a57-b153-1f3e3eae302a",
+              "status": "working",
+              "createdAt": "2026-10-01T05:53:07.175Z",
+              "lastUpdatedAt": "2026-10-01T05:53:07.175Z",
+              "ttlMs": 300000,
+              "pollIntervalMs": 50
+            }
+          }
+        },
+        {
+          "origin": "implementation",
+          "specVersion": "2026-07-28",
+          "context": "response to 'tools/call'",
+          "errors": [
+            "CallToolResult: must have required property 'content' (result of 'tools/call')"
+          ],
+          "message": {
+            "jsonrpc": "2.0",
+            "id": 11,
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "task",
+              "taskId": "9b9c0ae2-27b5-4eb5-8e20-a218a7e6d2ff",
+              "status": "working",
+              "createdAt": "2026-10-01T05:53:08.209Z",
+              "lastUpdatedAt": "2026-10-01T05:53:08.209Z",
+              "ttlMs": 300000,
+              "pollIntervalMs": 50
+            }
+          }
+        },
+        {
+          "origin": "implementation",
+          "specVersion": "2026-07-28",
+          "context": "response to 'tools/call'",
+          "errors": [
+            "CallToolResult: must have required property 'content' (result of 'tools/call')"
+          ],
+          "message": {
+            "jsonrpc": "2.0",
+            "id": 13,
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "task",
+              "taskId": "d90b3a73-d1be-4129-8c6f-45971f93789d",
+              "status": "working",
+              "createdAt": "2026-10-01T05:53:08.214Z",
+              "lastUpdatedAt": "2026-10-01T05:53:08.214Z",
+              "ttlMs": 300000,
+              "pollIntervalMs": 50
+            }
+          }
+        },
+        {
+          "origin": "implementation",
+          "specVersion": "2026-07-28",
+          "context": "response to 'tools/call'",
+          "errors": [
+            "CallToolResult: must have required property 'content' (result of 'tools/call')"
+          ],
+          "message": {
+            "jsonrpc": "2.0",
+            "id": 16,
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "task",
+              "taskId": "6c177707-b2cd-4784-b034-56b8a2783cc6",
+              "status": "working",
+              "createdAt": "2026-10-01T05:53:08.218Z",
+              "lastUpdatedAt": "2026-10-01T05:53:08.218Z",
+              "ttlMs": 300000,
+              "pollIntervalMs": 50
+            }
+          }
+        },
+        {
+          "origin": "implementation",
+          "specVersion": "2026-07-28",
+          "context": "response to 'tools/call'",
+          "errors": [
+            "CallToolResult: must have required property 'content' (result of 'tools/call')"
+          ],
+          "message": {
+            "jsonrpc": "2.0",
+            "id": 18,
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "task",
+              "taskId": "8bb91a55-6bce-4b0b-8fbd-c4e9c03da3bd",
+              "status": "working",
+              "createdAt": "2026-10-01T05:53:08.222Z",
+              "lastUpdatedAt": "2026-10-01T05:53:08.222Z",
+              "ttlMs": 300000,
+              "pollIntervalMs": 50
+            }
+          }
+        },
+        {
+          "origin": "implementation",
+          "specVersion": "2026-07-28",
+          "context": "response to 'tools/call'",
+          "errors": [
+            "CallToolResult: must have required property 'content' (result of 'tools/call')"
+          ],
+          "message": {
+            "jsonrpc": "2.0",
+            "id": 22,
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "task",
+              "taskId": "8c362029-b375-4835-8e50-6ef336641518",
+              "status": "working",
+              "createdAt": "2026-10-01T05:53:08.227Z",
+              "lastUpdatedAt": "2026-10-01T05:53:08.227Z",
+              "ttlMs": 300000,
+              "pollIntervalMs": 50
+            }
+          }
+        }
+      ]
+    },
+    "errorMessage": "[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"5336afbe-6d04-4a57-b153-1f3e3eae302a\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:53:07.175Z\",\"lastUpdatedAt\":\"2026-10-01T05:53:07.175Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":11,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"9b9c0ae2-27b5-4eb5-8e20-a218a7e6d2ff\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:53:08.209Z\",\"lastUpdatedAt\":\"2026-10-01T05:53:08.209Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":13,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"d90b3a73-d1be-4129-8c6f-45971f93789d\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:53:08.214Z\",\"lastUpdatedAt\":\"2026-10-01T05:53:08.214Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":16,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"6c177707-b2cd-4784-b034-56b8a2783cc6\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:53:08.218Z\",\"lastUpdatedAt\":\"2026-10-01T05:53:08.218Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":18,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"8bb91a55-6bce-4b0b-8fbd-c4e9c03da3bd\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:53:08.222Z\",\"lastUpdatedAt\":\"2026-10-01T05:53:08.222Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":22,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"8c362029-b375-4835-8e50-6ef336641518\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:53:08.227Z\",\"lastUpdatedAt\":\"2026-10-01T05:53:08.227Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}"
+  }
+]

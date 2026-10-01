@@ -1,0 +1,817 @@
+{
+  "conformanceVersion": "0.2.0-alpha.11",
+  "bundleSha256": "a10085d0cfc9dd9192cc227f0f4dd6f1af9a94f6a0d3e30af08d4a0bcf268aae",
+  "extensionSchemaSha256": "bf30afb7ac251e3e22c037b7a685f60ef6603031b5484c0d08b1fa0bbe86d460",
+  "samples": 19,
+  "scenarios": [
+    "tasks-lifecycle",
+    "tasks-capability-negotiation",
+    "tasks-wire-fields",
+    "tasks-request-state-removal",
+    "tasks-mrtr-input",
+    "tasks-request-headers",
+    "tasks-dispatch-and-envelope"
+  ],
+  "coreRejected": 19,
+  "extensionAccepted": 19,
+  "checks": [
+    {
+      "scenario": "tasks-lifecycle",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-lifecycle",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "62a6f1af-3903-4be9-be1e-0d778640cba1",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:43.389Z",
+          "lastUpdatedAt": "2026-10-01T05:39:43.389Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-lifecycle",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 15,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-lifecycle",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "521cdfc7-3998-47dd-96eb-fe3bdc440f2d",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:45.465Z",
+          "lastUpdatedAt": "2026-10-01T05:39:45.465Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-lifecycle",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 22,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-lifecycle",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "5b4db2a6-920b-4d3c-a29e-c6f9da10006e",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:46.505Z",
+          "lastUpdatedAt": "2026-10-01T05:39:46.505Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-lifecycle",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 24,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-lifecycle",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "414f58b1-f0d8-4104-93e9-b84c579914bc",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:46.511Z",
+          "lastUpdatedAt": "2026-10-01T05:39:46.511Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-lifecycle",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 27,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-lifecycle",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "95694af7-a5e8-4133-9477-68e33c58a3e6",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:46.517Z",
+          "lastUpdatedAt": "2026-10-01T05:39:46.517Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-capability-negotiation",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-capability-negotiation",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "37e1f172-d639-45f1-8ca6-e4d6e501e185",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:48.059Z",
+          "lastUpdatedAt": "2026-10-01T05:39:48.059Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-wire-fields",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-wire-fields",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "365c9b62-8571-4cf8-98c6-107e825dc7a5",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:48.513Z",
+          "lastUpdatedAt": "2026-10-01T05:39:48.513Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-wire-fields",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-wire-fields",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "d06d2d0e-6757-4ce2-8fc3-484a9b902f50",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:50.078Z",
+          "lastUpdatedAt": "2026-10-01T05:39:50.078Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-request-state-removal",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-request-state-removal",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "32d74448-ba05-4143-99d3-915e0cb3723d",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:51.585Z",
+          "lastUpdatedAt": "2026-10-01T05:39:51.585Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-mrtr-input",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-mrtr-input",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "9d4e8c12-10e2-4a86-a42a-16e2e2a65bf8",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:52.057Z",
+          "lastUpdatedAt": "2026-10-01T05:39:52.057Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-mrtr-input",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-mrtr-input",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "aaa39dbc-e166-4928-be5c-2b0cc942eb8f",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:52.070Z",
+          "lastUpdatedAt": "2026-10-01T05:39:52.070Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-mrtr-input",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-mrtr-input",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "da1395f0-5e76-4b55-97ea-c1eaa47c8b75",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:52.076Z",
+          "lastUpdatedAt": "2026-10-01T05:39:52.076Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-request-headers",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-request-headers",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "5dbc949e-6180-47df-a041-a8f44c2a8668",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:52.540Z",
+          "lastUpdatedAt": "2026-10-01T05:39:52.540Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-dispatch-and-envelope",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "2f6b78e1-5b73-4fa3-b0f3-17507de5a39a",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:53.013Z",
+          "lastUpdatedAt": "2026-10-01T05:39:53.013Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-dispatch-and-envelope",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "40250bc2-7499-4644-a1e7-0db60e83817f",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:54.065Z",
+          "lastUpdatedAt": "2026-10-01T05:39:54.065Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-dispatch-and-envelope",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "85b0d9e8-3e5e-4111-916d-2ae4ac8d1a7c",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:54.069Z",
+          "lastUpdatedAt": "2026-10-01T05:39:54.069Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-dispatch-and-envelope",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 16,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "90753ce9-1a53-4190-b180-904f7ebd2645",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:54.073Z",
+          "lastUpdatedAt": "2026-10-01T05:39:54.073Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-dispatch-and-envelope",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 18,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "75485b65-7dd6-49b4-a03c-526d40f4b8bf",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:54.075Z",
+          "lastUpdatedAt": "2026-10-01T05:39:54.075Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    },
+    {
+      "scenario": "tasks-dispatch-and-envelope",
+      "origin": "implementation",
+      "specVersion": "2026-07-28",
+      "context": "response to 'tools/call'",
+      "errors": [
+        "CallToolResult: must have required property 'content' (result of 'tools/call')"
+      ],
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 21,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "task",
+          "taskId": "70902f54-88d9-4eb2-82fd-55b7c3bdcf14",
+          "status": "working",
+          "createdAt": "2026-10-01T05:39:54.080Z",
+          "lastUpdatedAt": "2026-10-01T05:39:54.080Z",
+          "ttlMs": 300000,
+          "pollIntervalMs": 50
+        }
+      },
+      "coreCallToolResultValid": false,
+      "coreErrors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "content"
+          },
+          "message": "must have required property 'content'"
+        }
+      ],
+      "extensionCreateTaskResultValid": true,
+      "extensionErrors": null
+    }
+  ]
+}

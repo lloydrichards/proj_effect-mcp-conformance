@@ -1,0 +1,263 @@
+{
+  "effectRevision": "c5925879305c8fee11132372604353dd4c8673c6",
+  "effectVersion": "4.0.0-rc.118",
+  "conformanceVersion": "0.2.0-alpha.11",
+  "sources": [
+    {
+      "path": "/Users/lloyd/Documents/GitHub/open_effect/packages/effect/src/ai/McpServer.ts",
+      "sha256": "64a4ed396d53ed848c04d955a7be6da12ab585bf21deaa43b0ad3174f9754127",
+      "excerpts": [
+        {
+          "start": 1859,
+          "end": 1872,
+          "lines": [
+            "    }",
+            "    return Context.makeUnsafe(services)",
+            "  }))",
+            "  const services = omitRequestServices(yield* Effect.context<never>())",
+            "  const reportCause = (cause: Cause.Cause<unknown>) => Effect.provideContext(ErrorReporter.report(cause), services)",
+            "  // Interruption propagates; anything else is logged, reported and scrubbed.",
+            "  const internalToolError = (cause: Cause.Cause<unknown>) => {",
+            "    const failure = Cause.findFail(cause)",
+            "    return Result.isFailure(failure) && !Cause.hasDies(cause)",
+            "      ? Effect.failCause(failure.failure)",
+            "      : Effect.logError(cause).pipe(",
+            "        Effect.andThen(reportCause(cause)),",
+            "        Effect.as(toolErrorResult(INTERNAL_TOOL_ERROR_MESSAGE))",
+            "      )"
+          ]
+        },
+        {
+          "start": 1895,
+          "end": 1909,
+          "lines": [
+            "    const handleCause = (cause: Cause.Cause<unknown>) => {",
+            "      const failure = Cause.findFail(cause)",
+            "      if (Result.isSuccess(failure)) {",
+            "        const error = failure.success.error",
+            "        const origin = Context.get(Cause.reasonAnnotations(failure.success), Toolkit.FailureOrigin)",
+            "        if (origin === \"parameters\" && isParameterValidationError(error)) {",
+            "          return Effect.fail(new InvalidParams({ message: error.reason.message }))",
+            "        }",
+            "        if (origin === \"handler\" && isDeclaredFailure(error)) {",
+            "          return Effect.catchCause(declaredFailureResult(error), internalToolError)",
+            "        }",
+            "      }",
+            "      return internalToolError(cause)",
+            "    }",
+            "    const outputSchema = yield* Schema.decodeUnknownEffect(McpSchema.ToolOutputJson)("
+          ]
+        },
+        {
+          "start": 1960,
+          "end": 1975,
+          "lines": [
+            "              : Effect.succeed(",
+            "                new CallToolResult({",
+            "                  isError: result.isFailure,",
+            "                  structuredContent: result.isFailure ? undefined : result.encodedResult,",
+            "                  content: toolResultContent(result.encodedResult)",
+            "                })",
+            "              )",
+            "          ),",
+            "          Effect.catchCause(handleCause),",
+            "          // Tool.Any erases services already supplied by handler contexts and the current invocation.",
+            "          Effect.provideContext(services as Context.Context<unknown>)",
+            "        )",
+            "      })",
+            "    })",
+            "  }",
+            "  for (const registration of registrations) {"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/Users/lloyd/Documents/GitHub/open_effect/packages/effect/src/ai/internal/mcpTasks.ts",
+      "sha256": "4ae612e1f6788163cd64f551a3f7e82be12427d1bce7317f5438d7cca4374c7e",
+      "excerpts": [
+        {
+          "start": 73,
+          "end": 89,
+          "lines": [
+            "export const taskResult = (run: Effect.Effect<McpCore.OperationOutcome<McpSchema.CallToolResult>, McpCore.ToolError>) =>",
+            "  run.pipe(",
+            "    Effect.flatMap((outcome) =>",
+            "      outcome._tag === \"Complete\"",
+            "        ? Effect.succeed(outcome.value)",
+            "        : Effect.fail(new TaskError({ code: -32603, message: \"Tasks require McpTasks.Input for input requests\" }))",
+            "    ),",
+            "    Effect.catchTag(",
+            "      [\"ToolExecutionError\", \"InvalidToolInput\"],",
+            "      (error) =>",
+            "        Effect.succeed(",
+            "          new McpSchema.CallToolResult({ isError: true, content: [{ type: \"text\", text: error.message }] })",
+            "        )",
+            "    )",
+            "  )",
+            "",
+            "const DurationInput = Schema.Unknown.pipe(Schema.decodeTo(Schema.Duration, {"
+          ]
+        },
+        {
+          "start": 321,
+          "end": 352,
+          "lines": [
+            "            onFailure: Effect.fnUntraced(function*(cause) {",
+            "              if (entry.record.status !== \"working\" && entry.record.status !== \"input_required\") {",
+            "                return",
+            "              }",
+            "              const failure = Cause.findErrorOption(cause)",
+            "              const error = Option.isSome(failure) && failure.value instanceof TaskError",
+            "                ? {",
+            "                  code: failure.value.code,",
+            "                  message: failure.value.message,",
+            "                  ...(failure.value.data === undefined ? {} : { data: failure.value.data })",
+            "                }",
+            "                : { code: -32603, message: \"Task execution failed\" }",
+            "              entry.record = Cause.hasInterrupts(cause)",
+            "                ? { ...taskFields(entry.record, yield* DateTime.now), status: \"cancelled\" }",
+            "                : {",
+            "                  ...taskFields(entry.record, yield* DateTime.now),",
+            "                  status: \"failed\",",
+            "                  error",
+            "                }",
+            "            }),",
+            "            onSuccess: Effect.fnUntraced(function*(outcome) {",
+            "              if (entry.record.status !== \"working\" && entry.record.status !== \"input_required\") {",
+            "                return",
+            "              }",
+            "              entry.record = {",
+            "                ...taskFields(entry.record, yield* DateTime.now),",
+            "                status: \"completed\",",
+            "                result: outcome",
+            "              }",
+            "            })",
+            "          }),",
+            "          Effect.onInterrupt(Effect.fnUntraced(function*() {"
+          ]
+        },
+        {
+          "start": 367,
+          "end": 374,
+          "lines": [
+            "      update: Effect.fnUntraced(function*(taskId, responses, request) {",
+            "        const entry = yield* findOwned(taskId, request)",
+            "        yield* Effect.forEach(Object.entries(responses), ([key, response]) => {",
+            "          const pending = entry.pending.get(key)",
+            "          return pending === undefined ? Effect.void : Deferred.succeed(pending, response)",
+            "        })",
+            "      }),",
+            "      cancel: Effect.fnUntraced(function*(taskId, request) {"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/Users/lloyd/Documents/GitHub/open_effect/packages/effect/src/ai/internal/mcpSchema/v2026_07_28.ts",
+      "sha256": "ed1563eee7b24ef82b2bb6d086ee60f8d8b9e024b00e5cce50c02a899f4e3055",
+      "excerpts": [
+        {
+          "start": 433,
+          "end": 445,
+          "lines": [
+            "export const InputRequest = Schema.Union([CreateMessageRequest, ListRootsRequest, ElicitRequest])",
+            "/**",
+            " * @internal",
+            " */",
+            "export const InputResponse = Schema.Union([CreateMessageResult, ListRootsResult, ElicitResult])",
+            "/**",
+            " * @internal",
+            " */",
+            "export const InputRequests = Schema.Record(Schema.String, InputRequest)",
+            "/**",
+            " * @internal",
+            " */",
+            "export const InputResponses = Schema.Record(Schema.String, InputResponse)"
+          ]
+        },
+        {
+          "start": 749,
+          "end": 754,
+          "lines": [
+            "export class UpdateTask extends Rpc.make(\"tasks/update\", {",
+            "  success: TaskAcknowledgement,",
+            "  error: McpError,",
+            "  payload: { ...RequestParams.fields, taskId: Schema.String, inputResponses: InputResponses }",
+            "}) {}",
+            "/**"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/scenarios/tasks-lifecycle/src/index.ts",
+      "sha256": "dd965a18230611f8c62003d901a1b16df22fa2ea67724ac42a1ae93d05a309ef",
+      "excerpts": [
+        {
+          "start": 43,
+          "end": 58,
+          "lines": [
+            "  TasksToolkit,",
+            "  {",
+            "    slow_compute: { mode: \"optional\", whenUnavailable: \"inline\" },",
+            "    failing_job: { mode: \"required\" },",
+            "    protocol_error_job: { mode: \"required\" },",
+            "  },",
+            "  {",
+            "    slow_compute: ({ seconds, label }) =>",
+            "      Effect.sleep(`${seconds} seconds`).pipe(Effect.as(`Computed ${label}`)),",
+            "    failing_job: () =>",
+            "      Effect.sleep(\"1 second\").pipe(",
+            "        Effect.andThen(Effect.fail(\"Expected job failure\")),",
+            "      ),",
+            "    protocol_error_job: () => Effect.die(\"Expected protocol failure\"),",
+            "  },",
+            ");"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/private/tmp/mcp-upstream-tasks/dispatch.ts",
+      "sha256": "75893edf58e8a8caa11f8b0d4f265ef81b9736e2e6a208541f298b56d01ec9d9",
+      "excerpts": [
+        {
+          "start": 385,
+          "end": 413,
+          "lines": [
+            "          }",
+            "        }",
+            "",
+            "        // tasks/update ack on a parked elicitation task.",
+            "        const elicit = (await conn.request('tools/call', {",
+            "          name: 'confirm_delete',",
+            "          arguments: { filename: 'rt.txt' }",
+            "        })) as any;",
+            "        const elicitTaskId = elicit.taskId;",
+            "        if (elicitTaskId) {",
+            "          await waitForStatus(conn, elicitTaskId, 'input_required', 5_000);",
+            "          const updateAck = (await conn.request('tasks/update', {",
+            "            taskId: elicitTaskId,",
+            "            inputResponses: { 'unknown-key': { ignored: true } }",
+            "          })) as any;",
+            "          if (updateAck.resultType !== 'complete') {",
+            "            errs.push(",
+            "              `tasks/update ack resultType = ${JSON.stringify(updateAck.resultType)}, want \"complete\"`",
+            "            );",
+            "          }",
+            "          try {",
+            "            await conn.request('tasks/cancel', { taskId: elicitTaskId });",
+            "          } catch {",
+            "            /* swallow */",
+            "          }",
+            "        }",
+            "        checks.push({",
+            "          id,",
+            "          name,"
+          ]
+        }
+      ]
+    }
+  ]
+}
