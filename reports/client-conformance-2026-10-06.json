@@ -1,0 +1,382 @@
+{
+  "environment": {
+    "runner": "0.2.0-alpha.12",
+    "effect": "4.0.1",
+    "bun": "1.4.0",
+    "fixtureSha256": "6a3d037ffeb2a873816ebebdae0279098c08838acd5a17316fd80ef3ddfcd078"
+  },
+  "results": [
+    {
+      "scenario": "initialize",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T08-30-37.017Z/initialize-2025-11-25"
+    },
+    {
+      "scenario": "tools_call",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T08-30-37.017Z/tools_call-2025-11-25"
+    },
+    {
+      "scenario": "tools_call",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T08-30-37.017Z/tools_call-2026-07-28"
+    },
+    {
+      "scenario": "elicitation-sep1034-client-defaults",
+      "protocol": "2025-11-25",
+      "status": "FAIL",
+      "exitCode": 1,
+      "passed": 0,
+      "failed": [
+        {
+          "id": "client-elicitation-sep1034-string-default",
+          "name": "ClientElicitationSEP1034StringDefault",
+          "description": "Client applies string default value for elicitation",
+          "status": "FAILURE",
+          "timestamp": "2026-10-06T08:30:37.838Z",
+          "errorMessage": "Field \"name\" missing - should have default \"John Doe\"",
+          "specReferences": [
+            {
+              "id": "SEP-1034",
+              "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1034"
+            }
+          ],
+          "details": {
+            "field": "name",
+            "expectedDefault": "John Doe"
+          }
+        },
+        {
+          "id": "client-elicitation-sep1034-integer-default",
+          "name": "ClientElicitationSEP1034IntegerDefault",
+          "description": "Client applies integer default value for elicitation",
+          "status": "FAILURE",
+          "timestamp": "2026-10-06T08:30:37.838Z",
+          "errorMessage": "Field \"age\" missing - should have default 30",
+          "specReferences": [
+            {
+              "id": "SEP-1034",
+              "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1034"
+            }
+          ],
+          "details": {
+            "field": "age",
+            "expectedDefault": 30
+          }
+        },
+        {
+          "id": "client-elicitation-sep1034-number-default",
+          "name": "ClientElicitationSEP1034NumberDefault",
+          "description": "Client applies number default value for elicitation",
+          "status": "FAILURE",
+          "timestamp": "2026-10-06T08:30:37.838Z",
+          "errorMessage": "Field \"score\" missing - should have default 95.5",
+          "specReferences": [
+            {
+              "id": "SEP-1034",
+              "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1034"
+            }
+          ],
+          "details": {
+            "field": "score",
+            "expectedDefault": 95.5
+          }
+        },
+        {
+          "id": "client-elicitation-sep1034-enum-default",
+          "name": "ClientElicitationSEP1034EnumDefault",
+          "description": "Client applies enum default value for elicitation",
+          "status": "FAILURE",
+          "timestamp": "2026-10-06T08:30:37.838Z",
+          "errorMessage": "Field \"status\" missing - should have default \"active\"",
+          "specReferences": [
+            {
+              "id": "SEP-1034",
+              "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1034"
+            }
+          ],
+          "details": {
+            "field": "status",
+            "expectedDefault": "active"
+          }
+        },
+        {
+          "id": "client-elicitation-sep1034-boolean-default",
+          "name": "ClientElicitationSEP1034BooleanDefault",
+          "description": "Client applies boolean default value for elicitation",
+          "status": "FAILURE",
+          "timestamp": "2026-10-06T08:30:37.838Z",
+          "errorMessage": "Field \"verified\" missing - should have default true",
+          "specReferences": [
+            {
+              "id": "SEP-1034",
+              "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1034"
+            }
+          ],
+          "details": {
+            "field": "verified",
+            "expectedDefault": true
+          }
+        }
+      ],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T08-30-37.017Z/elicitation-sep1034-client-defaults-2025-11-25"
+    },
+    {
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T08-30-37.017Z/json-schema-2020-12-preservation-2025-11-25"
+    },
+    {
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T08-30-37.017Z/json-schema-2020-12-preservation-2026-07-28"
+    },
+    {
+      "scenario": "request-metadata",
+      "protocol": "2026-07-28",
+      "status": "FAIL",
+      "exitCode": 1,
+      "passed": 5,
+      "failed": [],
+      "warnings": [
+        {
+          "id": "sep-2575-client-retry-supported-version",
+          "name": "ClientRetrySupportedVersion",
+          "description": "Client retries with a supported version when first choice is rejected",
+          "status": "WARNING",
+          "timestamp": "2026-10-06T08:30:38.421Z",
+          "specReferences": [
+            {
+              "id": "SEP-2575",
+              "url": "https://modelcontextprotocol.io/specification/draft/basic/transports#protocol-version-header"
+            }
+          ],
+          "details": {
+            "headerVersion": "2026-07-28"
+          }
+        }
+      ],
+      "directory": ".cache/client-conformance/2026-10-06T08-30-37.017Z/request-metadata-2026-07-28"
+    },
+    {
+      "scenario": "sep-2322-client-request-state",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 5,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T08-30-37.017Z/sep-2322-client-request-state-2026-07-28"
+    },
+    {
+      "scenario": "http-standard-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T08-30-37.017Z/http-standard-headers-2026-07-28"
+    },
+    {
+      "scenario": "http-custom-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 18,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T08-30-37.017Z/http-custom-headers-2026-07-28"
+    },
+    {
+      "scenario": "http-invalid-tool-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 12,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T08-30-37.017Z/http-invalid-tool-headers-2026-07-28"
+    },
+    {
+      "scenario": "json-schema-ref-no-deref",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T08-30-37.017Z/json-schema-ref-no-deref-2026-07-28"
+    }
+  ],
+  "followUp": {
+    "environment": {
+      "runner": "0.2.0-alpha.12",
+      "effect": "4.0.1",
+      "bun": "1.4.0",
+      "fixtureSha256": "66df9c88dd52f9f51714a9689e854a5a0808726bbbb9ed023ae84415d7d98c10"
+    },
+    "effectCheckout": {
+      "head": "b406726e57c7ec7e6f406fc25422d6887e4bac67",
+      "uncommitted": true,
+      "sourceSha256": {
+        "packages/effect/src/ai/McpClient.ts": "9bba2c4e28c952ef27a246182feee2d142e25c99e62b0826bef739b3c7aa336a",
+        "packages/effect/src/ai/McpClientTransport.ts": "df08717ef199e1d8d914864c5e24242401a3ac83cff795f58c5e49e969123a2c",
+        "packages/effect/test/ai/McpClient/McpClientConformance.test.ts": "ae712d6c2467f0eca7d3cce2d8f03faa7934323bf18a716abb75626cb507c8f3"
+      }
+    },
+    "fixtureSha256": "177318b4e8b54115324c7c0476aef7de97cf5a624280311abb0f1f01d72d1216",
+    "results": [
+      {
+        "scenario": "initialize",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "exitCode": 0,
+        "passed": 1,
+        "failed": [],
+        "warnings": [],
+        "directory": ".cache/client-conformance/2026-10-06T09-51-29.930Z/initialize-2025-11-25"
+      },
+      {
+        "scenario": "tools_call",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "exitCode": 0,
+        "passed": 2,
+        "failed": [],
+        "warnings": [],
+        "directory": ".cache/client-conformance/2026-10-06T09-51-29.930Z/tools_call-2025-11-25"
+      },
+      {
+        "scenario": "tools_call",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "exitCode": 0,
+        "passed": 2,
+        "failed": [],
+        "warnings": [],
+        "directory": ".cache/client-conformance/2026-10-06T09-51-29.930Z/tools_call-2026-07-28"
+      },
+      {
+        "scenario": "elicitation-sep1034-client-defaults",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "exitCode": 0,
+        "passed": 5,
+        "failed": [],
+        "warnings": [],
+        "directory": ".cache/client-conformance/2026-10-06T09-51-29.930Z/elicitation-sep1034-client-defaults-2025-11-25"
+      },
+      {
+        "scenario": "json-schema-2020-12-preservation",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "exitCode": 0,
+        "passed": 9,
+        "failed": [],
+        "warnings": [],
+        "directory": ".cache/client-conformance/2026-10-06T09-51-29.930Z/json-schema-2020-12-preservation-2025-11-25"
+      },
+      {
+        "scenario": "json-schema-2020-12-preservation",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "exitCode": 0,
+        "passed": 9,
+        "failed": [],
+        "warnings": [],
+        "directory": ".cache/client-conformance/2026-10-06T09-51-29.930Z/json-schema-2020-12-preservation-2026-07-28"
+      },
+      {
+        "scenario": "request-metadata",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "exitCode": 0,
+        "passed": 6,
+        "failed": [],
+        "warnings": [],
+        "directory": ".cache/client-conformance/2026-10-06T09-51-29.930Z/request-metadata-2026-07-28"
+      },
+      {
+        "scenario": "sep-2322-client-request-state",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "exitCode": 0,
+        "passed": 5,
+        "failed": [],
+        "warnings": [],
+        "directory": ".cache/client-conformance/2026-10-06T09-51-29.930Z/sep-2322-client-request-state-2026-07-28"
+      },
+      {
+        "scenario": "http-standard-headers",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "exitCode": 0,
+        "passed": 9,
+        "failed": [],
+        "warnings": [],
+        "directory": ".cache/client-conformance/2026-10-06T09-51-29.930Z/http-standard-headers-2026-07-28"
+      },
+      {
+        "scenario": "http-custom-headers",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "exitCode": 0,
+        "passed": 18,
+        "failed": [],
+        "warnings": [],
+        "directory": ".cache/client-conformance/2026-10-06T09-51-29.930Z/http-custom-headers-2026-07-28"
+      },
+      {
+        "scenario": "http-invalid-tool-headers",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "exitCode": 0,
+        "passed": 12,
+        "failed": [],
+        "warnings": [],
+        "directory": ".cache/client-conformance/2026-10-06T09-51-29.930Z/http-invalid-tool-headers-2026-07-28"
+      },
+      {
+        "scenario": "json-schema-ref-no-deref",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "exitCode": 0,
+        "passed": 1,
+        "failed": [],
+        "warnings": [],
+        "directory": ".cache/client-conformance/2026-10-06T09-51-29.930Z/json-schema-ref-no-deref-2026-07-28"
+      }
+    ],
+    "retainedIntermediateRuns": [
+      ".cache/client-conformance/2026-10-06T09-49-37.720Z/summary.json",
+      ".cache/client-conformance/2026-10-06T09-50-35.424Z/summary.json"
+    ]
+  }
+}
