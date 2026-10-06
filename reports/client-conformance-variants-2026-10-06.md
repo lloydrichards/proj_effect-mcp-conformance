@@ -8,11 +8,11 @@ raw check counts, warnings, and result locations are saved in
 
 ## What the alternatives exercise
 
-| Implementation | Difference from the original | Applicable combinations |
-| --- | --- | --- |
-| `layer-streams` | Constructs client and transport Layers; obtains the service through `McpClient.McpClient`; discovers tools, resources, and prompts through streams; runs standard/custom-header tool calls with concurrency 2 | 11 |
-| `requests` | Uses generic `requestOnce` calls and explicitly decodes results with public schemas; echoes discovered input schemas through the generic request path | 5 |
-| `interleaved-input` | Captures the active connection in a deferred value; the elicitation handler calls an unrelated tool before answering; tests continuation state isolation while the outer operation is pending | 1 |
+| Implementation      | Difference from the original                                                                                                                                                                                  | Applicable combinations |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| `layer-streams`     | Constructs client and transport Layers; obtains the service through `McpClient.McpClient`; discovers tools, resources, and prompts through streams; runs standard/custom-header tool calls with concurrency 2 | 11                      |
+| `requests`          | Uses generic `requestOnce` calls and explicitly decodes results with public schemas; echoes discovered input schemas through the generic request path                                                         | 5                       |
+| `interleaved-input` | Captures the active connection in a deferred value; the elicitation handler calls an unrelated tool before answering; tests continuation state isolation while the outer operation is pending                 | 1                       |
 
 Each implementation has its own entrypoint and bundle. The alternatives share
 runner configuration and the custom-header context schema; they do not delegate
