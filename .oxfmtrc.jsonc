@@ -10,6 +10,7 @@
   "sortTailwindcss": false,
   "sortPackageJson": false,
   "ignorePatterns": [
+    "reports/task-failure-evidence/**",
     "**/node_modules/**",
     "**/dist/**",
     "**/build/**",

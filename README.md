@@ -88,6 +88,7 @@ List the scenarios exposed by the installed conformance runner:
 
 ```sh
 bun run conformance:list
+bun run conformance:coverage
 ```
 
 Run one implemented fixture:
@@ -129,8 +130,8 @@ ping     | PASS        | PASS        | PASS        | PASS
 
 `FAIL` means the conformance runner exited unsuccessfully; `TIMEOUT` means the
 cell exceeded the ten-second limit (use `--timeout <milliseconds>` to adjust
-it); and `SKIP` means the scenario requires a capability absent from that
-adapter. The local applicability matrix is derived from the actual Effect
+it); `SKIP` means the upstream runner skipped all checks, and `--` means the
+scenario does not apply to that adapter. The local applicability matrix is derived from the actual Effect
 adapter behavior, rather than only the upstream runner's dated labels.
 For a fast local check, limit the matrix to one scenario:
 
@@ -222,29 +223,79 @@ bun run type-check
 
 ## Current coverage
 
-| Scenario                       | Status  | What it establishes / exposes                                      |
-| ------------------------------ | ------- | ------------------------------------------------------------------ |
-| `server-initialize`            | Passing | Effect's Streamable HTTP server completes MCP initialization.      |
-| `server-session-lifecycle`     | Blocked | RC.112 does not return an `Mcp-Session-Id`; checks are skipped.    |
-| `logging-set-level`            | Passing | Effect accepts the built-in `logging/setLevel` request.            |
-| `ping`                         | Passing | Effect responds to the built-in `ping` request.                    |
-| `tools-list`                   | Passing | A scenario-owned Effect tool has a valid MCP definition.           |
-| `tools-call-simple-text`       | Passing | Direct MCP tool registration returns text content.                 |
-| `tools-call-image`             | Passing | Direct registration encodes image bytes as MCP image content.      |
-| `tools-call-audio`             | Passing | Direct registration encodes audio bytes as MCP audio content.      |
-| `tools-call-embedded-resource` | Passing | Direct registration returns embedded resources.                    |
-| `tools-call-mixed-content`     | Passing | Direct registration returns mixed MCP content blocks.              |
-| `tools-call-error`             | Passing | Tool-level errors are represented with `isError: true`.            |
-| `tools-call-with-logging`      | Failing | Outbound logging notifications are not received by the client.     |
-| `tools-call-with-progress`     | Failing | Tool handlers cannot access the request progress token.            |
-| `tools-call-sampling`          | Blocked | Reverse sampling request does not complete over this transport.    |
-| `tools-call-elicitation`       | Blocked | Reverse elicitation request does not complete over this transport. |
-| `json-schema-2020-12`          | Blocked | RC.112 loses the stateful session before schema checks begin.      |
-| `elicitation-sep1034-defaults` | Blocked | RC.112 loses the stateful session before default checks begin.     |
-| `elicitation-sep1330-enums`    | Blocked | RC.112 loses the stateful session before enum checks begin.        |
+The 2026-10-01 run uses conformance `0.2.0-alpha.11` and locally packed
+Open Effect `4.0.0-rc.118`, including the Tasks branch. The CLI already pins
+the newest published alpha; npm's `latest` tag remains `0.1.16`.
 
-These are individual scenario results, not a claim that the Effect MCP server
-conforms to a whole MCP revision.
+The final matrix has 276 passes, seven failures, and one upstream skip across
+284 applicable adapter checks. All 275 existing adapter checks pass.
+
+The workspace implements 58 of the runner's 62 server scenarios, with 98
+fixture implementations including alternates. `bun run conformance:coverage`
+checks the installed runner's inventory and reports any unaccounted scenario.
+Four scenarios require APIs the local Effect server does not expose:
+
+| Scenario                 | Missing API or behavior                                                                                                                      |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tasks-mrtr-composition` | Return MRTR input before creating a task, then create the task on the final round. `McpTasks.toolkit` creates tasks before running handlers. |
+| `resources-subscribe`    | Stateful resource subscription registration.                                                                                                 |
+| `resources-unsubscribe`  | Stateful resource subscription registration.                                                                                                 |
+| `server-sse-polling`     | Disconnect and resume POST SSE streams with event replay and `Last-Event-ID`.                                                                |
+
+These scenarios are recorded in `unavailableScenarios` rather than replaced
+with fixtures that simulate unsupported Effect behavior.
+
+### Tasks extension coverage
+
+The [6 October alpha.12 recheck](reports/tasks-alpha12-2026-10-06.md) supersedes
+the runner-schema failures in the historical results below. Seven scenarios
+pass, dispatch retains its invalid-input failure, and notifications is skipped.
+The Tasks PR remains a draft until Effect publishes the required APIs.
+
+The [failure investigation](./reports/task-failures-investigation.md) now identifies
+the causes with live controls and official schema comparisons. The generic
+schema failures and dispatch payload come from the runner. The lifecycle
+fixture now uses a task timeout to produce a JSON-RPC fault. All eight lifecycle
+behavior checks pass; the generic schema failure remains. See the
+[fixed lifecycle run](./reports/tasks-lifecycle-fixed-2026-10-01.json).
+
+Nine independent fixtures exercise `io.modelcontextprotocol/tasks` on the
+`2026-07-28` adapter through `McpTasks.toolkit` and `McpTasks.layerMemory`.
+The runner needs `--force` when an extension scenario is selected together
+with `--spec-version`; the local CLI adds it from scenario metadata.
+
+```sh
+bun run conformance:scenario tasks-lifecycle --protocol 2026-07-28 --protocol-case only --verbose
+bun run conformance:all --scenario tasks-mrtr-input --timeout 30000
+```
+
+The checked-in [run evidence](./reports/conformance-2026-10-01.json) records
+individual checks, versions, the local checkout revision, and package hashes.
+Detailed runner `checks.json` files remain under `.cache/conformance/`.
+
+| Scenario                       | Behavioral checks                                                                                                                                                           | Other outcome                                                                           |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `tasks-lifecycle`              | Pass after the fixture fix: all eight behavior checks pass using a task timeout to produce the protocol error.                                                              | Generic schema check fails.                                                             |
+| `tasks-capability-negotiation` | Pass.                                                                                                                                                                       | Generic schema check fails.                                                             |
+| `tasks-wire-fields`            | Pass.                                                                                                                                                                       | Generic schema check fails.                                                             |
+| `tasks-request-state-removal`  | Pass.                                                                                                                                                                       | Generic schema check fails.                                                             |
+| `tasks-mrtr-input`             | Pass, including partial fulfillment of two concurrent input requests.                                                                                                       | Generic schema check fails.                                                             |
+| `tasks-request-headers`        | Pass.                                                                                                                                                                       | Generic schema check fails.                                                             |
+| `tasks-dispatch-and-envelope`  | One check fails when the runner sends `inputResponses: { "unknown-key": { "ignored": true } }`. Effect rejects it as invalid method parameters. Other dispatch checks pass. | Generic schema check fails.                                                             |
+| `tasks-required-task-error`    | Pass.                                                                                                                                                                       | No schema failure.                                                                      |
+| `tasks-status-notifications`   | Upstream skip.                                                                                                                                                              | The runner awaits a `subscriptions/listen` harness rewrite. This is `SKIP`, not `PASS`. |
+
+The generic `wire-schema-valid` check treats task creation responses as
+ordinary `CallToolResult` objects and requires `content`. The
+[Tasks lifecycle scenario](https://github.com/modelcontextprotocol/conformance/blob/main/src/scenarios/server/tasks/lifecycle.ts)
+expects a flat `CreateTaskResult` instead. The failures are consistent with a
+runner schema limitation; they remain visible and are not baselined away.
+
+The investigation confirms that the dispatch response violates the official
+Tasks schema, while a valid unknown-key response is acknowledged and ignored.
+Direct backend defects and a public toolkit timeout both produce failed tasks
+correctly. The lifecycle fixture therefore does not establish a task backend
+defect. See the linked investigation for the captured requests and controls.
 
 ## Add a scenario
 
@@ -274,40 +325,16 @@ for ordinary application tools. The content fixtures use the lower-level
 text, image, audio, resource, mixed-content, and error result shapes. The
 shared fixture is not involved in capability registration.
 
-## What remains
+## CI validation
 
-### New coverage in conformance `0.2.0-alpha.11`
+The `Validate` workflow runs on pull requests, pushes to `main`, and manual runs.
+It installs published dependencies with `bun install --frozen-lockfile`, then
+checks workspace types, lint, formatting, unit tests, and the CLI build.
+A separate job runs `bun run conformance:all --timeout 30000` and uploads its
+matrix log and raw checker results, including on failure. No local Effect build
+or checkout is used in CI.
 
-The alpha runner adds a `2026-07-28` requirement set and scenarios that are
-absent from stable `0.1.16`. The new coverage includes stateless server
-lifecycle, caching, HTTP header validation, resource-not-found behavior, and
-input-required/MRTR flows. It also adds `server-session-lifecycle` for the
-existing stateful protocol revisions.
-
-The stacked local-Effect branch supplies the `v2026_07_28` adapter and adds an
-independent fixture for every new required July server scenario. Its focused
-results are:
-
-| Scenario group                         | Result                  |
-| -------------------------------------- | ----------------------- |
-| `caching`                              | 8/8 passing             |
-| `server-sse-multiple-streams`          | 1/1 passing             |
-| `dns-rebinding-protection`             | 2/2 passing             |
-| `sep-2164-resource-not-found`          | 4/4 passing             |
-| `input-required-result-*`              | 14/14 scenarios passing |
-| `http-header-validation`               | 14/14 passing           |
-| `http-custom-header-server-validation` | 10/10 passing           |
-| `server-stateless`                     | 29/29 passing           |
-
-The local Open Effect implementation passes every required July scenario in
-this workspace. These fixtures now cover prompt-based multi-round trips,
-tampered request-state rejection, partial Base64 wrapper handling, stateless
-metadata errors, removed methods, capability-to-handler consistency, and
-resource-not-found error data.
-
-### Still unsupported
-
-The published RC cannot represent `resources-subscribe`,
-`resources-unsubscribe`, or `server-sse-polling` truthfully over `layerHttp`.
-The optional `io.modelcontextprotocol/tasks` scenarios remain outside this
-workspace until Open Effect implements that extension.
+Published Effect 4.0.1 does not export `McpTasks`, so the Tasks draft cannot pass
+all checks yet. It must wait for an Effect release containing the Tasks APIs,
+and for the upstream conformance fixes to be published and verified. Failures
+remain visible and fail CI.

@@ -1,0 +1,802 @@
+{
+  "name": "dispatch-input-responses",
+  "findings": {
+    "initial": {
+      "_meta": {
+        "io.modelcontextprotocol/serverInfo": {
+          "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+          "version": "0.1.0"
+        }
+      },
+      "resultType": "complete",
+      "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+      "status": "input_required",
+      "createdAt": "2026-10-01T06:06:32.643Z",
+      "lastUpdatedAt": "2026-10-01T06:06:32.647Z",
+      "ttlMs": 300000,
+      "pollIntervalMs": 50,
+      "inputRequests": {
+        "c98fc442-a005-4cda-84fb-cf24e72e9e81": {
+          "method": "elicitation/create",
+          "params": {
+            "message": "Delete evidence.txt?",
+            "requestedSchema": {
+              "type": "object",
+              "properties": {
+                "confirm": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "confirm"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "malformedUnknown": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "error": {
+        "code": -32602,
+        "message": "Invalid method parameters",
+        "_tag": "InvalidParams"
+      }
+    },
+    "validUnknown": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+            "version": "0.1.0"
+          }
+        },
+        "resultType": "complete"
+      }
+    },
+    "afterUnknown": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+            "version": "0.1.0"
+          }
+        },
+        "resultType": "complete",
+        "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+        "status": "input_required",
+        "createdAt": "2026-10-01T06:06:32.643Z",
+        "lastUpdatedAt": "2026-10-01T06:06:32.647Z",
+        "ttlMs": 300000,
+        "pollIntervalMs": 50,
+        "inputRequests": {
+          "c98fc442-a005-4cda-84fb-cf24e72e9e81": {
+            "method": "elicitation/create",
+            "params": {
+              "message": "Delete evidence.txt?",
+              "requestedSchema": {
+                "type": "object",
+                "properties": {
+                  "confirm": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "confirm"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "malformedKnown": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "error": {
+        "code": -32602,
+        "message": "Invalid method parameters",
+        "_tag": "InvalidParams"
+      }
+    },
+    "validKnown": {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+            "version": "0.1.0"
+          }
+        },
+        "resultType": "complete"
+      }
+    },
+    "terminal": {
+      "_meta": {
+        "io.modelcontextprotocol/serverInfo": {
+          "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+          "version": "0.1.0"
+        }
+      },
+      "resultType": "complete",
+      "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+      "status": "completed",
+      "createdAt": "2026-10-01T06:06:32.643Z",
+      "lastUpdatedAt": "2026-10-01T06:06:32.672Z",
+      "ttlMs": 300000,
+      "pollIntervalMs": 50,
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+            "version": "0.1.0"
+          }
+        },
+        "resultType": "complete",
+        "content": [
+          {
+            "type": "text",
+            "text": "\"Deleted evidence.txt\""
+          }
+        ],
+        "structuredContent": "Deleted evidence.txt",
+        "isError": false
+      }
+    },
+    "correctedCheck": {
+      "exitCode": 1,
+      "checks": [
+        {
+          "id": "sep-2663-tasks-result-removed-method-not-found",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-removed-tasks-list",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-server-directed-creation-no-hint",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-legacy-task-param-ignored",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-immediate-result-shortcut",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-result-type-complete-on-non-task-responses",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-durable-create-strong-consistency",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-tasks-get-invalid-task-id-32602",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "status": "FAILURE",
+          "errorMessage": "[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"73045494-c296-4af5-97bd-2cb1f0fb5a5c\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:32.994Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:32.994Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":11,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"f2b40a26-6483-440c-b202-56312c1fc1b9\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:34.028Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:34.028Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":13,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"14a0e9cf-a6c9-48c8-8932-c5c91a820ac5\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:34.033Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:34.033Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":16,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"7ee2c8d8-f346-4c3a-b108-447c64f4134c\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:34.039Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:34.039Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":18,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"411ac5b0-c5d6-4eff-82d9-4265424ea33b\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:34.042Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:34.042Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":22,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"7f124b9d-8c2e-45db-8c30-cf5eaf8685f8\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:34.048Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:34.048Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}"
+        }
+      ]
+    },
+    "diagnosticRunnerChange": {
+      "original": "inputResponses:{\"unknown-key\":{ignored:!0}}",
+      "replacement": "inputResponses:{\"unknown-key\":{action:\"accept\",content:{confirm:!0}}}"
+    }
+  },
+  "exchanges": [
+    {
+      "label": "create-confirmation-task",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tools/call",
+          "Mcp-Name": "confirm_delete"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "tools/call",
+          "params": {
+            "name": "confirm_delete",
+            "arguments": {
+              "filename": "evidence.txt"
+            },
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "364",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 06:06:32 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "task",
+            "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+            "status": "working",
+            "createdAt": "2026-10-01T06:06:32.643Z",
+            "lastUpdatedAt": "2026-10-01T06:06:32.643Z",
+            "ttlMs": 300000,
+            "pollIntervalMs": 50
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"0d6165c6-4516-484f-87c1-2e5ab09045a0\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:32.643Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:32.643Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n"
+      }
+    },
+    {
+      "label": "poll-input_required",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tasks/get",
+          "Mcp-Name": "0d6165c6-4516-484f-87c1-2e5ab09045a0"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 2,
+          "method": "tasks/get",
+          "params": {
+            "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "368",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 06:06:32 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 2,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "complete",
+            "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+            "status": "working",
+            "createdAt": "2026-10-01T06:06:32.643Z",
+            "lastUpdatedAt": "2026-10-01T06:06:32.643Z",
+            "ttlMs": 300000,
+            "pollIntervalMs": 50
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"complete\",\"taskId\":\"0d6165c6-4516-484f-87c1-2e5ab09045a0\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:32.643Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:32.643Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n"
+      }
+    },
+    {
+      "label": "poll-input_required",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tasks/get",
+          "Mcp-Name": "0d6165c6-4516-484f-87c1-2e5ab09045a0"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 3,
+          "method": "tasks/get",
+          "params": {
+            "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "611",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 06:06:32 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 3,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "complete",
+            "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+            "status": "input_required",
+            "createdAt": "2026-10-01T06:06:32.643Z",
+            "lastUpdatedAt": "2026-10-01T06:06:32.647Z",
+            "ttlMs": 300000,
+            "pollIntervalMs": 50,
+            "inputRequests": {
+              "c98fc442-a005-4cda-84fb-cf24e72e9e81": {
+                "method": "elicitation/create",
+                "params": {
+                  "message": "Delete evidence.txt?",
+                  "requestedSchema": {
+                    "type": "object",
+                    "properties": {
+                      "confirm": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "confirm"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"complete\",\"taskId\":\"0d6165c6-4516-484f-87c1-2e5ab09045a0\",\"status\":\"input_required\",\"createdAt\":\"2026-10-01T06:06:32.643Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:32.647Z\",\"ttlMs\":300000,\"pollIntervalMs\":50,\"inputRequests\":{\"c98fc442-a005-4cda-84fb-cf24e72e9e81\":{\"method\":\"elicitation/create\",\"params\":{\"message\":\"Delete evidence.txt?\",\"requestedSchema\":{\"type\":\"object\",\"properties\":{\"confirm\":{\"type\":\"boolean\"}},\"required\":[\"confirm\"]}}}}}}\n"
+      }
+    },
+    {
+      "label": "unknown-malformed",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tasks/update",
+          "Mcp-Name": "0d6165c6-4516-484f-87c1-2e5ab09045a0"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 4,
+          "method": "tasks/update",
+          "params": {
+            "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+            "inputResponses": {
+              "unknown-key": {
+                "ignored": true
+              }
+            },
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "110",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 06:06:32 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 4,
+          "error": {
+            "code": -32602,
+            "message": "Invalid method parameters",
+            "_tag": "InvalidParams"
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":4,\"error\":{\"code\":-32602,\"message\":\"Invalid method parameters\",\"_tag\":\"InvalidParams\"}}\n"
+      }
+    },
+    {
+      "label": "unknown-valid",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tasks/update",
+          "Mcp-Name": "0d6165c6-4516-484f-87c1-2e5ab09045a0"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 5,
+          "method": "tasks/update",
+          "params": {
+            "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+            "inputResponses": {
+              "unknown-key": {
+                "action": "accept",
+                "content": {
+                  "confirm": true
+                }
+              }
+            },
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "184",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 06:06:32 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 5,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "complete"
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":5,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"complete\"}}\n"
+      }
+    },
+    {
+      "label": "state-after-unknown-responses",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tasks/get",
+          "Mcp-Name": "0d6165c6-4516-484f-87c1-2e5ab09045a0"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 6,
+          "method": "tasks/get",
+          "params": {
+            "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "611",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 06:06:32 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 6,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "complete",
+            "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+            "status": "input_required",
+            "createdAt": "2026-10-01T06:06:32.643Z",
+            "lastUpdatedAt": "2026-10-01T06:06:32.647Z",
+            "ttlMs": 300000,
+            "pollIntervalMs": 50,
+            "inputRequests": {
+              "c98fc442-a005-4cda-84fb-cf24e72e9e81": {
+                "method": "elicitation/create",
+                "params": {
+                  "message": "Delete evidence.txt?",
+                  "requestedSchema": {
+                    "type": "object",
+                    "properties": {
+                      "confirm": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "confirm"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":6,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"complete\",\"taskId\":\"0d6165c6-4516-484f-87c1-2e5ab09045a0\",\"status\":\"input_required\",\"createdAt\":\"2026-10-01T06:06:32.643Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:32.647Z\",\"ttlMs\":300000,\"pollIntervalMs\":50,\"inputRequests\":{\"c98fc442-a005-4cda-84fb-cf24e72e9e81\":{\"method\":\"elicitation/create\",\"params\":{\"message\":\"Delete evidence.txt?\",\"requestedSchema\":{\"type\":\"object\",\"properties\":{\"confirm\":{\"type\":\"boolean\"}},\"required\":[\"confirm\"]}}}}}}\n"
+      }
+    },
+    {
+      "label": "known-malformed",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tasks/update",
+          "Mcp-Name": "0d6165c6-4516-484f-87c1-2e5ab09045a0"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 7,
+          "method": "tasks/update",
+          "params": {
+            "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+            "inputResponses": {
+              "c98fc442-a005-4cda-84fb-cf24e72e9e81": {
+                "ignored": true
+              }
+            },
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "110",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 06:06:32 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 7,
+          "error": {
+            "code": -32602,
+            "message": "Invalid method parameters",
+            "_tag": "InvalidParams"
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":7,\"error\":{\"code\":-32602,\"message\":\"Invalid method parameters\",\"_tag\":\"InvalidParams\"}}\n"
+      }
+    },
+    {
+      "label": "known-valid",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tasks/update",
+          "Mcp-Name": "0d6165c6-4516-484f-87c1-2e5ab09045a0"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 8,
+          "method": "tasks/update",
+          "params": {
+            "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+            "inputResponses": {
+              "c98fc442-a005-4cda-84fb-cf24e72e9e81": {
+                "action": "accept",
+                "content": {
+                  "confirm": true
+                }
+              }
+            },
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "184",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 06:06:32 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 8,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "complete"
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":8,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"complete\"}}\n"
+      }
+    },
+    {
+      "label": "poll-completed",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tasks/get",
+          "Mcp-Name": "0d6165c6-4516-484f-87c1-2e5ab09045a0"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 9,
+          "method": "tasks/get",
+          "params": {
+            "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "650",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 06:06:32 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 9,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "complete",
+            "taskId": "0d6165c6-4516-484f-87c1-2e5ab09045a0",
+            "status": "completed",
+            "createdAt": "2026-10-01T06:06:32.643Z",
+            "lastUpdatedAt": "2026-10-01T06:06:32.672Z",
+            "ttlMs": 300000,
+            "pollIntervalMs": 50,
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: tasks-dispatch-and-envelope",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "complete",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "\"Deleted evidence.txt\""
+                }
+              ],
+              "structuredContent": "Deleted evidence.txt",
+              "isError": false
+            }
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":9,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"complete\",\"taskId\":\"0d6165c6-4516-484f-87c1-2e5ab09045a0\",\"status\":\"completed\",\"createdAt\":\"2026-10-01T06:06:32.643Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:32.672Z\",\"ttlMs\":300000,\"pollIntervalMs\":50,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-dispatch-and-envelope\",\"version\":\"0.1.0\"}},\"resultType\":\"complete\",\"content\":[{\"type\":\"text\",\"text\":\"\\\"Deleted evidence.txt\\\"\"}],\"structuredContent\":\"Deleted evidence.txt\",\"isError\":false}}}\n"
+      }
+    }
+  ]
+}

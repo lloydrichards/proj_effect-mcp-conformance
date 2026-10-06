@@ -1,6 +1,9 @@
 import { Console, Data, Effect, Option } from "effect";
 import { Argument, Command, Flag } from "effect/cli";
 import { ChildProcess } from "effect/process";
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
+import { resultExitCode } from "../results";
 import {
   supportedProtocolVersions,
   type ProtocolVersion,
@@ -230,6 +233,12 @@ export const run = Command.make(
             )}]; negotiated ${negotiatedProtocol}.`,
           );
         }
+        const outputDirectory = join(
+          repository,
+          ".cache",
+          "conformance",
+          `${scenario}-${expectedProtocol}-${process.pid}`,
+        );
         const exitCode = yield* ChildProcess.make(
           "bunx",
           [
@@ -239,9 +248,12 @@ export const run = Command.make(
             url,
             "--scenario",
             conformanceNameFor(scenarioDefinition),
+            "--output-dir",
+            outputDirectory,
             ...(expectedProtocol === "2026-07-28"
               ? ["--spec-version", expectedProtocol]
               : []),
+            ...(scenarioDefinition.extension === undefined ? [] : ["--force"]),
             ...(Option.getOrElse(verbose, () => false) ? ["--verbose"] : []),
           ],
           {
@@ -251,7 +263,18 @@ export const run = Command.make(
             stdout: "inherit",
           },
         ).pipe(Effect.flatMap((handle) => handle.exitCode));
-        process.exitCode = exitCode;
+        process.exitCode = yield* Effect.sync(() => {
+          const results = readdirSync(outputDirectory).filter((name) =>
+            name.startsWith("server-"),
+          );
+          const latest = results.sort().at(-1);
+          if (latest === undefined)
+            throw new Error("Conformance runner did not save any results");
+          const checks = JSON.parse(
+            readFileSync(join(outputDirectory, latest, "checks.json"), "utf8"),
+          );
+          return resultExitCode(exitCode, checks);
+        });
       }),
     ),
 ).pipe(Command.withDescription("Start and test one MCP server scenario"));
