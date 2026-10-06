@@ -334,7 +334,7 @@ A separate job runs `bun run conformance:all --timeout 30000` and uploads its
 matrix log and raw checker results, including on failure. No local Effect build
 or checkout is used in CI.
 
-Published Effect rc.118 does not export `McpTasks`, so the Tasks draft cannot pass
+Published Effect 4.0.1 does not export `McpTasks`, so the Tasks draft cannot pass
 all checks yet. It must wait for an Effect release containing the Tasks APIs,
 and for the upstream conformance fixes to be published and verified. Failures
 remain visible and fail CI.
