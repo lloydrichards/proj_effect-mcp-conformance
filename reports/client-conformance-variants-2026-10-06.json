@@ -1,0 +1,350 @@
+{
+  "environment": {
+    "runner": "0.2.0-alpha.12",
+    "effect": "4.0.1",
+    "bun": "1.4.0",
+    "fixtures": [
+      {
+        "name": "direct",
+        "entrypoint": "apps/conformance/src/client.ts",
+        "sha256": "66df9c88dd52f9f51714a9689e854a5a0808726bbbb9ed023ae84415d7d98c10"
+      },
+      {
+        "name": "layer-streams",
+        "entrypoint": "apps/conformance/src/clients/layer-streams.ts",
+        "sha256": "390ea5c85770a5b3f38c6e76309b12b39f86bf8997ef77733d211e6af5b2ae05"
+      },
+      {
+        "name": "requests",
+        "entrypoint": "apps/conformance/src/clients/requests.ts",
+        "sha256": "a8a32ac2b0e5c9d86ff1a060c95cf4495f06d7139bd7e3f71bcd8a31621a63a6"
+      },
+      {
+        "name": "interleaved-input",
+        "entrypoint": "apps/conformance/src/clients/interleaved-input.ts",
+        "sha256": "6c2651f07359037bf2cc0c4a36c4cef654049f406da4f89723d2dfd6399bd266"
+      }
+    ]
+  },
+  "results": [
+    {
+      "implementation": "direct",
+      "scenario": "initialize",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/direct/initialize-2025-11-25"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "tools_call",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/direct/tools_call-2025-11-25"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "tools_call",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/direct/tools_call-2026-07-28"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "elicitation-sep1034-client-defaults",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 5,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/direct/elicitation-sep1034-client-defaults-2025-11-25"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/direct/json-schema-2020-12-preservation-2025-11-25"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/direct/json-schema-2020-12-preservation-2026-07-28"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "request-metadata",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 6,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/direct/request-metadata-2026-07-28"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "sep-2322-client-request-state",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 5,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/direct/sep-2322-client-request-state-2026-07-28"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "http-standard-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/direct/http-standard-headers-2026-07-28"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "http-custom-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 18,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/direct/http-custom-headers-2026-07-28"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "http-invalid-tool-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 12,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/direct/http-invalid-tool-headers-2026-07-28"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "json-schema-ref-no-deref",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/direct/json-schema-ref-no-deref-2026-07-28"
+    },
+    {
+      "implementation": "layer-streams",
+      "scenario": "initialize",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/layer-streams/initialize-2025-11-25"
+    },
+    {
+      "implementation": "layer-streams",
+      "scenario": "tools_call",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/layer-streams/tools_call-2025-11-25"
+    },
+    {
+      "implementation": "layer-streams",
+      "scenario": "tools_call",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/layer-streams/tools_call-2026-07-28"
+    },
+    {
+      "implementation": "layer-streams",
+      "scenario": "elicitation-sep1034-client-defaults",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 5,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/layer-streams/elicitation-sep1034-client-defaults-2025-11-25"
+    },
+    {
+      "implementation": "layer-streams",
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/layer-streams/json-schema-2020-12-preservation-2025-11-25"
+    },
+    {
+      "implementation": "layer-streams",
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/layer-streams/json-schema-2020-12-preservation-2026-07-28"
+    },
+    {
+      "implementation": "layer-streams",
+      "scenario": "request-metadata",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 5,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/layer-streams/request-metadata-2026-07-28"
+    },
+    {
+      "implementation": "layer-streams",
+      "scenario": "http-standard-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/layer-streams/http-standard-headers-2026-07-28"
+    },
+    {
+      "implementation": "layer-streams",
+      "scenario": "http-custom-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 18,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/layer-streams/http-custom-headers-2026-07-28"
+    },
+    {
+      "implementation": "layer-streams",
+      "scenario": "http-invalid-tool-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 12,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/layer-streams/http-invalid-tool-headers-2026-07-28"
+    },
+    {
+      "implementation": "layer-streams",
+      "scenario": "json-schema-ref-no-deref",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/layer-streams/json-schema-ref-no-deref-2026-07-28"
+    },
+    {
+      "implementation": "requests",
+      "scenario": "initialize",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/requests/initialize-2025-11-25"
+    },
+    {
+      "implementation": "requests",
+      "scenario": "tools_call",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/requests/tools_call-2025-11-25"
+    },
+    {
+      "implementation": "requests",
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/requests/json-schema-2020-12-preservation-2025-11-25"
+    },
+    {
+      "implementation": "requests",
+      "scenario": "request-metadata",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 5,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/requests/request-metadata-2026-07-28"
+    },
+    {
+      "implementation": "requests",
+      "scenario": "json-schema-ref-no-deref",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/requests/json-schema-ref-no-deref-2026-07-28"
+    },
+    {
+      "implementation": "interleaved-input",
+      "scenario": "sep-2322-client-request-state",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 6,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-59-17.737Z/interleaved-input/sep-2322-client-request-state-2026-07-28"
+    }
+  ]
+}
