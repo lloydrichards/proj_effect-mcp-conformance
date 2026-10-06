@@ -247,6 +247,11 @@ with fixtures that simulate unsupported Effect behavior.
 
 ### Tasks extension coverage
 
+The [6 October alpha.12 recheck](reports/tasks-alpha12-2026-10-06.md) supersedes
+the runner-schema failures in the historical results below. Seven scenarios
+pass, dispatch retains its invalid-input failure, and notifications is skipped.
+The Tasks PR remains a draft until Effect publishes the required APIs.
+
 The [failure investigation](./reports/task-failures-investigation.md) now identifies
 the causes with live controls and official schema comparisons. The generic
 schema failures and dispatch payload come from the runner. The lifecycle
