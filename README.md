@@ -111,12 +111,12 @@ launches it against the official runner's HTTP test servers. Ten scenarios
 have 29 applicable implementation/protocol combinations across
 `2025-11-25` and `2026-07-28`:
 
-| Implementation | Public API path | Combinations |
-| --- | --- | --- |
-| `direct` | Scoped constructors and list/call methods | 12 |
-| `layer-streams` | Client/transport Layers, discovery streams, concurrent header probes | 11 |
-| `requests` | `requestOnce` and caller-side result decoding | 5 |
-| `interleaved-input` | Unrelated tool calls inside an active elicitation handler | 1 |
+| Implementation      | Public API path                                                      | Combinations |
+| ------------------- | -------------------------------------------------------------------- | ------------ |
+| `direct`            | Scoped constructors and list/call methods                            | 12           |
+| `layer-streams`     | Client/transport Layers, discovery streams, concurrent header probes | 11           |
+| `requests`          | `requestOnce` and caller-side result decoding                        | 5            |
+| `interleaved-input` | Unrelated tool calls inside an active elicitation handler            | 1            |
 
 The independent entrypoints live in `apps/conformance/src/client.ts` and
 `apps/conformance/src/clients/`. Only runner configuration is shared among
