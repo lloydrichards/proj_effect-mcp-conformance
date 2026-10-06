@@ -1,8 +1,8 @@
 import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 import { Context, Effect, Layer } from "effect";
-import { McpSchema, McpServer } from "effect/unstable/ai";
-import { HttpRouter, HttpServer } from "effect/unstable/http";
+import { McpSchema, McpServer } from "effect/ai";
+import { HttpRouter, HttpServer } from "effect/http";
 
 const RawRegistryCapabilities = Layer.effectDiscard(
   McpServer.McpServer.use((registry) =>

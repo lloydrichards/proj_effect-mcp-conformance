@@ -1,6 +1,6 @@
 import { Console, Data, Effect, Option } from "effect";
-import { Command, Flag } from "effect/unstable/cli";
-import { ChildProcess } from "effect/unstable/process";
+import { Command, Flag } from "effect/cli";
+import { ChildProcess } from "effect/process";
 import * as Ansi from "effect-boxes/Ansi";
 import * as Box from "effect-boxes/Box";
 import {

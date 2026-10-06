@@ -1,8 +1,8 @@
 import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 import { Context, Effect, Layer, Schema } from "effect";
-import { McpSchema, McpServer, Tool, Toolkit } from "effect/unstable/ai";
-import { HttpRouter, HttpServer } from "effect/unstable/http";
+import { McpSchema, McpServer, Tool, Toolkit } from "effect/ai";
+import { HttpRouter, HttpServer } from "effect/http";
 
 const ToolDiscoveryTool = Tool.make("test_tool", {
   description: "A minimal tool used to verify MCP tool discovery.",
