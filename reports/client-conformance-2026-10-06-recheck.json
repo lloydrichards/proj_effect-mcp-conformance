@@ -1,0 +1,136 @@
+{
+  "environment": {
+    "runner": "0.2.0-alpha.12",
+    "effect": "4.0.1",
+    "bun": "1.4.0",
+    "fixtureSha256": "66df9c88dd52f9f51714a9689e854a5a0808726bbbb9ed023ae84415d7d98c10",
+    "checkoutHead": "b406726e57c7ec7e6f406fc25422d6887e4bac67",
+    "includesUncommittedEffectFixes": true,
+    "sourceSha256": {
+      "McpClient.ts": "9bba2c4e28c952ef27a246182feee2d142e25c99e62b0826bef739b3c7aa336a",
+      "McpClientTransport.ts": "df08717ef199e1d8d914864c5e24242401a3ac83cff795f58c5e49e969123a2c"
+    }
+  },
+  "results": [
+    {
+      "scenario": "initialize",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-54-49.353Z/initialize-2025-11-25"
+    },
+    {
+      "scenario": "tools_call",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-54-49.353Z/tools_call-2025-11-25"
+    },
+    {
+      "scenario": "tools_call",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-54-49.353Z/tools_call-2026-07-28"
+    },
+    {
+      "scenario": "elicitation-sep1034-client-defaults",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 5,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-54-49.353Z/elicitation-sep1034-client-defaults-2025-11-25"
+    },
+    {
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-54-49.353Z/json-schema-2020-12-preservation-2025-11-25"
+    },
+    {
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-54-49.353Z/json-schema-2020-12-preservation-2026-07-28"
+    },
+    {
+      "scenario": "request-metadata",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 6,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-54-49.353Z/request-metadata-2026-07-28"
+    },
+    {
+      "scenario": "sep-2322-client-request-state",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 5,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-54-49.353Z/sep-2322-client-request-state-2026-07-28"
+    },
+    {
+      "scenario": "http-standard-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-54-49.353Z/http-standard-headers-2026-07-28"
+    },
+    {
+      "scenario": "http-custom-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 18,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-54-49.353Z/http-custom-headers-2026-07-28"
+    },
+    {
+      "scenario": "http-invalid-tool-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 12,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-54-49.353Z/http-invalid-tool-headers-2026-07-28"
+    },
+    {
+      "scenario": "json-schema-ref-no-deref",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-06T09-54-49.353Z/json-schema-ref-no-deref-2026-07-28"
+    }
+  ]
+}
