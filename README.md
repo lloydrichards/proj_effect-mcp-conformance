@@ -15,7 +15,7 @@ one implementation without changing its official scenario name.
 
 The baseline PR uses published Effect `4.0.6` and conformance
 `0.2.0-alpha.12`. All 275 core server adapter checks pass. Client, Skills, and
-Tasks fixtures are reviewed in separate stacked PRs. Tasks remains a draft
+Tasks fixtures are reviewed in separate PRs. Tasks remains a draft
 because the published package does not export `McpTasks`.
 
 ## Direction
@@ -286,15 +286,13 @@ bun run type-check
 
 ## Current coverage
 
-The [27 October dependency update](reports/dependency-update-2026-10-27.md)
-uses published Effect `4.0.6` and conformance `0.2.0-alpha.12`.
-All 26 client matrix combinations pass. The runner lists 65 server scenarios;
-61 have fixtures and four are explicitly unavailable. The 101 fixture
-implementations include three [Skills extension probes](reports/skills-conformance-2026-10-27.md),
-so `conformance:coverage` passes. The Skills manifest scenario passes;
-enumeration and directory reading expose missing Effect methods as failures.
-Published Effect still does not export `McpTasks`, which blocks type checking
-and execution of the nine Tasks draft fixtures.
+This independent Tasks draft targets `main` with published Effect `4.0.6` and
+conformance `0.2.0-alpha.12`. Its 98 fixture implementations cover 58 upstream
+scenarios. Seven scenarios are explicitly unavailable, including the three
+fixtures on the separate Skills draft.
+
+The nine Tasks fixtures require the unpublished `McpTasks` export. Their type
+checking and execution remain blocked until Effect publishes that API.
 
 ### Historical local-checkout coverage
 
@@ -319,29 +317,6 @@ Four scenarios require APIs the local Effect server does not expose:
 
 These scenarios are recorded in `unavailableScenarios` rather than replaced
 with fixtures that simulate unsupported Effect behavior.
-
-### Skills extension coverage
-
-Three independent fixtures test `io.modelcontextprotocol/skills` on the
-`2026-07-28` adapter. They use Effect's resource registration and extension
-metadata APIs. They deliberately declare the capabilities required by each
-check so the official runner reports missing methods instead of skipping the
-whole scenario. They do not implement replacement protocol handlers.
-
-| Scenario                      | Published Effect 4.0.6 result                                                                 |
-| ----------------------------- | --------------------------------------------------------------------------------------------- |
-| `sep-2640-skills-manifest`    | Pass, all six checks succeed.                                                                 |
-| `sep-2640-skills-enumeration` | Fail, `skills/list` returns `-32601`; deeper enumeration and `skills/get` checks are skipped. |
-| `sep-2640-skills-directory`   | Fail, `resources/directory/read` returns `-32601`.                                            |
-
-These fixtures test separate parts of the contract. A manifest pass does not
-establish full Skills extension support. See the [Skills results and contracts](reports/skills-conformance-2026-10-27.md).
-
-```sh
-bun run conformance:all --scenario sep-2640-skills-manifest --timeout 30000
-bun run conformance:all --scenario sep-2640-skills-enumeration --timeout 30000
-bun run conformance:all --scenario sep-2640-skills-directory --timeout 30000
-```
 
 ### Tasks extension coverage
 

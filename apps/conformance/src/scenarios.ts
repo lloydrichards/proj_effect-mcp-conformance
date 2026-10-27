@@ -7,6 +7,7 @@ export interface Scenario {
   readonly name: string;
   readonly protocolVersions: ReadonlyArray<ProtocolVersion>;
   readonly conformanceName?: string;
+  readonly extension?: string;
 }
 
 const allProtocolVersions: ReadonlyArray<ProtocolVersion> =
@@ -323,6 +324,11 @@ export const scenarios: ReadonlyArray<Scenario> = baseScenarios.flatMap(
 export const scenarioNames = scenarios.map((scenario) => scenario.name);
 
 export const unavailableScenarios: Readonly<Record<string, string>> = {
+  "sep-2640-skills-directory":
+    "The fixture lives on the separate Skills draft; Effect lacks resources/directory/read.",
+  "sep-2640-skills-enumeration":
+    "The fixture lives on the separate Skills draft; Effect lacks skills/list and skills/get.",
+  "sep-2640-skills-manifest": "The fixture lives on the separate Skills draft.",
   "tasks-mrtr-composition":
     "McpTasks.toolkit creates the task before running the handler. The public API cannot return InputRequired before creating a task and then escalate the final MRTR round to CreateTaskResult.",
   "resources-subscribe":
