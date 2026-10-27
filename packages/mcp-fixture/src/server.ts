@@ -64,12 +64,16 @@ export const McpServerConfig = Config.all({
  * server. That keeps each executable fixture responsible for exactly the MCP
  * behavior its conformance scenario exercises.
  */
-export const server = (name: string) =>
+export const server = (
+  name: string,
+  options: Pick<Parameters<typeof McpServer.layerHttp>[0], "extensions"> = {},
+) =>
   Effect.map(McpServerConfig, (config) =>
     McpServer.layerHttp({
       name: `Effect MCP fixture: ${name}`,
       version: "0.1.0",
       path: "/mcp",
+      extensions: options.extensions,
       protocols: configuredProtocols(config.protocols),
       allowedOrigins: config.allowedOrigins
         .split(",")
