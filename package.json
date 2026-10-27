@@ -18,7 +18,8 @@
     "conformance:inspect": "bun run --cwd=apps/conformance start -- inspect",
     "effect:local": "node scripts/use-open-effect.mjs",
     "prepare": "effect-tsgo patch",
-    "conformance:client": "node scripts/run-client-conformance.mjs"
+    "conformance:client": "node scripts/run-client-conformance.mjs",
+    "conformance:coverage": "bun run scripts/check-scenario-coverage.ts"
   },
   "devDependencies": {
     "@effect/tsgo": "0.59.0",

@@ -634,6 +634,33 @@
         "effect": "4.0.6",
       },
     },
+    "scenarios/sep-2640-skills-directory": {
+      "name": "@repo/scenario-sep-2640-skills-directory",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/sep-2640-skills-enumeration": {
+      "name": "@repo/scenario-sep-2640-skills-enumeration",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/sep-2640-skills-manifest": {
+      "name": "@repo/scenario-sep-2640-skills-manifest",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
     "scenarios/server-initialize": {
       "name": "@repo/scenario-server-initialize",
       "version": "0.0.0",
@@ -1148,8 +1175,11 @@
 
     "@repo/scenario-sep-2164-resource-not-found": ["@repo/scenario-sep-2164-resource-not-found@workspace:scenarios/sep-2164-resource-not-found"],
 
+    "@repo/scenario-sep-2640-skills-directory": ["@repo/scenario-sep-2640-skills-directory@workspace:scenarios/sep-2640-skills-directory"],
 
+    "@repo/scenario-sep-2640-skills-enumeration": ["@repo/scenario-sep-2640-skills-enumeration@workspace:scenarios/sep-2640-skills-enumeration"],
 
+    "@repo/scenario-sep-2640-skills-manifest": ["@repo/scenario-sep-2640-skills-manifest@workspace:scenarios/sep-2640-skills-manifest"],
 
     "@repo/scenario-server-initialize": ["@repo/scenario-server-initialize@workspace:scenarios/server-initialize"],
 

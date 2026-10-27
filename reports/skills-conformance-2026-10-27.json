@@ -1,0 +1,869 @@
+{
+  "date": "2026-10-27",
+  "effect": "4.0.6",
+  "conformance": "0.2.0-alpha.12",
+  "runnerSourceSha256": "b56fb575e61edaac83c2008af40a6a78b47815c4038a02a9b04cd336d38832a0",
+  "coverage": {
+    "scope": "Standalone Skills PR, without the separate Tasks draft",
+    "upstream": 65,
+    "fixtures": 52,
+    "fixtureImplementations": 92,
+    "unavailable": 13,
+    "unclassified": []
+  },
+  "scenarios": [
+    {
+      "scenario": "sep-2640-skills-directory",
+      "protocol": "2026-07-28",
+      "status": "FAIL",
+      "entrypoint": "scenarios/sep-2640-skills-directory/src/index.ts",
+      "sourceSha256": "24d3f028e55c14f179d96213983471d9811b7b715484f42c34938e260f496c84",
+      "checksPath": ".cache/conformance/sep-2640-skills-directory-2026-07-28-29808/server-sep-2640-skills-directory-2026-10-27T07-19-40-507Z/checks.json",
+      "counts": {
+        "SUCCESS": 2,
+        "FAILURE": 5
+      },
+      "checks": [
+        {
+          "id": "sep-2640-capability-directory-read-flag",
+          "name": "sep-2640-capability-directory-read-flag",
+          "description": "Server declared io.modelcontextprotocol/skills.directoryRead: true under capabilities.extensions.",
+          "status": "SUCCESS",
+          "timestamp": "2026-10-27T07:19:40.553Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "details": {
+            "directoryRead": true
+          }
+        },
+        {
+          "id": "sep-2640-directory-read-method-registered",
+          "name": "sep-2640-directory-read-method-registered",
+          "description": "A server that declares directoryRead MUST support resources/directory/read on a served skill directory.",
+          "status": "FAILURE",
+          "timestamp": "2026-10-27T07:19:40.567Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "resources/directory/read returned -32601 for skill://conformance/directory-fixture despite the server declaring directoryRead: true"
+        },
+        {
+          "id": "sep-2640-directory-read-result-resources-shape",
+          "name": "sep-2640-directory-read-result-resources-shape",
+          "description": "The result contains resources[] listing the directory\u2019s direct children, each with at least a uri.",
+          "status": "FAILURE",
+          "timestamp": "2026-10-27T07:19:40.567Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "directory read did not return a result"
+        },
+        {
+          "id": "sep-2640-directory-read-subdir-mimetype",
+          "name": "sep-2640-directory-read-subdir-mimetype",
+          "description": "A subdirectory child is listed with mimeType inode/directory.",
+          "status": "FAILURE",
+          "timestamp": "2026-10-27T07:19:40.567Z",
+          "errorMessage": "Not testable: no child with mimeType inode/directory under skill://conformance/directory-fixture; the served directory exposes no subdirectory to exercise this check",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "details": {
+            "untestable": true,
+            "reason": "no child with mimeType inode/directory under skill://conformance/directory-fixture; the served directory exposes no subdirectory to exercise this check"
+          }
+        },
+        {
+          "id": "sep-2640-directory-read-invalid-params",
+          "name": "sep-2640-directory-read-invalid-params",
+          "description": "resources/directory/read on a non-directory URI MUST return -32602 (Invalid params).",
+          "status": "FAILURE",
+          "timestamp": "2026-10-27T07:19:40.567Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "expected -32602 for skill://conformance/directory-fixture/SKILL.md, got -32601: Method not found: resources/directory/read"
+        },
+        {
+          "id": "sep-2640-directory-read-pagination",
+          "name": "sep-2640-directory-read-pagination",
+          "description": "nextCursor round-trips per the resources/list contract (single-page responses are conformant).",
+          "status": "FAILURE",
+          "timestamp": "2026-10-27T07:19:40.567Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "no directory result to evaluate pagination"
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "description": "Every JSON-RPC message the implementation sent is valid per the spec JSON schema for the negotiated spec version",
+          "status": "SUCCESS",
+          "timestamp": "2026-10-27T07:19:40.568Z",
+          "specReferences": [
+            {
+              "id": "MCP-Schema",
+              "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/schema/draft/schema.json"
+            }
+          ],
+          "details": {
+            "messagesValidated": 10,
+            "violations": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "sep-2640-skills-enumeration",
+      "protocol": "2026-07-28",
+      "status": "FAIL",
+      "entrypoint": "scenarios/sep-2640-skills-enumeration/src/index.ts",
+      "sourceSha256": "71f907521dd4a510cf64f4b925f89897063991dab77cda2a0c8a4a94a794023c",
+      "checksPath": ".cache/conformance/sep-2640-skills-enumeration-2026-07-28-29781/server-sep-2640-skills-enumeration-2026-10-27T07-19-39-246Z/checks.json",
+      "counts": {
+        "SUCCESS": 4,
+        "FAILURE": 2,
+        "SKIPPED": 25
+      },
+      "checks": [
+        {
+          "id": "sep-2640-capability-empty-object",
+          "name": "sep-2640-capability-empty-object",
+          "description": "An empty object indicates support for the extension with no optional features.",
+          "status": "SUCCESS",
+          "timestamp": "2026-10-27T07:19:39.296Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "details": {
+            "declaredKeys": [],
+            "empty": true
+          }
+        },
+        {
+          "id": "sep-2640-capability-declaration-inline",
+          "name": "sep-2640-capability-declaration-inline",
+          "description": "Extension settings are a map of extension identifiers to per-extension settings objects; the settings sit directly under the identifier.",
+          "status": "SUCCESS",
+          "timestamp": "2026-10-27T07:19:39.296Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "details": {
+            "settingKeys": []
+          }
+        },
+        {
+          "id": "sep-2640-capability-requires-resources",
+          "name": "sep-2640-capability-requires-resources",
+          "description": "A server declaring this extension MUST also declare the resources capability, because skill files are served through resources/read.",
+          "status": "SUCCESS",
+          "timestamp": "2026-10-27T07:19:39.296Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "details": {
+            "resources": true
+          }
+        },
+        {
+          "id": "sep-2640-capability-commits-to-methods",
+          "name": "sep-2640-capability-commits-to-methods",
+          "description": "Declaring the extension commits the server to skills/list and skills/get.",
+          "status": "FAILURE",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-skills-list-implemented",
+          "name": "sep-2640-skills-list-implemented",
+          "description": "A server declaring the extension MUST implement the skills/list method.",
+          "status": "FAILURE",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-skills-list-pagination",
+          "name": "sep-2640-skills-list-pagination",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-skills-list-entry-atomic",
+          "name": "sep-2640-skills-list-entry-atomic",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-entry-uri-required",
+          "name": "sep-2640-entry-uri-required",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-entry-frontmatter-required",
+          "name": "sep-2640-entry-frontmatter-required",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-entry-uri-matches-frontmatter-name",
+          "name": "sep-2640-entry-uri-matches-frontmatter-name",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-skill-uri-scheme",
+          "name": "sep-2640-skill-uri-scheme",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-entry-resources-required",
+          "name": "sep-2640-entry-resources-required",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-resources-complete",
+          "name": "sep-2640-resources-complete",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-resources-uri-within-skill",
+          "name": "sep-2640-resources-uri-within-skill",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-resources-digest-format",
+          "name": "sep-2640-resources-digest-format",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-resources-size-required",
+          "name": "sep-2640-resources-size-required",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-limit-resources-per-skill",
+          "name": "sep-2640-limit-resources-per-skill",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-limit-total-size",
+          "name": "sep-2640-limit-total-size",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-metadata-reserved-prefix",
+          "name": "sep-2640-metadata-reserved-prefix",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-name-naming-rules",
+          "name": "sep-2640-name-naming-rules",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-authority-reg-name",
+          "name": "sep-2640-authority-reg-name",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-names-should-be-unique",
+          "name": "sep-2640-names-should-be-unique",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-skills-get-implemented",
+          "name": "sep-2640-skills-get-implemented",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-skills-get-entry-shape",
+          "name": "sep-2640-skills-get-entry-shape",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-skills-get-cache-attributes",
+          "name": "sep-2640-skills-get-cache-attributes",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-skills-get-no-cursor",
+          "name": "sep-2640-skills-get-no-cursor",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-skills-get-unknown-uri-invalid-params",
+          "name": "sep-2640-skills-get-unknown-uri-invalid-params",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-skillmd-required",
+          "name": "sep-2640-skillmd-required",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-skillmd-frontmatter",
+          "name": "sep-2640-skillmd-frontmatter",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "sep-2640-entry-frontmatter-identical",
+          "name": "sep-2640-entry-frontmatter-identical",
+          "description": "skills/list is unavailable.",
+          "status": "SKIPPED",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "errorMessage": "skills/list failed with code -32601: Method not found: skills/list. A server declaring the extension MUST implement it."
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "description": "Every JSON-RPC message the implementation sent is valid per the spec JSON schema for the negotiated spec version",
+          "status": "SUCCESS",
+          "timestamp": "2026-10-27T07:19:39.300Z",
+          "specReferences": [
+            {
+              "id": "MCP-Schema",
+              "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/schema/draft/schema.json"
+            }
+          ],
+          "details": {
+            "messagesValidated": 4,
+            "violations": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "sep-2640-skills-manifest",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "entrypoint": "scenarios/sep-2640-skills-manifest/src/index.ts",
+      "sourceSha256": "374f9f7fed783e5dc64a52bc0131e0575eadaa9fd9ab7ebf4aef956c3eee4b97",
+      "checksPath": ".cache/conformance/sep-2640-skills-manifest-2026-07-28-29801/server-sep-2640-skills-manifest-2026-10-27T07-19-40-124Z/checks.json",
+      "counts": {
+        "SUCCESS": 6
+      },
+      "checks": [
+        {
+          "id": "sep-2640-skillmd-mimetype",
+          "name": "sep-2640-skillmd-mimetype",
+          "description": "SKILL.md resource mimeType SHOULD be text/markdown.",
+          "status": "SUCCESS",
+          "timestamp": "2026-10-27T07:19:40.198Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "details": {
+            "uri": "skill://conformance/manifest-fixture/SKILL.md",
+            "mimeType": "text/markdown"
+          }
+        },
+        {
+          "id": "sep-2640-final-segment-equals-name",
+          "name": "sep-2640-final-segment-equals-name",
+          "description": "The final <skill-path> segment of the SKILL.md URI MUST equal the frontmatter name.",
+          "status": "SUCCESS",
+          "timestamp": "2026-10-27T07:19:40.200Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "details": {
+            "uri": "skill://conformance/manifest-fixture/SKILL.md",
+            "name": "manifest-fixture"
+          }
+        },
+        {
+          "id": "sep-2640-skillmd-metadata-name",
+          "name": "sep-2640-skillmd-metadata-name",
+          "description": "The SKILL.md resource name SHOULD be set from the frontmatter name.",
+          "status": "SUCCESS",
+          "timestamp": "2026-10-27T07:19:40.200Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "details": {
+            "name": "manifest-fixture"
+          }
+        },
+        {
+          "id": "sep-2640-skillmd-metadata-description",
+          "name": "sep-2640-skillmd-metadata-description",
+          "description": "The SKILL.md resource description SHOULD be set from the frontmatter description.",
+          "status": "SUCCESS",
+          "timestamp": "2026-10-27T07:19:40.200Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "details": {
+            "description": "A skill used to verify manifest conformance."
+          }
+        },
+        {
+          "id": "sep-2640-meta-prefix",
+          "name": "sep-2640-meta-prefix",
+          "description": "When _meta keys are used for skill resources, they SHOULD use the io.modelcontextprotocol.skills/ reverse-domain prefix.",
+          "status": "SUCCESS",
+          "timestamp": "2026-10-27T07:19:40.200Z",
+          "specReferences": [
+            {
+              "id": "SEP-2640",
+              "url": "https://modelcontextprotocol.io/seps/2640-skills-extension#specification"
+            }
+          ],
+          "details": {
+            "note": "skill resource exposes no _meta keys"
+          }
+        },
+        {
+          "id": "wire-schema-valid",
+          "name": "WireSchemaValid",
+          "description": "Every JSON-RPC message the implementation sent is valid per the spec JSON schema for the negotiated spec version",
+          "status": "SUCCESS",
+          "timestamp": "2026-10-27T07:19:40.200Z",
+          "specReferences": [
+            {
+              "id": "MCP-Schema",
+              "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/schema/draft/schema.json"
+            }
+          ],
+          "details": {
+            "messagesValidated": 6,
+            "violations": []
+          }
+        }
+      ]
+    }
+  ],
+  "historicalCombinedStackInventory": {
+    "upstream": 65,
+    "fixtures": 61,
+    "unavailable": 4,
+    "unclassified": []
+  },
+  "reviewCorrections": {
+    "outcomeClassification": "Ignore wire-schema-valid when determining whether scenario behavior was skipped. Reject missing behavioral evidence and unknown statuses; preserve failed checks and process exits.",
+    "regressionTests": {
+      "newCases": 5,
+      "failedBefore": 5,
+      "passedAfter": 5,
+      "totalUnitTestsAfter": 14
+    },
+    "inventoryCheckedInCI": true,
+    "knownGaps": [
+      "skills/get is not exercised because the official enumeration scenario stops after skills/list fails.",
+      "Optional custom _meta preservation is not exercised.",
+      "Enumeration and directory methods are unavailable; default conformance CI remains red."
+    ],
+    "directGetAvailability": {
+      "fixture": "scenarios/sep-2640-skills-enumeration/src/index.ts",
+      "effect": "4.0.6",
+      "protocol": "2026-07-28",
+      "results": [
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": "server/discover",
+            "method": "server/discover",
+            "params": {
+              "_meta": {
+                "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+                "io.modelcontextprotocol/clientInfo": {
+                  "name": "swarm-skills-get-probe",
+                  "version": "1.0.0"
+                },
+                "io.modelcontextprotocol/clientCapabilities": {}
+              }
+            }
+          },
+          "httpStatus": 200,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": "server/discover",
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: sep-2640-skills-enumeration",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "complete",
+              "ttlMs": 0,
+              "cacheScope": "private",
+              "supportedVersions": ["2026-07-28"],
+              "capabilities": {
+                "logging": {},
+                "completions": {},
+                "resources": {
+                  "subscribe": true,
+                  "listChanged": true
+                },
+                "extensions": {
+                  "io.modelcontextprotocol/skills": {}
+                }
+              }
+            }
+          },
+          "requestHeaders": {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text/event-stream",
+            "MCP-Protocol-Version": "2026-07-28",
+            "Mcp-Method": "server/discover"
+          }
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": "resources/read",
+            "method": "resources/read",
+            "params": {
+              "uri": "skill://conformance/enumeration-fixture/SKILL.md",
+              "_meta": {
+                "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+                "io.modelcontextprotocol/clientInfo": {
+                  "name": "swarm-skills-get-probe",
+                  "version": "1.0.0"
+                },
+                "io.modelcontextprotocol/clientCapabilities": {}
+              }
+            }
+          },
+          "httpStatus": 200,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": "resources/read",
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: sep-2640-skills-enumeration",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "complete",
+              "ttlMs": 0,
+              "cacheScope": "private",
+              "contents": [
+                {
+                  "uri": "skill://conformance/enumeration-fixture/SKILL.md",
+                  "text": "---\nname: enumeration-fixture\ndescription: A skill used to verify enumeration conformance.\n---\n\nFollow the instructions in this fixture skill.\n"
+                }
+              ]
+            }
+          },
+          "requestHeaders": {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text/event-stream",
+            "MCP-Protocol-Version": "2026-07-28",
+            "Mcp-Method": "resources/read",
+            "Mcp-Name": "skill://conformance/enumeration-fixture/SKILL.md"
+          }
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": "skills/get",
+            "method": "skills/get",
+            "params": {
+              "uri": "skill://conformance/enumeration-fixture/SKILL.md",
+              "_meta": {
+                "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+                "io.modelcontextprotocol/clientInfo": {
+                  "name": "swarm-skills-get-probe",
+                  "version": "1.0.0"
+                },
+                "io.modelcontextprotocol/clientCapabilities": {}
+              }
+            }
+          },
+          "httpStatus": 404,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": "skills/get",
+            "error": {
+              "code": -32601,
+              "message": "Method not found: skills/get",
+              "_tag": "MethodNotFound"
+            }
+          },
+          "requestHeaders": {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text/event-stream",
+            "MCP-Protocol-Version": "2026-07-28",
+            "Mcp-Method": "skills/get"
+          }
+        }
+      ],
+      "interpretation": "The successful discover and manifest read establish a live valid fixture. skills/get availability is tested directly; no successful retrieval contract or unknown-URI semantics are covered."
+    }
+  }
+}

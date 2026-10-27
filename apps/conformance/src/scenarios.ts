@@ -7,6 +7,7 @@ export interface Scenario {
   readonly name: string;
   readonly protocolVersions: ReadonlyArray<ProtocolVersion>;
   readonly conformanceName?: string;
+  readonly extension?: string;
 }
 
 const allProtocolVersions: ReadonlyArray<ProtocolVersion> =
@@ -32,6 +33,15 @@ const elicitationProtocolVersions: ReadonlyArray<ProtocolVersion> = [
 ];
 
 const baseScenarios: ReadonlyArray<Scenario> = [
+  ...[
+    "sep-2640-skills-directory",
+    "sep-2640-skills-enumeration",
+    "sep-2640-skills-manifest",
+  ].map((name) => ({
+    name,
+    extension: "io.modelcontextprotocol/skills",
+    protocolVersions: ["2026-07-28"] as ReadonlyArray<ProtocolVersion>,
+  })),
   {
     name: "server-initialize",
     protocolVersions: statefulProtocolVersions,
@@ -306,6 +316,35 @@ export const scenarios: ReadonlyArray<Scenario> = baseScenarios.flatMap(
 );
 
 export const scenarioNames = scenarios.map((scenario) => scenario.name);
+
+export const unavailableScenarios: Readonly<Record<string, string>> = {
+  "tasks-lifecycle":
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
+  "tasks-capability-negotiation":
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
+  "tasks-wire-fields":
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
+  "tasks-request-state-removal":
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
+  "tasks-mrtr-input":
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
+  "tasks-request-headers":
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
+  "tasks-dispatch-and-envelope":
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
+  "tasks-status-notifications":
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
+  "tasks-required-task-error":
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
+  "tasks-mrtr-composition":
+    "McpTasks.toolkit creates the task before running the handler. The public API cannot return InputRequired before creating a task and then escalate the final MRTR round to CreateTaskResult.",
+  "resources-subscribe":
+    "McpServer.layerHttp does not expose resource subscription registration for the stateful adapters.",
+  "resources-unsubscribe":
+    "McpServer.layerHttp does not expose resource subscription registration for the stateful adapters.",
+  "server-sse-polling":
+    "McpServer.layerHttp does not expose POST stream disconnection, event replay, or Last-Event-ID resumption for test_reconnection.",
+};
 
 export const findScenario = (name: string) =>
   scenarios.find((scenario) => scenario.name === name);
