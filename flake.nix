@@ -20,13 +20,15 @@
           default = pkgs.mkShell {
             packages = with pkgs; [
               bun
-              nodejs_22
+              nodejs_24
+              pnpm
               git
             ];
 
             shellHook = ''
               echo "Bun $(bun --version)"
               echo "Node $(node --version)"
+              echo "pnpm ${pkgs.pnpm.version}"
             '';
           };
         }

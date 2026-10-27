@@ -1,6 +1,6 @@
 import { Console, Data, Effect, Option } from "effect";
-import { Argument, Command, Flag } from "effect/unstable/cli";
-import { ChildProcess } from "effect/unstable/process";
+import { Argument, Command, Flag } from "effect/cli";
+import { ChildProcess } from "effect/process";
 import { entrypointFor, findScenario, scenarioNames } from "../scenarios";
 import { supportedProtocolVersions } from "@repo/mcp-fixture";
 

@@ -1,7 +1,7 @@
 import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Effect, Layer, Schema } from "effect";
-import { McpServer } from "effect/unstable/ai";
-import { HttpRouter, HttpServer } from "effect/unstable/http";
+import { McpServer } from "effect/ai";
+import { HttpRouter, HttpServer } from "effect/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
 const PromptWithCompletions = McpServer.prompt({

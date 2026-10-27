@@ -1,7 +1,7 @@
 import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Context, Effect, Layer, Option, Schema } from "effect";
-import { McpSchema, McpServer } from "effect/unstable/ai";
-import { HttpRouter, HttpServer } from "effect/unstable/http";
+import { McpSchema, McpServer } from "effect/ai";
+import { HttpRouter, HttpServer } from "effect/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
 const Sep1330EnumsTool = new McpSchema.Tool({

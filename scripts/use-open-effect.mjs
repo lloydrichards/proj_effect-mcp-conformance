@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { spawnSync } from "node:child_process";
 
@@ -13,18 +13,34 @@ const lockfilePath = resolve(repository, "bun.lock");
 
 const run = (command, arguments_, cwd) => {
   const result = spawnSync(command, arguments_, { cwd, stdio: "inherit" });
+  if (result.error !== undefined) {
+    const hint =
+      result.error.code === "ENOENT"
+        ? ` Check that ${command} is installed and available on PATH, and that ${cwd} exists.`
+        : "";
+    throw new Error(
+      `Could not start ${command} in ${cwd}: ${result.error.message}.${hint}`,
+      { cause: result.error },
+    );
+  }
   if (result.status !== 0) {
     process.exitCode = result.status ?? 1;
-    throw new Error(`${command} ${arguments_.join(" ")} failed`);
+    throw new Error(
+      `${command} ${arguments_.join(" ")} failed in ${cwd} ` +
+        (result.signal !== null
+          ? `with signal ${result.signal}`
+          : `with exit code ${result.status}`),
+    );
   }
 };
 
-const packedPackage = (prefix) => {
-  const filename = readdirSync(packDirectory).find(
-    (entry) => entry.startsWith(prefix) && entry.endsWith(".tgz"),
+const packedPackage = (packageDirectory) => {
+  const { name, version } = JSON.parse(
+    readFileSync(resolve(openEffect, packageDirectory, "package.json"), "utf8"),
   );
-  if (filename === undefined) {
-    throw new Error(`Missing packed package ${prefix}*.tgz`);
+  const filename = `${name.replace(/^@/, "").replaceAll("/", "-")}-${version}.tgz`;
+  if (!existsSync(resolve(packDirectory, filename))) {
+    throw new Error(`Missing packed package ${filename}`);
   }
   return resolve(packDirectory, filename);
 };
@@ -64,9 +80,9 @@ const lockfile = readFileSync(lockfilePath);
 try {
   const manifest = JSON.parse(packageJson);
   manifest.overrides = {
-    "@effect/platform-bun": `file:${packedPackage("effect-platform-bun-")}`,
-    "@effect/platform-node-shared": `file:${packedPackage("effect-platform-node-shared-")}`,
-    effect: `file:${packedPackage("effect-")}`,
+    "@effect/platform-bun": `file:${packedPackage("packages/platform/bun")}`,
+    "@effect/platform-node-shared": `file:${packedPackage("packages/platform/node-shared")}`,
+    effect: `file:${packedPackage("packages/effect")}`,
   };
   writeFileSync(packageJsonPath, `${JSON.stringify(manifest, null, 2)}\n`);
   run("bun", ["install", "--force"], repository);

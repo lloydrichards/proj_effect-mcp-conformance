@@ -1,5 +1,5 @@
 import { Config, Effect, Layer } from "effect";
-import { McpProtocol, McpServer } from "effect/unstable/ai";
+import { McpProtocol, McpServer } from "effect/ai";
 
 export const supportedProtocolVersions = [
   "2024-11-05",
