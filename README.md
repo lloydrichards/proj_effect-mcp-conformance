@@ -1,12 +1,12 @@
 # Effect MCP conformance fixtures
 
-This repository is an executable compatibility map for Effect's MCP server.
+This repository is an executable compatibility map for Effect's MCP server and client.
 It runs the official [MCP conformance runner](https://github.com/modelcontextprotocol/conformance)
-against small, purpose-built Effect servers so that a pass or failure can be
+against small, purpose-built Effect fixtures so that a pass or failure can be
 attributed to one protocol behavior at a time.
 
 It is not a sample application. Each conformance scenario has an independent
-server app that remains the causal baseline. Suffixed variants such as
+server or client app that remains the causal baseline. Suffixed variants such as
 `tools-list-II` deliberately implement the same contract through a different
 Effect API or runtime path. That lets the same upstream check probe more than
 one implementation without changing its official scenario name.
@@ -35,6 +35,9 @@ The repository has three deliberate boundaries:
     ├── tools-list-II/          # alternate implementation of tools-list
     ├── tools-list-III/
     ├── logging-set-level/
+    ├── client-tools-call/      # independent MCP client workload
+    ├── client-tools-call-II/   # Layer variant
+    ├── client-tools-call-III/  # toolkit variant
     └── ...
 ```
 
@@ -49,7 +52,10 @@ This is where each new conformance behavior belongs.
 
 [`apps/conformance/src/scenarios.ts`](./apps/conformance/src/scenarios.ts)
 maps each suffixed row to its official conformance scenario and applicable
-protocols. Every row launches its matching `scenarios/<name>/src/index.ts`.
+protocols. Every server row launches its matching `scenarios/<name>/src/index.ts`.
+[`apps/conformance/src/matrix/scenarios.ts`](./apps/conformance/src/matrix/scenarios.ts)
+combines those server definitions with the client definitions. Each matrix row
+records its direction, upstream name, entrypoint, and applicable protocols.
 
 ## Setup
 
@@ -112,6 +118,10 @@ To select one implementation as well:
 ```sh
 bun run conformance:client http-custom-headers layer
 bun run conformance:client tools_call toolkit
+
+# Select an independent entrypoint by its folder name.
+bun run conformance:client client-http-standard-headers-II
+bun run conformance:client client-tools-call-III
 ```
 
 The command builds each selected entrypoint into its own Bun bundle and
@@ -125,9 +135,13 @@ have 26 applicable implementation/protocol combinations across
 | `layer`        | `McpClient.layerHttp`, concurrent tool, prompt, and resource probes  | 10           |
 | `toolkit`      | `McpClient.toolkit` with prefixed tool names and model-tool dispatch | 6            |
 
-The independent entrypoints live in `apps/conformance/src/client.ts` and
-`apps/conformance/src/clients/`. Only runner configuration is shared among
-the alternatives. Discovery returns complete arrays, and prompt retrieval uses
+Each independent entrypoint lives in `scenarios/client-*/src/index.ts`, with
+its own workspace package. The unsuffixed fixture uses direct constructors,
+`-II` uses Layers, and `-III` uses toolkit dispatch where applicable. These
+20 apps preserve the eight official scenarios and 26 protocol combinations.
+[`apps/conformance/src/matrix/scenarios.ts`](./apps/conformance/src/matrix/scenarios.ts) maps each local
+name to the exact upstream scenario and its supported protocols. Shared runner
+configuration lives in `packages/mcp-fixture/src/client.ts`. Discovery returns complete arrays, and prompt retrieval uses
 a discovered prompt definition. The standard-header scenario exercises tool
 calls, resource reads, and prompt retrieval. The toolkit variant checks tool
 calls, JSON Schema preservation, and custom parameter headers.
@@ -138,7 +152,7 @@ this matrix because their public client APIs were removed. Unsupported
 selections fail explicitly.
 
 Each run saves the bundle, build log, environment metadata, runner logs,
-raw checks, and `summary.json` under `.cache/client-conformance/`.
+raw checks, and `summary.json` under `.cache/conformance/<timestamp>-client/`.
 Client process errors and missing checker output fail the run even when
 observed checks pass. OAuth, automatic SSE retries, skills extensions,
 resource templates, and older protocol revisions are outside this fixture's
@@ -163,8 +177,17 @@ bun run conformance:scenario tools-list
 bun run conformance:scenario tools-call-image
 ```
 
-Run the full adapter matrix. Each cell starts an isolated server with exactly
-one configured adapter, then runs the matching upstream conformance scenario:
+Run the matrices through the same CLI and table renderer:
+
+| Command                      | Rows                                   |
+| ---------------------------- | -------------------------------------- |
+| `bun run conformance:all`    | Every server and client implementation |
+| `bun run conformance:server` | Server implementations only            |
+| `bun run conformance:client` | Client implementations only            |
+
+Server cells start an isolated Effect server with one configured adapter.
+Client cells launch the selected Effect client against the official runner's
+HTTP server. Each implementation has its own row, including suffixed variants.
 
 ```sh
 bun run conformance:all
@@ -190,11 +213,15 @@ scenario | v2025-11-25 | v2025-06-18 | v2025-03-26 | v2024-11-05
 ping     | PASS        | PASS        | PASS        | PASS
 ```
 
-`FAIL` means the conformance runner exited unsuccessfully; `TIMEOUT` means the
-cell exceeded the ten-second limit (use `--timeout <milliseconds>` to adjust
-it); and `SKIP` means the scenario requires a capability absent from that
-adapter. The local applicability matrix is derived from the actual Effect
-adapter behavior, rather than only the upstream runner's dated labels.
+`PASS` requires a successful process and at least one successful check, with
+no failed checks. `FAIL` includes process errors, failed checks, and missing or
+invalid checker output. `TIMEOUT` means the cell exceeded the default 30-second
+limit; use `--timeout <milliseconds>` to adjust it. `SKIP` means the runner
+skipped every behavioral check. `--` marks an inapplicable protocol and does
+not contribute to the summary total.
+
+All three commands save logs, raw checks, environment metadata, and a structured
+summary under `.cache/conformance/<timestamp>-<all|client|server>/`.
 For a fast local check, limit the matrix to one scenario:
 
 ```sh
@@ -209,8 +236,8 @@ bun run conformance:scenario ping --verbose
 
 ### Protocol selection
 
-Every run performs an explicit `initialize` probe before the conformance
-runner starts. It reports the protocol offered by the probe, the ordered
+Legacy server runs perform an explicit `initialize` probe before the conformance
+runner starts. Modern server runs select the stateless protocol directly. It reports the protocol offered by the probe, the ordered
 adapter list configured in the fixture, and the adapter Effect actually
 negotiated.
 

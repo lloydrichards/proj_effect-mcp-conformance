@@ -1,3 +1,4 @@
+import { repository } from "../repository";
 import { Console, Data, Effect, Option } from "effect";
 import { Argument, Command, Flag } from "effect/cli";
 import { ChildProcess } from "effect/process";
@@ -12,8 +13,6 @@ const protocol = Flag.Literals("protocol", supportedProtocolVersions).pipe(
   Flag.optional,
   Flag.withDescription("Protocol adapter configured for the server"),
 );
-
-const repository = new URL("../../../..", import.meta.url).pathname;
 
 class UnknownScenario extends Data.TaggedError("UnknownScenario")<{
   readonly scenario: string;

@@ -1,3 +1,4 @@
+import { repository } from "../repository";
 import { Console, Data, Effect, Option } from "effect";
 import { Argument, Command, Flag } from "effect/cli";
 import { ChildProcess } from "effect/process";
@@ -43,7 +44,10 @@ const fallbackProtocol = Flag.Literals(
   Flag.withDescription("Fallback adapter used by fallback protocol cases"),
 );
 
-const repository = new URL("../../../..", import.meta.url).pathname;
+const outputDir = Flag.String("output-dir").pipe(
+  Flag.optional,
+  Flag.withDescription("Directory for the official runner's raw checks"),
+);
 
 class UnknownScenario extends Data.TaggedError("UnknownScenario")<{
   readonly scenario: string;
@@ -165,8 +169,15 @@ const protocolProbe = (url: string, offeredProtocol: ProtocolVersion) =>
 
 export const run = Command.make(
   "run",
-  { scenario, verbose, protocol, protocolCase, fallbackProtocol },
-  ({ scenario, verbose, protocol, protocolCase, fallbackProtocol }) =>
+  { scenario, verbose, protocol, protocolCase, fallbackProtocol, outputDir },
+  ({
+    scenario,
+    verbose,
+    protocol,
+    protocolCase,
+    fallbackProtocol,
+    outputDir,
+  }) =>
     Effect.scoped(
       Effect.gen(function* () {
         const scenarioDefinition = findScenario(scenario);
@@ -242,6 +253,10 @@ export const run = Command.make(
             ...(expectedProtocol === "2026-07-28"
               ? ["--spec-version", expectedProtocol]
               : []),
+            ...Option.match(outputDir, {
+              onNone: () => [],
+              onSome: (path) => ["--output-dir", path],
+            }),
             ...(Option.getOrElse(verbose, () => false) ? ["--verbose"] : []),
           ],
           {

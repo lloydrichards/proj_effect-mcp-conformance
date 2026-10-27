@@ -1,0 +1,4249 @@
+{
+  "runs": {
+    "client": {
+      "directory": ".cache/conformance/2026-10-27T14-00-50.609Z-client",
+      "rows": 20,
+      "cells": 26,
+      "statuses": {
+        "PASS": 26
+      },
+      "successfulChecks": 177,
+      "skippedChecks": 10
+    },
+    "server": {
+      "directory": ".cache/conformance/2026-10-27T14-01-29.906Z-server",
+      "rows": 89,
+      "cells": 275,
+      "statuses": {
+        "PASS": 275
+      },
+      "successfulChecks": 728,
+      "skippedChecks": 8
+    },
+    "all": {
+      "directory": ".cache/conformance/2026-10-27T14-08-40.193Z-all",
+      "rows": 109,
+      "cells": 301,
+      "statuses": {
+        "PASS": 301
+      },
+      "successfulChecks": 905,
+      "skippedChecks": 18
+    }
+  },
+  "environment": {
+    "selection": "all",
+    "bun": "1.4.0",
+    "effect": "4.0.6",
+    "runner": "0.2.0-alpha.12",
+    "clientSourceSha256": "518ceb1ca0c803a2bf4ed5fb5e2701332e8621e66ad58b95516a96c6c13a8a6f",
+    "fixtures": [
+      {
+        "name": "client-initialize",
+        "entrypoint": "scenarios/client-initialize/src/index.ts",
+        "sha256": "c65bc20ad16a1d0443c8be5a6996d2bee4e7775eb0de1047b3c1f170b76836f9"
+      },
+      {
+        "name": "client-initialize-II",
+        "entrypoint": "scenarios/client-initialize-II/src/index.ts",
+        "sha256": "3d4e5213252ae77994c4bea190428381451b5c96c19fd270b0ceb3d0e2decea1"
+      },
+      {
+        "name": "client-tools-call",
+        "entrypoint": "scenarios/client-tools-call/src/index.ts",
+        "sha256": "7fdef060093d9ee0fd574fe50dfbd0753aa77604eee4a3cb6a220b85c4f6e459"
+      },
+      {
+        "name": "client-tools-call-II",
+        "entrypoint": "scenarios/client-tools-call-II/src/index.ts",
+        "sha256": "8d500c367e23d9d1966f86bdd611a6145f0bda36f2816e6fccfe3ae4bcf8c99d"
+      },
+      {
+        "name": "client-tools-call-III",
+        "entrypoint": "scenarios/client-tools-call-III/src/index.ts",
+        "sha256": "1b37abe6ac306dcc8998c440738ce352eefc42af3d1077d15f7974671455cc08"
+      },
+      {
+        "name": "client-json-schema-2020-12-preservation",
+        "entrypoint": "scenarios/client-json-schema-2020-12-preservation/src/index.ts",
+        "sha256": "da40c38092ae14340491c6975bd40d3c4101f1c3dfdba09c92ddc5de5429576d"
+      },
+      {
+        "name": "client-json-schema-2020-12-preservation-II",
+        "entrypoint": "scenarios/client-json-schema-2020-12-preservation-II/src/index.ts",
+        "sha256": "576779e700c7be854162a4982f5b2badd977e97a25791891b14252e91173ad3e"
+      },
+      {
+        "name": "client-json-schema-2020-12-preservation-III",
+        "entrypoint": "scenarios/client-json-schema-2020-12-preservation-III/src/index.ts",
+        "sha256": "10d9962e44cbe936ea5b5743a3df12fa4304a93236808703ebf792e0224df456"
+      },
+      {
+        "name": "client-request-metadata",
+        "entrypoint": "scenarios/client-request-metadata/src/index.ts",
+        "sha256": "c482cd7b4de6ec43124f1a11a4f6b57e017b7cbdced68d951e7e4d68a4df97af"
+      },
+      {
+        "name": "client-request-metadata-II",
+        "entrypoint": "scenarios/client-request-metadata-II/src/index.ts",
+        "sha256": "bbe1718a8080b0d95737c089c7c16a0080a0ab533e7a0be58a4a74c8abc1c4e5"
+      },
+      {
+        "name": "client-http-standard-headers",
+        "entrypoint": "scenarios/client-http-standard-headers/src/index.ts",
+        "sha256": "6bcbc89def2fbc038c5cad35b577c06121bacf218771e124c20e6f8a7ca03801"
+      },
+      {
+        "name": "client-http-standard-headers-II",
+        "entrypoint": "scenarios/client-http-standard-headers-II/src/index.ts",
+        "sha256": "2806f7ba4c3aa35fcd5b3eddd29125f6bc33b36cdb42215850043f93a24d94ab"
+      },
+      {
+        "name": "client-http-custom-headers",
+        "entrypoint": "scenarios/client-http-custom-headers/src/index.ts",
+        "sha256": "89588656b6d4821233fae5ea801f79c92f24d96c6dbe5cfd394d0ec809b0e5cd"
+      },
+      {
+        "name": "client-http-custom-headers-II",
+        "entrypoint": "scenarios/client-http-custom-headers-II/src/index.ts",
+        "sha256": "0a6131201c1a9bb341f8111ff396e81b78e1c2197181d74e81e51aa1c48ced52"
+      },
+      {
+        "name": "client-http-custom-headers-III",
+        "entrypoint": "scenarios/client-http-custom-headers-III/src/index.ts",
+        "sha256": "f2ccbfb9eaa08fff5390c912439e1ba48b8121f2d2fa5202ee24c1c6006f8dbc"
+      },
+      {
+        "name": "client-http-invalid-tool-headers",
+        "entrypoint": "scenarios/client-http-invalid-tool-headers/src/index.ts",
+        "sha256": "4f885f4b327a00fb37809498bd56a741cc448381a7570e7837c619482edf7e85"
+      },
+      {
+        "name": "client-http-invalid-tool-headers-II",
+        "entrypoint": "scenarios/client-http-invalid-tool-headers-II/src/index.ts",
+        "sha256": "0a7f76a21651ee2cd6c3682c6a5db45eb74d6ec869db67cc29fa62780b28ccbb"
+      },
+      {
+        "name": "client-json-schema-ref-no-deref",
+        "entrypoint": "scenarios/client-json-schema-ref-no-deref/src/index.ts",
+        "sha256": "703f6595971fef6b117703c7cf6766302235755a7d8adf8b26efc74f39348bfa"
+      },
+      {
+        "name": "client-json-schema-ref-no-deref-II",
+        "entrypoint": "scenarios/client-json-schema-ref-no-deref-II/src/index.ts",
+        "sha256": "1a171a13b55282cdb15d2cf8700272d54a3c4c362afb79f0628aaf72b4a11d2b"
+      },
+      {
+        "name": "client-json-schema-ref-no-deref-III",
+        "entrypoint": "scenarios/client-json-schema-ref-no-deref-III/src/index.ts",
+        "sha256": "2feca5a22bea06e15306a2c5e8c01bb38e8b28a0637c069358cdf699ce27fcbe"
+      }
+    ]
+  },
+  "combined": {
+    "rows": [
+      {
+        "scenario": "server-initialize",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": " -- "
+        }
+      },
+      {
+        "scenario": "server-session-lifecycle",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": " -- "
+        }
+      },
+      {
+        "scenario": "server-stateless",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "server-stateless-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "server-sse-multiple-streams",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "logging-set-level",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": " -- "
+        }
+      },
+      {
+        "scenario": "ping",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": " -- "
+        }
+      },
+      {
+        "scenario": "completion-complete",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "completion-complete-II",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "completion-complete-III",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-list",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-list-II",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-list-III",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-list-IV",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-list-V",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-call-simple-text",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-call-simple-text-II",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-call-simple-text-III",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-call-image",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-call-audio",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-call-embedded-resource",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-call-mixed-content",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-call-with-logging",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": " -- "
+        }
+      },
+      {
+        "scenario": "tools-call-with-logging-II",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": " -- "
+        }
+      },
+      {
+        "scenario": "tools-call-error",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-call-with-progress",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-call-with-progress-II",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "tools-call-sampling",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": " -- "
+        }
+      },
+      {
+        "scenario": "tools-call-elicitation",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": " -- "
+        }
+      },
+      {
+        "scenario": "json-schema-2020-12",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "json-schema-2020-12-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "elicitation-sep1034-defaults",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": "PASS",
+          "2026-07-28": " -- "
+        }
+      },
+      {
+        "scenario": "elicitation-sep1330-enums",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": "PASS",
+          "2026-07-28": " -- "
+        }
+      },
+      {
+        "scenario": "resources-list",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "resources-list-II",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "resources-list-III",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "resources-list-IV",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "resources-read-text",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "resources-read-text-II",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "resources-read-text-III",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "resources-read-text-IV",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "resources-read-binary",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "resources-templates-read",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "sep-2164-resource-not-found",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "prompts-list",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "prompts-list-II",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "prompts-list-III",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "prompts-list-IV",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "prompts-get-simple",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "prompts-get-simple-II",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "prompts-get-simple-III",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "prompts-get-simple-IV",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "prompts-get-with-args",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "prompts-get-with-args-II",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "prompts-get-with-args-III",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "prompts-get-embedded-resource",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "prompts-get-with-image",
+        "results": {
+          "2024-11-05": "PASS",
+          "2025-03-26": "PASS",
+          "2025-06-18": "PASS",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "dns-rebinding-protection",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "caching",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "http-header-validation",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "http-header-validation-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "http-custom-header-server-validation",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "http-custom-header-server-validation-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-basic-elicitation",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-basic-elicitation-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-basic-sampling",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-basic-sampling-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-basic-list-roots",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-basic-list-roots-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-request-state",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-request-state-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-multiple-input-requests",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-multiple-input-requests-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-multi-round",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-multi-round-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-missing-input-response",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-missing-input-response-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-non-tool-request",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-result-type",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-result-type-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-unsupported-methods",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-tampered-state",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-tampered-state-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-capability-check",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-capability-check-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-ignore-extra-params",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-ignore-extra-params-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-validate-input",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "input-required-result-validate-input-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-initialize",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": "PASS",
+          "2026-07-28": " -- "
+        }
+      },
+      {
+        "scenario": "client-initialize-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": "PASS",
+          "2026-07-28": " -- "
+        }
+      },
+      {
+        "scenario": "client-tools-call",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-tools-call-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-tools-call-III",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-json-schema-2020-12-preservation",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-json-schema-2020-12-preservation-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-json-schema-2020-12-preservation-III",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": "PASS",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-request-metadata",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-request-metadata-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-http-standard-headers",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-http-standard-headers-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-http-custom-headers",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-http-custom-headers-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-http-custom-headers-III",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-http-invalid-tool-headers",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-http-invalid-tool-headers-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-json-schema-ref-no-deref",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-json-schema-ref-no-deref-II",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      },
+      {
+        "scenario": "client-json-schema-ref-no-deref-III",
+        "results": {
+          "2024-11-05": " -- ",
+          "2025-03-26": " -- ",
+          "2025-06-18": " -- ",
+          "2025-11-25": " -- ",
+          "2026-07-28": "PASS"
+        }
+      }
+    ],
+    "cells": [
+      {
+        "name": "server-initialize",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/server-initialize/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "server-initialize",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/server-initialize/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "server-initialize",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/server-initialize/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "server-initialize",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/server-initialize/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "server-session-lifecycle",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 1,
+        "skipped": 2,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/server-session-lifecycle/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "server-session-lifecycle",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 1,
+        "skipped": 2,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/server-session-lifecycle/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "server-session-lifecycle",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 1,
+        "skipped": 2,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/server-session-lifecycle/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "server-stateless",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 29,
+        "skipped": 1,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/server-stateless/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "server-stateless-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 29,
+        "skipped": 1,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/server-stateless-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "server-sse-multiple-streams",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 1,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/server-sse-multiple-streams/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "logging-set-level",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/logging-set-level/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "logging-set-level",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/logging-set-level/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "logging-set-level",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/logging-set-level/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "logging-set-level",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/logging-set-level/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "ping",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/ping/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "ping",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/ping/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "ping",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/ping/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "ping",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/ping/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete-II",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete-II/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete-II",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete-II/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete-II",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete-II/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete-II",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete-III",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete-III/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete-III",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete-III/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete-III",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete-III/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete-III",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete-III/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "completion-complete-III",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/completion-complete-III/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-II",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-II/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-II",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-II/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-II",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-II/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-II",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-III",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-III/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-III",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-III/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-III",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-III/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-III",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-III/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-III",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-III/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-IV",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-IV/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-IV",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-IV/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-IV",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-IV/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-IV",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-IV/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-IV",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 4,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-IV/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-V",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-V/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-V",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-V/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-V",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-V/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-V",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-V/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-list-V",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 4,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-list-V/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text-II",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text-II/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text-II",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text-II/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text-II",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text-II/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text-II",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text-III",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text-III/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text-III",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text-III/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text-III",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text-III/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text-III",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text-III/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-simple-text-III",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-simple-text-III/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-image",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-image/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-image",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-image/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-image",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-image/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-image",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-image/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-image",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-image/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-audio",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-audio/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-audio",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-audio/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-audio",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-audio/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-audio",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-audio/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-embedded-resource",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-embedded-resource/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-embedded-resource",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-embedded-resource/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-embedded-resource",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-embedded-resource/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-embedded-resource",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-embedded-resource/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-embedded-resource",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-embedded-resource/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-mixed-content",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-mixed-content/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-mixed-content",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-mixed-content/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-mixed-content",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-mixed-content/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-mixed-content",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-mixed-content/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-mixed-content",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-mixed-content/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-logging",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-logging/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-logging",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-logging/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-logging",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-logging/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-logging",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-logging/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-logging-II",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-logging-II/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-logging-II",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-logging-II/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-logging-II",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-logging-II/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-logging-II",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-logging-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-error",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-error/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-error",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-error/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-error",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-error/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-error",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-error/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-error",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-error/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-progress",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-progress/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-progress",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-progress/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-progress",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-progress/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-progress",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-progress/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-progress",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-progress/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-progress-II",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-progress-II/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-progress-II",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-progress-II/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-progress-II",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-progress-II/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-progress-II",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-progress-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-with-progress-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-with-progress-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-sampling",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-sampling/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-sampling",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-sampling/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-sampling",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-sampling/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-sampling",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-sampling/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-elicitation",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-elicitation/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "tools-call-elicitation",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/tools-call-elicitation/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "json-schema-2020-12",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 8,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/json-schema-2020-12/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "json-schema-2020-12",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 8,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/json-schema-2020-12/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "json-schema-2020-12-II",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 8,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/json-schema-2020-12-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "json-schema-2020-12-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 8,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/json-schema-2020-12-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "elicitation-sep1034-defaults",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 6,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/elicitation-sep1034-defaults/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "elicitation-sep1330-enums",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 6,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/elicitation-sep1330-enums/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-II",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-II/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-II",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-II/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-II",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-II/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-II",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-III",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-III/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-III",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-III/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-III",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-III/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-III",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-III/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-III",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-III/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-IV",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-IV/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-IV",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-IV/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-IV",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-IV/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-IV",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-IV/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-list-IV",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-list-IV/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-II",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-II/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-II",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-II/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-II",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-II/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-II",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-III",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-III/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-III",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-III/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-III",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-III/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-III",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-III/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-III",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-III/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-IV",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-IV/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-IV",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-IV/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-IV",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-IV/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-IV",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-IV/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-text-IV",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-text-IV/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-binary",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-binary/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-binary",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-binary/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-binary",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-binary/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-binary",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-binary/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-read-binary",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-read-binary/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-templates-read",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-templates-read/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-templates-read",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-templates-read/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-templates-read",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-templates-read/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-templates-read",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-templates-read/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "resources-templates-read",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/resources-templates-read/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "sep-2164-resource-not-found",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 4,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/sep-2164-resource-not-found/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-II",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-II/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-II",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-II/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-II",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-II/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-II",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-III",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-III/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-III",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-III/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-III",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-III/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-III",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-III/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-III",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-III/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-IV",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-IV/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-IV",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-IV/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-IV",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-IV/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-IV",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-IV/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-list-IV",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-list-IV/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-II",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-II/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-II",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-II/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-II",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-II/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-II",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-III",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-III/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-III",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-III/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-III",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-III/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-III",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-III/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-III",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-III/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-IV",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-IV/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-IV",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-IV/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-IV",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-IV/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-IV",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-IV/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-simple-IV",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-simple-IV/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args-II",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args-II/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args-II",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args-II/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args-II",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args-II/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args-II",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args-III",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args-III/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args-III",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args-III/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args-III",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args-III/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args-III",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args-III/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-args-III",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-args-III/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-embedded-resource",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-embedded-resource/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-embedded-resource",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-embedded-resource/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-embedded-resource",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-embedded-resource/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-embedded-resource",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-embedded-resource/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-embedded-resource",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-embedded-resource/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-image",
+        "direction": "server",
+        "protocol": "2024-11-05",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-image/2024-11-05",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-image",
+        "direction": "server",
+        "protocol": "2025-03-26",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-image/2025-03-26",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-image",
+        "direction": "server",
+        "protocol": "2025-06-18",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-image/2025-06-18",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-image",
+        "direction": "server",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-image/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "prompts-get-with-image",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/prompts-get-with-image/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "dns-rebinding-protection",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/dns-rebinding-protection/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "caching",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 8,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/caching/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "http-header-validation",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 14,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/http-header-validation/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "http-header-validation-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 14,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/http-header-validation-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "http-custom-header-server-validation",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 10,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/http-custom-header-server-validation/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "http-custom-header-server-validation-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 10,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/http-custom-header-server-validation-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-basic-elicitation",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-basic-elicitation/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-basic-elicitation-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-basic-elicitation-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-basic-sampling",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-basic-sampling/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-basic-sampling-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-basic-sampling-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-basic-list-roots",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-basic-list-roots/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-basic-list-roots-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-basic-list-roots-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-request-state",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-request-state/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-request-state-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-request-state-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-multiple-input-requests",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-multiple-input-requests/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-multiple-input-requests-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-multiple-input-requests-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-multi-round",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 4,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-multi-round/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-multi-round-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 4,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-multi-round-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-missing-input-response",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-missing-input-response/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-missing-input-response-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-missing-input-response-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-non-tool-request",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-non-tool-request/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-result-type",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-result-type/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-result-type-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-result-type-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-unsupported-methods",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-unsupported-methods/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-tampered-state",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-tampered-state/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-tampered-state-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-tampered-state-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-capability-check",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-capability-check/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-capability-check-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-capability-check-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-ignore-extra-params",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-ignore-extra-params/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-ignore-extra-params-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-ignore-extra-params-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-validate-input",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-validate-input/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "input-required-result-validate-input-II",
+        "direction": "server",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 3,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/input-required-result-validate-input-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-initialize",
+        "direction": "client",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 1,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-initialize/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "client-initialize-II",
+        "direction": "client",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 1,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-initialize-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "client-tools-call",
+        "direction": "client",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-tools-call/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "client-tools-call",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-tools-call/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-tools-call-II",
+        "direction": "client",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-tools-call-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "client-tools-call-II",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-tools-call-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-tools-call-III",
+        "direction": "client",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-tools-call-III/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "client-tools-call-III",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 2,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-tools-call-III/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-json-schema-2020-12-preservation",
+        "direction": "client",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 9,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-json-schema-2020-12-preservation/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "client-json-schema-2020-12-preservation",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 9,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-json-schema-2020-12-preservation/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-json-schema-2020-12-preservation-II",
+        "direction": "client",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 9,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-json-schema-2020-12-preservation-II/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "client-json-schema-2020-12-preservation-II",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 9,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-json-schema-2020-12-preservation-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-json-schema-2020-12-preservation-III",
+        "direction": "client",
+        "protocol": "2025-11-25",
+        "status": "PASS",
+        "passed": 9,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-json-schema-2020-12-preservation-III/2025-11-25",
+        "exitCode": 0
+      },
+      {
+        "name": "client-json-schema-2020-12-preservation-III",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 9,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-json-schema-2020-12-preservation-III/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-request-metadata",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 5,
+        "skipped": 3,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-request-metadata/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-request-metadata-II",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 5,
+        "skipped": 3,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-request-metadata-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-http-standard-headers",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 9,
+        "skipped": 2,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-http-standard-headers/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-http-standard-headers-II",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 9,
+        "skipped": 2,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-http-standard-headers-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-http-custom-headers",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 18,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-http-custom-headers/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-http-custom-headers-II",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 18,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-http-custom-headers-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-http-custom-headers-III",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 18,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-http-custom-headers-III/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-http-invalid-tool-headers",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 12,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-http-invalid-tool-headers/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-http-invalid-tool-headers-II",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 12,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-http-invalid-tool-headers-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-json-schema-ref-no-deref",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 1,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-json-schema-ref-no-deref/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-json-schema-ref-no-deref-II",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 1,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-json-schema-ref-no-deref-II/2026-07-28",
+        "exitCode": 0
+      },
+      {
+        "name": "client-json-schema-ref-no-deref-III",
+        "direction": "client",
+        "protocol": "2026-07-28",
+        "status": "PASS",
+        "passed": 1,
+        "skipped": 0,
+        "directory": "/Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/.cache/conformance/2026-10-27T14-08-40.193Z-all/client-json-schema-ref-no-deref-III/2026-07-28",
+        "exitCode": 0
+      }
+    ]
+  }
+}
