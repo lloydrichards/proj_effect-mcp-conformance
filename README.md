@@ -309,6 +309,14 @@ bun run type-check
 These are individual scenario results, not a claim that the Effect MCP server
 conforms to a whole MCP revision.
 
+## Skills extension probes
+
+The three Skills fixtures are included on the Skills branch. The manifest
+passes; enumeration and directory reading expose missing Effect methods as
+failures. The lower branch's coverage inventory explicitly accounts for the
+nine fixtures that live only on the Tasks draft. See the
+[Skills contracts and results](reports/skills-conformance-2026-10-27.md).
+
 ## Add a scenario
 
 Before implementing a fixture, inspect the official scenario's source and
