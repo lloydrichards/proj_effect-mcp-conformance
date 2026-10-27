@@ -1,3 +1,4 @@
+import { startServer } from "../server-process";
 import { repository } from "../repository";
 import { Console, Data, Effect, Option } from "effect";
 import { Argument, Command, Flag } from "effect/cli";
@@ -113,21 +114,6 @@ const protocolsForCase = (
   }
 };
 
-const waitForServer = (url: string) =>
-  Effect.promise(async () => {
-    for (let attempt = 0; attempt < 50; attempt++) {
-      try {
-        await fetch(url, { signal: AbortSignal.timeout(200) });
-        return;
-      } catch {
-        if (attempt === 49) {
-          throw new Error(`Server did not start at ${url}`);
-        }
-        await Bun.sleep(100);
-      }
-    }
-  });
-
 const protocolProbe = (url: string, offeredProtocol: ProtocolVersion) =>
   Effect.promise(async () => {
     const response = await fetch(url, {
@@ -202,27 +188,10 @@ export const run = Command.make(
           });
         }
 
-        const port =
-          process.env["MCP_PORT"] ??
-          String(20_000 + Math.floor(Math.random() * 20_000));
-        const url = `http://127.0.0.1:${port}/mcp`;
-        yield* Effect.acquireRelease(
-          ChildProcess.make("bun", ["run", entrypointFor(scenarioDefinition)], {
-            cwd: repository,
-            env: {
-              MCP_HOST: "127.0.0.1",
-              MCP_PORT: port,
-              MCP_PROTOCOLS: configuredProtocols.join(","),
-            },
-            extendEnv: true,
-            stderr: "inherit",
-            stdout: "inherit",
-          }),
-          (handle) =>
-            handle.kill({ forceKillAfter: "5 seconds" }).pipe(Effect.ignore),
+        const url = yield* startServer(
+          entrypointFor(scenarioDefinition),
+          configuredProtocols,
         );
-
-        yield* waitForServer(url);
         if (expectedProtocol === "2026-07-28") {
           yield* Console.log(
             `Protocol: configured stateless ${expectedProtocol}.`,

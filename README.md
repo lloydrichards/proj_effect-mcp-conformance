@@ -289,8 +289,9 @@ bun run --cwd=apps/conformance start -- inspect tools-list-II
 The command starts the fixture, then launches the Inspector with its Streamable
 HTTP URL. Close the Inspector to stop the fixture.
 
-The fixture binds to `127.0.0.1` on a random high port, then shuts down when
-the command ends. To make the port stable for local inspection, set `MCP_PORT`:
+The fixture binds to `127.0.0.1` on an OS-assigned port. The CLI reads the
+actual listening address before starting the checker or Inspector, then shuts
+the fixture down when the command ends. To make the port stable for local inspection, set `MCP_PORT`:
 
 ```sh
 MCP_PORT=9009 bun run conformance:scenario ping
