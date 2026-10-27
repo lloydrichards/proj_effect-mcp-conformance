@@ -1,0 +1,318 @@
+{
+  "name": "toolkit-protocol-timeout",
+  "findings": {
+    "terminal": {
+      "_meta": {
+        "io.modelcontextprotocol/serverInfo": {
+          "name": "Effect MCP fixture: tasks-lifecycle",
+          "version": "0.1.0"
+        }
+      },
+      "resultType": "complete",
+      "taskId": "36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6",
+      "status": "failed",
+      "createdAt": "2026-10-01T06:06:34.227Z",
+      "lastUpdatedAt": "2026-10-01T06:06:34.272Z",
+      "ttlMs": 300000,
+      "pollIntervalMs": 50,
+      "error": {
+        "code": -32603,
+        "message": "Task execution failed"
+      }
+    },
+    "control": "Handler never finishes; required task policy timeout is 40 milliseconds.",
+    "conformance": {
+      "exitCode": 1,
+      "checks": [
+        {
+          "id": "tasks-sync-tool-call",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-result-type-task-on-create",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-tasks-get-status-working",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-tasks-get-status-completed",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-tool-error-uses-completed-status",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-tasks-get-status-failed",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "sep-2663-cancel-ack-empty-result",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "tasks-cancel-terminal-idempotent-ack",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "wire-schema-valid",
+          "status": "FAILURE",
+          "errorMessage": "[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"e0257791-af3a-4d1f-86ac-d2409f9d9d64\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:34.518Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:34.518Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":15,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"dea43f33-6e73-4897-be00-cea28df411d0\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:36.598Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:36.598Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":22,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"204e7b10-8d3a-4de1-953d-48596f2078b9\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:37.631Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:37.631Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":25,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"fae43f3f-d3ff-4313-9efb-cc566552a085\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:37.842Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:37.842Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":28,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"b05faf06-3b03-4429-af25-249fb5fb6325\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:37.847Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:37.847Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}"
+        }
+      ]
+    }
+  },
+  "exchanges": [
+    {
+      "label": "create-timeout-control",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tools/call",
+          "Mcp-Name": "protocol_error_job"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "tools/call",
+          "params": {
+            "name": "protocol_error_job",
+            "arguments": {},
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "352",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 06:06:34 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-lifecycle",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "task",
+            "taskId": "36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6",
+            "status": "working",
+            "createdAt": "2026-10-01T06:06:34.227Z",
+            "lastUpdatedAt": "2026-10-01T06:06:34.227Z",
+            "ttlMs": 300000,
+            "pollIntervalMs": 50
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:34.227Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:34.227Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n"
+      }
+    },
+    {
+      "label": "poll-failed",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tasks/get",
+          "Mcp-Name": "36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 2,
+          "method": "tasks/get",
+          "params": {
+            "taskId": "36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6",
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "356",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 06:06:34 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 2,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-lifecycle",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "complete",
+            "taskId": "36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6",
+            "status": "working",
+            "createdAt": "2026-10-01T06:06:34.227Z",
+            "lastUpdatedAt": "2026-10-01T06:06:34.227Z",
+            "ttlMs": 300000,
+            "pollIntervalMs": 50
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"complete\",\"taskId\":\"36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:34.227Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:34.227Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n"
+      }
+    },
+    {
+      "label": "poll-failed",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tasks/get",
+          "Mcp-Name": "36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 3,
+          "method": "tasks/get",
+          "params": {
+            "taskId": "36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6",
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "356",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 06:06:34 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 3,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-lifecycle",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "complete",
+            "taskId": "36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6",
+            "status": "working",
+            "createdAt": "2026-10-01T06:06:34.227Z",
+            "lastUpdatedAt": "2026-10-01T06:06:34.227Z",
+            "ttlMs": 300000,
+            "pollIntervalMs": 50
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"complete\",\"taskId\":\"36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:34.227Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:34.227Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n"
+      }
+    },
+    {
+      "label": "poll-failed",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tasks/get",
+          "Mcp-Name": "36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 4,
+          "method": "tasks/get",
+          "params": {
+            "taskId": "36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6",
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "413",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 06:06:34 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 4,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-lifecycle",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "complete",
+            "taskId": "36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6",
+            "status": "failed",
+            "createdAt": "2026-10-01T06:06:34.227Z",
+            "lastUpdatedAt": "2026-10-01T06:06:34.272Z",
+            "ttlMs": 300000,
+            "pollIntervalMs": 50,
+            "error": {
+              "code": -32603,
+              "message": "Task execution failed"
+            }
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":4,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"complete\",\"taskId\":\"36d6bc9a-6736-408a-8fa2-8b0ffea8f4c6\",\"status\":\"failed\",\"createdAt\":\"2026-10-01T06:06:34.227Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:34.272Z\",\"ttlMs\":300000,\"pollIntervalMs\":50,\"error\":{\"code\":-32603,\"message\":\"Task execution failed\"}}}\n"
+      }
+    }
+  ]
+}

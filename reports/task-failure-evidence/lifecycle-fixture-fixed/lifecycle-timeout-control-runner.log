@@ -1,0 +1,378 @@
+Running client scenario 'tasks-lifecycle' against server: http://127.0.0.1:26710/mcp
+Results saved to /Users/lloyd/Documents/GitHub/proj_effect-mcp-conformance/reports/task-failure-evidence/lifecycle-fixture-fixed/lifecycle-timeout-control/server-tasks-lifecycle-2026-10-01T06-06-34-462Z
+[
+  {
+    "id": "tasks-sync-tool-call",
+    "name": "TasksSyncToolCall",
+    "description": "Sync tool returns ToolResult (resultType:\"complete\"), no taskId at top level",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T06:06:34.516Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      },
+      {
+        "id": "SEP-2322",
+        "url": "https://modelcontextprotocol.io/specification/draft/basic/utilities/mrtr"
+      }
+    ],
+    "details": {
+      "resultType": "complete",
+      "hasTaskId": false,
+      "contentLength": 1
+    }
+  },
+  {
+    "id": "sep-2663-result-type-task-on-create",
+    "name": "TasksServerTaskCreation",
+    "description": "Task-supporting tool returns flat CreateTaskResult (no nested `task` wrapper)",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T06:06:34.519Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ],
+    "details": {
+      "resultType": "task",
+      "taskId": "e0257791-af3a-4d1f-86ac-d2409f9d9d64",
+      "status": "working"
+    }
+  },
+  {
+    "id": "sep-2663-tasks-get-status-working",
+    "name": "TasksGetDuringWorking",
+    "description": "tasks/get returns status + metadata for an active task",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T06:06:34.521Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ],
+    "details": {
+      "status": "working"
+    }
+  },
+  {
+    "id": "sep-2663-tasks-get-status-completed",
+    "name": "TasksGetTerminalInlinedResult",
+    "description": "Completed task tasks/get inlines result with content[] (no separate tasks/result method)",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T06:06:36.596Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ],
+    "details": {
+      "status": "completed",
+      "hasResult": true,
+      "contentLength": 1
+    }
+  },
+  {
+    "id": "sep-2663-tool-error-uses-completed-status",
+    "name": "TasksToolErrorCompletedIsError",
+    "description": "Tool execution error reports as completed + result.isError (NOT failed)",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T06:06:37.629Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ]
+  },
+  {
+    "id": "sep-2663-tasks-get-status-failed",
+    "name": "TasksProtocolErrorFailedShape",
+    "description": "Protocol-level error reports as failed + inlined error{code,message}, no result",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T06:06:37.841Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ]
+  },
+  {
+    "id": "sep-2663-cancel-ack-empty-result",
+    "name": "TasksCancelEmptyAck",
+    "description": "tasks/cancel returns {resultType:\"complete\"} ack; status settles to cancelled",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T06:06:37.847Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      },
+      {
+        "id": "SEP-2322",
+        "url": "https://modelcontextprotocol.io/specification/draft/basic/utilities/mrtr"
+      }
+    ],
+    "details": {
+      "cancelAck": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "Effect MCP fixture: tasks-lifecycle",
+            "version": "0.1.0"
+          }
+        },
+        "resultType": "complete"
+      },
+      "statusAfterCancel": "cancelled"
+    }
+  },
+  {
+    "id": "tasks-cancel-terminal-idempotent-ack",
+    "name": "TasksCancelTerminalIdempotentAck",
+    "description": "tasks/cancel on a terminal task returns the same empty-ack as on an active task (idempotent)",
+    "status": "SUCCESS",
+    "timestamp": "2026-10-01T06:06:38.891Z",
+    "specReferences": [
+      {
+        "id": "SEP-2663",
+        "url": "https://modelcontextprotocol.io/seps/2663-tasks-extension"
+      }
+    ],
+    "details": {
+      "cancelAck": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "Effect MCP fixture: tasks-lifecycle",
+            "version": "0.1.0"
+          }
+        },
+        "resultType": "complete"
+      }
+    }
+  },
+  {
+    "id": "wire-schema-valid",
+    "name": "WireSchemaValid",
+    "description": "Every JSON-RPC message the implementation sent is valid per the spec JSON schema for the negotiated spec version",
+    "status": "FAILURE",
+    "timestamp": "2026-10-01T06:06:38.892Z",
+    "specReferences": [
+      {
+        "id": "MCP-Schema",
+        "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/schema/draft/schema.json"
+      }
+    ],
+    "details": {
+      "messagesValidated": 70,
+      "violations": [
+        {
+          "origin": "implementation",
+          "specVersion": "2026-07-28",
+          "context": "response to 'tools/call'",
+          "errors": [
+            "CallToolResult: must have required property 'content' (result of 'tools/call')"
+          ],
+          "message": {
+            "jsonrpc": "2.0",
+            "id": 2,
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: tasks-lifecycle",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "task",
+              "taskId": "e0257791-af3a-4d1f-86ac-d2409f9d9d64",
+              "status": "working",
+              "createdAt": "2026-10-01T06:06:34.518Z",
+              "lastUpdatedAt": "2026-10-01T06:06:34.518Z",
+              "ttlMs": 300000,
+              "pollIntervalMs": 50
+            }
+          }
+        },
+        {
+          "origin": "implementation",
+          "specVersion": "2026-07-28",
+          "context": "response to 'tools/call'",
+          "errors": [
+            "CallToolResult: must have required property 'content' (result of 'tools/call')"
+          ],
+          "message": {
+            "jsonrpc": "2.0",
+            "id": 15,
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: tasks-lifecycle",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "task",
+              "taskId": "dea43f33-6e73-4897-be00-cea28df411d0",
+              "status": "working",
+              "createdAt": "2026-10-01T06:06:36.598Z",
+              "lastUpdatedAt": "2026-10-01T06:06:36.598Z",
+              "ttlMs": 300000,
+              "pollIntervalMs": 50
+            }
+          }
+        },
+        {
+          "origin": "implementation",
+          "specVersion": "2026-07-28",
+          "context": "response to 'tools/call'",
+          "errors": [
+            "CallToolResult: must have required property 'content' (result of 'tools/call')"
+          ],
+          "message": {
+            "jsonrpc": "2.0",
+            "id": 22,
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: tasks-lifecycle",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "task",
+              "taskId": "204e7b10-8d3a-4de1-953d-48596f2078b9",
+              "status": "working",
+              "createdAt": "2026-10-01T06:06:37.631Z",
+              "lastUpdatedAt": "2026-10-01T06:06:37.631Z",
+              "ttlMs": 300000,
+              "pollIntervalMs": 50
+            }
+          }
+        },
+        {
+          "origin": "implementation",
+          "specVersion": "2026-07-28",
+          "context": "response to 'tools/call'",
+          "errors": [
+            "CallToolResult: must have required property 'content' (result of 'tools/call')"
+          ],
+          "message": {
+            "jsonrpc": "2.0",
+            "id": 25,
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: tasks-lifecycle",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "task",
+              "taskId": "fae43f3f-d3ff-4313-9efb-cc566552a085",
+              "status": "working",
+              "createdAt": "2026-10-01T06:06:37.842Z",
+              "lastUpdatedAt": "2026-10-01T06:06:37.842Z",
+              "ttlMs": 300000,
+              "pollIntervalMs": 50
+            }
+          }
+        },
+        {
+          "origin": "implementation",
+          "specVersion": "2026-07-28",
+          "context": "response to 'tools/call'",
+          "errors": [
+            "CallToolResult: must have required property 'content' (result of 'tools/call')"
+          ],
+          "message": {
+            "jsonrpc": "2.0",
+            "id": 28,
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: tasks-lifecycle",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "task",
+              "taskId": "b05faf06-3b03-4429-af25-249fb5fb6325",
+              "status": "working",
+              "createdAt": "2026-10-01T06:06:37.847Z",
+              "lastUpdatedAt": "2026-10-01T06:06:37.847Z",
+              "ttlMs": 300000,
+              "pollIntervalMs": 50
+            }
+          }
+        }
+      ]
+    },
+    "errorMessage": "[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"e0257791-af3a-4d1f-86ac-d2409f9d9d64\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:34.518Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:34.518Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":15,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"dea43f33-6e73-4897-be00-cea28df411d0\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:36.598Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:36.598Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":22,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"204e7b10-8d3a-4de1-953d-48596f2078b9\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:37.631Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:37.631Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":25,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"fae43f3f-d3ff-4313-9efb-cc566552a085\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:37.842Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:37.842Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {\"jsonrpc\":\"2.0\",\"id\":28,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"b05faf06-3b03-4429-af25-249fb5fb6325\",\"status\":\"working\",\"createdAt\":\"2026-10-01T06:06:37.847Z\",\"lastUpdatedAt\":\"2026-10-01T06:06:37.847Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}"
+  }
+]
+
+Test Results:
+Passed: 8/9, 1 failed, 0 warnings
+
+=== Failed Checks ===
+
+  - WireSchemaValid: Every JSON-RPC message the implementation sent is valid per the spec JSON schema for the negotiated spec version
+    Error: [implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {"jsonrpc":"2.0","id":2,"result":{"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Effect MCP fixture: tasks-lifecycle","version":"0.1.0"}},"resultType":"task","taskId":"e0257791-af3a-4d1f-86ac-d2409f9d9d64","status":"working","createdAt":"2026-10-01T06:06:34.518Z","lastUpdatedAt":"2026-10-01T06:06:34.518Z","ttlMs":300000,"pollIntervalMs":50}}
+[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {"jsonrpc":"2.0","id":15,"result":{"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Effect MCP fixture: tasks-lifecycle","version":"0.1.0"}},"resultType":"task","taskId":"dea43f33-6e73-4897-be00-cea28df411d0","status":"working","createdAt":"2026-10-01T06:06:36.598Z","lastUpdatedAt":"2026-10-01T06:06:36.598Z","ttlMs":300000,"pollIntervalMs":50}}
+[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {"jsonrpc":"2.0","id":22,"result":{"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Effect MCP fixture: tasks-lifecycle","version":"0.1.0"}},"resultType":"task","taskId":"204e7b10-8d3a-4de1-953d-48596f2078b9","status":"working","createdAt":"2026-10-01T06:06:37.631Z","lastUpdatedAt":"2026-10-01T06:06:37.631Z","ttlMs":300000,"pollIntervalMs":50}}
+[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {"jsonrpc":"2.0","id":25,"result":{"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Effect MCP fixture: tasks-lifecycle","version":"0.1.0"}},"resultType":"task","taskId":"fae43f3f-d3ff-4313-9efb-cc566552a085","status":"working","createdAt":"2026-10-01T06:06:37.842Z","lastUpdatedAt":"2026-10-01T06:06:37.842Z","ttlMs":300000,"pollIntervalMs":50}}
+[implementation] response to 'tools/call' (spec 2026-07-28): CallToolResult: must have required property 'content' (result of 'tools/call') — message: {"jsonrpc":"2.0","id":28,"result":{"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Effect MCP fixture: tasks-lifecycle","version":"0.1.0"}},"resultType":"task","taskId":"b05faf06-3b03-4429-af25-249fb5fb6325","status":"working","createdAt":"2026-10-01T06:06:37.847Z","lastUpdatedAt":"2026-10-01T06:06:37.847Z","ttlMs":300000,"pollIntervalMs":50}}
+
+Test SEP-2663 Tasks extension lifecycle on the server.
+
+[1mServer Implementation Requirements (SEP-2663):[0m
+
+The server MUST advertise [2mio.modelcontextprotocol/tasks[0m under
+[2mcapabilities.extensions[0m and gate the task surface on negotiation.
+
+[1mSync dispatch (no task created):[0m
+- A [2mtools/call[0m against a sync-only tool MUST return a flat
+  [2mToolResult[0m with [2mresultType:"complete"[0m and a [2mcontent[][0m array.
+- It MUST NOT carry [2mtaskId[0m at the top level (that would imply a
+  CreateTaskResult).
+
+[1mServer-directed task creation:[0m
+- For task-supporting tools, the server decides whether to create a task —
+  the client MUST NOT need to opt in via a request param.
+- The response MUST be a [2mCreateTaskResult[0m — a flat [2mResult & Task[0m
+  intersection: [2mresultType:"task"[0m, plus [2mtaskId[0m / [2mstatus[0m /
+  [2mcreatedAt[0m / [2mlastUpdatedAt[0m / [2mttlMs[0m at the top level.
+  There MUST NOT be a nested [2mtask[0m wrapper key.
+
+[1mtasks/get DetailedTask:[0m
+- Working tasks return [2mstatus[0m and basic metadata; result/error are
+  absent.
+- Completed tasks MUST inline the original tool result under [2mresult[0m
+  with [2mcontent[][0m. There is no separate [2mtasks/result[0m method.
+
+[1mTool errors vs protocol errors (SEP-2663 §error-semantics):[0m
+- A tool that ran but reported an error MUST surface as
+  [2mstatus:"completed"[0m with [2mresult.isError:true[0m. The status
+  [2m"failed"[0m is reserved for protocol-level errors.
+- A protocol-level error (server crash, internal failure) MUST surface
+  as [2mstatus:"failed"[0m with an inlined [2merror[0m object (JSON-RPC
+  error shape: code/message/data) and MUST NOT carry [2mresult[0m.
+
+[1mCancellation:[0m
+- [2mtasks/cancel[0m MUST return an empty
+  [2m{resultType:"complete"}[0m ack — no task envelope (SEP-2322
+  discriminator). The cancelled status is observed via the next
+  [2mtasks/get[0m.
+- [2mtasks/cancel[0m against a terminal task returns the same empty ack
+  (idempotent) — the spec reserves [2m-32602[0m for unknown taskIds only.
+
+[1mRequired server fixtures ([2mtools/list[0m MUST include all):[0m
+- [2mgreet[0m — sync-only, returns [2mHello, {name}![0m.
+- [2mslow_compute[0m — task-supporting, [2mseconds[0m-second sleep then a
+  result. [2mseconds: 0[0m for the immediate path. MUST settle to
+  [2mcancelled[0m (not [2mcompleted[0m/[2mfailed[0m) when [2mtasks/cancel[0m
+  arrives while running, so the lifecycle cancel check has a
+  deterministic terminal status.
+- [2mfailing_job[0m — task-supporting, always returns a tool execution
+  error after ~1s.
+- [2mprotocol_error_job[0m — task-supporting, panics into a protocol
+  error.

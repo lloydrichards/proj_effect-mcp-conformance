@@ -1,0 +1,238 @@
+{
+  "name": "toolkit-defect",
+  "findings": {
+    "terminal": {
+      "_meta": {
+        "io.modelcontextprotocol/serverInfo": {
+          "name": "Effect MCP fixture: tasks-lifecycle",
+          "version": "0.1.0"
+        }
+      },
+      "resultType": "complete",
+      "taskId": "6ca69836-35b6-4582-aa05-532353e2c03e",
+      "status": "completed",
+      "createdAt": "2026-10-01T05:53:06.647Z",
+      "lastUpdatedAt": "2026-10-01T05:53:06.654Z",
+      "ttlMs": 300000,
+      "pollIntervalMs": 50,
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "Effect MCP fixture: tasks-lifecycle",
+            "version": "0.1.0"
+          }
+        },
+        "resultType": "complete",
+        "content": [
+          {
+            "type": "text",
+            "text": "Tool execution failed due to an internal server error."
+          }
+        ],
+        "isError": true
+      }
+    }
+  },
+  "exchanges": [
+    {
+      "label": "create-protocol-error-job",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tools/call",
+          "Mcp-Name": "protocol_error_job"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "tools/call",
+          "params": {
+            "name": "protocol_error_job",
+            "arguments": {},
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "352",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 05:53:06 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-lifecycle",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "task",
+            "taskId": "6ca69836-35b6-4582-aa05-532353e2c03e",
+            "status": "working",
+            "createdAt": "2026-10-01T05:53:06.647Z",
+            "lastUpdatedAt": "2026-10-01T05:53:06.647Z",
+            "ttlMs": 300000,
+            "pollIntervalMs": 50
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"task\",\"taskId\":\"6ca69836-35b6-4582-aa05-532353e2c03e\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:53:06.647Z\",\"lastUpdatedAt\":\"2026-10-01T05:53:06.647Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n"
+      }
+    },
+    {
+      "label": "poll-failed",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tasks/get",
+          "Mcp-Name": "6ca69836-35b6-4582-aa05-532353e2c03e"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 2,
+          "method": "tasks/get",
+          "params": {
+            "taskId": "6ca69836-35b6-4582-aa05-532353e2c03e",
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "356",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 05:53:06 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 2,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-lifecycle",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "complete",
+            "taskId": "6ca69836-35b6-4582-aa05-532353e2c03e",
+            "status": "working",
+            "createdAt": "2026-10-01T05:53:06.647Z",
+            "lastUpdatedAt": "2026-10-01T05:53:06.647Z",
+            "ttlMs": 300000,
+            "pollIntervalMs": 50
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"complete\",\"taskId\":\"6ca69836-35b6-4582-aa05-532353e2c03e\",\"status\":\"working\",\"createdAt\":\"2026-10-01T05:53:06.647Z\",\"lastUpdatedAt\":\"2026-10-01T05:53:06.647Z\",\"ttlMs\":300000,\"pollIntervalMs\":50}}\n"
+      }
+    },
+    {
+      "label": "poll-failed",
+      "request": {
+        "headers": {
+          "content-type": "application/json",
+          "accept": "application/json, text/event-stream",
+          "MCP-Protocol-Version": "2026-07-28",
+          "Mcp-Method": "tasks/get",
+          "Mcp-Name": "6ca69836-35b6-4582-aa05-532353e2c03e"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 3,
+          "method": "tasks/get",
+          "params": {
+            "taskId": "6ca69836-35b6-4582-aa05-532353e2c03e",
+            "_meta": {
+              "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+              "io.modelcontextprotocol/clientCapabilities": {
+                "elicitation": {},
+                "extensions": {
+                  "io.modelcontextprotocol/tasks": {}
+                }
+              },
+              "io.modelcontextprotocol/clientInfo": {
+                "name": "FailureEvidence",
+                "version": "1.0.0"
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-length": "612",
+          "content-type": "application/json",
+          "date": "Thu, 01 Oct 2026 05:53:06 GMT"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 3,
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/serverInfo": {
+                "name": "Effect MCP fixture: tasks-lifecycle",
+                "version": "0.1.0"
+              }
+            },
+            "resultType": "complete",
+            "taskId": "6ca69836-35b6-4582-aa05-532353e2c03e",
+            "status": "completed",
+            "createdAt": "2026-10-01T05:53:06.647Z",
+            "lastUpdatedAt": "2026-10-01T05:53:06.654Z",
+            "ttlMs": 300000,
+            "pollIntervalMs": 50,
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: tasks-lifecycle",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "complete",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Tool execution failed due to an internal server error."
+                }
+              ],
+              "isError": true
+            }
+          }
+        },
+        "rawBody": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"complete\",\"taskId\":\"6ca69836-35b6-4582-aa05-532353e2c03e\",\"status\":\"completed\",\"createdAt\":\"2026-10-01T05:53:06.647Z\",\"lastUpdatedAt\":\"2026-10-01T05:53:06.654Z\",\"ttlMs\":300000,\"pollIntervalMs\":50,\"result\":{\"_meta\":{\"io.modelcontextprotocol/serverInfo\":{\"name\":\"Effect MCP fixture: tasks-lifecycle\",\"version\":\"0.1.0\"}},\"resultType\":\"complete\",\"content\":[{\"type\":\"text\",\"text\":\"Tool execution failed due to an internal server error.\"}],\"isError\":true}}}\n"
+      }
+    }
+  ]
+}

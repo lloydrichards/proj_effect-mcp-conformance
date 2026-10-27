@@ -1,0 +1,164 @@
+[
+  {
+    "name": "runner-unknown-malformed",
+    "inputResponses": {
+      "unknown-key": {
+        "ignored": true
+      }
+    },
+    "inputsValid": false,
+    "inputsErrors": [
+      {
+        "instancePath": "/unknown-key",
+        "schemaPath": "#/required",
+        "keyword": "required",
+        "params": {
+          "missingProperty": "content"
+        },
+        "message": "must have required property 'content'"
+      },
+      {
+        "instancePath": "/unknown-key",
+        "schemaPath": "#/required",
+        "keyword": "required",
+        "params": {
+          "missingProperty": "model"
+        },
+        "message": "must have required property 'model'"
+      },
+      {
+        "instancePath": "/unknown-key",
+        "schemaPath": "#/required",
+        "keyword": "required",
+        "params": {
+          "missingProperty": "role"
+        },
+        "message": "must have required property 'role'"
+      },
+      {
+        "instancePath": "/unknown-key",
+        "schemaPath": "#/required",
+        "keyword": "required",
+        "params": {
+          "missingProperty": "roots"
+        },
+        "message": "must have required property 'roots'"
+      },
+      {
+        "instancePath": "/unknown-key",
+        "schemaPath": "#/$defs/ElicitResult/required",
+        "keyword": "required",
+        "params": {
+          "missingProperty": "action"
+        },
+        "message": "must have required property 'action'"
+      },
+      {
+        "instancePath": "/unknown-key",
+        "schemaPath": "#/anyOf",
+        "keyword": "anyOf",
+        "params": {},
+        "message": "must match a schema in anyOf"
+      }
+    ],
+    "request": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "tasks/update",
+      "params": {
+        "taskId": "example-task",
+        "inputResponses": {
+          "unknown-key": {
+            "ignored": true
+          }
+        }
+      }
+    },
+    "requestValid": false,
+    "requestErrors": [
+      {
+        "instancePath": "/params/inputResponses/unknown-key",
+        "schemaPath": "#/required",
+        "keyword": "required",
+        "params": {
+          "missingProperty": "content"
+        },
+        "message": "must have required property 'content'"
+      },
+      {
+        "instancePath": "/params/inputResponses/unknown-key",
+        "schemaPath": "#/required",
+        "keyword": "required",
+        "params": {
+          "missingProperty": "model"
+        },
+        "message": "must have required property 'model'"
+      },
+      {
+        "instancePath": "/params/inputResponses/unknown-key",
+        "schemaPath": "#/required",
+        "keyword": "required",
+        "params": {
+          "missingProperty": "role"
+        },
+        "message": "must have required property 'role'"
+      },
+      {
+        "instancePath": "/params/inputResponses/unknown-key",
+        "schemaPath": "#/required",
+        "keyword": "required",
+        "params": {
+          "missingProperty": "roots"
+        },
+        "message": "must have required property 'roots'"
+      },
+      {
+        "instancePath": "/params/inputResponses/unknown-key",
+        "schemaPath": "#/$defs/ElicitResult/required",
+        "keyword": "required",
+        "params": {
+          "missingProperty": "action"
+        },
+        "message": "must have required property 'action'"
+      },
+      {
+        "instancePath": "/params/inputResponses/unknown-key",
+        "schemaPath": "#/anyOf",
+        "keyword": "anyOf",
+        "params": {},
+        "message": "must match a schema in anyOf"
+      }
+    ]
+  },
+  {
+    "name": "unknown-valid-elicitation",
+    "inputResponses": {
+      "unknown-key": {
+        "action": "accept",
+        "content": {
+          "confirm": true
+        }
+      }
+    },
+    "inputsValid": true,
+    "inputsErrors": null,
+    "request": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "tasks/update",
+      "params": {
+        "taskId": "example-task",
+        "inputResponses": {
+          "unknown-key": {
+            "action": "accept",
+            "content": {
+              "confirm": true
+            }
+          }
+        }
+      }
+    },
+    "requestValid": true,
+    "requestErrors": null
+  }
+]

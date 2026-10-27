@@ -1,0 +1,76 @@
+[
+  {
+    "name": "direct-defect",
+    "task": {
+      "taskId": "0ba3ada6-52dd-4a69-8ebf-bdc4d8137e7f",
+      "status": "failed",
+      "createdAt": "2026-10-01T06:06:38.913Z",
+      "lastUpdatedAt": "2026-10-01T06:06:38.914Z",
+      "ttl": {
+        "_id": "Duration",
+        "_tag": "Millis",
+        "millis": 3600000
+      },
+      "pollInterval": {
+        "_id": "Duration",
+        "_tag": "Millis",
+        "millis": 1000
+      },
+      "error": {
+        "code": -32603,
+        "message": "Task execution failed"
+      }
+    }
+  },
+  {
+    "name": "explicit-jsonrpc-error",
+    "task": {
+      "taskId": "232548ee-6f87-436c-8f33-9ae27b7f8277",
+      "status": "failed",
+      "createdAt": "2026-10-01T06:06:38.915Z",
+      "lastUpdatedAt": "2026-10-01T06:06:38.915Z",
+      "ttl": {
+        "_id": "Duration",
+        "_tag": "Millis",
+        "millis": 3600000
+      },
+      "pollInterval": {
+        "_id": "Duration",
+        "_tag": "Millis",
+        "millis": 1000
+      },
+      "error": {
+        "code": -32603,
+        "message": "Explicit protocol failure"
+      }
+    }
+  },
+  {
+    "name": "tool-error-result",
+    "task": {
+      "taskId": "f8a9ac7a-80cf-4bca-8753-4c8eca3d2379",
+      "status": "completed",
+      "createdAt": "2026-10-01T06:06:38.915Z",
+      "lastUpdatedAt": "2026-10-01T06:06:38.916Z",
+      "ttl": {
+        "_id": "Duration",
+        "_tag": "Millis",
+        "millis": 3600000
+      },
+      "pollInterval": {
+        "_id": "Duration",
+        "_tag": "Millis",
+        "millis": 1000
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Expected tool failure"
+          }
+        ],
+        "isError": true
+      }
+    }
+  }
+]
