@@ -4,7 +4,7 @@
   "conformance": "0.2.0-alpha.12",
   "runnerSourceSha256": "b56fb575e61edaac83c2008af40a6a78b47815c4038a02a9b04cd336d38832a0",
   "coverage": {
-    "scope": "Standalone Skills PR, without the child Tasks draft",
+    "scope": "Standalone Skills PR, without the separate Tasks draft",
     "upstream": 65,
     "fixtures": 52,
     "fixtureImplementations": 92,

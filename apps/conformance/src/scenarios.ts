@@ -319,23 +319,23 @@ export const scenarioNames = scenarios.map((scenario) => scenario.name);
 
 export const unavailableScenarios: Readonly<Record<string, string>> = {
   "tasks-lifecycle":
-    "The fixture lives on the stacked Tasks draft and requires the unpublished McpTasks API.",
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
   "tasks-capability-negotiation":
-    "The fixture lives on the stacked Tasks draft and requires the unpublished McpTasks API.",
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
   "tasks-wire-fields":
-    "The fixture lives on the stacked Tasks draft and requires the unpublished McpTasks API.",
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
   "tasks-request-state-removal":
-    "The fixture lives on the stacked Tasks draft and requires the unpublished McpTasks API.",
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
   "tasks-mrtr-input":
-    "The fixture lives on the stacked Tasks draft and requires the unpublished McpTasks API.",
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
   "tasks-request-headers":
-    "The fixture lives on the stacked Tasks draft and requires the unpublished McpTasks API.",
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
   "tasks-dispatch-and-envelope":
-    "The fixture lives on the stacked Tasks draft and requires the unpublished McpTasks API.",
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
   "tasks-status-notifications":
-    "The fixture lives on the stacked Tasks draft and requires the unpublished McpTasks API.",
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
   "tasks-required-task-error":
-    "The fixture lives on the stacked Tasks draft and requires the unpublished McpTasks API.",
+    "The fixture lives on the separate Tasks draft and requires the unpublished McpTasks API.",
   "tasks-mrtr-composition":
     "McpTasks.toolkit creates the task before running the handler. The public API cannot return InputRequired before creating a task and then escalate the final MRTR round to CreateTaskResult.",
   "resources-subscribe":

@@ -15,7 +15,7 @@ one implementation without changing its official scenario name.
 
 The baseline PR uses published Effect `4.0.6` and conformance
 `0.2.0-alpha.12`. All 275 core server adapter checks pass. Client, Skills, and
-Tasks fixtures are reviewed in separate stacked PRs. Tasks remains a draft
+Tasks fixtures are reviewed in separate PRs. Tasks remains a draft
 because the published package does not export `McpTasks`.
 
 ## Direction
@@ -313,7 +313,7 @@ conforms to a whole MCP revision.
 
 The three Skills fixtures are included on the Skills branch. The manifest
 passes; enumeration and directory reading expose missing Effect methods as
-failures. The lower branch's coverage inventory explicitly accounts for the
+failures. The Skills branch's coverage inventory explicitly accounts for the
 nine fixtures that live only on the Tasks draft. See the
 [Skills contracts and results](reports/skills-conformance-2026-10-27.md).
 
