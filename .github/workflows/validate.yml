@@ -32,6 +32,9 @@ jobs:
       - name: Check types
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: bun run type-check
+      - name: Check scenario inventory
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: bun run conformance:coverage
       - name: Lint
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: bun run lint
