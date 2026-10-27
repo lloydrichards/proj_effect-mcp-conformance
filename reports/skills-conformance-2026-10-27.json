@@ -724,6 +724,146 @@
       "skills/get is not exercised because the official enumeration scenario stops after skills/list fails.",
       "Optional custom _meta preservation is not exercised.",
       "Enumeration and directory methods are unavailable; default conformance CI remains red."
-    ]
+    ],
+    "directGetAvailability": {
+      "fixture": "scenarios/sep-2640-skills-enumeration/src/index.ts",
+      "effect": "4.0.6",
+      "protocol": "2026-07-28",
+      "results": [
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": "server/discover",
+            "method": "server/discover",
+            "params": {
+              "_meta": {
+                "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+                "io.modelcontextprotocol/clientInfo": {
+                  "name": "swarm-skills-get-probe",
+                  "version": "1.0.0"
+                },
+                "io.modelcontextprotocol/clientCapabilities": {}
+              }
+            }
+          },
+          "httpStatus": 200,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": "server/discover",
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: sep-2640-skills-enumeration",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "complete",
+              "ttlMs": 0,
+              "cacheScope": "private",
+              "supportedVersions": ["2026-07-28"],
+              "capabilities": {
+                "logging": {},
+                "completions": {},
+                "resources": {
+                  "subscribe": true,
+                  "listChanged": true
+                },
+                "extensions": {
+                  "io.modelcontextprotocol/skills": {}
+                }
+              }
+            }
+          },
+          "requestHeaders": {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text/event-stream",
+            "MCP-Protocol-Version": "2026-07-28",
+            "Mcp-Method": "server/discover"
+          }
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": "resources/read",
+            "method": "resources/read",
+            "params": {
+              "uri": "skill://conformance/enumeration-fixture/SKILL.md",
+              "_meta": {
+                "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+                "io.modelcontextprotocol/clientInfo": {
+                  "name": "swarm-skills-get-probe",
+                  "version": "1.0.0"
+                },
+                "io.modelcontextprotocol/clientCapabilities": {}
+              }
+            }
+          },
+          "httpStatus": 200,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": "resources/read",
+            "result": {
+              "_meta": {
+                "io.modelcontextprotocol/serverInfo": {
+                  "name": "Effect MCP fixture: sep-2640-skills-enumeration",
+                  "version": "0.1.0"
+                }
+              },
+              "resultType": "complete",
+              "ttlMs": 0,
+              "cacheScope": "private",
+              "contents": [
+                {
+                  "uri": "skill://conformance/enumeration-fixture/SKILL.md",
+                  "text": "---\nname: enumeration-fixture\ndescription: A skill used to verify enumeration conformance.\n---\n\nFollow the instructions in this fixture skill.\n"
+                }
+              ]
+            }
+          },
+          "requestHeaders": {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text/event-stream",
+            "MCP-Protocol-Version": "2026-07-28",
+            "Mcp-Method": "resources/read",
+            "Mcp-Name": "skill://conformance/enumeration-fixture/SKILL.md"
+          }
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": "skills/get",
+            "method": "skills/get",
+            "params": {
+              "uri": "skill://conformance/enumeration-fixture/SKILL.md",
+              "_meta": {
+                "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+                "io.modelcontextprotocol/clientInfo": {
+                  "name": "swarm-skills-get-probe",
+                  "version": "1.0.0"
+                },
+                "io.modelcontextprotocol/clientCapabilities": {}
+              }
+            }
+          },
+          "httpStatus": 404,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": "skills/get",
+            "error": {
+              "code": -32601,
+              "message": "Method not found: skills/get",
+              "_tag": "MethodNotFound"
+            }
+          },
+          "requestHeaders": {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text/event-stream",
+            "MCP-Protocol-Version": "2026-07-28",
+            "Mcp-Method": "skills/get"
+          }
+        }
+      ],
+      "interpretation": "The successful discover and manifest read establish a live valid fixture. skills/get availability is tested directly; no successful retrieval contract or unknown-URI semantics are covered."
+    }
   }
 }

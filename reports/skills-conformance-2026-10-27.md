@@ -122,5 +122,8 @@ Effect advertises Skills support by default.
 
 The PR remains a draft. Its default conformance CI job fails on the two missing
 methods. No expected-failure baseline, disabled checks, or replacement handlers
-have been added. A separate direct control would be needed to test `skills/get`
-independently while `skills/list` remains unavailable.
+have been added. A separate direct control successfully discovered the server and read its
+manifest, then called `skills/get` for that same URI. It returned HTTP `404`
+with JSON-RPC `-32601 Method not found: skills/get`. This establishes method
+availability only. Successful retrieval, cache fields, manifest equality, and
+unknown-URI error semantics remain untested.
