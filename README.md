@@ -11,6 +11,13 @@ server app that remains the causal baseline. Suffixed variants such as
 Effect API or runtime path. That lets the same upstream check probe more than
 one implementation without changing its official scenario name.
 
+## Published baseline
+
+The baseline PR uses published Effect `4.0.6` and conformance
+`0.2.0-alpha.12`. All 275 core server adapter checks pass. Client, Skills, and
+Tasks fixtures are reviewed in separate stacked PRs. Tasks remains a draft
+because the published package does not export `McpTasks`.
+
 ## Direction
 
 The repository has three deliberate boundaries:
