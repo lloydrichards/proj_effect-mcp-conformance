@@ -53,6 +53,8 @@ protocols. Every row launches its matching `scenarios/<name>/src/index.ts`.
 
 ## Setup
 
+### Install workspace dependencies
+
 Requirements:
 
 - Bun
@@ -88,6 +90,60 @@ The Effect version under test is pinned in
 The conformance runner is also pinned exactly in the root `package.json`
 because its `0.2.0` line is still alpha. Record both versions whenever you
 report a result.
+
+### Test the MCP client
+
+Run the client matrix against the published Effect dependency:
+
+```sh
+bun run conformance:client
+```
+
+Use `bun run effect:local` first only when testing a sibling Effect checkout.
+
+To run one scenario:
+
+```sh
+bun run conformance:client http-custom-headers
+```
+
+To select one implementation as well:
+
+```sh
+bun run conformance:client http-custom-headers layer
+bun run conformance:client tools_call toolkit
+```
+
+The command builds each selected entrypoint into its own Bun bundle and
+launches it against the official runner's HTTP test servers. Eight scenarios
+have 26 applicable implementation/protocol combinations across
+`2025-11-25` and `2026-07-28`:
+
+| Implementation | Public API path                                                      | Combinations |
+| -------------- | -------------------------------------------------------------------- | ------------ |
+| `direct`       | Scoped `McpClient.http` and `McpClient.make`, list/call methods      | 10           |
+| `layer`        | `McpClient.layerHttp`, concurrent tool, prompt, and resource probes  | 10           |
+| `toolkit`      | `McpClient.toolkit` with prefixed tool names and model-tool dispatch | 6            |
+
+The independent entrypoints live in `apps/conformance/src/client.ts` and
+`apps/conformance/src/clients/`. Only runner configuration is shared among
+the alternatives. Discovery returns complete arrays, and prompt retrieval uses
+a discovered prompt definition. The standard-header scenario exercises tool
+calls, resource reads, and prompt retrieval. The toolkit variant checks tool
+calls, JSON Schema preservation, and custom parameter headers.
+
+The reduced client exposes tools, prompts, and resources. Elicitation defaults,
+MRTR request state, generic requests, and discovery streams are no longer in
+this matrix because their public client APIs were removed. Unsupported
+selections fail explicitly.
+
+Each run saves the bundle, build log, environment metadata, runner logs,
+raw checks, and `summary.json` under `.cache/client-conformance/`.
+Client process errors and missing checker output fail the run even when
+observed checks pass. OAuth, automatic SSE retries, skills extensions,
+resource templates, and older protocol revisions are outside this fixture's
+coverage. See [the published dependency results](reports/dependency-update-2026-10-27.md)
+and [the earlier reduced client results](reports/client-conformance-core-2026-10-08.md).
 
 ## Use
 
