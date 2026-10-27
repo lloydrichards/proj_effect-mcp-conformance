@@ -286,6 +286,18 @@ bun run type-check
 
 ## Current coverage
 
+The [27 October dependency update](reports/dependency-update-2026-10-27.md)
+uses published Effect `4.0.6` and conformance `0.2.0-alpha.12`.
+All 26 client matrix combinations pass. The runner lists 65 server scenarios;
+61 have fixtures and four are explicitly unavailable. The 101 fixture
+implementations include three [Skills extension probes](reports/skills-conformance-2026-10-27.md),
+so `conformance:coverage` passes. The Skills manifest scenario passes;
+enumeration and directory reading expose missing Effect methods as failures.
+Published Effect still does not export `McpTasks`, which blocks type checking
+and execution of the nine Tasks draft fixtures.
+
+### Historical local-checkout coverage
+
 The 2026-10-01 run uses conformance `0.2.0-alpha.11` and locally packed
 Open Effect `4.0.0-rc.118`, including the Tasks branch. The CLI already pins
 the newest published alpha; npm's `latest` tag remains `0.1.16`.
@@ -307,6 +319,29 @@ Four scenarios require APIs the local Effect server does not expose:
 
 These scenarios are recorded in `unavailableScenarios` rather than replaced
 with fixtures that simulate unsupported Effect behavior.
+
+### Skills extension coverage
+
+Three independent fixtures test `io.modelcontextprotocol/skills` on the
+`2026-07-28` adapter. They use Effect's resource registration and extension
+metadata APIs. They deliberately declare the capabilities required by each
+check so the official runner reports missing methods instead of skipping the
+whole scenario. They do not implement replacement protocol handlers.
+
+| Scenario                      | Published Effect 4.0.6 result                                                                 |
+| ----------------------------- | --------------------------------------------------------------------------------------------- |
+| `sep-2640-skills-manifest`    | Pass, all six checks succeed.                                                                 |
+| `sep-2640-skills-enumeration` | Fail, `skills/list` returns `-32601`; deeper enumeration and `skills/get` checks are skipped. |
+| `sep-2640-skills-directory`   | Fail, `resources/directory/read` returns `-32601`.                                            |
+
+These fixtures test separate parts of the contract. A manifest pass does not
+establish full Skills extension support. See the [Skills results and contracts](reports/skills-conformance-2026-10-27.md).
+
+```sh
+bun run conformance:all --scenario sep-2640-skills-manifest --timeout 30000
+bun run conformance:all --scenario sep-2640-skills-enumeration --timeout 30000
+bun run conformance:all --scenario sep-2640-skills-directory --timeout 30000
+```
 
 ### Tasks extension coverage
 
@@ -397,7 +432,7 @@ A separate job runs `bun run conformance:all --timeout 30000` and uploads its
 matrix log and raw checker results, including on failure. No local Effect build
 or checkout is used in CI.
 
-Published Effect 4.0.1 does not export `McpTasks`, so the Tasks draft cannot pass
+Published Effect 4.0.6 does not export `McpTasks`, so the Tasks draft cannot pass
 all checks yet. It must wait for an Effect release containing the Tasks APIs,
 and for the upstream conformance fixes to be published and verified. Failures
 remain visible and fail CI.

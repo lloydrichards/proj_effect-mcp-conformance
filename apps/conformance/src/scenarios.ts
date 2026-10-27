@@ -32,6 +32,21 @@ const elicitationProtocolVersions: ReadonlyArray<ProtocolVersion> = [
 ];
 
 const baseScenarios: ReadonlyArray<Scenario> = [
+  ...[
+    "tasks-lifecycle",
+    "tasks-capability-negotiation",
+    "tasks-wire-fields",
+    "tasks-request-state-removal",
+    "tasks-mrtr-input",
+    "tasks-request-headers",
+    "tasks-dispatch-and-envelope",
+    "tasks-status-notifications",
+    "tasks-required-task-error",
+  ].map((name) => ({
+    name,
+    extension: "io.modelcontextprotocol/tasks",
+    protocolVersions: ["2026-07-28"] as ReadonlyArray<ProtocolVersion>,
+  })),
   {
     name: "server-initialize",
     protocolVersions: statefulProtocolVersions,
@@ -306,6 +321,17 @@ export const scenarios: ReadonlyArray<Scenario> = baseScenarios.flatMap(
 );
 
 export const scenarioNames = scenarios.map((scenario) => scenario.name);
+
+export const unavailableScenarios: Readonly<Record<string, string>> = {
+  "tasks-mrtr-composition":
+    "McpTasks.toolkit creates the task before running the handler. The public API cannot return InputRequired before creating a task and then escalate the final MRTR round to CreateTaskResult.",
+  "resources-subscribe":
+    "McpServer.layerHttp does not expose resource subscription registration for the stateful adapters.",
+  "resources-unsubscribe":
+    "McpServer.layerHttp does not expose resource subscription registration for the stateful adapters.",
+  "server-sse-polling":
+    "McpServer.layerHttp does not expose POST stream disconnection, event replay, or Last-Event-ID resumption for test_reconnection.",
+};
 
 export const findScenario = (name: string) =>
   scenarios.find((scenario) => scenario.name === name);
