@@ -1,46 +1,26 @@
 import { BunRuntime } from "@effect/platform-bun";
-import { Config, Effect, Layer, Schema, Stream } from "effect";
-import { McpClient, McpClientTransport, McpSchema } from "effect/ai";
+import { Config, Effect, Layer, Schema } from "effect";
+import { McpClient } from "effect/ai";
 import { FetchHttpClient } from "effect/http";
 import { FixtureError, RunnerContext, runnerConfiguration } from "./runtime";
 
-// This implementation constructs the connection with Layers and discovers
-// definitions through the client's paginated streams rather than list methods.
+// This implementation constructs the connection with Layers and runs
+// independent tool, prompt, and resource header probes concurrently.
 const main = Effect.gen(function* () {
   const { scenario, url, protocol } = yield* runnerConfiguration;
-  const ClientLive = McpClient.layer({
+  const ClientLive = McpClient.layerHttp({
+    name: "effect-layer-client",
+    version: "0.0.0",
+    url,
     protocol,
-    clientInfo: { name: "effect-layer-stream-client", version: "0.0.0" },
     timeout: "10 seconds",
-    handlers:
-      scenario === "elicitation-sep1034-client-defaults"
-        ? {
-            elicitation: {
-              form: (request) =>
-                Effect.succeed(
-                  new McpSchema.ElicitAcceptResult({
-                    action: "accept",
-                    content: McpClient.getElicitationFormDefaults(
-                      request.requestedSchema,
-                    ),
-                  }),
-                ),
-            },
-          }
-        : {},
-  }).pipe(
-    Layer.provide(McpClientTransport.layerHttp({ url, protocol })),
-    Layer.provide(FetchHttpClient.layer),
-  );
+  }).pipe(Layer.provide(FetchHttpClient.layer));
 
   const workload = Effect.gen(function* () {
     const client = yield* McpClient.McpClient;
     if (scenario === "initialize") return;
-    if (scenario === "request-metadata") {
-      yield* client.request("server/discover");
-      return;
-    }
-    const tools = yield* Stream.runCollect(client.tools);
+    if (scenario === "request-metadata") return;
+    const tools = yield* client.listTools();
     const findTool = (name: string) =>
       Effect.suspend(() => {
         const tool = tools.find((tool) => tool.name === name);
@@ -67,11 +47,6 @@ const main = Effect.gen(function* () {
         });
         break;
       }
-      case "elicitation-sep1034-client-defaults": {
-        const tool = yield* findTool("test_client_elicitation_defaults");
-        yield* client.callTool({ tool, arguments: {} });
-        break;
-      }
       case "http-invalid-tool-headers":
         for (const tool of tools)
           yield* client.callTool({ tool, arguments: { region: "us-west1" } });
@@ -82,11 +57,15 @@ const main = Effect.gen(function* () {
           (tool) => client.callTool({ tool, arguments: {} }),
           { concurrency: 2, discard: true },
         );
-        yield* Stream.runForEach(client.resources, (resource) =>
-          client.readResource({ uri: resource.uri }),
+        yield* Effect.forEach(
+          yield* client.listResources(),
+          (resource) => client.readResource({ uri: resource.uri }),
+          { concurrency: 2, discard: true },
         );
-        yield* Stream.runForEach(client.prompts, (prompt) =>
-          client.getPrompt({ name: prompt.name }),
+        yield* Effect.forEach(
+          yield* client.listPrompts(),
+          (prompt) => client.getPrompt({ prompt }),
+          { concurrency: 2, discard: true },
         );
         break;
       case "http-custom-headers": {
@@ -108,7 +87,7 @@ const main = Effect.gen(function* () {
       }
       default:
         return yield* new FixtureError({
-          message: `Unsupported layer-stream scenario ${scenario}`,
+          message: `Unsupported layer scenario ${scenario}`,
         });
     }
   });

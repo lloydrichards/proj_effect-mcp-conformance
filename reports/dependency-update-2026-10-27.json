@@ -1,0 +1,2398 @@
+{
+  "date": "2026-10-27",
+  "environment": {
+    "runner": "0.2.0-alpha.12",
+    "effect": "4.0.6",
+    "clientSourceSha256": "518ceb1ca0c803a2bf4ed5fb5e2701332e8621e66ad58b95516a96c6c13a8a6f",
+    "bun": "1.4.0",
+    "fixtures": [
+      {
+        "name": "direct",
+        "entrypoint": "apps/conformance/src/client.ts",
+        "sha256": "f61e1059a167df9dcd19d227ae19847ca486091bbcc573ef54a4ed08e99c04b9"
+      },
+      {
+        "name": "layer",
+        "entrypoint": "apps/conformance/src/clients/layer.ts",
+        "sha256": "3f45cf7ae5c3aadd7546bcdbbf0cdc8c627d43e94dc657fa26459531d661f862"
+      },
+      {
+        "name": "toolkit",
+        "entrypoint": "apps/conformance/src/clients/toolkit.ts",
+        "sha256": "eb785ddcc4b6265fa5b96b562b7419d6e8f0246fead5633346ea57a03b257a99"
+      }
+    ]
+  },
+  "lockfileSha256": "0263cc653e6814e404fa0cbc7d37a6d8d9410ff36517d655633c6f8df2c2deb2",
+  "serverExecution": "All 98 fixtures, each through conformance:all --scenario <name> --timeout 30000, six scenario groups concurrently.",
+  "server": [
+    {
+      "scenario": "tasks-lifecycle",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/tasks-lifecycle.log",
+      "passed": 0,
+      "applicable": 1,
+      "failed": 1,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "FAIL"
+      }
+    },
+    {
+      "scenario": "tasks-capability-negotiation",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/tasks-capability-negotiation.log",
+      "passed": 0,
+      "applicable": 1,
+      "failed": 1,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "FAIL"
+      }
+    },
+    {
+      "scenario": "tasks-wire-fields",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/tasks-wire-fields.log",
+      "passed": 0,
+      "applicable": 1,
+      "failed": 1,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "FAIL"
+      }
+    },
+    {
+      "scenario": "tasks-request-state-removal",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/tasks-request-state-removal.log",
+      "passed": 0,
+      "applicable": 1,
+      "failed": 1,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "FAIL"
+      }
+    },
+    {
+      "scenario": "tasks-mrtr-input",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/tasks-mrtr-input.log",
+      "passed": 0,
+      "applicable": 1,
+      "failed": 1,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "FAIL"
+      }
+    },
+    {
+      "scenario": "tasks-request-headers",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/tasks-request-headers.log",
+      "passed": 0,
+      "applicable": 1,
+      "failed": 1,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "FAIL"
+      }
+    },
+    {
+      "scenario": "tasks-dispatch-and-envelope",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/tasks-dispatch-and-envelope.log",
+      "passed": 0,
+      "applicable": 1,
+      "failed": 1,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "FAIL"
+      }
+    },
+    {
+      "scenario": "tasks-status-notifications",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/tasks-status-notifications.log",
+      "passed": 0,
+      "applicable": 1,
+      "failed": 1,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "FAIL"
+      }
+    },
+    {
+      "scenario": "tasks-required-task-error",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/tasks-required-task-error.log",
+      "passed": 0,
+      "applicable": 1,
+      "failed": 1,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "FAIL"
+      }
+    },
+    {
+      "scenario": "server-initialize",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/server-initialize.log",
+      "passed": 4,
+      "applicable": 4,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "--"
+      }
+    },
+    {
+      "scenario": "server-session-lifecycle",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/server-session-lifecycle.log",
+      "passed": 3,
+      "applicable": 3,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "--"
+      }
+    },
+    {
+      "scenario": "server-stateless",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/server-stateless.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "server-stateless-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/server-stateless-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "server-sse-multiple-streams",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/server-sse-multiple-streams.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "logging-set-level",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/logging-set-level.log",
+      "passed": 4,
+      "applicable": 4,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "--"
+      }
+    },
+    {
+      "scenario": "ping",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/ping.log",
+      "passed": 4,
+      "applicable": 4,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "--"
+      }
+    },
+    {
+      "scenario": "completion-complete",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/completion-complete.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "completion-complete-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/completion-complete-II.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "completion-complete-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/completion-complete-III.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-list",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-list.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-list-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-list-II.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-list-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-list-III.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-list-IV",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-list-IV.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-list-V",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-list-V.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-simple-text.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-simple-text-II.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-simple-text-III.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-call-image",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-image.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-call-audio",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-audio.log",
+      "passed": 4,
+      "applicable": 4,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-call-embedded-resource",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-embedded-resource.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-call-mixed-content",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-mixed-content.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-call-with-logging",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-with-logging.log",
+      "passed": 4,
+      "applicable": 4,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "--"
+      }
+    },
+    {
+      "scenario": "tools-call-with-logging-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-with-logging-II.log",
+      "passed": 4,
+      "applicable": 4,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "--"
+      }
+    },
+    {
+      "scenario": "tools-call-error",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-error.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-call-with-progress",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-with-progress.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-call-with-progress-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-with-progress-II.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "tools-call-sampling",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-sampling.log",
+      "passed": 4,
+      "applicable": 4,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "--"
+      }
+    },
+    {
+      "scenario": "tools-call-elicitation",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/tools-call-elicitation.log",
+      "passed": 2,
+      "applicable": 2,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "--"
+      }
+    },
+    {
+      "scenario": "json-schema-2020-12",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/json-schema-2020-12.log",
+      "passed": 2,
+      "applicable": 2,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "json-schema-2020-12-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/json-schema-2020-12-II.log",
+      "passed": 2,
+      "applicable": 2,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "elicitation-sep1034-defaults",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/elicitation-sep1034-defaults.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "PASS",
+        "2026-07-28": "--"
+      }
+    },
+    {
+      "scenario": "elicitation-sep1330-enums",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/elicitation-sep1330-enums.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "PASS",
+        "2026-07-28": "--"
+      }
+    },
+    {
+      "scenario": "resources-list",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/resources-list.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "resources-list-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/resources-list-II.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "resources-list-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/resources-list-III.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "resources-list-IV",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/resources-list-IV.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "resources-read-text",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/resources-read-text.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "resources-read-text-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/resources-read-text-II.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "resources-read-text-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/resources-read-text-III.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "resources-read-text-IV",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/resources-read-text-IV.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "resources-read-binary",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/resources-read-binary.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "resources-templates-read",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/resources-templates-read.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "sep-2164-resource-not-found",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/sep-2164-resource-not-found.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "prompts-list",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/prompts-list.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "prompts-list-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/prompts-list-II.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "prompts-list-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/prompts-list-III.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "prompts-list-IV",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/prompts-list-IV.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "prompts-get-simple",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/prompts-get-simple.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "prompts-get-simple-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/prompts-get-simple-II.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "prompts-get-simple-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/prompts-get-simple-III.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "prompts-get-simple-IV",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/prompts-get-simple-IV.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "prompts-get-with-args",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/prompts-get-with-args.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "prompts-get-with-args-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/prompts-get-with-args-II.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "prompts-get-with-args-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/prompts-get-with-args-III.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "prompts-get-embedded-resource",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/prompts-get-embedded-resource.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "prompts-get-with-image",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/prompts-get-with-image.log",
+      "passed": 5,
+      "applicable": 5,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "PASS",
+        "2025-03-26": "PASS",
+        "2025-06-18": "PASS",
+        "2025-11-25": "PASS",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "dns-rebinding-protection",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/dns-rebinding-protection.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "caching",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/caching.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "http-header-validation",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/http-header-validation.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "http-header-validation-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/http-header-validation-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/http-custom-header-server-validation.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/http-custom-header-server-validation-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-basic-elicitation",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-basic-elicitation.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-basic-elicitation-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-basic-elicitation-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-basic-sampling",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-basic-sampling.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-basic-sampling-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-basic-sampling-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-basic-list-roots",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-basic-list-roots.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-basic-list-roots-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-basic-list-roots-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-request-state",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-request-state.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-request-state-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-request-state-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-multiple-input-requests",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-multiple-input-requests.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-multiple-input-requests-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-multiple-input-requests-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-multi-round",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-multi-round.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-multi-round-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-multi-round-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-missing-input-response",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-missing-input-response.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-missing-input-response-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-missing-input-response-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-non-tool-request",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-non-tool-request.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-result-type",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-result-type.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-result-type-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-result-type-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-unsupported-methods",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-unsupported-methods.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-tampered-state",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-tampered-state.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-tampered-state-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-tampered-state-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-capability-check",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-capability-check.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-capability-check-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-capability-check-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-ignore-extra-params",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-ignore-extra-params.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-ignore-extra-params-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-ignore-extra-params-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-validate-input",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-validate-input.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    },
+    {
+      "scenario": "input-required-result-validate-input-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/input-required-result-validate-input-II.log",
+      "passed": 1,
+      "applicable": 1,
+      "failed": 0,
+      "skipped": 0,
+      "protocols": {
+        "2024-11-05": "--",
+        "2025-03-26": "--",
+        "2025-06-18": "--",
+        "2025-11-25": "--",
+        "2026-07-28": "PASS"
+      }
+    }
+  ],
+  "client": [
+    {
+      "implementation": "direct",
+      "scenario": "initialize",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/direct/initialize-2025-11-25"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "tools_call",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/direct/tools_call-2025-11-25"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "tools_call",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/direct/tools_call-2026-07-28"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/direct/json-schema-2020-12-preservation-2025-11-25"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/direct/json-schema-2020-12-preservation-2026-07-28"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "request-metadata",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 5,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/direct/request-metadata-2026-07-28"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "http-standard-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/direct/http-standard-headers-2026-07-28"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "http-custom-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 18,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/direct/http-custom-headers-2026-07-28"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "http-invalid-tool-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 12,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/direct/http-invalid-tool-headers-2026-07-28"
+    },
+    {
+      "implementation": "direct",
+      "scenario": "json-schema-ref-no-deref",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/direct/json-schema-ref-no-deref-2026-07-28"
+    },
+    {
+      "implementation": "layer",
+      "scenario": "initialize",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/layer/initialize-2025-11-25"
+    },
+    {
+      "implementation": "layer",
+      "scenario": "tools_call",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/layer/tools_call-2025-11-25"
+    },
+    {
+      "implementation": "layer",
+      "scenario": "tools_call",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/layer/tools_call-2026-07-28"
+    },
+    {
+      "implementation": "layer",
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/layer/json-schema-2020-12-preservation-2025-11-25"
+    },
+    {
+      "implementation": "layer",
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/layer/json-schema-2020-12-preservation-2026-07-28"
+    },
+    {
+      "implementation": "layer",
+      "scenario": "request-metadata",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 5,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/layer/request-metadata-2026-07-28"
+    },
+    {
+      "implementation": "layer",
+      "scenario": "http-standard-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/layer/http-standard-headers-2026-07-28"
+    },
+    {
+      "implementation": "layer",
+      "scenario": "http-custom-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 18,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/layer/http-custom-headers-2026-07-28"
+    },
+    {
+      "implementation": "layer",
+      "scenario": "http-invalid-tool-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 12,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/layer/http-invalid-tool-headers-2026-07-28"
+    },
+    {
+      "implementation": "layer",
+      "scenario": "json-schema-ref-no-deref",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/layer/json-schema-ref-no-deref-2026-07-28"
+    },
+    {
+      "implementation": "toolkit",
+      "scenario": "tools_call",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/toolkit/tools_call-2025-11-25"
+    },
+    {
+      "implementation": "toolkit",
+      "scenario": "tools_call",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/toolkit/tools_call-2026-07-28"
+    },
+    {
+      "implementation": "toolkit",
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2025-11-25",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/toolkit/json-schema-2020-12-preservation-2025-11-25"
+    },
+    {
+      "implementation": "toolkit",
+      "scenario": "json-schema-2020-12-preservation",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/toolkit/json-schema-2020-12-preservation-2026-07-28"
+    },
+    {
+      "implementation": "toolkit",
+      "scenario": "http-custom-headers",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 18,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/toolkit/http-custom-headers-2026-07-28"
+    },
+    {
+      "implementation": "toolkit",
+      "scenario": "json-schema-ref-no-deref",
+      "protocol": "2026-07-28",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": [],
+      "warnings": [],
+      "directory": ".cache/client-conformance/2026-10-27T07-12-15.940Z/toolkit/json-schema-ref-no-deref-2026-07-28"
+    }
+  ],
+  "coverage": {
+    "upstream": 65,
+    "implemented": 58,
+    "unavailable": 4,
+    "unclassified": [
+      "sep-2640-skills-directory",
+      "sep-2640-skills-enumeration",
+      "sep-2640-skills-manifest"
+    ]
+  },
+  "typeChecks": [
+    {
+      "workspace": "packages/mcp-fixture",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-mcp-fixture.log"
+    },
+    {
+      "workspace": "scenarios/prompts-get-with-image",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-prompts-get-with-image.log"
+    },
+    {
+      "workspace": "scenarios/tasks-capability-negotiation",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/types-tasks-capability-negotiation.log"
+    },
+    {
+      "workspace": "scenarios/http-header-validation-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-http-header-validation-II.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-request-state-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-request-state-II.log"
+    },
+    {
+      "workspace": "scenarios/prompts-list-IV",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-prompts-list-IV.log"
+    },
+    {
+      "workspace": "scenarios/resources-read-text-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-resources-read-text-II.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-basic-list-roots-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-basic-list-roots-II.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-basic-list-roots",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-basic-list-roots.log"
+    },
+    {
+      "workspace": "scenarios/prompts-get-simple-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-prompts-get-simple-II.log"
+    },
+    {
+      "workspace": "scenarios/tools-list-V",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-list-V.log"
+    },
+    {
+      "workspace": "scenarios/prompts-get-simple-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-prompts-get-simple-III.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-missing-input-response",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-missing-input-response.log"
+    },
+    {
+      "workspace": "scenarios/ping",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-ping.log"
+    },
+    {
+      "workspace": "scenarios/prompts-get-with-args-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-prompts-get-with-args-III.log"
+    },
+    {
+      "workspace": "scenarios/tools-list-IV",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-list-IV.log"
+    },
+    {
+      "workspace": "scenarios/prompts-get-simple",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-prompts-get-simple.log"
+    },
+    {
+      "workspace": "scenarios/completion-complete-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-completion-complete-II.log"
+    },
+    {
+      "workspace": "scenarios/server-initialize",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-server-initialize.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-with-logging-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-with-logging-II.log"
+    },
+    {
+      "workspace": "scenarios/sep-2164-resource-not-found",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-sep-2164-resource-not-found.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-image",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-image.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-with-logging",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-with-logging.log"
+    },
+    {
+      "workspace": "scenarios/http-header-validation",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-http-header-validation.log"
+    },
+    {
+      "workspace": "scenarios/completion-complete-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-completion-complete-III.log"
+    },
+    {
+      "workspace": "scenarios/http-custom-header-server-validation-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-http-custom-header-server-validation-II.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-result-type-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-result-type-II.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-mixed-content",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-mixed-content.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-multi-round-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-multi-round-II.log"
+    },
+    {
+      "workspace": "scenarios/tasks-mrtr-input",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/types-tasks-mrtr-input.log"
+    },
+    {
+      "workspace": "scenarios/logging-set-level",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-logging-set-level.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-basic-elicitation",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-basic-elicitation.log"
+    },
+    {
+      "workspace": "scenarios/resources-list",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-resources-list.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-multi-round",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-multi-round.log"
+    },
+    {
+      "workspace": "scenarios/elicitation-sep1034-defaults",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-elicitation-sep1034-defaults.log"
+    },
+    {
+      "workspace": "scenarios/tools-list",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-list.log"
+    },
+    {
+      "workspace": "scenarios/tools-list-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-list-III.log"
+    },
+    {
+      "workspace": "scenarios/resources-read-binary",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-resources-read-binary.log"
+    },
+    {
+      "workspace": "scenarios/tasks-status-notifications",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/types-tasks-status-notifications.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-with-progress",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-with-progress.log"
+    },
+    {
+      "workspace": "scenarios/elicitation-sep1330-enums",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-elicitation-sep1330-enums.log"
+    },
+    {
+      "workspace": "scenarios/resources-read-text",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-resources-read-text.log"
+    },
+    {
+      "workspace": "scenarios/resources-list-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-resources-list-II.log"
+    },
+    {
+      "workspace": "scenarios/server-stateless-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-server-stateless-II.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-simple-text-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-simple-text-III.log"
+    },
+    {
+      "workspace": "scenarios/tasks-lifecycle",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/types-tasks-lifecycle.log"
+    },
+    {
+      "workspace": "scenarios/prompts-get-with-args",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-prompts-get-with-args.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-capability-check",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-capability-check.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-multiple-input-requests-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-multiple-input-requests-II.log"
+    },
+    {
+      "workspace": "scenarios/http-custom-header-server-validation",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-http-custom-header-server-validation.log"
+    },
+    {
+      "workspace": "scenarios/server-session-lifecycle",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-server-session-lifecycle.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-capability-check-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-capability-check-II.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-basic-sampling-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-basic-sampling-II.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-non-tool-request",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-non-tool-request.log"
+    },
+    {
+      "workspace": "scenarios/prompts-list-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-prompts-list-II.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-unsupported-methods",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-unsupported-methods.log"
+    },
+    {
+      "workspace": "scenarios/resources-read-text-IV",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-resources-read-text-IV.log"
+    },
+    {
+      "workspace": "scenarios/tasks-dispatch-and-envelope",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/types-tasks-dispatch-and-envelope.log"
+    },
+    {
+      "workspace": "scenarios/prompts-list",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-prompts-list.log"
+    },
+    {
+      "workspace": "scenarios/prompts-get-simple-IV",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-prompts-get-simple-IV.log"
+    },
+    {
+      "workspace": "scenarios/prompts-list-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-prompts-list-III.log"
+    },
+    {
+      "workspace": "scenarios/tasks-wire-fields",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/types-tasks-wire-fields.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-with-progress-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-with-progress-II.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-validate-input-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-validate-input-II.log"
+    },
+    {
+      "workspace": "scenarios/json-schema-2020-12",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-json-schema-2020-12.log"
+    },
+    {
+      "workspace": "scenarios/server-stateless",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-server-stateless.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-simple-text-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-simple-text-II.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-sampling",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-sampling.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-simple-text",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-simple-text.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-basic-sampling",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-basic-sampling.log"
+    },
+    {
+      "workspace": "scenarios/tools-list-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-list-II.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-error",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-error.log"
+    },
+    {
+      "workspace": "scenarios/tasks-request-headers",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/types-tasks-request-headers.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-result-type",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-result-type.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-embedded-resource",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-embedded-resource.log"
+    },
+    {
+      "workspace": "scenarios/json-schema-2020-12-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-json-schema-2020-12-II.log"
+    },
+    {
+      "workspace": "scenarios/resources-read-text-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-resources-read-text-III.log"
+    },
+    {
+      "workspace": "scenarios/prompts-get-embedded-resource",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-prompts-get-embedded-resource.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-elicitation",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-elicitation.log"
+    },
+    {
+      "workspace": "scenarios/tasks-required-task-error",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/types-tasks-required-task-error.log"
+    },
+    {
+      "workspace": "scenarios/server-sse-multiple-streams",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-server-sse-multiple-streams.log"
+    },
+    {
+      "workspace": "scenarios/prompts-get-with-args-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-prompts-get-with-args-II.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-missing-input-response-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-missing-input-response-II.log"
+    },
+    {
+      "workspace": "scenarios/dns-rebinding-protection",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-dns-rebinding-protection.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-multiple-input-requests",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-multiple-input-requests.log"
+    },
+    {
+      "workspace": "scenarios/tools-call-audio",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-tools-call-audio.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-tampered-state",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-tampered-state.log"
+    },
+    {
+      "workspace": "scenarios/caching",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-caching.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-tampered-state-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-tampered-state-II.log"
+    },
+    {
+      "workspace": "scenarios/resources-templates-read",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-resources-templates-read.log"
+    },
+    {
+      "workspace": "scenarios/tasks-request-state-removal",
+      "exitCode": 1,
+      "log": ".cache/dependency-update-2026-10-27/types-tasks-request-state-removal.log"
+    },
+    {
+      "workspace": "scenarios/resources-list-IV",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-resources-list-IV.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-validate-input",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-validate-input.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-basic-elicitation-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-basic-elicitation-II.log"
+    },
+    {
+      "workspace": "scenarios/resources-list-III",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-resources-list-III.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-ignore-extra-params-II",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-ignore-extra-params-II.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-request-state",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-request-state.log"
+    },
+    {
+      "workspace": "scenarios/input-required-result-ignore-extra-params",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-input-required-result-ignore-extra-params.log"
+    },
+    {
+      "workspace": "scenarios/completion-complete",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-completion-complete.log"
+    },
+    {
+      "workspace": "apps/conformance",
+      "exitCode": 0,
+      "log": ".cache/dependency-update-2026-10-27/types-conformance.log"
+    }
+  ]
+}

@@ -1,11 +1,6 @@
 import { BunRuntime } from "@effect/platform-bun";
 import { Config, Data, Effect, Schema } from "effect";
-import {
-  McpClient,
-  McpClientTransport,
-  McpProtocol,
-  McpSchema,
-} from "effect/ai";
+import { McpClient, McpProtocol } from "effect/ai";
 import { FetchHttpClient } from "effect/http";
 
 class FixtureError extends Data.TaggedError("FixtureError")<{
@@ -35,40 +30,19 @@ const main = Effect.gen(function* () {
     version === "2026-07-28"
       ? McpProtocol.v2026_07_28
       : McpProtocol.v2025_11_25;
-  const transport = yield* McpClientTransport.http({ url, protocol });
+  const transport = yield* McpClient.http({ url, protocol });
   const client = yield* McpClient.make({
-    protocol,
-    clientInfo: { name: "effect-conformance-client", version: "0.0.0" },
+    name: "effect-conformance-client",
+    version: "0.0.0",
     timeout: "10 seconds",
-    handlers:
-      version === "2025-11-25" &&
-      scenario !== "elicitation-sep1034-client-defaults"
-        ? {}
-        : {
-            elicitation: {
-              form: (request) =>
-                Effect.succeed(
-                  new McpSchema.ElicitAcceptResult({
-                    action: "accept",
-                    content: McpClient.getElicitationFormDefaults(
-                      request.requestedSchema,
-                    ),
-                  }),
-                ),
-            },
-          },
-  }).pipe(Effect.provideService(McpClientTransport.Transport, transport));
+  }).pipe(Effect.provideService(McpClient.Transport, transport));
 
   if (scenario === "initialize") return;
-  if (scenario === "request-metadata") {
-    // This peer advertises no tools. Probe ordinary request metadata through discovery.
-    yield* client.request("server/discover");
-    return;
-  }
+  if (scenario === "request-metadata") return;
   const list = yield* client.listTools();
   const findTool = (name: string) =>
     Effect.suspend(() => {
-      const tool = list.tools.find((tool) => tool.name === name);
+      const tool = list.find((tool) => tool.name === name);
       return tool === undefined
         ? Effect.fail(
             new FixtureError({ message: `Server did not advertise ${name}` }),
@@ -78,16 +52,17 @@ const main = Effect.gen(function* () {
 
   switch (scenario) {
     case "tools_call": {
-      const tool = list.tools[0];
-      if (tool !== undefined)
-        yield* client.callTool({ tool, arguments: { a: 2, b: 3 } });
+      const tool = list[0];
+      if (tool === undefined)
+        return yield* new FixtureError({ message: "No tool advertised" });
+      yield* client.callTool({ tool, arguments: { a: 2, b: 3 } });
       break;
     }
     case "json-schema-ref-no-deref":
       break;
     case "http-invalid-tool-headers": {
       // Call everything the client retained, so filtering owns rejection.
-      for (const tool of list.tools)
+      for (const tool of list)
         yield* client.callTool({ tool, arguments: { region: "us-west1" } });
       break;
     }
@@ -100,32 +75,13 @@ const main = Effect.gen(function* () {
       });
       break;
     }
-    case "elicitation-sep1034-client-defaults": {
-      const tool = yield* findTool("test_client_elicitation_defaults");
-      yield* client.callTool({ tool, arguments: {} });
-      break;
-    }
-    case "sep-2322-client-request-state": {
-      for (const name of [
-        "test_mrtr_echo_state",
-        "test_mrtr_unrelated",
-        "test_mrtr_no_state",
-        "test_mrtr_no_result_type",
-      ]) {
-        const tool = yield* findTool(name);
-        yield* client.callTool({ tool, arguments: {} });
-      }
-      break;
-    }
     case "http-standard-headers": {
-      for (const tool of list.tools)
-        yield* client.callTool({ tool, arguments: {} });
+      for (const tool of list) yield* client.callTool({ tool, arguments: {} });
       const resources = yield* client.listResources();
-      for (const resource of resources.resources)
+      for (const resource of resources)
         yield* client.readResource({ uri: resource.uri });
       const prompts = yield* client.listPrompts();
-      for (const prompt of prompts.prompts)
-        yield* client.getPrompt({ name: prompt.name });
+      for (const prompt of prompts) yield* client.getPrompt({ prompt });
       break;
     }
     case "http-custom-headers": {

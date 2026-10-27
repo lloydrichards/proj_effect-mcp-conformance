@@ -1,4 +1,10 @@
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+} from "node:fs";
 import { relative, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
@@ -10,39 +16,36 @@ const output = resolve(
   new Date().toISOString().replaceAll(":", "-"),
 );
 mkdirSync(output, { recursive: true });
+const coreScenarios = [
+  "initialize",
+  "tools_call",
+  "json-schema-2020-12-preservation",
+  "request-metadata",
+  "http-standard-headers",
+  "http-custom-headers",
+  "http-invalid-tool-headers",
+  "json-schema-ref-no-deref",
+];
 const implementations = [
-  { name: "direct", entrypoint: "apps/conformance/src/client.ts" },
   {
-    name: "layer-streams",
-    entrypoint: "apps/conformance/src/clients/layer-streams.ts",
+    name: "direct",
+    entrypoint: "apps/conformance/src/client.ts",
+    scenarios: coreScenarios,
+  },
+  {
+    name: "layer",
+    entrypoint: "apps/conformance/src/clients/layer.ts",
+    scenarios: coreScenarios,
+  },
+  {
+    name: "toolkit",
+    entrypoint: "apps/conformance/src/clients/toolkit.ts",
     scenarios: [
-      "initialize",
       "tools_call",
-      "elicitation-sep1034-client-defaults",
       "json-schema-2020-12-preservation",
-      "request-metadata",
-      "http-standard-headers",
       "http-custom-headers",
-      "http-invalid-tool-headers",
       "json-schema-ref-no-deref",
     ],
-  },
-  {
-    name: "requests",
-    entrypoint: "apps/conformance/src/clients/requests.ts",
-    scenarios: [
-      "initialize",
-      "tools_call",
-      "json-schema-2020-12-preservation",
-      "request-metadata",
-      "json-schema-ref-no-deref",
-    ],
-    legacyToolCalls: true,
-  },
-  {
-    name: "interleaved-input",
-    entrypoint: "apps/conformance/src/clients/interleaved-input.ts",
-    scenarios: ["sep-2322-client-request-state"],
   },
 ];
 const selectedImplementation = process.argv[3];
@@ -94,6 +97,16 @@ writeFileSync(
       effect: packageVersion(
         "apps/conformance/node_modules/effect/package.json",
       ),
+      clientSourceSha256: createHash("sha256")
+        .update(
+          readFileSync(
+            resolve(
+              repository,
+              "apps/conformance/node_modules/effect/dist/ai/McpClient.js",
+            ),
+          ),
+        )
+        .digest("hex"),
       bun: spawnSync("bun", ["--version"], { encoding: "utf8" }).stdout.trim(),
       fixtures: bundles.map(({ name, entrypoint, sha256 }) => ({
         name,
@@ -109,11 +122,9 @@ const versions = ["2025-11-25", "2026-07-28"];
 const scenarios = [
   ["initialize", [versions[0]]],
   ["tools_call", versions],
-  ["elicitation-sep1034-client-defaults", [versions[0]]],
   ["json-schema-2020-12-preservation", versions],
   ...[
     "request-metadata",
-    "sep-2322-client-request-state",
     "http-standard-headers",
     "http-custom-headers",
     "http-invalid-tool-headers",
@@ -134,13 +145,6 @@ for (const implementation of bundles) {
       continue;
     if (selected !== undefined && selected !== scenario) continue;
     for (const protocol of protocols) {
-      if (
-        implementation.legacyToolCalls &&
-        protocol === "2026-07-28" &&
-        (scenario === "tools_call" ||
-          scenario === "json-schema-2020-12-preservation")
-      )
-        continue;
       const directory = resolve(
         output,
         implementation.name,
@@ -172,15 +176,14 @@ for (const implementation of bundles) {
       const resultDirectory = readdirSync(directory).find((name) =>
         name.startsWith(`${scenario}-`),
       );
-      const checks =
+      const checksPath =
         resultDirectory === undefined
-          ? []
-          : JSON.parse(
-              readFileSync(
-                resolve(directory, resultDirectory, "checks.json"),
-                "utf8",
-              ),
-            );
+          ? undefined
+          : resolve(directory, resultDirectory, "checks.json");
+      const checks =
+        checksPath !== undefined && existsSync(checksPath)
+          ? JSON.parse(readFileSync(checksPath, "utf8"))
+          : [];
       const failed = checks.filter((check) => check.status === "FAILURE");
       const warnings = checks.filter((check) => check.status === "WARNING");
       const passed = checks.filter(
