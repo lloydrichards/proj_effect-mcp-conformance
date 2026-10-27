@@ -58,6 +58,186 @@
         "effect": "4.0.6",
       },
     },
+    "scenarios/client-http-custom-headers": {
+      "name": "@repo/scenario-client-http-custom-headers",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-http-custom-headers-II": {
+      "name": "@repo/scenario-client-http-custom-headers-II",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-http-custom-headers-III": {
+      "name": "@repo/scenario-client-http-custom-headers-III",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-http-invalid-tool-headers": {
+      "name": "@repo/scenario-client-http-invalid-tool-headers",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-http-invalid-tool-headers-II": {
+      "name": "@repo/scenario-client-http-invalid-tool-headers-II",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-http-standard-headers": {
+      "name": "@repo/scenario-client-http-standard-headers",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-http-standard-headers-II": {
+      "name": "@repo/scenario-client-http-standard-headers-II",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-initialize": {
+      "name": "@repo/scenario-client-initialize",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-initialize-II": {
+      "name": "@repo/scenario-client-initialize-II",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-json-schema-2020-12-preservation": {
+      "name": "@repo/scenario-client-json-schema-2020-12-preservation",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-json-schema-2020-12-preservation-II": {
+      "name": "@repo/scenario-client-json-schema-2020-12-preservation-II",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-json-schema-2020-12-preservation-III": {
+      "name": "@repo/scenario-client-json-schema-2020-12-preservation-III",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-json-schema-ref-no-deref": {
+      "name": "@repo/scenario-client-json-schema-ref-no-deref",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-json-schema-ref-no-deref-II": {
+      "name": "@repo/scenario-client-json-schema-ref-no-deref-II",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-json-schema-ref-no-deref-III": {
+      "name": "@repo/scenario-client-json-schema-ref-no-deref-III",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-request-metadata": {
+      "name": "@repo/scenario-client-request-metadata",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-request-metadata-II": {
+      "name": "@repo/scenario-client-request-metadata-II",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-tools-call": {
+      "name": "@repo/scenario-client-tools-call",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-tools-call-II": {
+      "name": "@repo/scenario-client-tools-call-II",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
+    "scenarios/client-tools-call-III": {
+      "name": "@repo/scenario-client-tools-call-III",
+      "version": "0.0.0",
+      "dependencies": {
+        "@effect/platform-bun": "4.0.6",
+        "@repo/mcp-fixture": "workspace:*",
+        "effect": "4.0.6",
+      },
+    },
     "scenarios/completion-complete": {
       "name": "@repo/scenario-completion-complete",
       "version": "0.0.0",
@@ -1020,6 +1200,46 @@
 
     "@repo/scenario-caching": ["@repo/scenario-caching@workspace:scenarios/caching"],
 
+    "@repo/scenario-client-http-custom-headers": ["@repo/scenario-client-http-custom-headers@workspace:scenarios/client-http-custom-headers"],
+
+    "@repo/scenario-client-http-custom-headers-II": ["@repo/scenario-client-http-custom-headers-II@workspace:scenarios/client-http-custom-headers-II"],
+
+    "@repo/scenario-client-http-custom-headers-III": ["@repo/scenario-client-http-custom-headers-III@workspace:scenarios/client-http-custom-headers-III"],
+
+    "@repo/scenario-client-http-invalid-tool-headers": ["@repo/scenario-client-http-invalid-tool-headers@workspace:scenarios/client-http-invalid-tool-headers"],
+
+    "@repo/scenario-client-http-invalid-tool-headers-II": ["@repo/scenario-client-http-invalid-tool-headers-II@workspace:scenarios/client-http-invalid-tool-headers-II"],
+
+    "@repo/scenario-client-http-standard-headers": ["@repo/scenario-client-http-standard-headers@workspace:scenarios/client-http-standard-headers"],
+
+    "@repo/scenario-client-http-standard-headers-II": ["@repo/scenario-client-http-standard-headers-II@workspace:scenarios/client-http-standard-headers-II"],
+
+    "@repo/scenario-client-initialize": ["@repo/scenario-client-initialize@workspace:scenarios/client-initialize"],
+
+    "@repo/scenario-client-initialize-II": ["@repo/scenario-client-initialize-II@workspace:scenarios/client-initialize-II"],
+
+    "@repo/scenario-client-json-schema-2020-12-preservation": ["@repo/scenario-client-json-schema-2020-12-preservation@workspace:scenarios/client-json-schema-2020-12-preservation"],
+
+    "@repo/scenario-client-json-schema-2020-12-preservation-II": ["@repo/scenario-client-json-schema-2020-12-preservation-II@workspace:scenarios/client-json-schema-2020-12-preservation-II"],
+
+    "@repo/scenario-client-json-schema-2020-12-preservation-III": ["@repo/scenario-client-json-schema-2020-12-preservation-III@workspace:scenarios/client-json-schema-2020-12-preservation-III"],
+
+    "@repo/scenario-client-json-schema-ref-no-deref": ["@repo/scenario-client-json-schema-ref-no-deref@workspace:scenarios/client-json-schema-ref-no-deref"],
+
+    "@repo/scenario-client-json-schema-ref-no-deref-II": ["@repo/scenario-client-json-schema-ref-no-deref-II@workspace:scenarios/client-json-schema-ref-no-deref-II"],
+
+    "@repo/scenario-client-json-schema-ref-no-deref-III": ["@repo/scenario-client-json-schema-ref-no-deref-III@workspace:scenarios/client-json-schema-ref-no-deref-III"],
+
+    "@repo/scenario-client-request-metadata": ["@repo/scenario-client-request-metadata@workspace:scenarios/client-request-metadata"],
+
+    "@repo/scenario-client-request-metadata-II": ["@repo/scenario-client-request-metadata-II@workspace:scenarios/client-request-metadata-II"],
+
+    "@repo/scenario-client-tools-call": ["@repo/scenario-client-tools-call@workspace:scenarios/client-tools-call"],
+
+    "@repo/scenario-client-tools-call-II": ["@repo/scenario-client-tools-call-II@workspace:scenarios/client-tools-call-II"],
+
+    "@repo/scenario-client-tools-call-III": ["@repo/scenario-client-tools-call-III@workspace:scenarios/client-tools-call-III"],
+
     "@repo/scenario-completion-complete": ["@repo/scenario-completion-complete@workspace:scenarios/completion-complete"],
 
     "@repo/scenario-completion-complete-II": ["@repo/scenario-completion-complete-II@workspace:scenarios/completion-complete-II"],
@@ -1148,9 +1368,6 @@
 
     "@repo/scenario-sep-2164-resource-not-found": ["@repo/scenario-sep-2164-resource-not-found@workspace:scenarios/sep-2164-resource-not-found"],
 
-
-
-
     "@repo/scenario-server-initialize": ["@repo/scenario-server-initialize@workspace:scenarios/server-initialize"],
 
     "@repo/scenario-server-session-lifecycle": ["@repo/scenario-server-session-lifecycle@workspace:scenarios/server-session-lifecycle"],
@@ -1160,15 +1377,6 @@
     "@repo/scenario-server-stateless": ["@repo/scenario-server-stateless@workspace:scenarios/server-stateless"],
 
     "@repo/scenario-server-stateless-II": ["@repo/scenario-server-stateless-II@workspace:scenarios/server-stateless-II"],
-
-
-
-
-
-
-
-
-
 
     "@repo/scenario-tools-call-audio": ["@repo/scenario-tools-call-audio@workspace:scenarios/tools-call-audio"],
 

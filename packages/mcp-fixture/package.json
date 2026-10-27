@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "exports": {
-    ".": "./src/server.ts"
+    ".": "./src/server.ts",
+    "./client": "./src/client.ts"
   },
   "scripts": {
     "type-check": "tsc --noEmit"
