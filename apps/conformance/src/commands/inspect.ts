@@ -1,3 +1,4 @@
+import { startServer } from "../server-process";
 import { repository } from "../repository";
 import { Console, Data, Effect, Option } from "effect";
 import { Argument, Command, Flag } from "effect/cli";
@@ -17,21 +18,6 @@ const protocol = Flag.Literals("protocol", supportedProtocolVersions).pipe(
 class UnknownScenario extends Data.TaggedError("UnknownScenario")<{
   readonly scenario: string;
 }> {}
-
-const waitForServer = (url: string) =>
-  Effect.promise(async () => {
-    for (let attempt = 0; attempt < 50; attempt++) {
-      try {
-        await fetch(url, { signal: AbortSignal.timeout(200) });
-        return;
-      } catch {
-        if (attempt === 49) {
-          throw new Error(`Server did not start at ${url}`);
-        }
-        await Bun.sleep(100);
-      }
-    }
-  });
 
 export const inspect = Command.make(
   "inspect",
@@ -57,30 +43,10 @@ export const inspect = Command.make(
           });
         }
 
-        const port =
-          process.env["MCP_PORT"] ??
-          String(20_000 + Math.floor(Math.random() * 20_000));
-        const url = `http://127.0.0.1:${port}/mcp`;
-
-        yield* Effect.acquireRelease(
-          ChildProcess.make("bun", ["run", entrypointFor(scenarioDefinition)], {
-            cwd: repository,
-            env: {
-              MCP_HOST: "127.0.0.1",
-              MCP_PORT: port,
-              ...(Option.isSome(protocol)
-                ? { MCP_PROTOCOLS: protocol.value }
-                : {}),
-            },
-            extendEnv: true,
-            stderr: "inherit",
-            stdout: "inherit",
-          }),
-          (handle) =>
-            handle.kill({ forceKillAfter: "5 seconds" }).pipe(Effect.ignore),
+        const url = yield* startServer(
+          entrypointFor(scenarioDefinition),
+          Option.isSome(protocol) ? [protocol.value] : undefined,
         );
-
-        yield* waitForServer(url);
         yield* Console.log(`Opening MCP Inspector for ${scenario} at ${url}`);
         const exitCode = yield* ChildProcess.make(
           "bunx",
