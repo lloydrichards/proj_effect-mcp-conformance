@@ -1,8 +1,13 @@
 # Skills conformance, 27 October 2026
 
 All three previously missing Skills scenarios now have independent fixtures.
-The coverage inventory passes with 61 scenarios covered by fixtures and four
-explicitly unavailable, across 101 fixture implementations.
+At the standalone Skills PR head, the coverage inventory passes with 52
+scenarios covered by fixtures and 13 explicitly unavailable, across 92 fixture
+implementations. Nine unavailable entries belong to the separate Tasks draft.
+With that draft applied, the combined stack has 61 fixture-backed scenarios,
+four unavailable scenarios, and 101 fixture implementations. The original
+three-probe evidence below was captured with the combined stack applied;
+the independent PR review reproduced the same probe outcomes.
 
 Published Effect `4.0.6` passes the manifest scenario. Enumeration and directory
 reading fail because Effect does not implement their extension methods. The
@@ -87,9 +92,35 @@ satisfies them. The raw evidence preserves that distinction.
 - The official three-scenario matrix runs produce the results above.
 - Type checking passes for all three new fixtures, the shared server package,
   and the conformance CLI.
-- The coverage inventory, lint, formatting, nine unit tests, and CLI build pass.
+- The coverage inventory, lint, formatting, 14 unit tests, and CLI build pass.
+- CI now runs the inventory check, so newly unaccounted upstream scenarios fail
+  validation.
 - Existing resource discovery and text-reading fixtures pass across all five
   adapters after the shared helper change.
 
-The existing nine Tasks fixtures still depend on the unpublished `McpTasks`
-export. Their workspace type-check failures are separate from these fixtures.
+The nine fixtures on the separate Tasks draft still depend on the unpublished
+`McpTasks` export. They are not present at the standalone Skills PR head.
+
+## Swarm review corrections
+
+Three independent reviewers checked the protocol contracts, runner behavior,
+and isolated PR validation. The review found an outcome-classification bug:
+the official runner can emit only skipped behavior checks followed by a
+successful generic `wire-schema-valid` check. The wrapper previously reported
+that as a pass. It now reports exit `77`, meaning skipped, while preserving
+failures in any check or the runner process.
+
+Empty results, generic-only evidence, unknown statuses, and failed checks with
+a successful process exit no longer count as passing conformance evidence.
+Five new regression cases failed before the fix and pass afterward. The
+existing nine unit tests continue to pass.
+
+The manifest probe passes without supplying optional `_meta` entries. It does
+not establish preservation of custom skill metadata. The extension flags are
+explicit fixture configuration: the observed method failures do not mean that
+Effect advertises Skills support by default.
+
+The PR remains a draft. Its default conformance CI job fails on the two missing
+methods. No expected-failure baseline, disabled checks, or replacement handlers
+have been added. A separate direct control would be needed to test `skills/get`
+independently while `skills/list` remains unavailable.

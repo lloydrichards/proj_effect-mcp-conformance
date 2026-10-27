@@ -4,9 +4,11 @@
   "conformance": "0.2.0-alpha.12",
   "runnerSourceSha256": "b56fb575e61edaac83c2008af40a6a78b47815c4038a02a9b04cd336d38832a0",
   "coverage": {
+    "scope": "Standalone Skills PR, without the child Tasks draft",
     "upstream": 65,
-    "fixtures": 61,
-    "unavailable": 4,
+    "fixtures": 52,
+    "fixtureImplementations": 92,
+    "unavailable": 13,
     "unclassified": []
   },
   "scenarios": [
@@ -702,5 +704,26 @@
         }
       ]
     }
-  ]
+  ],
+  "historicalCombinedStackInventory": {
+    "upstream": 65,
+    "fixtures": 61,
+    "unavailable": 4,
+    "unclassified": []
+  },
+  "reviewCorrections": {
+    "outcomeClassification": "Ignore wire-schema-valid when determining whether scenario behavior was skipped. Reject missing behavioral evidence and unknown statuses; preserve failed checks and process exits.",
+    "regressionTests": {
+      "newCases": 5,
+      "failedBefore": 5,
+      "passedAfter": 5,
+      "totalUnitTestsAfter": 14
+    },
+    "inventoryCheckedInCI": true,
+    "knownGaps": [
+      "skills/get is not exercised because the official enumeration scenario stops after skills/list fails.",
+      "Optional custom _meta preservation is not exercised.",
+      "Enumeration and directory methods are unavailable; default conformance CI remains red."
+    ]
+  }
 }

@@ -1,16 +1,32 @@
 import { Schema } from "effect";
 
-const CheckStatuses = Schema.Array(Schema.Struct({ status: Schema.String }));
+const CheckStatuses = Schema.Array(
+  Schema.Struct({
+    id: Schema.String,
+    status: Schema.Literals([
+      "SUCCESS",
+      "FAILURE",
+      "WARNING",
+      "SKIPPED",
+      "INFO",
+    ]),
+  }),
+);
 
 export const skippedExitCode = 77;
 
 export const resultExitCode = (runnerExitCode: number, checks: unknown) => {
-  const statuses = Schema.decodeUnknownSync(CheckStatuses)(checks);
   if (runnerExitCode !== 0) return runnerExitCode;
-  return statuses.length > 0 &&
-    statuses.every(
-      (check) => check.status === "SKIPPED" || check.status === "INFO",
-    )
+  const statuses = Schema.decodeUnknownSync(CheckStatuses)(checks);
+  if (statuses.some((check) => check.status === "FAILURE")) return 1;
+  // The runner appends this check even when every scenario behavior is skipped.
+  const behavioralChecks = statuses.filter(
+    (check) => check.id !== "wire-schema-valid",
+  );
+  if (behavioralChecks.length === 0) return 1;
+  return behavioralChecks.every(
+    (check) => check.status === "SKIPPED" || check.status === "INFO",
+  )
     ? skippedExitCode
     : 0;
 };
