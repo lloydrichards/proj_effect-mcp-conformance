@@ -1,5 +1,3 @@
-// Public module references keep inferred declarations portable with Bun's isolated linker.
-import type {} from "effect/process/ChildProcessSpawner";
 import { repository } from "../repository";
 import { Console, DateTime, Effect } from "effect";
 import {
@@ -15,7 +13,8 @@ import {
 } from "node:fs";
 import { join, relative } from "node:path";
 import { type MatrixScenario, type MatrixSelection } from "./scenarios";
-import { classifyResult, readChecks, type CellStatus } from "./results";
+import { classifyResult, type CellStatus } from "./results";
+import { readChecks } from "../results";
 import { runProcess } from "./process";
 import { formatTable, type Row } from "./table";
 

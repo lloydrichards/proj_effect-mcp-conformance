@@ -9,8 +9,7 @@
     "dev": "bun --watch run src/index.ts",
     "test": "vitest run",
     "type-check": "tsc --noEmit",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "build:types": "tsc -p tsconfig.types.json"
+    "clean": "git clean -xdf .cache .turbo dist node_modules"
   },
   "bin": {
     "effect-mcp-conformance": "dist/index.js"
