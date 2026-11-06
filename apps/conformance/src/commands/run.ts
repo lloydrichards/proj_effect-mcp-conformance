@@ -3,8 +3,9 @@ import { repository } from "../repository";
 import { Console, Data, Effect, Option } from "effect";
 import { Argument, Command, Flag } from "effect/cli";
 import { ChildProcess } from "effect/process";
-import { readFileSync, readdirSync } from "node:fs";
-import { join } from "node:path";
+import { mkdirSync, mkdtempSync } from "node:fs";
+import { join, resolve } from "node:path";
+import { latestScenarioChecks } from "../runner-output";
 import { resultExitCode } from "../results";
 import {
   supportedProtocolVersions,
@@ -213,14 +214,19 @@ export const run = Command.make(
             )}]; negotiated ${negotiatedProtocol}.`,
           );
         }
-        const outputDirectory = Option.getOrElse(outputDir, () =>
-          join(
-            repository,
-            ".cache",
-            "conformance",
-            `${scenario}-${expectedProtocol}-${process.pid}`,
+        const outputRoot = resolve(
+          repository,
+          Option.getOrElse(outputDir, () =>
+            join(
+              repository,
+              ".cache",
+              "conformance",
+              `${scenario}-${expectedProtocol}-${process.pid}`,
+            ),
           ),
         );
+        mkdirSync(outputRoot, { recursive: true });
+        const outputDirectory = mkdtempSync(join(outputRoot, "run-"));
         const exitCode = yield* ChildProcess.make(
           "bunx",
           [
@@ -246,14 +252,9 @@ export const run = Command.make(
           },
         ).pipe(Effect.flatMap((handle) => handle.exitCode));
         process.exitCode = yield* Effect.sync(() => {
-          const results = readdirSync(outputDirectory).filter((name) =>
-            name.startsWith("server-"),
-          );
-          const latest = results.sort().at(-1);
-          if (latest === undefined)
-            throw new Error("Conformance runner did not save any results");
-          const checks = JSON.parse(
-            readFileSync(join(outputDirectory, latest, "checks.json"), "utf8"),
+          const checks = latestScenarioChecks(
+            outputDirectory,
+            conformanceNameFor(scenarioDefinition),
           );
           return resultExitCode(exitCode, checks);
         });
