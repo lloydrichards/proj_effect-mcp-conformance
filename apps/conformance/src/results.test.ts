@@ -61,3 +61,16 @@ describe("conformance evidence", () => {
     ).toThrow();
   });
 });
+
+describe("behavioral success evidence", () => {
+  it.each([
+    [{ id: "behavior", status: "WARNING" }],
+    [
+      { id: "behavior", status: "SKIPPED" },
+      { id: "other", status: "WARNING" },
+      { id: "wire-schema-valid", status: "SUCCESS" },
+    ],
+  ])("does not pass without a successful behavior: %j", (...checks) => {
+    expect(resultExitCode(0, checks)).toBe(1);
+  });
+});

@@ -24,10 +24,11 @@ export const resultExitCode = (runnerExitCode: number, checks: unknown) => {
     (check) => check.id !== "wire-schema-valid",
   );
   if (behavioralChecks.length === 0) return 1;
-  if (behavioralChecks.every((check) => check.status === "INFO")) return 1;
-  return behavioralChecks.every(
-    (check) => check.status === "SKIPPED" || check.status === "INFO",
-  )
+  if (behavioralChecks.some((check) => check.status === "SUCCESS")) return 0;
+  return behavioralChecks.some((check) => check.status === "SKIPPED") &&
+    behavioralChecks.every(
+      (check) => check.status === "SKIPPED" || check.status === "INFO",
+    )
     ? skippedExitCode
-    : 0;
+    : 1;
 };
