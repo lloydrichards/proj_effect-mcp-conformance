@@ -35,6 +35,9 @@ jobs:
       - name: Check scenario inventory
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: bun run conformance:coverage
+      - name: Build declarations
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: bun run --cwd=apps/conformance build:types
       - name: Lint
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: bun run lint

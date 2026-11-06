@@ -1,3 +1,8 @@
+// Public module references keep inferred declarations portable with Bun's isolated linker.
+import type {} from "effect/Cause";
+import type {} from "effect/Scope";
+import type {} from "effect/http/HttpRouter";
+import type {} from "effect/http/HttpServerRequest";
 import { Config, Effect, Layer } from "effect";
 import { McpProtocol, McpServer } from "effect/ai";
 
