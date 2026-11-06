@@ -13,10 +13,10 @@ one implementation without changing its official scenario name.
 
 ## Published baseline
 
-The baseline PR uses published Effect `4.0.6` and conformance
-`0.2.0-alpha.12`. All 275 core server adapter checks pass. Client, Skills, and
-Tasks fixtures are reviewed in separate PRs. Tasks remains a draft
-because the published package does not export `McpTasks`.
+The workspace pins published Effect `4.1.2` and conformance
+`0.2.0-alpha.12`. Skills fixtures use `McpServer.skill` to register the
+extension, its methods, and its resources. Tasks fixtures remain on separate
+PR #5.
 
 ## Direction
 
@@ -84,7 +84,7 @@ packs `effect`, `@effect/platform-node-shared`, and `@effect/platform-bun`, then
 installs the tarballs without retaining local paths in `package.json` or
 `bun.lock`.
 
-To return to the published RC baseline, unapply this stacked branch and restore
+To return to the published baseline, unapply this stacked branch and restore
 the lockfile packages:
 
 ```sh
@@ -313,37 +313,35 @@ bun run type-check
 
 ## Current coverage
 
-| Scenario                       | Status  | What it establishes / exposes                                      |
-| ------------------------------ | ------- | ------------------------------------------------------------------ |
-| `server-initialize`            | Passing | Effect's Streamable HTTP server completes MCP initialization.      |
-| `server-session-lifecycle`     | Blocked | RC.112 does not return an `Mcp-Session-Id`; checks are skipped.    |
-| `logging-set-level`            | Passing | Effect accepts the built-in `logging/setLevel` request.            |
-| `ping`                         | Passing | Effect responds to the built-in `ping` request.                    |
-| `tools-list`                   | Passing | A scenario-owned Effect tool has a valid MCP definition.           |
-| `tools-call-simple-text`       | Passing | Direct MCP tool registration returns text content.                 |
-| `tools-call-image`             | Passing | Direct registration encodes image bytes as MCP image content.      |
-| `tools-call-audio`             | Passing | Direct registration encodes audio bytes as MCP audio content.      |
-| `tools-call-embedded-resource` | Passing | Direct registration returns embedded resources.                    |
-| `tools-call-mixed-content`     | Passing | Direct registration returns mixed MCP content blocks.              |
-| `tools-call-error`             | Passing | Tool-level errors are represented with `isError: true`.            |
-| `tools-call-with-logging`      | Failing | Outbound logging notifications are not received by the client.     |
-| `tools-call-with-progress`     | Failing | Tool handlers cannot access the request progress token.            |
-| `tools-call-sampling`          | Blocked | Reverse sampling request does not complete over this transport.    |
-| `tools-call-elicitation`       | Blocked | Reverse elicitation request does not complete over this transport. |
-| `json-schema-2020-12`          | Blocked | RC.112 loses the stateful session before schema checks begin.      |
-| `elicitation-sep1034-defaults` | Blocked | RC.112 loses the stateful session before default checks begin.     |
-| `elicitation-sep1330-enums`    | Blocked | RC.112 loses the stateful session before enum checks begin.        |
+The full matrix runs server fixtures across their applicable protocol adapters
+and 26 client implementation/protocol combinations. Run
+`bun run conformance:all --timeout 30000` for current results. The command saves
+raw checker output, package versions, and a machine-readable summary under
+`.cache/conformance/`.
 
 These are individual scenario results, not a claim that the Effect MCP server
 conforms to a whole MCP revision.
 
-## Skills extension probes
+## Skills extension coverage
 
-The three Skills fixtures are included on the Skills branch. The manifest
-passes; enumeration and directory reading expose missing Effect methods as
-failures. The Skills branch's coverage inventory explicitly accounts for the
-nine fixtures that live only on the Tasks draft. See the
-[Skills contracts and results](reports/skills-conformance-2026-10-27.md).
+Three independent fixtures exercise SEP-2640 on protocol `2026-07-28`:
+
+- `sep-2640-skills-manifest` checks the manifest resource and frontmatter.
+- `sep-2640-skills-enumeration` checks listing, retrieval, file manifests, and caching attributes.
+- `sep-2640-skills-directory` checks directory traversal, a nested reference, and invalid directory requests.
+
+Each fixture registers its files with `McpServer.skill`. Effect derives the
+extension capabilities, resource metadata, SHA-256 digests, and byte sizes.
+Single-page catalogs satisfy the pagination checks; these fixtures do not
+exercise multiple pages or the resource and size limits.
+
+Run a fixture with the official checker:
+
+```sh
+bun run conformance:all --scenario sep-2640-skills-enumeration --timeout 30000
+```
+
+The coverage inventory accounts separately for the nine Tasks fixtures on PR #5.
 
 ## Add a scenario
 
@@ -406,7 +404,7 @@ resource-not-found error data.
 
 ### Still unsupported
 
-The published RC cannot represent `resources-subscribe`,
+The published Effect server cannot represent `resources-subscribe`,
 `resources-unsubscribe`, or `server-sse-polling` truthfully over `layerHttp`.
 The optional `io.modelcontextprotocol/tasks` scenarios remain outside this
 workspace until Open Effect implements that extension.

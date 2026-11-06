@@ -213,11 +213,13 @@ export const run = Command.make(
             )}]; negotiated ${negotiatedProtocol}.`,
           );
         }
-        const outputDirectory = join(
-          repository,
-          ".cache",
-          "conformance",
-          `${scenario}-${expectedProtocol}-${process.pid}`,
+        const outputDirectory = Option.getOrElse(outputDir, () =>
+          join(
+            repository,
+            ".cache",
+            "conformance",
+            `${scenario}-${expectedProtocol}-${process.pid}`,
+          ),
         );
         const exitCode = yield* ChildProcess.make(
           "bunx",
@@ -234,10 +236,6 @@ export const run = Command.make(
               ? ["--spec-version", expectedProtocol]
               : []),
             ...(scenarioDefinition.extension === undefined ? [] : ["--force"]),
-            ...Option.match(outputDir, {
-              onNone: () => [],
-              onSome: (path) => ["--output-dir", path],
-            }),
             ...(Option.getOrElse(verbose, () => false) ? ["--verbose"] : []),
           ],
           {

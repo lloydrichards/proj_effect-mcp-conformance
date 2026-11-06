@@ -63,11 +63,20 @@ describe("matrix results", () => {
         classifyResult(
           exit,
           timedOut,
-          statuses.map((status) => ({ status })),
+          statuses.map((status) => ({ id: "scenario-check", status })),
         ),
       ).toBe(expected);
     },
   );
+
+  it("keeps skipped behavior skipped when only the schema check succeeds", () => {
+    expect(
+      classifyResult(77, false, [
+        { id: "scenario-check", status: "SKIPPED" },
+        { id: "wire-schema-valid", status: "SUCCESS" },
+      ]),
+    ).toBe("SKIP");
+  });
 
   it("renders variant rows and excludes inapplicable cells from the total", () => {
     const results = Object.fromEntries(
