@@ -1,3 +1,7 @@
+// Public module references keep inferred declarations portable with Bun's isolated linker.
+import type {} from "effect/Cause";
+import type {} from "effect/Types";
+import type {} from "effect/process/ChildProcessSpawner";
 import { Data, Effect, Option } from "effect";
 import { Argument, Command, Flag } from "effect/cli";
 import { selectScenarios, type MatrixSelection } from "../matrix/scenarios";

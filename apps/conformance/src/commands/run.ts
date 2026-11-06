@@ -1,3 +1,9 @@
+// Public module references keep inferred declarations portable with Bun's isolated linker.
+import type {} from "effect/Cause";
+import type {} from "effect/Config";
+import type {} from "effect/PlatformError";
+import type {} from "effect/Types";
+import type {} from "effect/process/ChildProcessSpawner";
 import { startServer } from "../server-process";
 import { repository } from "../repository";
 import { Console, Data, Effect, Option } from "effect";
