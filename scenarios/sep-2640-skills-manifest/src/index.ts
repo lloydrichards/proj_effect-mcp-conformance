@@ -8,7 +8,6 @@ const SkillManifest = {
   uri: "skill://conformance/manifest-fixture/SKILL.md",
   name: "manifest-fixture",
   description: "A skill used to verify manifest conformance.",
-  mimeType: "text/markdown",
 };
 
 const manifestContent = `---
@@ -19,19 +18,15 @@ description: ${SkillManifest.description}
 Follow the instructions in this fixture skill.
 `;
 
-const ManifestResource = McpServer.resource({
-  ...SkillManifest,
-  content: Effect.succeed(manifestContent),
+const FixtureSkill = McpServer.skill({
+  uri: SkillManifest.uri,
+  files: {
+    "SKILL.md": manifestContent,
+  },
 });
 
-// This fixture covers the manifest resource contract only. Enumeration
-// support is checked independently by sep-2640-skills-enumeration.
-const ScenarioLive = ManifestResource.pipe(
-  Layer.provideMerge(
-    server("sep-2640-skills-manifest", {
-      extensions: { "io.modelcontextprotocol/skills": {} },
-    }),
-  ),
+const ScenarioLive = FixtureSkill.pipe(
+  Layer.provideMerge(server("sep-2640-skills-manifest")),
 );
 
 const MainLive = ScenarioLive.pipe(

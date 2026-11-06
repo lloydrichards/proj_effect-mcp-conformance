@@ -1,8 +1,10 @@
+import { resultExitCode, skippedExitCode } from "../results";
 import { Schema } from "effect";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 const Check = Schema.Struct({
+  id: Schema.String,
   status: Schema.Literals(["SUCCESS", "FAILURE", "WARNING", "SKIPPED", "INFO"]),
 });
 const Checks = Schema.Array(Check);
@@ -15,14 +17,12 @@ export const classifyResult = (
   checks: ReadonlyArray<Check>,
 ): CellStatus => {
   if (timedOut) return "TIMEOUT";
-  if (
-    exitCode !== 0 ||
-    checks.length === 0 ||
-    checks.some((check) => check.status === "FAILURE")
-  )
-    return "FAIL";
-  if (checks.some((check) => check.status === "SUCCESS")) return "PASS";
-  return checks.some((check) => check.status === "SKIPPED") ? "SKIP" : "FAIL";
+  if (exitCode === null) return "FAIL";
+  const result = resultExitCode(
+    exitCode === skippedExitCode ? 0 : exitCode,
+    checks,
+  );
+  return result === skippedExitCode ? "SKIP" : result === 0 ? "PASS" : "FAIL";
 };
 
 export const readChecks = (directory: string): ReadonlyArray<Check> => {

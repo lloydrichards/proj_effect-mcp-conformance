@@ -8,8 +8,8 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@effect/platform-bun": "4.0.6",
+    "@effect/platform-bun": "4.1.2",
     "@repo/mcp-fixture": "workspace:*",
-    "effect": "4.0.6"
+    "effect": "4.1.2"
   }
 }
