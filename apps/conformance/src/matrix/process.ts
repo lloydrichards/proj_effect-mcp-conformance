@@ -1,6 +1,3 @@
-// Public module references keep inferred declarations portable with Bun's isolated linker.
-import type {} from "effect/PlatformError";
-import type {} from "effect/process/ChildProcessSpawner";
 import { Effect, Option, Stream } from "effect";
 import { ChildProcess } from "effect/process";
 import { appendFileSync } from "node:fs";

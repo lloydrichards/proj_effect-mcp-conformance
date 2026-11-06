@@ -1,4 +1,6 @@
 import { Schema } from "effect";
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 
 const CheckStatuses = Schema.Array(
   Schema.Struct({
@@ -12,6 +14,19 @@ const CheckStatuses = Schema.Array(
     ]),
   }),
 );
+
+export type Check = (typeof CheckStatuses.Type)[number];
+
+export const readChecks = (directory: string): ReadonlyArray<Check> => {
+  const paths = readdirSync(directory, { recursive: true }).filter((path) =>
+    String(path).endsWith("checks.json"),
+  );
+  return paths.flatMap((path) =>
+    Schema.decodeUnknownSync(CheckStatuses)(
+      JSON.parse(readFileSync(join(directory, String(path)), "utf8")),
+    ),
+  );
+};
 
 export const skippedExitCode = 77;
 

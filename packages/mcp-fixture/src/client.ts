@@ -1,6 +1,3 @@
-// Public module references keep inferred declarations portable with Bun's isolated linker.
-import type {} from "effect/Cause";
-import type {} from "effect/Types";
 import { Config, Data, Effect } from "effect";
 import { McpProtocol } from "effect/ai";
 
