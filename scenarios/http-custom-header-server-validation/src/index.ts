@@ -2,7 +2,7 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Effect, Layer, Schema } from "effect";
 import { McpServer, Tool, Toolkit } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 const CustomHeaderValidationTool = Tool.dynamic(
   "test_custom_header_validation",
@@ -38,9 +38,19 @@ const CustomHeaderFeatures = McpServer.toolkit(CustomHeaderToolkit).pipe(
   Layer.provide(CustomHeaderHandlers),
 );
 
-const ScenarioLive = CustomHeaderFeatures.pipe(
-  Layer.provideMerge(server("http-custom-header-server-validation")),
-);
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: http-custom-header-server-validation",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
+const ScenarioLive = CustomHeaderFeatures.pipe(Layer.provideMerge(McpHttpLive));
 
 const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,

@@ -1,6 +1,8 @@
-import { runHttpScenario, server } from "@repo/mcp-fixture";
+import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Effect, Layer, Schema } from "effect";
 import { McpServer, Tool, Toolkit } from "effect/ai";
+import { HttpRouter, HttpServer } from "effect/http";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 const ToolDiscoveryTool = Tool.dynamic("test_tool", {
   description: "A minimal tool used to verify MCP tool discovery.",
@@ -21,8 +23,28 @@ const ToolDiscoveryFeatures = McpServer.toolkit(ToolDiscoveryToolkit).pipe(
   Layer.provide(ToolDiscoveryHandlers),
 );
 
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: tools-list-II",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
 const ScenarioLive = ToolDiscoveryFeatures.pipe(
-  Layer.provideMerge(server("tools-list-II")),
+  Layer.provideMerge(McpHttpLive),
 );
 
-runHttpScenario(ScenarioLive);
+const MainLive = ScenarioLive.pipe(
+  HttpRouter.serve,
+  HttpServer.withLogAddress,
+  Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
+);
+
+const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
+
+BunRuntime.runMain(main);

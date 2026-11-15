@@ -2,7 +2,7 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Effect, Layer, Schema } from "effect";
 import { McpServer, Tool, Toolkit } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 class ExpectedToolError extends Schema.TaggedError<ExpectedToolError>()(
   "ExpectedToolError",
@@ -32,8 +32,20 @@ const ErrorHandlingFeatures = McpServer.toolkit(ErrorToolkit).pipe(
   Layer.provide(ErrorHandlers),
 );
 
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: tools-call-error",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
 const ScenarioLive = ErrorHandlingFeatures.pipe(
-  Layer.provideMerge(server("tools-call-error")),
+  Layer.provideMerge(McpHttpLive),
 );
 
 const MainLive = ScenarioLive.pipe(

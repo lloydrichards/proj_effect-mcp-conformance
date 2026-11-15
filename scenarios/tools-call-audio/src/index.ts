@@ -2,8 +2,8 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Context, Effect, Layer } from "effect";
 import { McpSchema, McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 import { toneWav } from "@repo/mcp-fixture/media";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
 
 const AudioContentTool = new McpSchema.Tool({
   name: "test_audio_content",
@@ -34,8 +34,20 @@ const AudioContentRegistration = Layer.effectDiscard(
   ),
 );
 
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: tools-call-audio",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
 const ScenarioLive = AudioContentRegistration.pipe(
-  Layer.provideMerge(server("tools-call-audio")),
+  Layer.provideMerge(McpHttpLive),
 );
 
 const MainLive = ScenarioLive.pipe(

@@ -29,7 +29,7 @@ The repository has three deliberate boundaries:
 │   └── conformance/            # Effect CLI that starts and tests scenarios
 ├── packages/
 │   ├── config-typescript/      # shared TypeScript defaults
-│   └── mcp-fixture/            # shared Streamable HTTP server setup
+│   └── mcp-fixture/            # shared runner configuration and fixture data
 └── scenarios/
     ├── server-initialize/      # one independent MCP server per scenario
     ├── tools-list-II/          # alternate implementation of tools-list
@@ -45,8 +45,9 @@ The repository has three deliberate boundaries:
 `ChildProcess` commands to start a selected scenario, wait until its `/mcp`
 endpoint responds, run the official checker, and terminate the fixture.
 
-Scenario apps own their MCP declarations and handlers. The shared fixture
-configures the HTTP transport and provides a Bun launcher for the alternates.
+Each server entrypoint declares its MCP features, builds the HTTP transport with
+`McpServer.layerHttp`, and launches the HTTP server with `BunRuntime.runMain`.
+The examples share environment settings for the listener, protocol adapters, and origins.
 Each scenario ID has a runnable entrypoint. When several checks intentionally
 exercise the same server, the entrypoints import the same registration layer.
 
@@ -235,7 +236,21 @@ bun run conformance:scenario ping --verbose
 
 ### Choosing a scenario variant
 
-Each link opens a runnable entrypoint. I is the unsuffixed scenario.
+Start with [tools-list](scenarios/tools-list/src/index.ts). Follow the tool
+declaration through its handler, toolkit registration, HTTP route, and Bun
+launch. To start that example directly from the repository root, run:
+
+```sh
+MCP_HOST=127.0.0.1 MCP_PORT=9009 bun run scenarios/tools-list/src/index.ts
+```
+
+The endpoint is `http://127.0.0.1:9009/mcp`. When copying the example into
+an application, you can pass a fixed adapter such as `[McpProtocol.v2025_11_25]`
+and your allowed origins directly to `McpServer.layerHttp`. Supply the listener
+with `BunHttpServer.layer({ hostname: "127.0.0.1", port: 9009 })`. Those
+choices replace the two configuration imports from `@repo/mcp-fixture`.
+
+In the table, I is the unsuffixed scenario.
 
 | Family                                 | Variants                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -249,7 +264,7 @@ Each link opens a runnable entrypoint. I is the unsuffixed scenario.
 | `prompts-get-simple`                   | [I](scenarios/prompts-get-simple/src/index.ts) return a string from `McpServer.prompt`. [II](scenarios/prompts-get-simple-II/src/index.ts) use `McpServer.registerPrompt`. [III](scenarios/prompts-get-simple-III/src/index.ts) construct a `GetPromptResult` with `registry.addPrompt`. [IV](scenarios/prompts-get-simple-IV/src/index.ts) compose prompt, tool, and resource layers.                                                                                                                |
 | `prompts-list`                         | [I](scenarios/prompts-list/src/index.ts) declare one prompt layer. [II](scenarios/prompts-list-II/src/index.ts) register three prompts with `McpServer.registerPrompt`. [III](scenarios/prompts-list-III/src/index.ts) supply two descriptors with `registry.addPrompt`. [IV](scenarios/prompts-list-IV/src/index.ts) compose three prompt layers with tools and resources.                                                                                                                           |
 | `resources-list`                       | [I](scenarios/resources-list/src/index.ts) declare one resource layer. [II](scenarios/resources-list-II/src/index.ts) register two resources with `McpServer.registerResource`. [III](scenarios/resources-list-III/src/index.ts) supply both descriptors with `registry.addResource`. [IV](scenarios/resources-list-IV/src/index.ts) compose resource layers with tools and prompts.                                                                                                                  |
-| `tools-call-simple-text`               | [I](scenarios/tools-call-simple-text/src/index.ts) register an explicit text result and launch the HTTP server in the entrypoint. [II](scenarios/tools-call-simple-text-II/src/index.ts) pass the registration layer to `McpServer.layerHttp` through the shared server. [III](scenarios/tools-call-simple-text-III/src/index.ts) compose the text tool with other capabilities using `Layer.mergeAll`.                                                                                               |
+| `tools-call-simple-text`               | [I](scenarios/tools-call-simple-text/src/index.ts) register an explicit text result and launch the HTTP server in the entrypoint. [II](scenarios/tools-call-simple-text-II/src/index.ts) pass the registration layer to `McpServer.layerHttp` using its `registrations` option. [III](scenarios/tools-call-simple-text-III/src/index.ts) compose the text tool with other capabilities using `Layer.mergeAll`.                                                                                        |
 | `server-stateless`                     | [I](scenarios/server-stateless/src/index.ts) add a tool from inside a handler with `registry.addTool`. [II](scenarios/server-stateless-II/src/index.ts) call `McpServer.registerToolkit` from the handler.                                                                                                                                                                                                                                                                                            |
 
 In Effect 4.1.4, a string returned by a resource handler inherits the registered MIME type. A tool with a typed string result can return `structuredContent` on the July 2026 adapter. Use an explicit `CallToolResult` when the example needs a particular MCP content block.
@@ -384,10 +399,10 @@ Then:
 
 1. Create `scenarios/<scenario-name>/` with its own `package.json`,
    `tsconfig.json`, and `src/index.ts`.
-2. Start from an existing scenario and compose the shared `server(...)` layer
-   with only the capability layers and handlers required by the scenario.
-3. Launch the assembled layer with `runHttpScenario`, or keep the server setup
-   in the entrypoint when the transport itself is under test.
+2. Build the transport with `McpServer.layerHttp` and provide it to the
+   scenario’s capability layers.
+3. Serve the router with `HttpRouter.serve`, provide the Bun listener, and
+   launch the assembled layer with `Layer.launch` and `BunRuntime.runMain`.
 4. Add the scenario name to the `scenarios` list in
    [`apps/conformance/src/scenarios.ts`](./apps/conformance/src/scenarios.ts),
    including only the protocol revisions to which the scenario applies.

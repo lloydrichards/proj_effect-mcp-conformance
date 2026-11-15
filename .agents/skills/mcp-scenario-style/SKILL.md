@@ -13,7 +13,7 @@ Make the behavioral difference between scenarios visible. Organize each scenario
 4. scenario assembly
 5. runtime launch
 
-Keep the module deep: scenario code owns the capability and behavior under test, while shared fixture code hides transport and launch mechanics that do not vary.
+Keep the MCP transport and Bun launch visible in each server entrypoint. Share the environment configuration needed by the runner.
 
 ## Before changing a scenario
 
@@ -115,16 +115,26 @@ toolkit declarations
 implementations and handlers
 registration or feature layers
 ScenarioLive
-MainLive or shared launch helper
+MainLive
 BunRuntime.runMain(...)
 ```
 
 For a single capability:
 
 ```ts
-const ScenarioLive = SimpleTextFeatures.pipe(
-  Layer.provideMerge(server("tools-call-simple-text")),
-);
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: tools-call-simple-text",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
+const ScenarioLive = SimpleTextFeatures.pipe(Layer.provideMerge(McpHttpLive));
 
 const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,
@@ -137,9 +147,7 @@ const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
 BunRuntime.runMain(main);
 ```
 
-Use this exact assembly spelling for ordinary scenarios. In particular, name the three values `ScenarioLive`, `MainLive`, and `main`; attach the shared server with `Layer.provideMerge(server(...))`; and launch with `Layer.launch(MainLive)`. A fixed tail makes differences above it easier to compare. Deviate only when the transport or lifecycle assembly is itself under test.
-
-If the repository provides a shared launch helper, use it so the scenario entrypoint shows mainly its unique behavior. Keep transport construction local when transport itself is under test, such as DNS rebinding, header admission, SSE, or lifecycle behavior.
+Use the same launch sequence across examples so a reader can follow a capability from its registration through to a running server. Keep transport-specific behavior local to its scenario.
 
 For several capabilities, name each feature and merge once:
 
@@ -171,7 +179,7 @@ Use PascalCase for contracts and layers. Keep exact protocol wire names inside t
 
 ## Duplication
 
-Extract infrastructure that is identical across scenarios, especially the HTTP/Bun launch tail. Keep shared transport and metadata in `packages/mcp-fixture`.
+Repeat the transport construction and HTTP/Bun launch in each server example. The runner’s environment parsing belongs in `packages/mcp-fixture`.
 
 For closely related scenarios, extract only small stable vocabulary such as result constructors, schema fragments, or constant request keys. Keep the scenario's distinguishing payload, branch, state transition, and response inline. A configurable universal scenario factory usually hides the evidence the reader is trying to compare.
 

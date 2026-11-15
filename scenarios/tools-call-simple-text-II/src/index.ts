@@ -1,6 +1,8 @@
+import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Context, Effect, Layer } from "effect";
 import { McpSchema, McpServer } from "effect/ai";
-import { runHttpScenario, server } from "@repo/mcp-fixture";
+import { HttpRouter, HttpServer } from "effect/http";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 const SimpleTextTool = new McpSchema.Tool({
   name: "test_simple_text",
@@ -31,9 +33,25 @@ const SimpleTextRegistration = Layer.effectDiscard(
 );
 
 // layerHttp builds these registrations when it acquires the endpoint.
-const ScenarioLive = server(
-  "tools-call-simple-text-II",
-  SimpleTextRegistration,
+const ScenarioLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: tools-call-simple-text-II",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+      registrations: SimpleTextRegistration,
+    }),
+).pipe(Layer.unwrap);
+
+const MainLive = ScenarioLive.pipe(
+  HttpRouter.serve,
+  HttpServer.withLogAddress,
+  Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
 );
 
-runHttpScenario(ScenarioLive);
+const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
+
+BunRuntime.runMain(main);
