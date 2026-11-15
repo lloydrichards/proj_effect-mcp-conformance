@@ -4,11 +4,18 @@ import { McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
+const argumentValues = ["test", "test-report", "release"];
+
 const PromptWithCompletions = McpServer.prompt({
   name: "test_prompt_with_arguments",
   description: "A prompt with completions.",
   parameters: { arg1: Schema.String },
-  completion: { arg1: () => Effect.succeed(["test"]) },
+  completion: {
+    arg1: (prefix) =>
+      Effect.succeed(
+        argumentValues.filter((value) => value.startsWith(prefix)),
+      ),
+  },
   content: ({ arg1 }) => Effect.succeed(`Prompt argument: ${arg1}`),
 });
 

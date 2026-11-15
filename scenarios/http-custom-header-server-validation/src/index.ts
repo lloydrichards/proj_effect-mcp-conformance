@@ -1,44 +1,44 @@
 import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
-import { Context, Effect, Layer } from "effect";
-import { McpSchema, McpServer } from "effect/ai";
+import { Effect, Layer, Schema } from "effect";
+import { McpServer, Tool, Toolkit } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
-const CustomHeaderValidationTool = new McpSchema.Tool({
-  name: "test_custom_header_validation",
-  description: "Exercises an MCP parameter mirrored in an HTTP header.",
-  inputSchema: {
-    type: "object",
-    properties: {
-      message: {
-        type: "string",
-        "x-mcp-header": "message",
+const CustomHeaderValidationTool = Tool.dynamic(
+  "test_custom_header_validation",
+  {
+    description: "Exercises an MCP parameter mirrored in an HTTP header.",
+    parameters: {
+      type: "object",
+      properties: {
+        message: {
+          type: "string",
+          "x-mcp-header": "message",
+        },
       },
+      required: ["message"],
     },
-    required: ["message"],
+    success: Schema.String,
+    failure: Schema.String,
   },
-});
-
-const customHeaderValidationHandler = (
-  arguments_: Readonly<Record<string, unknown>>,
-) =>
-  Effect.succeed(
-    new McpSchema.CallToolResult({
-      content: [{ type: "text", text: String(arguments_["message"]) }],
-    }),
-  );
-
-const CustomHeaderValidationRegistration = Layer.effectDiscard(
-  McpServer.McpServer.use((mcp) =>
-    mcp.addTool({
-      tool: CustomHeaderValidationTool,
-      annotations: Context.empty(),
-      handle: customHeaderValidationHandler,
-    }),
-  ),
 );
 
-const ScenarioLive = CustomHeaderValidationRegistration.pipe(
+const CustomHeaderToolkit = Toolkit.make(CustomHeaderValidationTool);
+const MessageArguments = Schema.Struct({ message: Schema.String });
+
+const CustomHeaderHandlers = CustomHeaderToolkit.toLayer({
+  test_custom_header_validation: (input) =>
+    Schema.decodeUnknownEffect(MessageArguments)(input).pipe(
+      Effect.map(({ message }) => message),
+      Effect.mapError(() => "Expected a string message."),
+    ),
+});
+
+const CustomHeaderFeatures = McpServer.toolkit(CustomHeaderToolkit).pipe(
+  Layer.provide(CustomHeaderHandlers),
+);
+
+const ScenarioLive = CustomHeaderFeatures.pipe(
   Layer.provideMerge(server("http-custom-header-server-validation")),
 );
 

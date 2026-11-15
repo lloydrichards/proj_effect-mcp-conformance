@@ -1,8 +1,12 @@
-import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { runHttpScenario, server } from "@repo/mcp-fixture";
 import { Context, Effect, Layer, Schema } from "effect";
 import { McpSchema, McpServer, Tool, Toolkit } from "effect/ai";
-import { HttpRouter, HttpServer } from "effect/http";
+
+const SimplePrompt = McpServer.prompt({
+  name: "test_simple_prompt",
+  description: "A simple prompt.",
+  content: () => Effect.succeed("This is a simple prompt for testing."),
+});
 
 const ToolDiscoveryTool = Tool.make("test_tool", {
   description: "A minimal tool used to verify MCP tool discovery.",
@@ -50,12 +54,6 @@ const ListedPrompt = McpServer.prompt({
   name: "test-listed-prompt",
   description: "A prompt used to verify prompt discovery.",
   content: () => Effect.succeed("Listed prompt."),
-});
-
-const SimplePrompt = McpServer.prompt({
-  name: "test_simple_prompt",
-  description: "A simple prompt.",
-  content: () => Effect.succeed("This is a simple prompt for testing."),
 });
 
 const PromptWithCompletions = McpServer.prompt({
@@ -108,15 +106,7 @@ const ScenarioFeatures = Layer.mergeAll(
 );
 
 const ScenarioLive = ScenarioFeatures.pipe(
-  Layer.provideMerge(server("multi-capability-public-http")),
+  Layer.provideMerge(server("prompts-get-simple-IV")),
 );
 
-const MainLive = ScenarioLive.pipe(
-  HttpRouter.serve,
-  HttpServer.withLogAddress,
-  Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-);
-
-const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
-
-BunRuntime.runMain(main);
+runHttpScenario(ScenarioLive);

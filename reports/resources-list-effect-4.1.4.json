@@ -1,0 +1,518 @@
+{
+  "effectVersion": "4.1.4",
+  "runnerVersion": "0.2.0-alpha.12",
+  "method": "resources/list",
+  "observations": [
+    {
+      "scenario": "resources-list",
+      "protocol": "2024-11-05",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list",
+      "protocol": "2025-03-26",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list",
+      "protocol": "2025-06-18",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list",
+      "protocol": "2025-11-25",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list",
+      "protocol": "2026-07-28",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: resources-list",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "ttlMs": 0,
+          "cacheScope": "private",
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-II",
+      "protocol": "2024-11-05",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-II",
+      "protocol": "2025-03-26",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-II",
+      "protocol": "2025-06-18",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-II",
+      "protocol": "2025-11-25",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-II",
+      "protocol": "2026-07-28",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: resources-list-II",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "ttlMs": 0,
+          "cacheScope": "private",
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-III",
+      "protocol": "2024-11-05",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain"
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-III",
+      "protocol": "2025-03-26",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain"
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-III",
+      "protocol": "2025-06-18",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain"
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-III",
+      "protocol": "2025-11-25",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain"
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-III",
+      "protocol": "2026-07-28",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: resources-list-III",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "ttlMs": 0,
+          "cacheScope": "private",
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain"
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-IV",
+      "protocol": "2024-11-05",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-IV",
+      "protocol": "2025-03-26",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-IV",
+      "protocol": "2025-06-18",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-IV",
+      "protocol": "2025-11-25",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "resources-list-IV",
+      "protocol": "2026-07-28",
+      "resourcesList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: resources-list-IV",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "ttlMs": 0,
+          "cacheScope": "private",
+          "resources": [
+            {
+              "uri": "test://listed-resource",
+              "name": "listed-resource",
+              "description": "A resource used to verify resource discovery.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            },
+            {
+              "uri": "test://static-text",
+              "name": "static-text",
+              "description": "A static text resource.",
+              "mimeType": "text/plain",
+              "annotations": {}
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

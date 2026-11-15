@@ -2,6 +2,7 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Context, Effect, Layer } from "effect";
 import { McpSchema, McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
+import { whitePixelPng } from "@repo/mcp-fixture/media";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
 const MixedContentTool = new McpSchema.Tool({
@@ -17,7 +18,7 @@ const mixedContentHandler = () =>
         { type: "text", text: "Mixed content" },
         {
           type: "image",
-          data: new Uint8Array([137, 80, 78, 71]),
+          data: whitePixelPng,
           mimeType: "image/png",
         },
         {

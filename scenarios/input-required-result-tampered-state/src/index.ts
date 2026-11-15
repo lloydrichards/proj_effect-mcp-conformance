@@ -2,6 +2,7 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Context, Effect, Layer } from "effect";
 import { McpSchema, McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
+import { makeRequestStateSigner } from "@repo/mcp-fixture/request-state";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
 const TamperedStateTool = new McpSchema.Tool({
@@ -9,6 +10,10 @@ const TamperedStateTool = new McpSchema.Tool({
   description: "Rejects a tampered MRTR request state.",
   inputSchema: { type: "object" },
 });
+
+const confirmationState = makeRequestStateSigner(
+  "test_input_required_result_tampered_state/confirm",
+);
 
 const tamperedStateHandler = () =>
   Effect.gen(function* () {
@@ -28,9 +33,9 @@ const tamperedStateHandler = () =>
             },
           },
         },
-        requestState: "signed-state:7f6c86f6",
+        requestState: confirmationState.issue(),
       });
-    return context.requestState === "signed-state:7f6c86f6" &&
+    return confirmationState.verify(context.requestState) &&
       context.inputResponses?.["confirm"] !== undefined
       ? new McpSchema.CallToolResult({
           content: [{ type: "text", text: "Validated state accepted." }],

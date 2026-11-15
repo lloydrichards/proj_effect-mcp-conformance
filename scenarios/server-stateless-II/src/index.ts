@@ -1,8 +1,6 @@
-import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
-import { Context, Effect, Layer } from "effect";
-import { McpSchema, McpServer } from "effect/ai";
-import { HttpRouter, HttpServer } from "effect/http";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { Context, Effect, Layer, Schema } from "effect";
+import { McpSchema, McpServer, Tool, Toolkit } from "effect/ai";
+import { runHttpScenario, server } from "@repo/mcp-fixture";
 
 const textResult = (text: string) =>
   new McpSchema.CallToolResult({ content: [{ type: "text", text }] });
@@ -27,12 +25,18 @@ const contracts = {
     description: "Adds a tool so subscribers receive tools/list_changed.",
     inputSchema: { type: "object" },
   }),
-  dynamic: new McpSchema.Tool({
-    name: "dynamic_test_tool",
-    description: "A tool added during the list-change probe.",
-    inputSchema: { type: "object" },
-  }),
 };
+
+const DynamicTestTool = Tool.make("dynamic_test_tool", {
+  description: "A tool added during the list-change probe.",
+  parameters: Tool.EmptyParams,
+  success: Schema.String,
+});
+
+const DynamicToolkit = Toolkit.make(DynamicTestTool);
+const DynamicHandlers = DynamicToolkit.toLayer({
+  dynamic_test_tool: () => Effect.succeed("Dynamic tool called"),
+});
 
 const DynamicRegistryRegistration = Layer.effectDiscard(
   McpServer.McpServer.use((mcp) =>
@@ -75,25 +79,17 @@ const DynamicRegistryRegistration = Layer.effectDiscard(
         tool: contracts.trigger,
         annotations: Context.empty(),
         handle: () =>
-          mcp
-            .addTool({
-              tool: contracts.dynamic,
-              annotations: Context.empty(),
-              handle: () => Effect.succeed(textResult("Dynamic tool called")),
-            })
-            .pipe(Effect.as(textResult("Tool list changed"))),
+          McpServer.registerToolkit(DynamicToolkit).pipe(
+            Effect.provide(DynamicHandlers),
+            Effect.provideService(McpServer.McpServer, mcp),
+            Effect.as(textResult("Tool list changed")),
+          ),
       });
     }),
   ),
 );
 
 const ScenarioLive = DynamicRegistryRegistration.pipe(
-  Layer.provideMerge(server("dynamic-registry-http")),
+  Layer.provideMerge(server("server-stateless-II")),
 );
-const MainLive = ScenarioLive.pipe(
-  HttpRouter.serve,
-  HttpServer.withLogAddress,
-  Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-);
-const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
-BunRuntime.runMain(main);
+runHttpScenario(ScenarioLive);

@@ -2,6 +2,7 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Context, Effect, Layer } from "effect";
 import { McpSchema, McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
+import { toneWav } from "@repo/mcp-fixture/media";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
 const AudioContentTool = new McpSchema.Tool({
@@ -16,7 +17,7 @@ const audioContentHandler = () =>
       content: [
         {
           type: "audio",
-          data: new Uint8Array([82, 73, 70, 70]),
+          data: toneWav,
           mimeType: "audio/wav",
         },
       ],

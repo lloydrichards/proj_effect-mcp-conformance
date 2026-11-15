@@ -1,0 +1,588 @@
+{
+  "effectVersion": "4.1.4",
+  "runnerVersion": "0.2.0-alpha.12",
+  "method": "prompts/list",
+  "observations": [
+    {
+      "scenario": "prompts-list",
+      "protocol": "2024-11-05",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list",
+      "protocol": "2025-03-26",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list",
+      "protocol": "2025-06-18",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list",
+      "protocol": "2025-11-25",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list",
+      "protocol": "2026-07-28",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: prompts-list",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "ttlMs": 0,
+          "cacheScope": "private",
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-II",
+      "protocol": "2024-11-05",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt.",
+              "arguments": []
+            },
+            {
+              "name": "test_prompt_with_arguments",
+              "description": "A prompt with required arguments.",
+              "arguments": [
+                {
+                  "name": "arg1",
+                  "required": true
+                },
+                {
+                  "name": "arg2",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-II",
+      "protocol": "2025-03-26",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt.",
+              "arguments": []
+            },
+            {
+              "name": "test_prompt_with_arguments",
+              "description": "A prompt with required arguments.",
+              "arguments": [
+                {
+                  "name": "arg1",
+                  "required": true
+                },
+                {
+                  "name": "arg2",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-II",
+      "protocol": "2025-06-18",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt.",
+              "arguments": []
+            },
+            {
+              "name": "test_prompt_with_arguments",
+              "description": "A prompt with required arguments.",
+              "arguments": [
+                {
+                  "name": "arg1",
+                  "required": true
+                },
+                {
+                  "name": "arg2",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-II",
+      "protocol": "2025-11-25",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt.",
+              "arguments": []
+            },
+            {
+              "name": "test_prompt_with_arguments",
+              "description": "A prompt with required arguments.",
+              "arguments": [
+                {
+                  "name": "arg1",
+                  "required": true
+                },
+                {
+                  "name": "arg2",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-II",
+      "protocol": "2026-07-28",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: prompts-list-II",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "ttlMs": 0,
+          "cacheScope": "private",
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt.",
+              "arguments": []
+            },
+            {
+              "name": "test_prompt_with_arguments",
+              "description": "A prompt with required arguments.",
+              "arguments": [
+                {
+                  "name": "arg1",
+                  "required": true
+                },
+                {
+                  "name": "arg2",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-III",
+      "protocol": "2024-11-05",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery."
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-III",
+      "protocol": "2025-03-26",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery."
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-III",
+      "protocol": "2025-06-18",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery."
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-III",
+      "protocol": "2025-11-25",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery."
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-III",
+      "protocol": "2026-07-28",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: prompts-list-III",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "ttlMs": 0,
+          "cacheScope": "private",
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery."
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-IV",
+      "protocol": "2024-11-05",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt.",
+              "arguments": []
+            },
+            {
+              "name": "test_prompt_with_arguments",
+              "description": "A prompt with completions.",
+              "arguments": [
+                {
+                  "name": "arg1",
+                  "required": true
+                },
+                {
+                  "name": "arg2",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-IV",
+      "protocol": "2025-03-26",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt.",
+              "arguments": []
+            },
+            {
+              "name": "test_prompt_with_arguments",
+              "description": "A prompt with completions.",
+              "arguments": [
+                {
+                  "name": "arg1",
+                  "required": true
+                },
+                {
+                  "name": "arg2",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-IV",
+      "protocol": "2025-06-18",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt.",
+              "arguments": []
+            },
+            {
+              "name": "test_prompt_with_arguments",
+              "description": "A prompt with completions.",
+              "arguments": [
+                {
+                  "name": "arg1",
+                  "required": true
+                },
+                {
+                  "name": "arg2",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-IV",
+      "protocol": "2025-11-25",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt.",
+              "arguments": []
+            },
+            {
+              "name": "test_prompt_with_arguments",
+              "description": "A prompt with completions.",
+              "arguments": [
+                {
+                  "name": "arg1",
+                  "required": true
+                },
+                {
+                  "name": "arg2",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "prompts-list-IV",
+      "protocol": "2026-07-28",
+      "promptsList": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: prompts-list-IV",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "ttlMs": 0,
+          "cacheScope": "private",
+          "prompts": [
+            {
+              "name": "test-listed-prompt",
+              "description": "A prompt used to verify prompt discovery.",
+              "arguments": []
+            },
+            {
+              "name": "test_simple_prompt",
+              "description": "A simple prompt.",
+              "arguments": []
+            },
+            {
+              "name": "test_prompt_with_arguments",
+              "description": "A prompt with completions.",
+              "arguments": [
+                {
+                  "name": "arg1",
+                  "required": true
+                },
+                {
+                  "name": "arg2",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

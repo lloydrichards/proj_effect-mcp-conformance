@@ -1,24 +1,6 @@
-import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { runHttpScenario, server } from "@repo/mcp-fixture";
 import { Context, Effect, Layer, Schema } from "effect";
 import { McpSchema, McpServer, Tool, Toolkit } from "effect/ai";
-import { HttpRouter, HttpServer } from "effect/http";
-
-const ToolDiscoveryTool = Tool.make("test_tool", {
-  description: "A minimal tool used to verify MCP tool discovery.",
-  parameters: Schema.Struct({ input: Schema.optional(Schema.String) }),
-  success: Schema.String,
-});
-
-const PublicToolkit = Toolkit.make(ToolDiscoveryTool);
-
-const PublicHandlers = PublicToolkit.toLayer({
-  test_tool: () => Effect.succeed("tool discovery is working"),
-});
-
-const ToolDiscovery = McpServer.toolkit(PublicToolkit).pipe(
-  Layer.provide(PublicHandlers),
-);
 
 const SimpleTextTool = new McpSchema.Tool({
   name: "test_simple_text",
@@ -44,6 +26,22 @@ const SimpleTextRegistration = Layer.effectDiscard(
         ),
     }),
   ),
+);
+
+const ToolDiscoveryTool = Tool.make("test_tool", {
+  description: "A minimal tool used to verify MCP tool discovery.",
+  parameters: Schema.Struct({ input: Schema.optional(Schema.String) }),
+  success: Schema.String,
+});
+
+const PublicToolkit = Toolkit.make(ToolDiscoveryTool);
+
+const PublicHandlers = PublicToolkit.toLayer({
+  test_tool: () => Effect.succeed("tool discovery is working"),
+});
+
+const ToolDiscovery = McpServer.toolkit(PublicToolkit).pipe(
+  Layer.provide(PublicHandlers),
 );
 
 const ListedPrompt = McpServer.prompt({
@@ -108,15 +106,7 @@ const ScenarioFeatures = Layer.mergeAll(
 );
 
 const ScenarioLive = ScenarioFeatures.pipe(
-  Layer.provideMerge(server("multi-capability-public-http")),
+  Layer.provideMerge(server("tools-call-simple-text-III")),
 );
 
-const MainLive = ScenarioLive.pipe(
-  HttpRouter.serve,
-  HttpServer.withLogAddress,
-  Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-);
-
-const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
-
-BunRuntime.runMain(main);
+runHttpScenario(ScenarioLive);

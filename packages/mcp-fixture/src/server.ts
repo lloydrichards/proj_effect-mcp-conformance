@@ -1,3 +1,5 @@
+import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
+import { HttpRouter, HttpServer } from "effect/http";
 import { Config, Effect, Layer } from "effect";
 import { McpProtocol, McpServer } from "effect/ai";
 
@@ -64,15 +66,32 @@ export const McpServerConfig = Config.all({
  * server. That keeps each executable fixture responsible for exactly the MCP
  * behavior its conformance scenario exercises.
  */
-export const server = (name: string) =>
+export const server = (
+  name: string,
+  registrations?: Layer.Layer<never, never, McpServer.McpServer>,
+) =>
   Effect.map(McpServerConfig, (config) =>
     McpServer.layerHttp({
       name: `Effect MCP fixture: ${name}`,
       version: "0.1.0",
       path: "/mcp",
+      registrations,
       protocols: configuredProtocols(config.protocols),
       allowedOrigins: config.allowedOrigins
         .split(",")
         .map((origin) => origin.trim()),
     }),
   ).pipe(Layer.unwrap);
+
+export const runHttpScenario = <Services, Error>(
+  scenario: Layer.Layer<Services, Error, HttpRouter.HttpRouter>,
+) => {
+  const main = scenario.pipe(
+    HttpRouter.serve,
+    HttpServer.withLogAddress,
+    Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
+    Layer.launch,
+    Effect.satisfiesServicesType<never>(),
+  );
+  BunRuntime.runMain(main);
+};

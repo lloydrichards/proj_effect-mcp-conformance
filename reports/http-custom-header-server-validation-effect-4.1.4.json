@@ -1,0 +1,723 @@
+{
+  "effectVersion": "4.1.4",
+  "protocol": "2026-07-28",
+  "runnerVersion": "0.2.0-alpha.12",
+  "observations": [
+    {
+      "scenario": "http-custom-header-server-validation",
+      "case": "discovery",
+      "method": "tools/list",
+      "params": {},
+      "routingHeaders": {
+        "Mcp-Method": "tools/list"
+      },
+      "httpStatus": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: http-custom-header-server-validation",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "ttlMs": 0,
+          "cacheScope": "private",
+          "tools": [
+            {
+              "name": "test_custom_header_validation",
+              "description": "Exercises an MCP parameter mirrored in an HTTP header.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "x-mcp-header": "message"
+                  }
+                },
+                "required": ["message"]
+              },
+              "outputSchema": {
+                "type": "string"
+              },
+              "annotations": {
+                "readOnlyHint": false,
+                "destructiveHint": true,
+                "idempotentHint": false,
+                "openWorldHint": true
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation",
+      "case": "plain match",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Hello"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "Hello"
+      },
+      "httpStatus": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: http-custom-header-server-validation",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"Hello\""
+            }
+          ],
+          "structuredContent": "Hello",
+          "isError": false
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation",
+      "case": "wrapped base64 match",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Hello"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "=?base64?SGVsbG8=?="
+      },
+      "httpStatus": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: http-custom-header-server-validation",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"Hello\""
+            }
+          ],
+          "structuredContent": "Hello",
+          "isError": false
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation",
+      "case": "wrapped UTF-8 match",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "caf\u00e9"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "=?base64?Y2Fmw6k=?="
+      },
+      "httpStatus": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: http-custom-header-server-validation",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"caf\u00e9\""
+            }
+          ],
+          "structuredContent": "caf\u00e9",
+          "isError": false
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation",
+      "case": "unwrapped base64 is literal",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "SGVsbG8="
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "SGVsbG8="
+      },
+      "httpStatus": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: http-custom-header-server-validation",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"SGVsbG8=\""
+            }
+          ],
+          "structuredContent": "SGVsbG8=",
+          "isError": false
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation",
+      "case": "incomplete wrapper is literal",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "=?base64?SGVsbG8="
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "=?base64?SGVsbG8="
+      },
+      "httpStatus": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: http-custom-header-server-validation",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"=?base64?SGVsbG8=\""
+            }
+          ],
+          "structuredContent": "=?base64?SGVsbG8=",
+          "isError": false
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation",
+      "case": "missing",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Hello"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation"
+      },
+      "httpStatus": 400,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "error": {
+          "code": -32020,
+          "message": "mcp-param-message does not match argument 'message'"
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation",
+      "case": "plain mismatch",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Hello"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "Different"
+      },
+      "httpStatus": 400,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "error": {
+          "code": -32020,
+          "message": "mcp-param-message does not match argument 'message'"
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation",
+      "case": "decoded mismatch",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Different"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "=?base64?SGVsbG8=?="
+      },
+      "httpStatus": 400,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "error": {
+          "code": -32020,
+          "message": "mcp-param-message does not match argument 'message'"
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation",
+      "case": "invalid base64 padding",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Hello"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "=?base64?SGVsbG8?="
+      },
+      "httpStatus": 400,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "error": {
+          "code": -32020,
+          "message": "mcp-param-message does not match argument 'message'"
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation",
+      "case": "invalid base64 alphabet",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Hello"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "=?base64?SGVs!!!bG8=?="
+      },
+      "httpStatus": 400,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "error": {
+          "code": -32020,
+          "message": "mcp-param-message does not match argument 'message'"
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation-II",
+      "case": "discovery",
+      "method": "tools/list",
+      "params": {},
+      "routingHeaders": {
+        "Mcp-Method": "tools/list"
+      },
+      "httpStatus": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: http-custom-header-server-validation-II",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "ttlMs": 0,
+          "cacheScope": "private",
+          "tools": [
+            {
+              "name": "test_header_validation",
+              "description": "Exercises standard MCP routing headers.",
+              "inputSchema": {
+                "type": "object"
+              }
+            },
+            {
+              "name": "test_custom_header_validation",
+              "description": "Exercises an MCP parameter mirrored in an HTTP header.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "x-mcp-header": "message"
+                  }
+                },
+                "required": ["message"]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation-II",
+      "case": "plain match",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Hello"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "Hello"
+      },
+      "httpStatus": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: http-custom-header-server-validation-II",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "content": [
+            {
+              "type": "text",
+              "text": "Hello"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation-II",
+      "case": "wrapped base64 match",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Hello"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "=?base64?SGVsbG8=?="
+      },
+      "httpStatus": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 14,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: http-custom-header-server-validation-II",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "content": [
+            {
+              "type": "text",
+              "text": "Hello"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation-II",
+      "case": "wrapped UTF-8 match",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "caf\u00e9"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "=?base64?Y2Fmw6k=?="
+      },
+      "httpStatus": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 15,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: http-custom-header-server-validation-II",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "content": [
+            {
+              "type": "text",
+              "text": "caf\u00e9"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation-II",
+      "case": "unwrapped base64 is literal",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "SGVsbG8="
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "SGVsbG8="
+      },
+      "httpStatus": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 16,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: http-custom-header-server-validation-II",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "content": [
+            {
+              "type": "text",
+              "text": "SGVsbG8="
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation-II",
+      "case": "incomplete wrapper is literal",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "=?base64?SGVsbG8="
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "=?base64?SGVsbG8="
+      },
+      "httpStatus": 200,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 17,
+        "result": {
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Effect MCP fixture: http-custom-header-server-validation-II",
+              "version": "0.1.0"
+            }
+          },
+          "resultType": "complete",
+          "content": [
+            {
+              "type": "text",
+              "text": "=?base64?SGVsbG8="
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation-II",
+      "case": "missing",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Hello"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation"
+      },
+      "httpStatus": 400,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 18,
+        "error": {
+          "code": -32020,
+          "message": "mcp-param-message does not match argument 'message'"
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation-II",
+      "case": "plain mismatch",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Hello"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "Different"
+      },
+      "httpStatus": 400,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 19,
+        "error": {
+          "code": -32020,
+          "message": "mcp-param-message does not match argument 'message'"
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation-II",
+      "case": "decoded mismatch",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Different"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "=?base64?SGVsbG8=?="
+      },
+      "httpStatus": 400,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 20,
+        "error": {
+          "code": -32020,
+          "message": "mcp-param-message does not match argument 'message'"
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation-II",
+      "case": "invalid base64 padding",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Hello"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "=?base64?SGVsbG8?="
+      },
+      "httpStatus": 400,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 21,
+        "error": {
+          "code": -32020,
+          "message": "mcp-param-message does not match argument 'message'"
+        }
+      }
+    },
+    {
+      "scenario": "http-custom-header-server-validation-II",
+      "case": "invalid base64 alphabet",
+      "method": "tools/call",
+      "params": {
+        "name": "test_custom_header_validation",
+        "arguments": {
+          "message": "Hello"
+        }
+      },
+      "routingHeaders": {
+        "Mcp-Method": "tools/call",
+        "Mcp-Name": "test_custom_header_validation",
+        "Mcp-Param-message": "=?base64?SGVs!!!bG8=?="
+      },
+      "httpStatus": 400,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 22,
+        "error": {
+          "code": -32020,
+          "message": "mcp-param-message does not match argument 'message'"
+        }
+      }
+    }
+  ]
+}
