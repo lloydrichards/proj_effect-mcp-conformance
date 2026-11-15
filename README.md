@@ -156,8 +156,7 @@ raw checks, and `summary.json` under `.cache/conformance/<timestamp>-client/`.
 Client process errors and missing checker output fail the run even when
 observed checks pass. OAuth, automatic SSE retries, skills extensions,
 resource templates, and older protocol revisions are outside this fixture's
-coverage. See [the published dependency results](reports/dependency-update-2026-10-27.md)
-and [the earlier reduced client results](reports/client-conformance-core-2026-10-08.md).
+coverage.
 
 ## Use
 
@@ -234,207 +233,28 @@ Pass `--verbose` through to the conformance runner when diagnosing a failure:
 bun run conformance:scenario ping --verbose
 ```
 
-### Compare the five tools-list implementations
+### Choosing a scenario variant
 
-Each ID runs the same upstream discovery check. Open the entrypoint to see
-how the server advertises `test_tool` with an optional string input.
+Each link opens a runnable entrypoint. I is the unsuffixed scenario.
 
-| Scenario                                                | Effect API                                       | What to look for                                                                                                                               |
-| ------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| [tools-list](scenarios/tools-list/src/index.ts)         | `Tool.make` and `McpServer.toolkit`              | Define parameters with Effect Schema and provide the toolkit's handler layer. Start here for an application tool.                              |
-| [tools-list-II](scenarios/tools-list-II/src/index.ts)   | `Tool.dynamic`                                   | Advertise an existing JSON Schema through a toolkit. With raw JSON Schema the handler receives unknown input. This handler needs no arguments. |
-| [tools-list-III](scenarios/tools-list-III/src/index.ts) | `McpServer.registerToolkit`                      | Register the typed toolkit as an Effect during layer acquisition.                                                                              |
-| [tools-list-IV](scenarios/tools-list-IV/src/index.ts)   | `McpServer.McpServer.use` and `registry.addTool` | Supply the MCP tool descriptor and construct its returned text block explicitly.                                                               |
-| [tools-list-V](scenarios/tools-list-V/src/index.ts)     | `Layer.mergeAll`                                 | Compose toolkit discovery with an explicitly registered text tool, prompts, and resources in one server.                                       |
+| Family                                 | Variants                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tools-list`                           | [I](scenarios/tools-list/src/index.ts) declare a typed tool with `Tool.make` and `McpServer.toolkit`. [II](scenarios/tools-list-II/src/index.ts) publish JSON Schema with `Tool.dynamic`. [III](scenarios/tools-list-III/src/index.ts) register a typed toolkit with `McpServer.registerToolkit`. [IV](scenarios/tools-list-IV/src/index.ts) supply the MCP descriptor with `registry.addTool`. [V](scenarios/tools-list-V/src/index.ts) compose tools, prompts, and resources with `Layer.mergeAll`. |
+| `resources-read-text`                  | [I](scenarios/resources-read-text/src/index.ts) declare a layer with `McpServer.resource`. [II](scenarios/resources-read-text-II/src/index.ts) register during acquisition with `McpServer.registerResource`. [III](scenarios/resources-read-text-III/src/index.ts) construct the read result with `registry.addResource`. [IV](scenarios/resources-read-text-IV/src/index.ts) compose the resource with other capabilities.                                                                          |
+| `json-schema-2020-12`                  | [I](scenarios/json-schema-2020-12/src/index.ts) pass the input schema to `McpSchema.Tool` and return a text block. [II](scenarios/json-schema-2020-12-II/src/index.ts) pass the same schema to `Tool.dynamic` and return a typed string.                                                                                                                                                                                                                                                              |
+| `http-header-validation`               | [I](scenarios/http-header-validation/src/index.ts) use `Tool.make` with an empty parameter schema. [II](scenarios/http-header-validation-II/src/index.ts) use `registry.addTool` with an explicit text result and a second tool with a parameter header.                                                                                                                                                                                                                                              |
+| `http-custom-header-server-validation` | [I](scenarios/http-custom-header-server-validation/src/index.ts) declare `x-mcp-header` in the JSON Schema passed to `Tool.dynamic`. [II](scenarios/http-custom-header-server-validation-II/src/index.ts) supply the annotated descriptor with `registry.addTool`.                                                                                                                                                                                                                                    |
+| `completion-complete`                  | [I](scenarios/completion-complete/src/index.ts) declare the completion callback with `McpServer.prompt`. [II](scenarios/completion-complete-II/src/index.ts) register it with `McpServer.registerPrompt`. [III](scenarios/completion-complete-III/src/index.ts) compose the prompt with other capabilities.                                                                                                                                                                                           |
+| `prompts-get-with-args`                | [I](scenarios/prompts-get-with-args/src/index.ts) declare both required arguments with `McpServer.prompt`. [II](scenarios/prompts-get-with-args-II/src/index.ts) register the prompt during layer acquisition. [III](scenarios/prompts-get-with-args-III/src/index.ts) compose the prompt with other capabilities.                                                                                                                                                                                    |
+| `prompts-get-simple`                   | [I](scenarios/prompts-get-simple/src/index.ts) return a string from `McpServer.prompt`. [II](scenarios/prompts-get-simple-II/src/index.ts) use `McpServer.registerPrompt`. [III](scenarios/prompts-get-simple-III/src/index.ts) construct a `GetPromptResult` with `registry.addPrompt`. [IV](scenarios/prompts-get-simple-IV/src/index.ts) compose prompt, tool, and resource layers.                                                                                                                |
+| `prompts-list`                         | [I](scenarios/prompts-list/src/index.ts) declare one prompt layer. [II](scenarios/prompts-list-II/src/index.ts) register three prompts with `McpServer.registerPrompt`. [III](scenarios/prompts-list-III/src/index.ts) supply two descriptors with `registry.addPrompt`. [IV](scenarios/prompts-list-IV/src/index.ts) compose three prompt layers with tools and resources.                                                                                                                           |
+| `resources-list`                       | [I](scenarios/resources-list/src/index.ts) declare one resource layer. [II](scenarios/resources-list-II/src/index.ts) register two resources with `McpServer.registerResource`. [III](scenarios/resources-list-III/src/index.ts) supply both descriptors with `registry.addResource`. [IV](scenarios/resources-list-IV/src/index.ts) compose resource layers with tools and prompts.                                                                                                                  |
+| `tools-call-simple-text`               | [I](scenarios/tools-call-simple-text/src/index.ts) register an explicit text result and launch the HTTP server in the entrypoint. [II](scenarios/tools-call-simple-text-II/src/index.ts) pass the registration layer to `McpServer.layerHttp` through the shared server. [III](scenarios/tools-call-simple-text-III/src/index.ts) compose the text tool with other capabilities using `Layer.mergeAll`.                                                                                               |
+| `server-stateless`                     | [I](scenarios/server-stateless/src/index.ts) add a tool from inside a handler with `registry.addTool`. [II](scenarios/server-stateless-II/src/index.ts) call `McpServer.registerToolkit` from the handler.                                                                                                                                                                                                                                                                                            |
 
-### Compare the four resources-read-text implementations
+In Effect 4.1.4, a string returned by a resource handler inherits the registered MIME type. A tool with a typed string result can return `structuredContent` on the July 2026 adapter. Use an explicit `CallToolResult` when the example needs a particular MCP content block.
 
-All four serve `test://static-text`. With Effect 4.1.4, a public resource
-handler can return a string. Effect copies the registered MIME type into
-`contents[0].mimeType` in the `resources/read` response.
-
-| Scenario                                                                  | Effect API                   | What to look for                                                                                                    |
-| ------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| [resources-read-text](scenarios/resources-read-text/src/index.ts)         | `McpServer.resource`         | Declare a resource layer with `mimeType: "text/plain"` and a string content handler.                                |
-| [resources-read-text-II](scenarios/resources-read-text-II/src/index.ts)   | `McpServer.registerResource` | Register the same resource as an Effect during layer acquisition.                                                   |
-| [resources-read-text-III](scenarios/resources-read-text-III/src/index.ts) | `registry.addResource`       | Supply an MCP resource descriptor and construct the read result explicitly, including the content item’s MIME type. |
-| [resources-read-text-IV](scenarios/resources-read-text-IV/src/index.ts)   | `Layer.mergeAll`             | Serve the text resource alongside another resource, prompts, and tools in one MCP server.                           |
-
-### Compare the two JSON Schema 2020-12 implementations
-
-The [registry fixture](scenarios/json-schema-2020-12/src/index.ts) supplies
-`inputSchema` to `McpSchema.Tool` and returns an explicit `CallToolResult`.
-The [toolkit fixture](scenarios/json-schema-2020-12-II/src/index.ts) passes
-the same JSON Schema to `Tool.dynamic` as `parameters` and returns a
-`Schema.String` success value. With raw JSON Schema, the dynamic handler
-receives unknown input. This fixture demonstrates schema discovery.
-
-Both adapters advertised the complete input schema unchanged, including
-`$defs`, `$anchor`, `$ref`, the conditionals, and `additionalProperties: false`.
-The toolkit also advertised default tool annotations on both adapters.
-
-| Protocol     | Registry call result    | Toolkit discovery and call result                                                                                                                                                 |
-| ------------ | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `2025-11-25` | One unquoted text block | The same text block plus `isError: false`. Discovery omitted `outputSchema`.                                                                                                      |
-| `2026-07-28` | One unquoted text block | Discovery added `outputSchema: { "type": "string" }`. The call returned the original string in `structuredContent`, a JSON-quoted string in the text block, and `isError: false`. |
-
-Both July responses included `resultType: "complete"`.
-[Captured tools/list and tools/call results](reports/json-schema-2020-12-effect-4.1.4.json)
-
-### Compare the two HTTP header validation implementations
-
-The [standard fixture](scenarios/http-header-validation/src/index.ts) uses
-`Tool.make` with `Tool.EmptyParams` and returns a string. The
-[registry fixture](scenarios/http-header-validation-II/src/index.ts) constructs
-its own text result and registers a second tool whose `message` parameter
-declares `x-mcp-header`. Both run the same standard-header scenario on the
-`2026-07-28` adapter. Neither handler reads HTTP headers.
-
-| Request                                                              | Observed response                                                                                                                                               |
-| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Lowercase or uppercase method header name on `tools/list`            | HTTP 200 with the tool listing.                                                                                                                                 |
-| Matching `Mcp-Name` on `tools/call`, including surrounding spaces    | HTTP 200. The typed tool returned `Headers accepted` as structured content and JSON-quoted text. The registry tool returned a plain text block.                 |
-| Missing or mismatched `Mcp-Method`, including the value `TOOLS/LIST` | HTTP 400 with JSON-RPC error `-32020` identifying the method mismatch.                                                                                          |
-| Missing or mismatched `Mcp-Name` on `tools/call`                     | HTTP 400 with `-32020` identifying the name mismatch.                                                                                                           |
-| Custom tool on variant II with body argument `message: "hello"`      | Matching `Mcp-Param-message: hello` returned HTTP 200 and text `hello`. An omitted or different value returned HTTP 400 with `-32020` identifying the argument. |
-
-[Captured request headers, HTTP statuses, and JSON-RPC responses](reports/http-header-validation-effect-4.1.4.json)
-
-### Compare the two custom parameter header implementations
-
-Both IDs advertise a required string named `message` with
-`"x-mcp-header": "message"`. The `2026-07-28` adapter compares
-`Mcp-Param-message` with the body argument before the handler runs.
-
-- [http-custom-header-server-validation](scenarios/http-custom-header-server-validation/src/index.ts) uses `Tool.dynamic` to publish the annotated JSON Schema. Its toolkit handler decodes the arguments with Effect Schema and returns the message as a string.
-- [http-custom-header-server-validation-II](scenarios/http-custom-header-server-validation-II/src/index.ts) uses `registry.addTool` and returns an explicit MCP text block.
-
-For a body value of `Hello`, both fixtures accepted the plain header `Hello`
-and the wrapped value `=?base64?SGVsbG8=?=`. An unwrapped `SGVsbG8=` or a
-wrapper missing its suffix was compared literally. A missing header, a plain
-or decoded mismatch, and invalid Base64 padding or characters all returned
-HTTP 400 with JSON-RPC error `-32020`. Successful toolkit calls included the
-original string in `structuredContent` and JSON-quoted text in `content`.
-The registry handler returned the original text directly in `content`.
-
-[Captured discovery and custom-header responses](reports/http-custom-header-server-validation-effect-4.1.4.json)
-
-### Compare the three completion implementations
-
-Each fixture completes `arg1` on `test_prompt_with_arguments`. The callback
-receives the partial value and returns matching suggestions in declaration
-order. Effect encodes the completion values and supplies the count.
-
-| Scenario                                                                  | Effect API                 | What to look for                                                                              |
-| ------------------------------------------------------------------------- | -------------------------- | --------------------------------------------------------------------------------------------- |
-| [completion-complete](scenarios/completion-complete/src/index.ts)         | `McpServer.prompt`         | Declare the prompt and its argument completion together as a layer.                           |
-| [completion-complete-II](scenarios/completion-complete-II/src/index.ts)   | `McpServer.registerPrompt` | Run the prompt registration as an Effect during layer acquisition.                            |
-| [completion-complete-III](scenarios/completion-complete-III/src/index.ts) | `Layer.mergeAll`           | Compose the completion-enabled prompt with other prompts, tools, and resources on one server. |
-
-On all five adapters, `test` returned `["test", "test-report"]`, `test-r`
-returned `["test-report"]`, and `xyz` returned `[]`. Each response contained
-the corresponding `total` and `hasMore: false`.
-[Captured completion responses](reports/completion-complete-effect-4.1.4.json)
-
-### Compare the three parameterized prompt implementations
-
-| Scenario                                                                      | Effect API                 | What to look for                                                                 |
-| ----------------------------------------------------------------------------- | -------------------------- | -------------------------------------------------------------------------------- |
-| [prompts-get-with-args](scenarios/prompts-get-with-args/src/index.ts)         | `McpServer.prompt`         | Declare the two required string parameters and their content handler as a layer. |
-| [prompts-get-with-args-II](scenarios/prompts-get-with-args-II/src/index.ts)   | `McpServer.registerPrompt` | Register the same prompt during layer acquisition with `Layer.effectDiscard`.    |
-| [prompts-get-with-args-III](scenarios/prompts-get-with-args-III/src/index.ts) | `Layer.mergeAll`           | Compose the parameterized prompt with other prompts, tools, and resources.       |
-
-On all five adapters, `prompts/list` advertised `test_prompt_with_arguments`
-with `required: true` on both `arg1` and `arg2`. Passing `hello` and `world`
-to `prompts/get` returned one user text message,
-`Prompt with arguments: arg1='hello', arg2='world'`. Omitting either argument
-returned JSON-RPC error `-32602` with the missing key’s name.
-[Captured discovery, successful retrieval, and missing-argument responses](reports/prompts-get-with-args-effect-4.1.4.json)
-
-### Compare the four simple prompt implementations
-
-Each fixture serves `test_simple_prompt` with the description `A simple prompt.`.
-The registration API determines how discovery represents a prompt with no arguments.
-
-| Scenario                                                                | Effect API                                                               | What `prompts/list` advertises                                                                      |
-| ----------------------------------------------------------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
-| [prompts-get-simple](scenarios/prompts-get-simple/src/index.ts)         | `McpServer.prompt` declares a layer with a string content handler.       | Only the simple prompt, with `arguments: []`.                                                       |
-| [prompts-get-simple-II](scenarios/prompts-get-simple-II/src/index.ts)   | `McpServer.registerPrompt` runs during layer acquisition.                | Only the simple prompt, with `arguments: []`.                                                       |
-| [prompts-get-simple-III](scenarios/prompts-get-simple-III/src/index.ts) | `registry.addPrompt` takes an explicit descriptor and `GetPromptResult`. | Only the simple prompt. Its descriptor omits `arguments`.                                           |
-| [prompts-get-simple-IV](scenarios/prompts-get-simple-IV/src/index.ts)   | `Layer.mergeAll` composes the prompt with other capabilities.            | The simple prompt with `arguments: []`, plus `test-listed-prompt` and `test_prompt_with_arguments`. |
-
-Across all five adapters, calling `prompts/get` with just the prompt name
-returned one `user` message with content type `text` and the exact text
-`This is a simple prompt for testing.`
-[Captured discovery and retrieval responses](reports/prompts-get-simple-effect-4.1.4.json)
-
-### Compare the four prompt discovery implementations
-
-The prompt descriptors matched across all five adapters for each fixture.
-
-| Scenario                                                    | Effect API                                                                 | Names returned by `prompts/list`                                         |
-| ----------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [prompts-list](scenarios/prompts-list/src/index.ts)         | `McpServer.prompt` declares one layer.                                     | `test-listed-prompt`                                                     |
-| [prompts-list-II](scenarios/prompts-list-II/src/index.ts)   | `McpServer.registerPrompt` registers each prompt during layer acquisition. | `test-listed-prompt`, `test_simple_prompt`, `test_prompt_with_arguments` |
-| [prompts-list-III](scenarios/prompts-list-III/src/index.ts) | `registry.addPrompt` takes explicit `McpSchema.Prompt` descriptors.        | `test-listed-prompt`, `test_simple_prompt`                               |
-| [prompts-list-IV](scenarios/prompts-list-IV/src/index.ts)   | `Layer.mergeAll` composes prompt layers with tools and resources.          | `test-listed-prompt`, `test_simple_prompt`, `test_prompt_with_arguments` |
-
-The descriptions for `test-listed-prompt` and `test_simple_prompt` were
-`A prompt used to verify prompt discovery.` and `A simple prompt.`
-respectively. Both take no arguments. Variant III omitted the optional
-`arguments` field on its descriptors. The other registrations emitted `[]`
-for parameterless prompts.
-
-Variant II described `test_prompt_with_arguments` as `A prompt with required arguments.`.
-Variant IV used `A prompt with completions.`. Both advertised `arg1` with
-`required: true` and `arg2` with `required: false`.
-[Captured prompt catalogs](reports/prompts-list-effect-4.1.4.json)
-
-### Compare the four resource discovery implementations
-
-| Scenario                                                        | Effect API                                                                     | Names returned by `resources/list`, in order |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------------------------- |
-| [resources-list](scenarios/resources-list/src/index.ts)         | `McpServer.resource` declares a single resource layer.                         | `listed-resource`                            |
-| [resources-list-II](scenarios/resources-list-II/src/index.ts)   | `McpServer.registerResource` registers each resource during layer acquisition. | `listed-resource`, `static-text`             |
-| [resources-list-III](scenarios/resources-list-III/src/index.ts) | `registry.addResource` takes explicit `McpSchema.Resource` descriptors.        | `listed-resource`, `static-text`             |
-| [resources-list-IV](scenarios/resources-list-IV/src/index.ts)   | `Layer.mergeAll` composes resource layers with prompts and tools.              | `listed-resource`, `static-text`             |
-
-On all five adapters, `test://listed-resource` advertised the description
-`A resource used to verify resource discovery.` and `test://static-text`
-advertised `A static text resource.`. Both advertised `mimeType: "text/plain"`.
-The public resource helpers emitted `annotations: {}`. Variant III omitted
-the optional field on its explicit descriptors.
-[Captured resource catalogs](reports/resources-list-effect-4.1.4.json)
-
-### Compare the three simple-text tool implementations
-
-| ID                                                                              | How `test_simple_text` is registered                                                                                                                         |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [tools-call-simple-text](scenarios/tools-call-simple-text/src/index.ts)         | A feature layer calls `registry.addTool` and supplies an explicit `CallToolResult`. This entrypoint includes the full HTTP launch sequence.                  |
-| [tools-call-simple-text-II](scenarios/tools-call-simple-text-II/src/index.ts)   | The fixture passes its registration layer to `McpServer.layerHttp` through the shared server's `registrations` option. The HTTP endpoint acquires the layer. |
-| [tools-call-simple-text-III](scenarios/tools-call-simple-text-III/src/index.ts) | `Layer.mergeAll` composes the explicit text-tool registration with a typed discovery tool, prompts, and resources.                                           |
-
-All three use an explicit MCP result for this tool. On each of the five adapters,
-`tools/call` returned one text item containing exactly
-`This is a simple text response for testing.`, without quotation marks or a
-`structuredContent` field. The July 2026 adapter also supplied
-`resultType: "complete"` and server metadata. For a comparison with a
-`Schema.String` toolkit success value, see the JSON Schema family above.
-[Captured simple-text calls](reports/tools-call-simple-text-effect-4.1.4.json)
-
-### Compare the stateless and multi-round implementations
-
-Both stateless servers advertise a trigger tool. Calling it adds
-`dynamic_test_tool` to the next listing. The [baseline](scenarios/server-stateless/src/index.ts)
-adds the tool with `registry.addTool` and returns a text block. The
-[alternate](scenarios/server-stateless-II/src/index.ts) calls
-`McpServer.registerToolkit` inside the trigger handler. Calling its new tool
-returns `Dynamic tool called` as structured content plus JSON-quoted text.
-
-The stateful notification and multi-round input families each have a focused
-baseline for every check. Several `-II` IDs run the same composition so the
-checker sees those tools together. Each row below links directly to the
-registration used by its alternate entrypoints.
+Several notification and multi-round input checks intentionally run the same server. Their alternate entrypoints share the following registrations.
 
 | Alternate implementation                                                                 | Checks sharing the server                                                                     | Effect API or behavior                                                                                      |
 | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
