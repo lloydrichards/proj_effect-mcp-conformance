@@ -6,10 +6,8 @@ import { McpServerConfig, server } from "@repo/mcp-fixture";
 
 const ToolDiscoveryTool = Tool.make("test_tool", {
   description: "A minimal tool used to verify MCP tool discovery.",
-  // An empty Effect struct emits `{}` as JSON Schema. MCP requires a tool's
-  // input schema to explicitly declare itself as an object.
   parameters: Schema.Struct({
-    input: Schema.optional(Schema.String),
+    input: Schema.optionalKey(Schema.String),
   }),
   success: Schema.String,
 });

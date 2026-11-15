@@ -1,13 +1,10 @@
-import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
-import { Context, Effect, Layer } from "effect";
-import { McpSchema, McpServer } from "effect/ai";
-import { HttpRouter, HttpServer } from "effect/http";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { Effect, Layer, Schema } from "effect";
+import { McpServer, Tool, Toolkit } from "effect/ai";
+import { runHttpScenario, server } from "@repo/mcp-fixture";
 
-const JsonSchema202012Tool = new McpSchema.Tool({
-  name: "json_schema_2020_12_tool",
+const JsonSchema202012Tool = Tool.dynamic("json_schema_2020_12_tool", {
   description: "Tool with JSON Schema 2020-12 features",
-  inputSchema: {
+  parameters: {
     $schema: "https://json-schema.org/draft/2020-12/schema",
     type: "object",
     $defs: {
@@ -34,30 +31,22 @@ const JsonSchema202012Tool = new McpSchema.Tool({
     else: { required: ["email"] },
     additionalProperties: false,
   },
+  success: Schema.String,
 });
-const SchemaRegistration = Layer.effectDiscard(
-  McpServer.McpServer.use((mcp) =>
-    mcp.addTool({
-      tool: JsonSchema202012Tool,
-      annotations: Context.empty(),
-      handle: () =>
-        Effect.succeed(
-          new McpSchema.CallToolResult({
-            content: [
-              { type: "text", text: "JSON Schema 2020-12 tool called" },
-            ],
-          }),
-        ),
-    }),
-  ),
+
+const SchemaToolkit = Toolkit.make(JsonSchema202012Tool);
+
+const SchemaHandlers = SchemaToolkit.toLayer({
+  json_schema_2020_12_tool: () =>
+    Effect.succeed("JSON Schema 2020-12 tool called"),
+});
+
+const SchemaFeatures = McpServer.toolkit(SchemaToolkit).pipe(
+  Layer.provide(SchemaHandlers),
 );
-const ScenarioLive = SchemaRegistration.pipe(
-  Layer.provideMerge(server("schema-edge-cases-http")),
+
+const ScenarioLive = SchemaFeatures.pipe(
+  Layer.provideMerge(server("json-schema-2020-12-II")),
 );
-const MainLive = ScenarioLive.pipe(
-  HttpRouter.serve,
-  HttpServer.withLogAddress,
-  Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-);
-const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
-BunRuntime.runMain(main);
+
+runHttpScenario(ScenarioLive);

@@ -8,8 +8,9 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@effect/platform-bun": "4.1.2",
+    "@effect/platform-bun": "4.1.4",
     "@repo/mcp-fixture": "workspace:*",
-    "effect": "4.1.2"
+    "effect": "4.1.4",
+    "@repo/scenario-tools-call-with-progress-II": "workspace:*"
   }
 }

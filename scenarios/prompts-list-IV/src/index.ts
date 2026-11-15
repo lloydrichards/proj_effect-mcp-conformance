@@ -1,8 +1,31 @@
-import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { runHttpScenario, server } from "@repo/mcp-fixture";
 import { Context, Effect, Layer, Schema } from "effect";
 import { McpSchema, McpServer, Tool, Toolkit } from "effect/ai";
-import { HttpRouter, HttpServer } from "effect/http";
+
+const ListedPrompt = McpServer.prompt({
+  name: "test-listed-prompt",
+  description: "A prompt used to verify prompt discovery.",
+  content: () => Effect.succeed("Listed prompt."),
+});
+
+const SimplePrompt = McpServer.prompt({
+  name: "test_simple_prompt",
+  description: "A simple prompt.",
+  content: () => Effect.succeed("This is a simple prompt for testing."),
+});
+
+const PromptWithCompletions = McpServer.prompt({
+  name: "test_prompt_with_arguments",
+  description: "A prompt with completions.",
+  parameters: { arg1: Schema.String, arg2: Schema.optional(Schema.String) },
+  completion: { arg1: () => Effect.succeed(["test"]) },
+  content: ({ arg1, arg2 }) =>
+    Effect.succeed(
+      arg2 === undefined
+        ? `Prompt argument: ${arg1}`
+        : `Prompt with arguments: arg1='${arg1}', arg2='${arg2}'`,
+    ),
+});
 
 const ToolDiscoveryTool = Tool.make("test_tool", {
   description: "A minimal tool used to verify MCP tool discovery.",
@@ -46,31 +69,6 @@ const SimpleTextRegistration = Layer.effectDiscard(
   ),
 );
 
-const ListedPrompt = McpServer.prompt({
-  name: "test-listed-prompt",
-  description: "A prompt used to verify prompt discovery.",
-  content: () => Effect.succeed("Listed prompt."),
-});
-
-const SimplePrompt = McpServer.prompt({
-  name: "test_simple_prompt",
-  description: "A simple prompt.",
-  content: () => Effect.succeed("This is a simple prompt for testing."),
-});
-
-const PromptWithCompletions = McpServer.prompt({
-  name: "test_prompt_with_arguments",
-  description: "A prompt with completions.",
-  parameters: { arg1: Schema.String, arg2: Schema.optional(Schema.String) },
-  completion: { arg1: () => Effect.succeed(["test"]) },
-  content: ({ arg1, arg2 }) =>
-    Effect.succeed(
-      arg2 === undefined
-        ? `Prompt argument: ${arg1}`
-        : `Prompt with arguments: arg1='${arg1}', arg2='${arg2}'`,
-    ),
-});
-
 const ListedResource = McpServer.resource({
   uri: "test://listed-resource",
   name: "listed-resource",
@@ -108,15 +106,7 @@ const ScenarioFeatures = Layer.mergeAll(
 );
 
 const ScenarioLive = ScenarioFeatures.pipe(
-  Layer.provideMerge(server("multi-capability-public-http")),
+  Layer.provideMerge(server("prompts-list-IV")),
 );
 
-const MainLive = ScenarioLive.pipe(
-  HttpRouter.serve,
-  HttpServer.withLogAddress,
-  Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-);
-
-const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
-
-BunRuntime.runMain(main);
+runHttpScenario(ScenarioLive);

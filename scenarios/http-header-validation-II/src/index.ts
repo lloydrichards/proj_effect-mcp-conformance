@@ -1,8 +1,6 @@
-import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Context, Effect, Layer } from "effect";
 import { McpSchema, McpServer } from "effect/ai";
-import { HttpRouter, HttpServer } from "effect/http";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { runHttpScenario, server } from "@repo/mcp-fixture";
 
 const HeaderTool = new McpSchema.Tool({
   name: "test_header_validation",
@@ -18,7 +16,7 @@ const CustomHeaderTool = new McpSchema.Tool({
     required: ["message"],
   },
 });
-const HardenedRegistration = Layer.effectDiscard(
+const HeaderToolRegistration = Layer.effectDiscard(
   McpServer.McpServer.use((mcp) =>
     Effect.gen(function* () {
       yield* mcp.addTool({
@@ -44,13 +42,7 @@ const HardenedRegistration = Layer.effectDiscard(
     }),
   ),
 );
-const ScenarioLive = HardenedRegistration.pipe(
-  Layer.provideMerge(server("hardened-http")),
+const ScenarioLive = HeaderToolRegistration.pipe(
+  Layer.provideMerge(server("http-header-validation-II")),
 );
-const MainLive = ScenarioLive.pipe(
-  HttpRouter.serve,
-  HttpServer.withLogAddress,
-  Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-);
-const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
-BunRuntime.runMain(main);
+runHttpScenario(ScenarioLive);

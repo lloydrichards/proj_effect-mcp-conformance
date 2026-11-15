@@ -1,39 +1,38 @@
 import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
-import { Context, Effect, Layer } from "effect";
-import { McpSchema, McpServer } from "effect/ai";
+import { Effect, Layer, Schema } from "effect";
+import { McpServer, Tool, Toolkit } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
-const ErrorHandlingTool = new McpSchema.Tool({
-  name: "test_error_handling",
+class ExpectedToolError extends Schema.TaggedError<ExpectedToolError>()(
+  "ExpectedToolError",
+  {
+    message: Schema.String,
+  },
+) {}
+
+const ErrorHandlingTool = Tool.make("test_error_handling", {
   description: "Returns an expected tool error.",
-  inputSchema: { type: "object" },
+  parameters: Tool.EmptyParams,
+  success: Schema.String,
+  failure: ExpectedToolError,
 });
 
-const errorHandlingHandler = () =>
-  Effect.succeed(
-    new McpSchema.CallToolResult({
-      isError: true,
-      content: [
-        {
-          type: "text",
-          text: "This tool intentionally returns an error for testing",
-        },
-      ],
-    }),
-  );
+const ErrorToolkit = Toolkit.make(ErrorHandlingTool);
+const ErrorHandlers = ErrorToolkit.toLayer({
+  test_error_handling: () =>
+    Effect.fail(
+      new ExpectedToolError({
+        message: "This tool intentionally returns an error for testing",
+      }),
+    ),
+});
 
-const ErrorHandlingRegistration = Layer.effectDiscard(
-  McpServer.McpServer.use((mcp) =>
-    mcp.addTool({
-      tool: ErrorHandlingTool,
-      annotations: Context.empty(),
-      handle: errorHandlingHandler,
-    }),
-  ),
+const ErrorHandlingFeatures = McpServer.toolkit(ErrorToolkit).pipe(
+  Layer.provide(ErrorHandlers),
 );
 
-const ScenarioLive = ErrorHandlingRegistration.pipe(
+const ScenarioLive = ErrorHandlingFeatures.pipe(
   Layer.provideMerge(server("tools-call-error")),
 );
 

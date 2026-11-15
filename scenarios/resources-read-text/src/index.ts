@@ -1,6 +1,6 @@
 import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Effect, Layer } from "effect";
-import { McpSchema, McpServer } from "effect/ai";
+import { McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
 
@@ -9,17 +9,7 @@ const TextResource = McpServer.resource({
   name: "static-text",
   description: "A static text resource.",
   mimeType: "text/plain",
-  content: Effect.succeed(
-    McpSchema.ReadResourceResult.make({
-      contents: [
-        {
-          uri: "test://static-text",
-          mimeType: "text/plain",
-          text: "This is the content of the static text resource.",
-        },
-      ],
-    }),
-  ),
+  content: Effect.succeed("This is the content of the static text resource."),
 });
 
 const ScenarioLive = TextResource.pipe(

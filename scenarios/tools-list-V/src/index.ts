@@ -1,12 +1,10 @@
-import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { runHttpScenario, server } from "@repo/mcp-fixture";
 import { Context, Effect, Layer, Schema } from "effect";
 import { McpSchema, McpServer, Tool, Toolkit } from "effect/ai";
-import { HttpRouter, HttpServer } from "effect/http";
 
 const ToolDiscoveryTool = Tool.make("test_tool", {
   description: "A minimal tool used to verify MCP tool discovery.",
-  parameters: Schema.Struct({ input: Schema.optional(Schema.String) }),
+  parameters: Schema.Struct({ input: Schema.optionalKey(Schema.String) }),
   success: Schema.String,
 });
 
@@ -84,17 +82,7 @@ const TextResource = McpServer.resource({
   name: "static-text",
   description: "A static text resource.",
   mimeType: "text/plain",
-  content: Effect.succeed(
-    McpSchema.ReadResourceResult.make({
-      contents: [
-        {
-          uri: "test://static-text",
-          mimeType: "text/plain",
-          text: "This is the content of the static text resource.",
-        },
-      ],
-    }),
-  ),
+  content: Effect.succeed("This is the content of the static text resource."),
 });
 
 const ScenarioFeatures = Layer.mergeAll(
@@ -108,15 +96,7 @@ const ScenarioFeatures = Layer.mergeAll(
 );
 
 const ScenarioLive = ScenarioFeatures.pipe(
-  Layer.provideMerge(server("multi-capability-public-http")),
+  Layer.provideMerge(server("tools-list-V")),
 );
 
-const MainLive = ScenarioLive.pipe(
-  HttpRouter.serve,
-  HttpServer.withLogAddress,
-  Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-);
-
-const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
-
-BunRuntime.runMain(main);
+runHttpScenario(ScenarioLive);

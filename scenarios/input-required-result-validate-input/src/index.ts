@@ -1,5 +1,5 @@
 import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
-import { Context, Effect, Layer, Predicate } from "effect";
+import { Context, Effect, Layer, Schema } from "effect";
 import { McpSchema, McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
 import { McpServerConfig, server } from "@repo/mcp-fixture";
@@ -10,17 +10,15 @@ const ValidateInputTool = new McpSchema.Tool({
   inputSchema: { type: "object" },
 });
 
+const AcceptedName = Schema.Struct({
+  action: Schema.Literal("accept"),
+  content: Schema.Struct({ name: Schema.String }),
+});
+
 const handleValidateInput = () =>
   McpSchema.McpRequestContext.useSync((context) => {
     const response = context.inputResponses?.["user_name"];
-    const name =
-      Predicate.isReadonlyObject(response) &&
-      response["action"] === "accept" &&
-      Predicate.isReadonlyObject(response["content"]) &&
-      typeof response["content"]["name"] === "string"
-        ? response["content"]["name"]
-        : undefined;
-    return name === undefined
+    return !Schema.is(AcceptedName)(response)
       ? new McpSchema.InputRequired({
           inputRequests: {
             user_name: {
@@ -37,7 +35,7 @@ const handleValidateInput = () =>
           },
         })
       : new McpSchema.CallToolResult({
-          content: [{ type: "text", text: `Hello, ${name}!` }],
+          content: [{ type: "text", text: `Hello, ${response.content.name}!` }],
         });
   });
 

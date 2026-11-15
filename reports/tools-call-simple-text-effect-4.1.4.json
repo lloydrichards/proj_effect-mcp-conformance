@@ -1,0 +1,214 @@
+{
+  "effectVersion": "4.1.4",
+  "runnerVersion": "0.2.0-alpha.12",
+  "request": {
+    "method": "tools/call",
+    "params": {
+      "name": "test_simple_text",
+      "arguments": {}
+    }
+  },
+  "observations": [
+    {
+      "scenario": "tools-call-simple-text",
+      "protocol": "2024-11-05",
+      "toolsCall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text",
+      "protocol": "2025-03-26",
+      "toolsCall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text",
+      "protocol": "2025-06-18",
+      "toolsCall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text",
+      "protocol": "2025-11-25",
+      "toolsCall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text",
+      "protocol": "2026-07-28",
+      "toolsCall": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "Effect MCP fixture: tools-call-simple-text",
+            "version": "0.1.0"
+          }
+        },
+        "resultType": "complete",
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text-II",
+      "protocol": "2024-11-05",
+      "toolsCall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text-II",
+      "protocol": "2025-03-26",
+      "toolsCall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text-II",
+      "protocol": "2025-06-18",
+      "toolsCall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text-II",
+      "protocol": "2025-11-25",
+      "toolsCall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text-II",
+      "protocol": "2026-07-28",
+      "toolsCall": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "Effect MCP fixture: tools-call-simple-text-II",
+            "version": "0.1.0"
+          }
+        },
+        "resultType": "complete",
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text-III",
+      "protocol": "2024-11-05",
+      "toolsCall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text-III",
+      "protocol": "2025-03-26",
+      "toolsCall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text-III",
+      "protocol": "2025-06-18",
+      "toolsCall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text-III",
+      "protocol": "2025-11-25",
+      "toolsCall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "tools-call-simple-text-III",
+      "protocol": "2026-07-28",
+      "toolsCall": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "Effect MCP fixture: tools-call-simple-text-III",
+            "version": "0.1.0"
+          }
+        },
+        "resultType": "complete",
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a simple text response for testing."
+          }
+        ]
+      }
+    }
+  ]
+}
