@@ -361,7 +361,6 @@
       "dependencies": {
         "@effect/platform-bun": "4.1.4",
         "@repo/mcp-fixture": "workspace:*",
-        "@repo/scenario-input-required-result-basic-elicitation-II": "workspace:*",
         "effect": "4.1.4",
       },
     },
@@ -380,7 +379,6 @@
       "dependencies": {
         "@effect/platform-bun": "4.1.4",
         "@repo/mcp-fixture": "workspace:*",
-        "@repo/scenario-input-required-result-basic-elicitation-II": "workspace:*",
         "effect": "4.1.4",
       },
     },
@@ -399,7 +397,6 @@
       "dependencies": {
         "@effect/platform-bun": "4.1.4",
         "@repo/mcp-fixture": "workspace:*",
-        "@repo/scenario-input-required-result-validate-input-II": "workspace:*",
         "effect": "4.1.4",
       },
     },
@@ -418,7 +415,6 @@
       "dependencies": {
         "@effect/platform-bun": "4.1.4",
         "@repo/mcp-fixture": "workspace:*",
-        "@repo/scenario-input-required-result-validate-input-II": "workspace:*",
         "effect": "4.1.4",
       },
     },
@@ -437,7 +433,6 @@
       "dependencies": {
         "@effect/platform-bun": "4.1.4",
         "@repo/mcp-fixture": "workspace:*",
-        "@repo/scenario-input-required-result-validate-input-II": "workspace:*",
         "effect": "4.1.4",
       },
     },
@@ -456,7 +451,6 @@
       "dependencies": {
         "@effect/platform-bun": "4.1.4",
         "@repo/mcp-fixture": "workspace:*",
-        "@repo/scenario-input-required-result-request-state-II": "workspace:*",
         "effect": "4.1.4",
       },
     },
@@ -475,7 +469,6 @@
       "dependencies": {
         "@effect/platform-bun": "4.1.4",
         "@repo/mcp-fixture": "workspace:*",
-        "@repo/scenario-input-required-result-request-state-II": "workspace:*",
         "effect": "4.1.4",
       },
     },
@@ -521,7 +514,6 @@
       "dependencies": {
         "@effect/platform-bun": "4.1.4",
         "@repo/mcp-fixture": "workspace:*",
-        "@repo/scenario-input-required-result-validate-input-II": "workspace:*",
         "effect": "4.1.4",
       },
     },
@@ -540,7 +532,6 @@
       "dependencies": {
         "@effect/platform-bun": "4.1.4",
         "@repo/mcp-fixture": "workspace:*",
-        "@repo/scenario-input-required-result-request-state-II": "workspace:*",
         "effect": "4.1.4",
       },
     },
@@ -1000,7 +991,6 @@
       "dependencies": {
         "@effect/platform-bun": "4.1.4",
         "@repo/mcp-fixture": "workspace:*",
-        "@repo/scenario-tools-call-with-progress-II": "workspace:*",
         "effect": "4.1.4",
       },
     },

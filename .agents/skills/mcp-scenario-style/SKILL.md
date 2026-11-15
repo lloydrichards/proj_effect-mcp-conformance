@@ -179,7 +179,7 @@ Use PascalCase for contracts and layers. Keep exact protocol wire names inside t
 
 ## Duplication
 
-Repeat the transport construction and HTTP/Bun launch in each server example. The runner’s environment parsing belongs in `packages/mcp-fixture`.
+Keep each server example’s tool declarations, handlers, and registration layers in its own entrypoint, including when several examples expose the same tools. Repeat the transport construction and HTTP/Bun launch in each server example. The runner’s environment parsing belongs in `packages/mcp-fixture`.
 
 For closely related scenarios, extract only small stable vocabulary such as result constructors, schema fragments, or constant request keys. Keep the scenario's distinguishing payload, branch, state transition, and response inline. A configurable universal scenario factory usually hides the evidence the reader is trying to compare.
 

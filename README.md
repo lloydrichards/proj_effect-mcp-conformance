@@ -48,8 +48,7 @@ endpoint responds, run the official checker, and terminate the fixture.
 Each server entrypoint declares its MCP features, builds the HTTP transport with
 `McpServer.layerHttp`, and launches the HTTP server with `BunRuntime.runMain`.
 The examples share environment settings for the listener, protocol adapters, and origins.
-Each scenario ID has a runnable entrypoint. When several checks intentionally
-exercise the same server, the entrypoints import the same registration layer.
+Each scenario ID has a runnable entrypoint with its own registrations and handlers.
 
 [`apps/conformance/src/scenarios.ts`](./apps/conformance/src/scenarios.ts)
 maps each suffixed row to its official conformance scenario and applicable
@@ -269,14 +268,14 @@ In the table, I is the unsuffixed scenario.
 
 In Effect 4.1.4, a string returned by a resource handler inherits the registered MIME type. A tool with a typed string result can return `structuredContent` on the July 2026 adapter. Use an explicit `CallToolResult` when the example needs a particular MCP content block.
 
-Several notification and multi-round input checks intentionally run the same server. Their alternate entrypoints share the following registrations.
+The unsuffixed notification and multi-round input examples focus on one check. Each `-II` entrypoint defines a group of related tools so you can see how to register them together.
 
-| Alternate implementation                                                                 | Checks sharing the server                                                                     | Effect API or behavior                                                                                      |
+| Alternate implementation                                                                 | Checks covered by the tool group                                                              | Effect API or behavior                                                                                      |
 | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| [Interactive tools](scenarios/tools-call-with-progress-II/src/tools.ts)                  | Logging and progress                                                                          | Emit server notifications while a tool call is running. Progress reads the request's progress token.        |
-| [Client input tools](scenarios/input-required-result-basic-elicitation-II/src/tools.ts)  | Basic elicitation, sampling, and list-roots                                                   | Use the request context and return `InputRequired` with the requested client method.                        |
-| [Request state tools](scenarios/input-required-result-request-state-II/src/tools.ts)     | Request state, multiple input requests, multi-round, and tampered state                       | Return continuations, inspect replies, and validate the signed continuation in the tampered-state case.     |
-| [Input validation tools](scenarios/input-required-result-validate-input-II/src/tools.ts) | Missing input response, result type, capability check, extra parameters, and input validation | Inspect client capabilities and use an Effect Schema guard on the returned name before completing the tool. |
+| [Interactive tools](scenarios/tools-call-with-progress-II/src/index.ts)                  | Logging and progress                                                                          | Emit server notifications while a tool call is running. Progress reads the request's progress token.        |
+| [Client input tools](scenarios/input-required-result-basic-elicitation-II/src/index.ts)  | Basic elicitation, sampling, and list-roots                                                   | Use the request context and return `InputRequired` with the requested client method.                        |
+| [Request state tools](scenarios/input-required-result-request-state-II/src/index.ts)     | Request state, multiple input requests, multi-round, and tampered state                       | Return continuations, inspect replies, and validate the signed continuation in the tampered-state case.     |
+| [Input validation tools](scenarios/input-required-result-validate-input-II/src/index.ts) | Missing input response, result type, capability check, extra parameters, and input validation | Inspect client capabilities and use an Effect Schema guard on the returned name before completing the tool. |
 
 ### Protocol selection
 
