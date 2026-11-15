@@ -10,7 +10,6 @@
   "dependencies": {
     "@effect/platform-bun": "4.1.4",
     "@repo/mcp-fixture": "workspace:*",
-    "effect": "4.1.4",
-    "@repo/scenario-input-required-result-basic-elicitation-II": "workspace:*"
+    "effect": "4.1.4"
   }
 }
