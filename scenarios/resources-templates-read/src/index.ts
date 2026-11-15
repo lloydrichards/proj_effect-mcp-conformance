@@ -2,7 +2,7 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Effect, Layer, Schema } from "effect";
 import { McpSchema, McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 const DocumentTemplate =
   McpServer.resource`test://template/${McpSchema.param("id", Schema.String)}/data`(
@@ -29,9 +29,19 @@ const DocumentTemplate =
     },
   );
 
-const ScenarioLive = DocumentTemplate.pipe(
-  Layer.provideMerge(server("resources-templates-read")),
-);
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: resources-templates-read",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
+const ScenarioLive = DocumentTemplate.pipe(Layer.provideMerge(McpHttpLive));
 
 const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,

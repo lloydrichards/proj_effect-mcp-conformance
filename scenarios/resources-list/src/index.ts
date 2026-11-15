@@ -2,7 +2,7 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Effect, Layer } from "effect";
 import { McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 const ListedResource = McpServer.resource({
   uri: "test://listed-resource",
@@ -12,9 +12,19 @@ const ListedResource = McpServer.resource({
   content: Effect.succeed("A listed resource."),
 });
 
-const ScenarioLive = ListedResource.pipe(
-  Layer.provideMerge(server("resources-list")),
-);
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: resources-list",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
+const ScenarioLive = ListedResource.pipe(Layer.provideMerge(McpHttpLive));
 
 const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,

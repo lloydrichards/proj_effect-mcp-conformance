@@ -2,7 +2,7 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Context, Effect, Layer, Option, Schema } from "effect";
 import { McpSchema, McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 const Sep1330EnumsTool = new McpSchema.Tool({
   name: "test_elicitation_sep1330_enums",
@@ -96,8 +96,20 @@ const Sep1330EnumsRegistration = Layer.effectDiscard(
   ),
 );
 
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: elicitation-sep1330-enums",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
 const ScenarioLive = Sep1330EnumsRegistration.pipe(
-  Layer.provideMerge(server("elicitation-sep1330-enums")),
+  Layer.provideMerge(McpHttpLive),
 );
 
 const MainLive = ScenarioLive.pipe(

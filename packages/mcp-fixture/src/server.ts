@@ -1,7 +1,5 @@
-import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
-import { HttpRouter, HttpServer } from "effect/http";
-import { Config, Effect, Layer } from "effect";
-import { McpProtocol, McpServer } from "effect/ai";
+import { Config } from "effect";
+import { McpProtocol } from "effect/ai";
 
 export const supportedProtocolVersions = [
   "2024-11-05",
@@ -51,47 +49,15 @@ const configuredProtocols = (value: string) => {
 export const McpServerConfig = Config.all({
   port: Config.Number("MCP_PORT").pipe(Config.withDefault(9009)),
   hostname: Config.String("MCP_HOST").pipe(Config.withDefault("0.0.0.0")),
+});
+
+export const McpProtocolConfig = Config.all({
   allowedOrigins: Config.String("MCP_ALLOWED_ORIGINS").pipe(
     Config.withDefault("http://localhost:3000"),
+    Config.map((value) => value.split(",").map((origin) => origin.trim())),
   ),
   protocols: Config.String("MCP_PROTOCOLS").pipe(
     Config.withDefault(defaultProtocolVersions.join(",")),
+    Config.map(configuredProtocols),
   ),
 });
-
-/**
- * The transport and server metadata shared by every conformance fixture.
- *
- * A scenario owns the runtime and capability layers it provides to this
- * server. That keeps each executable fixture responsible for exactly the MCP
- * behavior its conformance scenario exercises.
- */
-export const server = (
-  name: string,
-  registrations?: Layer.Layer<never, never, McpServer.McpServer>,
-) =>
-  Effect.map(McpServerConfig, (config) =>
-    McpServer.layerHttp({
-      name: `Effect MCP fixture: ${name}`,
-      version: "0.1.0",
-      path: "/mcp",
-      registrations,
-      protocols: configuredProtocols(config.protocols),
-      allowedOrigins: config.allowedOrigins
-        .split(",")
-        .map((origin) => origin.trim()),
-    }),
-  ).pipe(Layer.unwrap);
-
-export const runHttpScenario = <Services, Error>(
-  scenario: Layer.Layer<Services, Error, HttpRouter.HttpRouter>,
-) => {
-  const main = scenario.pipe(
-    HttpRouter.serve,
-    HttpServer.withLogAddress,
-    Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
-    Layer.launch,
-    Effect.satisfiesServicesType<never>(),
-  );
-  BunRuntime.runMain(main);
-};

@@ -2,7 +2,7 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Context, Effect, Layer } from "effect";
 import { McpSchema, McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 const JsonSchema202012Tool = new McpSchema.Tool({
   name: "json_schema_2020_12_tool",
@@ -56,8 +56,20 @@ const JsonSchema202012Registration = Layer.effectDiscard(
   ),
 );
 
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: json-schema-2020-12",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
 const ScenarioLive = JsonSchema202012Registration.pipe(
-  Layer.provideMerge(server("json-schema-2020-12")),
+  Layer.provideMerge(McpHttpLive),
 );
 
 const MainLive = ScenarioLive.pipe(

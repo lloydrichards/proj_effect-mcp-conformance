@@ -1,6 +1,8 @@
-import { runHttpScenario, server } from "@repo/mcp-fixture";
+import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Context, Effect, Layer, Schema } from "effect";
 import { McpSchema, McpServer, Tool, Toolkit } from "effect/ai";
+import { HttpRouter, HttpServer } from "effect/http";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 const TextResource = McpServer.resource({
   uri: "test://static-text",
@@ -95,8 +97,26 @@ const ScenarioFeatures = Layer.mergeAll(
   TextResource,
 );
 
-const ScenarioLive = ScenarioFeatures.pipe(
-  Layer.provideMerge(server("resources-read-text-IV")),
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: resources-read-text-IV",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
+const ScenarioLive = ScenarioFeatures.pipe(Layer.provideMerge(McpHttpLive));
+
+const MainLive = ScenarioLive.pipe(
+  HttpRouter.serve,
+  HttpServer.withLogAddress,
+  Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
 );
 
-runHttpScenario(ScenarioLive);
+const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
+
+BunRuntime.runMain(main);

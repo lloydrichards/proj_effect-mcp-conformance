@@ -2,7 +2,7 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Effect, Layer, Schema } from "effect";
 import { McpSchema, McpServer, Tool, Toolkit } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 const CacheProbeTool = Tool.make("cache_probe", {
   description: "A tool listed by the caching conformance scenario.",
@@ -66,9 +66,19 @@ const ScenarioFeatures = Layer.mergeAll(
   CacheProbeResourceTemplate,
 );
 
-const ScenarioLive = ScenarioFeatures.pipe(
-  Layer.provideMerge(server("caching")),
-);
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: caching",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
+const ScenarioLive = ScenarioFeatures.pipe(Layer.provideMerge(McpHttpLive));
 
 const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,

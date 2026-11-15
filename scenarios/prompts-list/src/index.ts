@@ -2,7 +2,7 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Effect, Layer } from "effect";
 import { McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 const ListedPrompt = McpServer.prompt({
   name: "test-listed-prompt",
@@ -10,9 +10,19 @@ const ListedPrompt = McpServer.prompt({
   content: () => Effect.succeed("Listed prompt."),
 });
 
-const ScenarioLive = ListedPrompt.pipe(
-  Layer.provideMerge(server("prompts-list")),
-);
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: prompts-list",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
+const ScenarioLive = ListedPrompt.pipe(Layer.provideMerge(McpHttpLive));
 
 const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,

@@ -2,7 +2,7 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Effect, Layer } from "effect";
 import { McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 const SimplePrompt = McpServer.prompt({
   name: "test_simple_prompt",
@@ -10,9 +10,19 @@ const SimplePrompt = McpServer.prompt({
   content: () => Effect.succeed("This is a simple prompt for testing."),
 });
 
-const ScenarioLive = SimplePrompt.pipe(
-  Layer.provideMerge(server("prompts-get-simple")),
-);
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: prompts-get-simple",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
+const ScenarioLive = SimplePrompt.pipe(Layer.provideMerge(McpHttpLive));
 
 const MainLive = ScenarioLive.pipe(
   HttpRouter.serve,

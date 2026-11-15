@@ -1,6 +1,8 @@
-import { runHttpScenario, server } from "@repo/mcp-fixture";
+import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Context, Effect, Layer, Schema } from "effect";
 import { McpSchema, McpServer, Tool, Toolkit } from "effect/ai";
+import { HttpRouter, HttpServer } from "effect/http";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 const SimplePrompt = McpServer.prompt({
   name: "test_simple_prompt",
@@ -105,8 +107,26 @@ const ScenarioFeatures = Layer.mergeAll(
   TextResource,
 );
 
-const ScenarioLive = ScenarioFeatures.pipe(
-  Layer.provideMerge(server("prompts-get-simple-IV")),
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: prompts-get-simple-IV",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
+const ScenarioLive = ScenarioFeatures.pipe(Layer.provideMerge(McpHttpLive));
+
+const MainLive = ScenarioLive.pipe(
+  HttpRouter.serve,
+  HttpServer.withLogAddress,
+  Layer.provide(BunHttpServer.layerConfig(McpServerConfig)),
 );
 
-runHttpScenario(ScenarioLive);
+const main = Layer.launch(MainLive).pipe(Effect.satisfiesServicesType<never>());
+
+BunRuntime.runMain(main);

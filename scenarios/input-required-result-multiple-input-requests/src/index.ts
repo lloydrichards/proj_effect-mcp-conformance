@@ -2,7 +2,7 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { Context, Effect, Layer } from "effect";
 import { McpSchema, McpServer } from "effect/ai";
 import { HttpRouter, HttpServer } from "effect/http";
-import { McpServerConfig, server } from "@repo/mcp-fixture";
+import { McpProtocolConfig, McpServerConfig } from "@repo/mcp-fixture";
 
 const MultipleInputRequestsTool = new McpSchema.Tool({
   name: "test_input_required_result_multiple_inputs",
@@ -70,8 +70,20 @@ const MultipleInputRequestsRegistration = Layer.effectDiscard(
   ),
 );
 
+const McpHttpLive = Effect.map(
+  McpProtocolConfig,
+  ({ protocols, allowedOrigins }) =>
+    McpServer.layerHttp({
+      name: "Effect MCP fixture: input-required-result-multiple-input-requests",
+      version: "0.1.0",
+      path: "/mcp",
+      protocols,
+      allowedOrigins,
+    }),
+).pipe(Layer.unwrap);
+
 const ScenarioLive = MultipleInputRequestsRegistration.pipe(
-  Layer.provideMerge(server("input-required-result-multiple-input-requests")),
+  Layer.provideMerge(McpHttpLive),
 );
 
 const MainLive = ScenarioLive.pipe(
